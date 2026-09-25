@@ -1,0 +1,26 @@
+# Build-time tweaks for the website. Nothing here modifies the notes in vault/.
+#
+# Each folder in vault/ is a subject. Inside it, the note with the same name as the
+# folder (e.g. vault/Neurophysiology/Neurophysiology.md) is the index: its headings and
+# links decide the sidebar structure and order. Notes not listed there go to "Concepts".
+
+conceptsFolder: Concepts
+
+subjects:
+  Neurophysiology:
+    # Page titles for notes whose file name is a phrase rather than a concept.
+    # Links keep their original wording in the text; only the page title/URL changes.
+    rename:
+      "without decaying": "Non-decremental conduction"
+      "Integrates": "Neural integration"
+      "synthetic": "The soma as synthetic centre"
+      "invaginates": "Invagination"
+      "phosphorylates": "Phosphorylation"
+      "refractory": "Refractory period"
+      "woven": "Woven (Golgi tendon organ)"
+      "shifts toward E_Na": "Why the AP peak approaches E_Na"
+      "the dorsal column system crosses in the medulla; the anterolateral system crosses in the spinal cord": "Where the dorsal column and anterolateral systems cross"
+      "Glia in Synaptogenesis and Syniaptic Activity": "Glia in Synaptogenesis and Synaptic Activity"
+    # Fix typos in index headings.
+    headings:
+      "Neurotransmiters": "Neurotransmitters"

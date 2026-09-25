@@ -1,0 +1,373 @@
+#!/usr/bin/env node
+// Turns the flat Obsidian vault(s) in vault/ into the structured content/ folder Quartz builds.
+//
+// The notes in vault/ are never modified. Structure comes from each subject's index note:
+//   # Section            -> folder
+//   ### Subsection       -> subfolder
+//   - [[Note]]           -> note placed in that subfolder, in that order
+// Notes not listed in the index go to the Concepts folder, attachments to attachments/.
+//
+// Presentation tweaks (all build-time):
+//   - page titles from site.yaml renames, links keep their original wording
+//   - headings start at h2 and lose redundant **bold**
+//   - opening blockquote -> "Definition" callout, blockquote under "Summary" -> summary callout,
+//     blockquotes starting with a bold label ("**Memory hook:**") -> tip callout
+//   - image-placeholder embeds that point nowhere are dropped
+
+import fs from "node:fs"
+import path from "node:path"
+import { execFileSync } from "node:child_process"
+import YAML from "yaml"
+
+const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..")
+const VAULT = path.join(ROOT, "vault")
+const OUT = path.join(ROOT, "content")
+const GENERATED = path.join(ROOT, ".generated")
+
+const siteConfig = YAML.parse(fs.readFileSync(path.join(ROOT, "site.yaml"), "utf8")) ?? {}
+const CONCEPTS = siteConfig.conceptsFolder ?? "Concepts"
+const IGNORED = new Set([".obsidian", ".trash", ".git"])
+
+const explorerOrder = {}
+let rank = 0
+const setRank = (name) => {
+  if (!(name in explorerOrder)) explorerOrder[name] = rank++
+}
+
+fs.rmSync(OUT, { recursive: true, force: true })
+fs.mkdirSync(OUT, { recursive: true })
+fs.mkdirSync(GENERATED, { recursive: true })
+
+const subjects = fs
+  .readdirSync(VAULT, { withFileTypes: true })
+  .filter((d) => d.isDirectory() && !IGNORED.has(d.name) && !d.name.startsWith("."))
+  .map((d) => d.name)
+  .sort((a, b) => a.localeCompare(b))
+
+const summaries = subjects.map(buildSubject)
+writeHome(summaries)
+fs.writeFileSync(
+  path.join(GENERATED, "explorer-order.json"),
+  JSON.stringify(explorerOrder, null, 2),
+)
+
+for (const s of summaries) {
+  console.log(
+    `${s.subject}: ${s.indexed} indexed notes, ${s.concepts} concepts, ${s.assets} attachments` +
+      (s.warnings.length ? `\n  ${s.warnings.join("\n  ")}` : ""),
+  )
+}
+
+function buildSubject(subject) {
+  const dir = path.join(VAULT, subject)
+  const cfg = siteConfig.subjects?.[subject] ?? {}
+  const renames = cfg.rename ?? {}
+  const headingFixes = cfg.headings ?? {}
+  const warnings = []
+
+  // Collect files by basename, the way Obsidian's shortest-path links resolve them.
+  const notes = new Map() // lowercased name -> { name, file }
+  const assets = new Map() // lowercased filename -> { name, file }
+  for (const file of walk(dir)) {
+    const base = path.basename(file)
+    if (base.toLowerCase().endsWith(".md")) {
+      const name = base.slice(0, -3)
+      notes.set(name.toLowerCase(), { name, file })
+    } else {
+      assets.set(base.toLowerCase(), { name: base, file })
+    }
+  }
+
+  const modified = lastModifiedDates(dir)
+
+  const indexNote = notes.get(subject.toLowerCase()) ?? notes.get("index")
+  if (!indexNote)
+    warnings.push(`no index note found (expected ${subject}.md), everything goes to ${CONCEPTS}`)
+
+  // Output name of every note, after renames. Keyed by lowercased original name.
+  const outName = new Map()
+  for (const [key, n] of notes) {
+    if (n === indexNote) continue
+    outName.set(key, sanitize(renames[n.name] ?? n.name))
+  }
+
+  // Walk the index to decide folders and order.
+  const placement = new Map() // lowercased note name -> relative folder
+  setRank(subject)
+  if (indexNote) {
+    let section = null
+    let subsection = null
+    for (const line of fs.readFileSync(indexNote.file, "utf8").split("\n")) {
+      const h = line.match(/^(#{1,6})\s+(.*?)\s*$/)
+      if (h) {
+        const text = fixHeading(stripBold(h[2]), headingFixes)
+        if (h[1].length === 1) {
+          section = text
+          subsection = null
+        } else {
+          subsection = text
+        }
+        continue
+      }
+      for (const link of line.matchAll(/(?<!!)\[\[([^\]|#\\]+)/g)) {
+        const key = link[1].trim().toLowerCase()
+        if (!notes.has(key) || placement.has(key) || notes.get(key) === indexNote) continue
+        const parts = [section, subsection].filter(Boolean).map(sanitize)
+        parts.forEach(setRank)
+        placement.set(key, parts.join("/"))
+        setRank(titleFor(notes.get(key).name, renames))
+      }
+    }
+  }
+  explorerOrder[CONCEPTS] = 1e6
+
+  const resolveNote = (target) => {
+    const key = path.basename(target.trim()).replace(/\.md$/i, "").toLowerCase()
+    return notes.has(key) ? key : null
+  }
+  const resolveAsset = (target) => assets.get(path.basename(target.trim()).toLowerCase()) ?? null
+
+  // In prose a renamed link keeps its original wording; on the index page it shows the new title.
+  const rewrite = (md, { preferTitle = false } = {}) =>
+    rewriteLinks(md, {
+      resolveNote,
+      resolveAsset,
+      outName,
+      notes,
+      indexNote,
+      subject,
+      warnings,
+      label: (key, written) => (preferTitle ? titleFor(notes.get(key).name, renames) : written),
+    })
+
+  // Notes
+  let indexed = 0
+  let concepts = 0
+  for (const [key, n] of notes) {
+    if (n === indexNote) continue
+    const folder = placement.get(key) ?? CONCEPTS
+    placement.has(key) ? indexed++ : concepts++
+    const renamed = renames[n.name] !== undefined
+    let body = fs.readFileSync(n.file, "utf8").replace(/\r\n/g, "\n")
+    const { frontmatter, content } = splitFrontmatter(body)
+    let text = rewrite(content)
+    text = normalizeHeadings(text)
+    text = addCallouts(text)
+    if (!text.replace(/!\[\[[^\]]*\]\]/g, "").trim() && !/!\[\[/.test(text)) {
+      text = "*This note is still empty.*\n"
+    }
+    const fm = {
+      title: titleFor(n.name, renames),
+      modified: modified.get(n.file) ?? fs.statSync(n.file).mtime.toISOString(),
+      ...frontmatter,
+    }
+    if (renamed) fm.aliases = [...new Set([...(fm.aliases ?? []), n.name])]
+    writeNote(path.join(OUT, subject, folder, `${outName.get(key)}.md`), fm, text)
+  }
+
+  // Attachments
+  for (const a of assets.values()) {
+    const dest = path.join(OUT, subject, "attachments", a.name)
+    fs.mkdirSync(path.dirname(dest), { recursive: true })
+    fs.copyFileSync(a.file, dest)
+  }
+
+  // Subject home page = the index note, with empty sections removed.
+  if (indexNote) {
+    let text = fs.readFileSync(indexNote.file, "utf8").replace(/\r\n/g, "\n")
+    text = splitFrontmatter(text).content
+    text = text.replace(/^(#{1,6})[ \t]+(.*?)[ \t]*$/gm, (_, hashes, t) => {
+      const fixed = fixHeading(stripBold(t), headingFixes)
+      return `${hashes.length === 1 ? "##" : "###"} ${fixed}`
+    })
+    text = dropEmptySections(text).replace(/^---\s*$/gm, "") // headings already separate sections
+    text = rewrite(text, { preferTitle: true })
+    writeNote(path.join(OUT, subject, "index.md"), { title: subject }, text)
+  } else {
+    writeNote(path.join(OUT, subject, "index.md"), { title: subject }, "")
+  }
+
+  return { subject, indexed, concepts, assets: assets.size, warnings }
+}
+
+function rewriteLinks(md, ctx) {
+  const { resolveNote, resolveAsset, outName, notes, indexNote, subject, warnings, label } = ctx
+  return md.replace(/(!?)\[\[([^\]]+?)\]\]/g, (whole, bang, inner) => {
+    // Inside tables Obsidian escapes the alias pipe as \|; keep whatever was used.
+    const sep = inner.includes("\\|") ? "\\|" : "|"
+    const [targetPart, ...rest] = inner.split(sep)
+    const alias = rest.length ? rest.join(sep) : null
+    const hashAt = targetPart.indexOf("#")
+    const target = hashAt >= 0 ? targetPart.slice(0, hashAt) : targetPart
+    const anchor = hashAt >= 0 ? targetPart.slice(hashAt) : ""
+
+    if (bang) {
+      const asset = resolveAsset(target)
+      if (asset) return whole
+      if (!resolveNote(target)) {
+        warnings.push(
+          `dropped embed with no file: ![[${inner.slice(0, 60)}${inner.length > 60 ? "…" : ""}]]`,
+        )
+        return ""
+      }
+    }
+
+    const key = resolveNote(target)
+    if (!key) return whole
+    if (notes.get(key) === indexNote) {
+      return `${bang}[[${subject}/index${anchor}${sep}${alias ?? target.trim()}]]`
+    }
+    const newTarget = outName.get(key)
+    if (newTarget === target.trim()) return whole
+    // Keep the original wording in the sentence; only the destination changes.
+    return `${bang}[[${newTarget}${anchor}${sep}${alias ?? label(key, target.trim())}]]`
+  })
+}
+
+function normalizeHeadings(md) {
+  const lines = md.split("\n")
+  let inFence = false
+  let min = 7
+  const isHeading = []
+  for (const [i, line] of lines.entries()) {
+    if (/^\s*(```|~~~)/.test(line)) inFence = !inFence
+    const m = !inFence && line.match(/^(#{1,6})\s+\S/)
+    isHeading[i] = Boolean(m)
+    if (m) min = Math.min(min, m[1].length)
+  }
+  if (min === 7) return md
+  const shift = 2 - min
+  return lines
+    .map((line, i) => {
+      if (!isHeading[i]) return line
+      const m = line.match(/^(#{1,6})\s+(.*?)\s*$/)
+      const level = Math.min(6, Math.max(2, m[1].length + shift))
+      return `${"#".repeat(level)} ${stripBold(m[2])}`
+    })
+    .join("\n")
+}
+
+function addCallouts(md) {
+  const lines = md.split("\n")
+  const out = []
+  let lastContent = null // last non-empty line before the current block
+  let i = 0
+  while (i < lines.length) {
+    if (!/^\s*>/.test(lines[i])) {
+      if (lines[i].trim()) lastContent = lines[i]
+      out.push(lines[i++])
+      continue
+    }
+    const block = []
+    while (i < lines.length && /^\s*>/.test(lines[i])) block.push(lines[i++])
+    const first = block[0].replace(/^\s*>\s?/, "")
+
+    if (/^\[!/.test(first)) {
+      out.push(...block) // already a callout
+    } else if (lastContent === null) {
+      out.push("> [!abstract] Definition", ...block)
+    } else if (/^#{1,6}\s+.*summary/i.test(lastContent)) {
+      out.push("> [!summary]", ...block)
+    } else {
+      const label = first.match(/^(==)?\*\*(.+?):?\*\*:?(==)?:?\s*(.*)$/)
+      if (label) {
+        out.push(`> [!tip] ${label[2].replace(/:$/, "")}`, `> ${label[4]}`, ...block.slice(1))
+      } else {
+        out.push(...block)
+      }
+    }
+    lastContent = block[block.length - 1]
+  }
+  return out.join("\n")
+}
+
+function dropEmptySections(md) {
+  // Remove "##" sections (from the index's H1s) that contain no links.
+  const parts = md.split(/(?=^## )/m)
+  return parts.filter((p) => !p.startsWith("## ") || /\[\[/.test(p)).join("")
+}
+
+function splitFrontmatter(text) {
+  const m = text.match(/^---\n([\s\S]*?)\n---\n?/)
+  if (!m) return { frontmatter: {}, content: text }
+  try {
+    return { frontmatter: YAML.parse(m[1]) ?? {}, content: text.slice(m[0].length) }
+  } catch {
+    return { frontmatter: {}, content: text }
+  }
+}
+
+function writeNote(file, frontmatter, body) {
+  fs.mkdirSync(path.dirname(file), { recursive: true })
+  fs.writeFileSync(file, `---\n${YAML.stringify(frontmatter)}---\n\n${body.trim()}\n`)
+}
+
+function writeHome(summaries) {
+  const list = summaries
+    .map(
+      (s) => `- [[${s.subject}/index|${s.subject}]] (${s.indexed} topics, ${s.concepts} concepts)`,
+    )
+    .join("\n")
+  writeNote(path.join(OUT, "index.md"), { title: "Study Notes" }, `## Subjects\n\n${list}\n`)
+}
+
+// content/ is generated, so Quartz can't read dates from git itself. Pass through the date
+// of the last commit that touched each vault file.
+function lastModifiedDates(dir) {
+  const dates = new Map()
+  try {
+    const log = execFileSync("git", ["log", "--format=%x00%cI", "--name-only", "--", dir], {
+      cwd: ROOT,
+      encoding: "utf8",
+      maxBuffer: 64 * 1024 * 1024,
+      stdio: ["ignore", "pipe", "ignore"],
+    })
+    const top = execFileSync("git", ["rev-parse", "--show-toplevel"], {
+      cwd: ROOT,
+      encoding: "utf8",
+    }).trim()
+    let date = null
+    for (const line of log.split("\n")) {
+      if (line.startsWith("\0")) date = line.slice(1)
+      else if (line && date) {
+        const file = path.join(top, line)
+        if (!dates.has(file)) dates.set(file, date)
+      }
+    }
+  } catch {
+    // not a git checkout; callers fall back to file mtimes
+  }
+  return dates
+}
+
+function titleFor(name, renames) {
+  if (renames[name]) return renames[name]
+  // "cation" -> "Cation", but leave "pO₂, pCO₂" or "E_K" alone.
+  const firstWord = name.split(/\s/)[0]
+  return firstWord === firstWord.toLowerCase() ? name[0].toUpperCase() + name.slice(1) : name
+}
+
+function stripBold(text) {
+  const m = text.trim().match(/^(\*\*|__)(.*)\1$/)
+  return m ? m[2].trim() : text.trim()
+}
+
+function fixHeading(text, fixes) {
+  return fixes[text] ?? text
+}
+
+function sanitize(name) {
+  return name
+    .replace(/[\\/:*?"<>|#^[\]]/g, "")
+    .replace(/\s+/g, " ")
+    .trim()
+}
+
+function* walk(dir) {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (IGNORED.has(entry.name) || entry.name.startsWith(".")) continue
+    const full = path.join(dir, entry.name)
+    if (entry.isDirectory()) yield* walk(full)
+    else yield full
+  }
+}

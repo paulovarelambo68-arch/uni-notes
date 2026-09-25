@@ -1,3 +1,11 @@
 @use "./variables.scss" as *;
 
 // put your custom CSS here!
+
+// Mobile: the closed explorer drawer is hidden with `visibility: hidden`, but open folders
+// inside it set `visibility: visible`, so their titles peek in at the left edge.
+@media all and (max-width: 800px) {
+  .explorer.collapsed > .explorer-content .folder-outer.open {
+    visibility: hidden;
+  }
+}

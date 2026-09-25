@@ -12,6 +12,10 @@
     "url": "https://github.com/jackyzha0/quartz.git"
   },
   "scripts": {
+    "import": "scripts/import-vault.sh",
+    "content": "node scripts/build-content.mjs",
+    "site": "node scripts/build-content.mjs && npx quartz build",
+    "serve": "node scripts/build-content.mjs && npx quartz build --serve",
     "quartz": "./quartz/bootstrap-cli.mjs",
     "docs": "npx quartz build --serve -d docs",
     "check": "tsc --noEmit && npx prettier . --check",
@@ -54,7 +58,6 @@
     "@quartz-community/content-meta": "^1.0.0",
     "@quartz-community/content-page": "^1.0.0",
     "@quartz-community/crawl-links": "^1.0.0",
-    "@quartz-themes/core": "^2.0.0",
     "@quartz-community/created-modified-date": "^1.0.0",
     "@quartz-community/darkmode": "^1.0.0",
     "@quartz-community/description": "^1.0.0",
@@ -86,6 +89,8 @@
     "@quartz-community/tag-list": "^1.0.0",
     "@quartz-community/tag-page": "^1.0.0",
     "@quartz-community/unlisted-pages": "^1.0.0",
+    "@quartz-themes/core": "^2.0.0",
+    "@quartz-themes/default": "^1.0.1",
     "ansi-truncate": "^1.4.0",
     "async-mutex": "^0.5.0",
     "chokidar": "^5.0.0",
