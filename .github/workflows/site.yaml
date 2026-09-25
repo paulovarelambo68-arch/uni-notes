@@ -39,11 +39,7 @@ jobs:
         with:
           path: public
 
-  # Publishing is off for now: pushes only check that the site builds.
-  # To publish on every push, enable Pages (Settings → Pages → Source: GitHub Actions)
-  # and delete the `if:` line below.
   deploy:
-    if: github.event_name == 'workflow_dispatch'
     needs: build
     runs-on: ubuntu-latest
     environment:
