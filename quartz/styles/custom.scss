@@ -1,3 +1,4 @@
+@use "sass:map";
 @use "./variables.scss" as *;
 
 // put your custom CSS here!
@@ -8,4 +9,57 @@
   .explorer.collapsed > .explorer-content .folder-outer.open {
     visibility: hidden;
   }
+}
+
+// The right column is unused (graph and table of contents are turned off and backlinks
+// sit below the note), so give its width to the note itself.
+@media all and ($desktop) {
+  .page > #quartz-body {
+    grid-template-columns: #{$sidePanelWidth} minmax(0, auto);
+    grid-template-areas:
+      "grid-sidebar-left grid-header"
+      "grid-sidebar-left grid-center"
+      "grid-sidebar-left grid-footer";
+  }
+
+  .sidebar.right {
+    display: none;
+  }
+}
+
+// Keep long lines comfortable to read, like Obsidian's readable line length.
+@media all and ($desktop) {
+  .center article,
+  .center .page-header,
+  .center .page-footer {
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+// Justified body text, as in print.
+article p,
+article li {
+  text-align: justify;
+  hyphens: auto;
+}
+
+// Smaller, centered images so a figure never fills the whole column.
+article img {
+  display: block;
+  margin: 1.2rem auto;
+  max-width: min(100%, 540px);
+  max-height: 70vh;
+  width: auto;
+  height: auto;
+  border-radius: 6px;
+}
+
+// Images inside tables or transclusions stay inline and untouched.
+article table img {
+  display: inline;
+  margin: 0;
+  max-width: 100%;
+  max-height: none;
 }

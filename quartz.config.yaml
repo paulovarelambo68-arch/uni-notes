@@ -14,29 +14,33 @@ configuration:
     fontOrigin: googleFonts
     cdnCaching: true
     typography:
-      header: Schibsted Grotesk
-      body: Source Sans Pro
+      header: Inter
+      body: Inter
       code: IBM Plex Mono
     colors:
+      # Light mode: soft paper. Warm off-white background, warm ink text,
+      # Obsidian's purple accent deepened enough to read on paper.
       lightMode:
-        light: "#faf8f8"
-        lightgray: "#e5e5e5"
-        gray: "#b8b8b8"
-        darkgray: "#4e4e4e"
-        dark: "#2b2b2b"
-        secondary: "#284b63"
-        tertiary: "#84a59d"
-        highlight: rgba(143, 159, 169, 0.15)
+        light: "#f7f3ea"
+        lightgray: "#e6dfd0"
+        gray: "#a89e8a"
+        darkgray: "#57503f"
+        dark: "#37322a"
+        secondary: "#6a51c9"
+        tertiary: "#a08bd8"
+        highlight: rgba(106, 81, 201, 0.10)
         textHighlight: "#fff23688"
+      # Dark mode: Obsidian's default dark theme. #1e1e1e background,
+      # #dcddde text, lighter purple accent like Obsidian's links in the dark.
       darkMode:
-        light: "#161618"
-        lightgray: "#393639"
-        gray: "#646464"
+        light: "#1e1e1e"
+        lightgray: "#333333"
+        gray: "#6f6f6f"
         darkgray: "#d4d4d4"
-        dark: "#ebebec"
-        secondary: "#7b97aa"
-        tertiary: "#84a59d"
-        highlight: rgba(143, 159, 169, 0.15)
+        dark: "#dcddde"
+        secondary: "#a68cff"
+        tertiary: "#7f6df2"
+        highlight: rgba(166, 140, 255, 0.12)
         textHighlight: "#b3aa0288"
 plugins:
   - source: "@quartz-community/created-modified-date"
@@ -76,7 +80,7 @@ plugins:
     enabled: true
     order: 40
   - source: "@quartz-community/table-of-contents"
-    enabled: true
+    enabled: false
     order: 50
     layout:
       position: right
@@ -161,7 +165,7 @@ plugins:
       position: left
       priority: 50
   - source: "@quartz-community/graph"
-    enabled: true
+    enabled: false
     layout:
       position: right
       priority: 10
@@ -176,18 +180,20 @@ plugins:
   - source: "@quartz-community/backlinks"
     enabled: true
     layout:
-      position: right
+      position: afterBody
       priority: 50
   - source: "@quartz-community/article-title"
     enabled: true
     layout:
       position: beforeBody
       priority: 10
+      condition: not-index
   - source: "@quartz-community/content-meta"
     enabled: true
     layout:
       position: beforeBody
       priority: 20
+      condition: not-index
   - source: "@quartz-community/tag-list"
     enabled: false
     layout:
@@ -205,7 +211,7 @@ plugins:
       priority: 30
       group: toolbar
   - source: "@quartz-community/reader-mode"
-    enabled: true
+    enabled: false
     layout:
       position: left
       priority: 35
