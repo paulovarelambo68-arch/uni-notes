@@ -26,6 +26,14 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
+      # Point the site URL and footer link at whoever owns this repo, so a fork or transfer
+      # needs no config edits. Remove this step if you set up a custom domain.
+      - name: Set site URL
+        run: |
+          owner="$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')"
+          sed -i "s|^  baseUrl: .*|  baseUrl: ${owner}.github.io/${{ github.event.repository.name }}|" quartz.config.yaml
+          sed -i "s|^        Source: .*|        Source: ${{ github.server_url }}/${{ github.repository }}|" quartz.config.yaml
+          grep -E "baseUrl|Source:" quartz.config.yaml
       - run: npm run site
       - uses: actions/upload-pages-artifact@v3
         with:
