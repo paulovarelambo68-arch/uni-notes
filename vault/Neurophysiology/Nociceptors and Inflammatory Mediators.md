@@ -9,13 +9,19 @@ Aδ nociceptors make up about ==20% of nociceptors==. They respond to ==mechanic
 
 C nociceptors make up the remaining ==80%==. They are ==polymodal==, meaning a single ending responds to ==mechanical, thermal and chemical stimuli==. Their axons are ==small diameter unmyelinated fibres==, the slowest afferents in [[Sensory Receptors and Afferent Types]], and the pain they carry is ==slow, burning, aching and diffuse==, the lingering second pain that follows the sharp first impression.
 
+![[Gemini_Generated_Image_elgvsqelgvsqelgv.jpeg]]
 ### 3. Ion channel receptors on the free nerve endings
 
 The free nerve endings of nociceptors express ==ion channel receptors== that transduce each class of noxious stimulus into a [[graded potential]]. The figure maps each stimulus to its channels: ==heat activates TRPV1, TRPV2, TRPV3 and TREK1==; ==chemical stimuli such as acid activate TRPV1, ASIC and DRASIC==; ==mechanical stimuli activate MDEG, DRASIC and TREK1==; and ==cold activates TRPM8==. TRPV1 appears in both the heat and chemical groups, fitting the polymodal character of the endings that express it.
 
+![[Gemini_Generated_Image_djbq44djbq44djbq 1.jpeg]]
+
 ### 4. Inflammatory mediators
 
 Tissue injury releases a set of inflammatory mediators from damaged cells, mast cells and the nociceptor terminal itself, and ==these act to reduce the pain threshold of the nerve==. They split by their action on the nociceptor: ==histamine, substance P, potassium, serotonin and bradykinin activate the nociceptor directly==, while ==prostaglandins and leukotrienes sensitise it==, lowering its threshold so that weaker stimuli now produce pain. Prostaglandins and leukotrienes are synthesised from membrane phospholipids, which phospholipase converts to arachidonic acid, the substrate for two enzymes: cyclooxygenase yields prostaglandins and lipoxygenase yields leukotrienes. This is why ==COX inhibitors work as analgesics==: blocking cyclooxygenase cuts prostaglandin synthesis and removes the sensitisation.
+
+![[Gemini_Generated_Image_v2r5zxv2r5zxv2r5.jpeg|375]]
+![[Gemini_Generated_Image_djbq44djbq44djbq.jpeg]]
 
 ### Summary
 
