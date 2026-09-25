@@ -1,0 +1,18 @@
+
+> The pain experience is not a direct readout of the nociceptive input. The signal from injury is amplified by sensitisation, modulated at spinal level, and interpreted by a brain whose genetics, context, mood and cognitive set all shape what is finally felt.
+
+### 1. Factors shaping the pain experience
+
+Nociceptive input reaches the spinal cord through the [[Classification of Nerve Fibres|Aδ and C fibres]] of the [[nociceptors]], and injury adds peripheral and central sensitisation, which ==amplify the nociceptive input== before it ascends. This amplified input undergoes nociceptive modulation in the cord, and only the result travels up to the brain, where the pain experience itself is generated (figure from Tracey and Mantyh 2007). That experience is shaped by several classes of factors. Genetics sets the baseline sensitivity of the system. Context, meaning pain beliefs, expectation and placebo, changes how the same signal is judged. Mood, particularly depression, anxiety and catastrophising, colours how intense and unpleasant the experience becomes. Cognitive set, covering hypervigilance, attention and distraction, determines how much the signal is attended to. Finally, chemical and structural changes in the brain, such as neurodegeneration, metabolic changes in opioidergic and dopaminergic systems and maladaptive plasticity, alter the very substrate that generates the experience.
+
+### 2. Stress modulation of pain
+
+Stress acts on pain through the descending system, and the direction of the effect depends on whether the stress is acute or chronic. ==Acute stress decreases pain through descending inhibition==: signals sent down to the cord suppress nociceptive transmission, so less pain is felt. ==Chronic stress increases pain through descending facilitation==: the same descending machinery boosts transmission instead, so pain is enhanced.
+
+### 3. Spinal modulation of pain
+
+The spinal cord contains interneurons that release ==inhibitory transmitters which may be antinociceptive==: ==endogenous opioids, endogenous cannabinoids, noradrenaline and serotonin, and GABA==. All of these neurons show ==tonic activity==, meaning the cord maintains a constant background level of inhibition over nociceptive transmission rather than engaging only when pain arrives. This inhibition is controlled from two directions: ==modulation by the descending pain pathway== from above, and ==incoming non nociceptive transmission== from the periphery, which is why non painful input such as touch and pressure can dampen the nociceptive signal at its first relay.
+
+### Summary
+
+> The pain experience is shaped by more than the nociceptive input: Aδ and C fibre signals, amplified by peripheral and central sensitisation, are modulated in the cord, and the brain generates the final experience under the influence of genetics, context (beliefs, expectation, placebo), mood (depression, anxiety, catastrophising), cognitive set (hypervigilance, attention, distraction) and chemical and structural changes. Stress modulates pain through the descending system, acute stress decreasing pain through descending inhibition and chronic stress increasing pain through descending facilitation. In the cord, tonically active interneurons release antinociceptive inhibitory transmitters (endogenous opioids, endogenous cannabinoids, noradrenaline, serotonin, GABA), controlled by the descending pain pathway and by incoming non nociceptive transmission.

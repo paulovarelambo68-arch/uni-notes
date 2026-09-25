@@ -1,0 +1,1 @@
+A brief time after a cell or organ fires when it cannot respond to a new stimulus.

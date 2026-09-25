@@ -1,0 +1,1 @@
+Specialized sensory nerve endings that detect actual or potential tissue damage and send threat signals to the spinal cord and brain

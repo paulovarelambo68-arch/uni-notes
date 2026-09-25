@@ -1,0 +1,19 @@
+
+>Proprioception is the perception of ==joint position, joint movement and the velocity of joint movement==, together with the **unconscious sensations** that guide posture, reflexes and movement without ever reaching awareness. It depends on low threshold mechanoreceptors embedded in the musculoskeletal system itself: muscle spindles, Golgi tendon organs and joint receptors. This detailed and continuous information about where the limbs are in space is essential for the accurate performance of complex movements.
+
+### Muscle spindles
+
+Muscle spindles are found in virtually all skeletal muscles and provide the most detailed proprioceptive signal. Each spindle is a connective tissue capsule containing four to eight specialised intrafusal fibres, arranged in parallel with the ordinary force producing extrafusal fibres among which it lies. Sensory endings are coiled around the central region of the intrafusal fibres, and when the muscle is stretched, mechanically gated ion channels open in these endings and trigger action potentials. Two classes of afferent carry the signal: the large ==group Ia primary endings==, which adapt rapidly and report the ==velocity and direction of movement==, and the ==group II secondary endings==, which give sustained responses that report static muscle length, and therefore limb position. The spindle is also under motor control: gamma motor neurons adjust the tension of the intrafusal fibres so that the spindle remains sensitive at all muscle lengths, while alpha motor neurons drive the extrafusal fibres that produce force.
+
+### Golgi tendon organs
+
+The Golgi tendon organ is an encapsulated receptor sitting at the junction between muscle and tendon, its sensory ending [[woven]] among the collagen fascicles of the tendon, placing it [[in series]] with the muscle fibres. It is therefore deformed whenever the muscle develops tension, and it reports ==changes in muscle tension== to the spinal cord through a group ==Ib afferent==. Where the spindle measures length, the tendon organ measures force.
+
+### Joint receptors
+
+Joint receptors resemble the mechanoreceptors of the skin, such as Ruffini endings and Pacinian corpuscles, and they were once thought to be the main source of proprioceptive information. They are not: ==joint receptors play only a minor role in proprioception==. Patients with artificial joint replacements show only minor deficits in judging limb position and movement, and anaesthetising a joint such as the knee does not affect these judgements at all. Their genuine contributions are more specific: they are ==important for judging finger position==, working alongside cutaneous Ruffini afferents and muscle spindle input to give the fingers their fine representation, and they serve a ==protective role, signalling positions that lie near the limits of joint range of motion==.
+
+![[Gemini_Generated_Image_257fur257fur257f.jpeg]]
+### Summary
+
+>Proprioception is the perception of joint position, joint movement and velocity of movement, including its unconscious components, carried by low threshold mechanoreceptors. Muscle spindles (capsules of intrafusal fibres lying parallel to extrafusal fibres, innervated by Ia and II afferents and set by gamma motor neurons) report muscle length and the speed of stretch, while Golgi tendon organs (encapsulated receptors among the collagen of the tendon, group Ib) report muscle tension. Joint receptors resemble cutaneous mechanoreceptors but play only a minor role in proprioception: they matter for judging finger position and for protectively signalling the limits of joint range of motion.

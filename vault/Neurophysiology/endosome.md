@@ -1,0 +1,2 @@
+
+A membrane-bound organelle inside eukaryotic cells that acts as the main "sorting station" for internalised material. Once a vesicle sheds its protein coat (becoming uncoated), it fuses with an early endosome. Here, cargo is directed either to lysosomes for destruction, to other cell compartments, or back to the cell surface.

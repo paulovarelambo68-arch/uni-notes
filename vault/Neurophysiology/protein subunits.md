@@ -1,0 +1,2 @@
+
+The receptor is not one single protein but a team of several protein chains (the subunits, usually four or five) that assemble in the membrane side by side, leaving a hole in the middle where they meet.

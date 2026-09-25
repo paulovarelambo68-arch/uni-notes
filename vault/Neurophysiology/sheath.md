@@ -1,0 +1,1 @@
+A protective or enclosing layer of tissue or membrane that covers an organ, cell, or other structure.

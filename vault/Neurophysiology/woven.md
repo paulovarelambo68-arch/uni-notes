@@ -1,0 +1,1 @@
+Interlaced or braided through something. In the Golgi tendon organ the sensory ending is not attached alongside the tendon but woven between its collagen fascicles, so tension in the tendon pulls directly on the ending and opens its mechanically gated channels.

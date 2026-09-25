@@ -1,0 +1,1 @@
+Arranged in line with another structure so that both bear the same force, rather than side by side. 

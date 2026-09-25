@@ -1,0 +1,4 @@
+
+**No, myelin is not needed for the signal to avoid decaying**.
+
+"Without decaying" means the AP keeps its **full amplitude** from start to finish, because it is actively regenerated at every point: each patch of membrane that fires opens its own voltage gated Na⁺ channels and produces a brand new, full size AP. This happens in unmyelinated axons too, they are covered in Na⁺ channels along their whole length and conduct perfectly well, just slowly. What does decay with distance are the passive, graded potentials (subthreshold ones), which spread electronically and fade within a few millimetres. The AP is the solution to that problem: regeneration replaces the fading signal with a fresh one at each step.

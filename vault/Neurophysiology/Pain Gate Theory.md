@@ -1,0 +1,18 @@
+
+> The pain gate theory proposes that the ==substantia gelatinosa (lamina II of the spinal cord) functions as a gate== that regulates the flow of nociceptive signals to the brain. ==Small unmyelinated C fibres open the gate==, facilitating lateral spinothalamic tract activation, while ==large myelinated Aβ fibres close the gate==, inhibiting it. The balance between these excitatory and inhibitory processes is ==mediated by interneurons== of the dorsal horn.
+
+### 1. The gate in the substantia gelatinosa
+
+Nociceptive afferents entering the cord synapse in the dorsal horn onto projection neurons whose axons ascend in the lateral spinothalamic tract, the pathway that carries pain to the brain (see [[Pain in the Spinal Cord and the Withdrawal Reflex]]). The substantia gelatinosa, lamina II of the dorsal horn, is where this transmission is controlled, and it works as a gate. Activity in the ==small unmyelinated C fibres== that carry nociceptive input opens the gate: it facilitates activation of the lateral spinothalamic tract, so pain signals are passed on. Activity in ==large myelinated Aβ fibres==, the fast afferents from low threshold mechanoreceptors of touch (see [[Classification of Nerve Fibres]] and [[Sensory Receptors and Afferent Types]]), closes the gate: it inhibits lateral spinothalamic tract activation, so transmission is reduced. What reaches the brain therefore depends on the ==balance of excitatory and inhibitory processes== in the dorsal horn, and that balance is mediated by interneurons.
+
+### 2. The circuit
+
+The circuit behind the gate is built around an ==inhibitory local circuit neuron== sitting between the two afferent inputs and the dorsal horn projection neuron. The C fibre from the [[nociceptors|nociceptor]] does two things at once: it ==excites the projection neuron directly==, driving the pain pathway, and it ==inhibits the inhibitory interneuron==, removing the brake on the projection neuron. Both actions push the gate open. The Aβ fibre from the mechanoreceptor does the opposite: it ==excites the inhibitory interneuron==, which then ==inhibits the projection neuron==, dampening transmission into the anterolateral system and closing the gate. The output of the projection neuron thus reflects which input is dominating, nociceptive C fibre drive or mechanoreceptive Aβ drive.
+
+### 3. Everyday and clinical correlates
+
+The theory explains why ==rubbing or scratching a painful site relieves pain==: these manoeuvres recruit large myelinated Aβ mechanoreceptor afferents, whose activity closes the gate and competes with the C fibre signal. The same principle is exploited clinically by ==TENS (transcutaneous electrical nerve stimulation)==, where electrodes on the skin deliver electrical pulses that selectively activate the large Aβ fibres, closing the gate and reducing the pain that reaches higher centres.
+
+### Summary
+
+> The substantia gelatinosa (lamina II) acts as a gate on pain transmission. C fibres open the gate by exciting the dorsal horn projection neuron directly and inhibiting the inhibitory interneuron that normally restrains it, facilitating lateral spinothalamic tract activation. Aβ fibres close the gate by exciting that inhibitory interneuron, which suppresses the projection neuron and inhibits tract activation. The perceived intensity of pain reflects the balance between the two inputs, set by dorsal horn interneurons, and this is why rubbing, scratching and TENS, all of which drive Aβ mechanoreceptor fibres, reduce pain.
