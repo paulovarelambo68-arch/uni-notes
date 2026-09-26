@@ -319,6 +319,22 @@ function writeNote(file, frontmatter, body) {
 }
 
 function writeHome(summaries) {
+  // If the author keeps a Subjects.md note at the vault root, it becomes the home page.
+  // Links named after a subject ([[Neurophysiology]]) are pointed at that subject's index.
+  const homeFile = path.join(VAULT, "Subjects.md")
+  if (fs.existsSync(homeFile)) {
+    const { frontmatter, content } = splitFrontmatter(fs.readFileSync(homeFile, "utf8"))
+    const bySubject = new Map(summaries.map((s) => [s.subject.toLowerCase(), s.subject]))
+    const body = content.replace(
+      /(!?)\[\[([^\]|#]+)(#[^\]|]*)?(\|[^\]]*)?\]\]/g,
+      (m, bang, target, anchor = "", alias = "") => {
+        const subject = bySubject.get(target.trim().toLowerCase())
+        return subject ? `${bang}[[${subject}/index${anchor}${alias || `|${target.trim()}`}]]` : m
+      },
+    )
+    writeNote(path.join(OUT, "index.md"), { title: frontmatter.title ?? "Study Notes" }, body)
+    return
+  }
   const list = summaries
     .map(
       (s) => `- [[${s.subject}/index|${s.subject}]] (${s.indexed} topics, ${s.concepts} concepts)`,
