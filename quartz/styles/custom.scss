@@ -45,6 +45,12 @@ article li {
   hyphens: auto;
 }
 
+// The folder-page plugin has no option to turn its listing off, so hide it:
+// a folder's own index note is the content, the auto "items in this folder" list is noise.
+.page-listing {
+  display: none;
+}
+
 // Smaller, centered images so a figure never fills the whole column.
 article img {
   display: block;
