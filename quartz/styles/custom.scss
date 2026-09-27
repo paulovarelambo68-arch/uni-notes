@@ -38,9 +38,9 @@
   }
 }
 
-// Justified body text, as in print.
-article p,
-article li {
+// Justified body text, as in print. Paragraphs only: justifying list items stretches
+// short link lists (like the Subjects page) into huge word gaps on narrow screens.
+article p {
   text-align: justify;
   hyphens: auto;
 }
