@@ -5,11 +5,19 @@
 
 The proposed mechanism is ==convergence==: ==nociceptors from several locations==, visceral and somatic, converge on a ==single ascending tract in the spinal cord==, so a primary sensory neuron from an organ and one from a region of skin synapse on the ==same secondary sensory neuron==, whose ascending path runs to the ==somatosensory cortex==. Because ==pain signals from the skin are more common== than pain from internal organs, the brain ==associates activation of that pathway with pain in the skin==, and the visceral signal is felt on the body surface rather than in the organ itself.
 
+![[Gemini_Generated_Image_1g06lm1g06lm1g06 1.jpeg|485]]
+
 ### Classic examples
 
-The figure maps the characteristic referral sites: the ==heart== refers to the ==chest and left arm==, the ==liver and gall bladder== to the ==shoulder region==, the ==stomach== to the ==upper central abdomen==, the ==small intestine== to the ==umbilical region==, the ==colon== to the ==lower central abdomen==, the ==appendix== to the ==periumbilical region==, and the ==ureters== to the ==groin==.
+- The ==heart== refers to the ==chest and left arm==.
+- The ==liver and gall bladder== refer to the ==shoulder region==.
+- The ==stomach== refers to the ==upper central abdomen==.
+- The ==small intestine== refers to the ==umbilical region==.
+- The ==colon== refers to the ==lower central abdomen==.
+- The ==appendix== refers to the ==periumbilical region==.
+- The ==ureters== refer to the ==groin==.
 
-![[PASTE IMAGE: referred pain body maps and convergence circuit (slide 18)]]
+In each case the organ and its referral site share the same level of entry into the spinal cord, which is what allows their nociceptors to converge.
 
 ### Summary
 
