@@ -17,7 +17,9 @@ The proposed mechanism is ==convergence==: ==nociceptors from several locations=
 - The ==appendix== refers to the ==periumbilical region==.
 - The ==ureters== refer to the ==groin==.
 
-In each case the organ and its referral site share the same level of entry into the spinal cord, which is what allows their nociceptors to converge.
+In each case the organ and its referral site share the same level of entry into the spinal cord, which is what allows their nociceptors to converge. 
+
+As class context beyond the slides, the classic cardiac pattern of chest and left arm pain comes mostly from studies in men, and women having a heart attack more often report less typical distributions, a reminder that much of pain knowledge carries a male bias.
 
 ### Summary
 

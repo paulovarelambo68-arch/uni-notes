@@ -5,12 +5,15 @@
 
 Rexed's laminae are the ten layers into which the grey matter of the spinal cord is divided on the basis of its cell architecture; the dorsal horn comprises laminae I to VI. The nociceptive afferents do not synapse at random here: each fibre class terminates in its own characteristic laminae, where it contacts the second order neurons of the pain pathway.
 
+
 ![[Gemini_Generated_Image_e1h25xe1h25xe1h2 1.jpeg|333]]
 
 | Fibre type | Terminates in | Signal carried |
 | --- | --- | --- |
 | [[Classification of Nerve Fibres\|Aδ fibres]] | ==Laminae I and V== | Sharp, prickling, well localised pain |
 | [[Classification of Nerve Fibres\|C fibres]] | ==Laminae I and II== | Slow, burning, aching, diffuse pain |
+> **Clinical aside (not slide content):**
+> An epidural anaesthetic bathes the spinal nerve roots and blocks conduction in the [[Classification of Nerve Fibres|primary afferents]], so nociceptive signals never reach the dorsal horn and the second order projection neurons are never activated, abolishing pain transmission below the block.
 
 ### 2. Lamina II: the substantia gelatinosa
 

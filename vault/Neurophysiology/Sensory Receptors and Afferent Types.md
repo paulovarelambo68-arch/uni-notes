@@ -9,6 +9,8 @@
 
 **Diameter of the axon and presence of a myelin sheath.** These two decide conduction velocity, exactly as in [[Classification of Nerve Fibres]]: larger diameter and myelin mean faster signalling, so the receptor type already tells you how quickly its information reaches the central nervous system.
 
+**Modality specificity and threshold.** Each receptor responds preferentially to ==one modality== (touch, pain, temperature, proprioception), and its sensitivity is expressed as a ==threshold: the minimum stimulus intensity needed to trigger a response==. A receptor has a ==low threshold for its own modality== and fires easily to it, but this specificity is not absolute: ==a stimulus of another modality can still activate the receptor if the intensity is high enough==. This is why ==very intense stimuli of any kind can become painful==: as intensity rises, the stimulus recruits high threshold [[Thermoreceptors and Nociceptors|nociceptive afferents]], so a bright enough light hurts the eye even though the eye is built for seeing.
+
 ### 2. Forms of the peripheral terminal 
 
 **Simple receptors: free nerve endings.** The receptor is the ending of the sensory neuron itself, with no accessory structure. The axon is ==unmyelinated and conducts at 0.5 to 2 m/s==. Pain, temperature and itch are carried this way.

@@ -18,7 +18,7 @@ Acute visceral pain arises from the ==internal organs==, triggered by ==[[disten
 
 ### Chronic pain
 
-Chronic pain is ==long term, debilitating pain== accompanied by ==altered pain perception==. The examples given are ==rheumatoid arthritis==, a chronic autoimmune inflammation of the joints that produces persistent joint pain, and ==phantom limb pain==, in which a person who has lost a limb continues to feel it and experiences pain as if it were coming from the missing limb.
+Chronic pain is ==long term, debilitating pain== accompanied by ==altered pain perception==. The examples given are ==rheumatoid arthritis==, a chronic autoimmune inflammation of the joints that produces persistent joint pain, and ==phantom limb pain==, in which a person who has lost a limb continues to feel it and experiences pain as if it were coming from the missing limb. Because C fibres carry slow, dull, persistent pain, chronic pain conditions are thought to involve ongoing overactivity of C fibre input, consistent with the altered pain perception and sensitisation described in [[Pain Experience and Descending Modulation]].
 
 ### Summary
 

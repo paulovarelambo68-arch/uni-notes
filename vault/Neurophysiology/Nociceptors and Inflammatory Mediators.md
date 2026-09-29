@@ -16,6 +16,9 @@ The free nerve endings of nociceptors express ==ion channel receptors== that tra
 ![[Gemini_Generated_Image_1ksxh71ksxh71ksx.jpeg]]
 ![[Gemini_Generated_Image_liq45gliq45gliq4.jpeg]]
 
+> **EXAM NOTE**
+> The individual names of all of these pain ion channels do not need to be memorised. What matters is that ==each stimulus type has its own channels==, that ==opening them depolarises the ending==, and that ==NaV1.8 and NaV1.9 drive the action potentials==.
+
 ### 4. Inflammatory mediators
 
 Tissue injury sets off a self reinforcing cascade around the nociceptor ending, and ==the mediators involved act to reduce the pain threshold of the nerve==. ==Damaged cells release their intracellular contents, including potassium, serotonin and bradykinin, which activate the nociceptor directly==. The activated ending in turn ==releases substance P==, which feeds back onto two targets: it ==stimulates [[mast cells]] to [[degranulate]] and release [[histamine]]==, and it ==dilates nearby blood vessels==, producing the redness and swelling of inflammation. Histamine adds further activation of the nociceptor, closing the loop.
@@ -23,6 +26,7 @@ Tissue injury sets off a self reinforcing cascade around the nociceptor ending, 
 In parallel, the membranes of the injured cells supply the ==sensitising arm== of the process. Phospholipase converts membrane phospholipids into arachidonic acid, which is then taken down two enzymatic paths: ==cyclooxygenase produces prostaglandins== and ==lipoxygenase produces leukotrienes==. Unlike the mediators above, ==prostaglandins and leukotrienes do not activate the nociceptor themselves; they sensitise it==, lowering its threshold so that stimuli that would normally be subthreshold now produce pain. This is why ==[[COX inhibitors]] work as analgesics==: by blocking cyclooxygenase they cut prostaglandin synthesis and remove the sensitisation.
 ![[Gemini_Generated_Image_cxb8dkcxb8dkcxb8.jpeg]]
 ![[Gemini_Generated_Image_v2r5zxv2r5zxv2r5.jpeg|377]]
+
 
 ### Summary
 

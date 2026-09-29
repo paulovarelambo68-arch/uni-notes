@@ -14,7 +14,7 @@ The circuit behind the gate is built around an ==inhibitory local circuit neuron
 
 ### 3. Everyday and clinical correlates
 
-The theory explains why ==rubbing or scratching a painful site relieves pain==: these manoeuvres recruit large myelinated Aβ mechanoreceptor afferents, whose activity closes the gate and competes with the C fibre signal. The same principle is exploited clinically by ==TENS (transcutaneous electrical nerve stimulation)==, where electrodes on the skin deliver electrical pulses that selectively activate the large Aβ fibres, closing the gate and reducing the pain that reaches higher centres.
+The theory explains why ==rubbing or scratching a painful site relieves pain==: these manoeuvres recruit large myelinated Aβ mechanoreceptor afferents, whose activity closes the gate and competes with the C fibre signal. The same principle is exploited clinically by ==TENS (transcutaneous electrical nerve stimulation)==, where electrodes on the skin deliver electrical pulses that selectively activate the large Aβ fibres, closing the gate and reducing the pain that reaches higher centres. ==Manual therapy== works through the same mechanism: the pressure, stretch and movement applied to skin and soft tissue drive Aβ mechanoreceptor input into the dorsal horn, exciting the inhibitory interneuron and suppressing the projection neuron. ==Dry needling== likewise recruits large afferent input, as the needle inserted into the muscle stimulates local mechanoreceptive afferents whose activity competes with nociceptive C fibre transmission at the gate, adding to the inhibitory drive that keeps it closed.
 
 ### Summary
 

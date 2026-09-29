@@ -11,7 +11,7 @@
 
 ### 2. IPSP: inhibitory postsynaptic potential
 
-- **==Inhibitory neurotransmitters produce hyperpolarisation==** of the postsynaptic membrane (typically Cl⁻ influx or K⁺ efflux, via GABA or glycine receptors).
+- **==Inhibitory neurotransmitters produce hyperpolarisation==** of the postsynaptic membrane (typically Cl⁻ influx or K⁺ efflux, via GABA or glycine receptors). GABA opens Cl⁻ channels, and Cl⁻ is concentrated outside the cell, so it flows in and makes the inside more negative (see [[Membrane Potential]]).
 
 - An IPSP **makes it more difficult to trigger an action potential**, because the membrane is pushed further away from threshold. The excitatory input then has to work harder to reach it.
 
@@ -33,4 +33,3 @@
 ### Summary
 
 > PSPs are local, graded, non propagated potentials: EPSPs depolarise and favour firing, IPSPs hyperpolarise and oppose it. Because they are graded and long lasting relative to an action potential, they can summate at the axon hillock, spatially (several inputs at once) or temporally (one input firing repeatedly), and only when their sum crosses threshold does the postsynaptic neuron fire.
-

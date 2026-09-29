@@ -68,7 +68,7 @@
 
 6. **Priming.** The SNARE complex partially assembles and tightens, bringing the vesicle membrane into very close apposition with the plasma membrane. The vesicle is now release ready (part of the readily releasable pool).
 
-7. **Fusion triggered by Ca²⁺.** Ca²⁺ binds **synaptotagmin**, the vesicular calcium sensor. This triggers complete SNARE zippering, the membranes merge, and a fusion pore opens.
+7. **Fusion triggered by Ca²⁺.** Ca²⁺ binds **synaptotagmin**, the vesicular calcium sensor. This triggers complete SNARE zippering, the membranes merge, and a fusion pore opens. Once Ca²⁺ binds synaptotagmin, synaptotagmin inserts into the lipids of the presynaptic membrane and curves it locally, which is what finally fuses the two membranes and opens the fusion pore.
 
 ![[Screenshot 2026-09-16 at 19.44.08.png]]
 

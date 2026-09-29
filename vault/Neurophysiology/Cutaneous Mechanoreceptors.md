@@ -8,11 +8,11 @@ Four types of mechanoreceptor mediate touch, and they are classified along two a
 
 ### Merkel receptors
 
-==Slowly adapting, small receptive field.== They respond to ==form and texture==, which is the discrimination that lets you tell cotton from silk. Their effective stimuli are edges, points, corners and curvature, and because they adapt slowly they sustain their response to maintained indentation, giving a continuous readout of fine spatial detail.
+==Slowly adapting, small receptive field.== They respond to ==form and texture==, which is the discrimination that lets you tell cotton from silk. Their effective stimuli are edges, points, corners and curvature, and because they adapt slowly they sustain their response to maintained indentation, giving a continuous readout of fine spatial detail. These are the receptors that let you tell an apple from an orange by form and texture, and that let you feel the corners of a table.
 
 ### Meissner corpuscles
 
-==Rapidly adapting, small receptive field.== They mediate ==fine touch and motion detection==, with skin motion as their effective stimulus, and they contribute to ==grip control==: the burst of firing as an object slips across the skin is what allows grip force to be adjusted. Because they adapt rapidly they do not respond to sustained indentation, only to changes.
+==Rapidly adapting, small receptive field.== They mediate ==fine touch and motion detection==, with skin motion as their effective stimulus, and they contribute to ==grip control==: the burst of firing as an object slips across the skin is what allows grip force to be adjusted. Because they adapt rapidly they do not respond to sustained indentation, only to changes. This is why a gentle unchanging touch of the fingertips on the forearm fades after a few seconds: rapidly adapting receptors signal only change, so a constant stimulus quickly stops evoking a response.
 
 ### Pacinian corpuscles
 
