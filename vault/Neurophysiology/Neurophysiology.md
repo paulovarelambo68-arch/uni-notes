@@ -79,7 +79,7 @@
 - [[The Visual Pathway and Its Targets]]
 - [[The Lateral Geniculate Nucleus]] 
 - [[The Primary Visual Cortex]]
-- [[Dorsal and Ventral Visual Pathways]]
+- [[Dorsal and Ventral Visual Pathways]] 
 
 # Hearing
 

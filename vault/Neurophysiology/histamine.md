@@ -1,0 +1,2 @@
+
+An amine (an organic compound derived from ammonia (NH₃)) stored in mast cell granules and released on degranulation. It dilates nearby blood vessels and adds to the direct activation of the nociceptor ending.

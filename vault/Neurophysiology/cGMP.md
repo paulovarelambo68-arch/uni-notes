@@ -1,0 +1,1 @@
+A vital signaling molecule (second messenger) inside human cells that regulates blood vessel dilation, cellular pathways, and vision.

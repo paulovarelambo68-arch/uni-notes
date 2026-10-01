@@ -1,0 +1,2 @@
+
+A neuron whose axon and terminals stay entirely inside the central nervous system, interposed between an incoming afferent and the next neuron of the pathway rather than carrying signals to or from the periphery. They are local connectors, they compare and redirect activity, and may be excitatory or inhibitory. 

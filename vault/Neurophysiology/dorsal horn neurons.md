@@ -1,0 +1,2 @@
+
+Neurons in the dorsal horn grey matter of the spinal cord (**Rexed laminae I–VI**), where the first order nociceptive afferents terminate (Aδ in laminae I and V, C in laminae I and II) and hand over to the second order neurons that cross the midline and ascend to the thalamus. 

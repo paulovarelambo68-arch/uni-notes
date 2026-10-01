@@ -1,0 +1,2 @@
+
+Also called **ophthalmoscopy**, it is a quick, painless medical procedure that allows a healthcare provider to inspect the interior back wall of the eye—known as the **fundus**—using a specialized light and magnifying lenses.

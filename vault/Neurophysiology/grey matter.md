@@ -1,0 +1,2 @@
+
+Regions of the central nervous system made up mainly of neuron cell bodies, dendrites and synaptic contacts rather than of the myelinated axons that form white matter. In the spinal cord the grey matter lies centrally and forms the dorsal and ventral horns; it is the site where afferent fibres terminate and synapse onto interneurons and projection neurons. In the dorsal horn it is subdivided into [[Rexed laminae]] according to cell architecture.

@@ -1,0 +1,2 @@
+
+A **bipolar cell (neuron)** is a specialized type of neuron with **two extensions** (one single dendrite and one single axon) on opposite sides of the cell body, whereas a "regular neuron" typically has **one axon and many dendrites** 

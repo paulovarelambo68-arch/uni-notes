@@ -1,0 +1,1 @@
+The secondary somatosensory cortex (SII), a somatosensory area that receives its input from SI rather than directly from the thalamus. It does not merely repeat the signal but elaborates it further, contributing to the recognition and interpretation of the stimulus, and it projects onward to limbic structures such as the amygdala and hippocampus.

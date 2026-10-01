@@ -1,0 +1,1 @@
+==**Guanosine 5′-monophosphate**==, the inactive product formed when **cGMP phosphodiesterase** breaks down [[cGMP]] in the light cascade. It is not a signal itself: its build-up simply means cGMP is falling, so the cGMP gated Na⁺ channels close and the dark current stops.

@@ -1,0 +1,2 @@
+
+Drugs that block cyclooxygenase, the enzyme that converts arachidonic acid into prostaglandins. commonly known as nonsteroidal anti-inflammatory drugs, some common examples are **Ibuprofen**, **Naproxen** and **Aspirin** 
