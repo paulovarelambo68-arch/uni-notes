@@ -1,0 +1,2 @@
+
+Tissue made of tightly packed cells arranged in one or more layers. It covers body surfaces and lines cavities, organs, and vessels. It forms a barrier between compartments and often controls what passes across it by secreting, absorbing, or sensing. It rests on a basement membrane and has little extracellular material between its cells.
