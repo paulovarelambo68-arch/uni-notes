@@ -1,2 +1,4 @@
 
 A small opening at the very apex of the cochlea. The basilar membrane and the cochlear partition stop just short of the tip, so at that point the scala vestibuli and scala tympani become continuous and their perilymph can pass freely between them.
+
+![[download (10).png]]
