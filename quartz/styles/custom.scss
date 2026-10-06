@@ -185,6 +185,20 @@ article li {
   margin-bottom: 0.45em;
 }
 
+// No focus mode on concept pages: they're one-liners, there's nothing to focus.
+// (body[data-slug] is set at build time; .bb-visible is the JS-driven equivalent.)
+body[data-slug*="/concepts/"] .readermode,
+html.bb-visible .readermode {
+  display: none;
+}
+
+// The breadcrumb is a location indicator only. Its middle segments are section and
+// subsection folders, which have no page of their own, so the whole bar is inert.
+.breadcrumb-container a {
+  pointer-events: none;
+  cursor: default;
+}
+
 // Smaller, centered images so a figure never fills the whole column.
 article img {
   display: block;
