@@ -26,7 +26,13 @@ const sortFn = new Function(
 const filterFn = (node: { slugSegment: string }) =>
   node.slugSegment !== "tags" && node.slugSegment !== "attachments"
 
-componentRegistry.setOptionOverrides("@quartz-community/explorer", { sortFn, filterFn })
+componentRegistry.setOptionOverrides("@quartz-community/explorer", {
+  sortFn,
+  filterFn,
+  // Folders (sections, subsections) only expand/collapse; they never navigate.
+  // Subsection folders have no index note, so linking to them opened a blank page.
+  folderClickBehavior: "collapse",
+})
 
 const config = await loadQuartzConfig()
 export default config

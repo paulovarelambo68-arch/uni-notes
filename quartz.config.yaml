@@ -201,6 +201,11 @@ plugins:
     layout:
       position: beforeBody
       priority: 30
+  - source: "./plugins/back-button"
+    enabled: true
+    layout:
+      position: beforeBody
+      priority: 1
   - source: "@quartz-community/page-title"
     enabled: true
     layout:
