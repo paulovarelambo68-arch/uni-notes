@@ -57,10 +57,10 @@ article p {
   fill: none;
   stroke: none;
   background-color: var(--darkgray);
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='18' height='18' x='3' y='3' rx='2'/%3E%3Cpath d='M9 3v18'/%3E%3C/svg%3E")
-    center / 72% no-repeat;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='18' height='18' x='3' y='3' rx='2'/%3E%3Cpath d='M9 3v18'/%3E%3C/svg%3E")
-    center / 72% no-repeat;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='18' height='18' x='3' y='3' rx='2'/%3E%3Cpath d='M9 3v18'/%3E%3C/svg%3E")
+    center / 80% no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='18' height='18' x='3' y='3' rx='2'/%3E%3Cpath d='M9 3v18'/%3E%3C/svg%3E")
+    center / 80% no-repeat;
 
   & g,
   & path,
@@ -88,7 +88,39 @@ article p {
   }
 
   :root[reader-mode="on"] .sidebar.left {
+    // Take the sidebar out of the grid flow, then hide everything in it EXCEPT the
+    // toggle button: visibility doesn't work here (open explorer folders force
+    // themselves visible), so the pieces are display:none'd individually.
+    position: fixed;
+    opacity: 1;
+  }
+
+  :root[reader-mode="on"] .sidebar.left > *:not(.flex-component) {
     display: none;
+  }
+
+  :root[reader-mode="on"] .sidebar.left .flex-component > *:not(:has(> .readermode)) {
+    display: none;
+  }
+
+  // ...and pin the button to the top-left corner so the mode can be undone.
+  :root[reader-mode="on"] .sidebar.left {
+    pointer-events: none;
+  }
+
+  :root[reader-mode="on"] .sidebar.left .readermode {
+    pointer-events: auto;
+    position: fixed;
+    top: 4.2rem;
+    left: 1.5rem;
+    z-index: 50;
+    width: 26px;
+    height: 34px;
+
+    & .readerIcon {
+      width: 24px;
+      height: 24px;
+    }
   }
 
   :root[reader-mode="on"] .center article,
