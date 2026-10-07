@@ -206,6 +206,11 @@ plugins:
     layout:
       position: beforeBody
       priority: 1
+  - source: "./plugins/focus-fullscreen"
+    enabled: true
+    layout:
+      position: beforeBody
+      priority: 0
   - source: "@quartz-community/page-title"
     enabled: true
     layout:
