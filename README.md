@@ -62,7 +62,21 @@ npm run serve        # preview at http://localhost:8080, rebuilds when files cha
 
 Pick whichever fits how you work.
 
-**A. Write straight into the repo (recommended).** In Obsidian, _Open folder as vault_ → pick
+**Sync from your Obsidian vault (what this machine uses).** Keep writing in
+`~/Documents/Obsidian Vault` and run:
+
+```sh
+sh ~/Documents/uni-notes/sync-notes.sh
+```
+
+It publishes every subject linked from the vault's `Subjects.md`. For each one it copies the
+subject's folder if there is one (like `Neurophysiology/`), plus the index note and everything
+it links to, wherever those notes and images sit in the vault, following links from note to
+note. Then it commits `vault/` and pushes. Notes you delete or unlink disappear from the site;
+a subject whose index doesn't link to any note yet is left off until it does. The copy step on
+its own is `node scripts/sync-vault.mjs` (nothing is committed).
+
+**A. Write straight into the repo.** In Obsidian, _Open folder as vault_ → pick
 the repo's `vault/` folder. Your notes are `vault/Neurophysiology/`. Install the community
 plugin **Obsidian Git**, then use _Commit and push_ from the command palette when you want the
 site updated. `.obsidian/` (your settings and plugins) is gitignored and stays on your machine.
@@ -145,8 +159,12 @@ None of these are required, but they help the site:
 
 ## Adding a subject
 
-Create `vault/<Subject>/` with an index note `vault/<Subject>/<Subject>.md` laid out like the
-Neurophysiology one. It appears on the home page and in the sidebar automatically. With
+With `sync-notes.sh`: link the subject from `Subjects.md` and give it an index note named after
+it, laid out like the Neurophysiology one. Its notes can live in a folder of the same name or
+loose in the vault. It appears on the home page and in the sidebar once the index links to a
+note, in the order `Subjects.md` lists the subjects.
+
+Otherwise, create `vault/<Subject>/` with an index note `vault/<Subject>/<Subject>.md`. With
 option A, just add the folder next to `Neurophysiology/` in Obsidian.
 
 ## Working on the site
@@ -162,6 +180,8 @@ npm run content   # only regenerate content/ from vault/ (prints warnings)
 | `vault/`                      | the notes, one folder per subject                    |
 | `site.yaml`                   | page title renames, index heading fixes              |
 | `scripts/build-content.mjs`   | vault → content: structure, callouts, link rewriting |
+| `sync-notes.sh`               | sync the Obsidian vault, commit `vault/`, push       |
+| `scripts/sync-vault.mjs`      | Obsidian vault → `vault/`, following `Subjects.md`   |
 | `scripts/import-vault.sh`     | `npm run import`: sync a zipped folder into `vault/` |
 | `quartz.config.yaml`          | Quartz settings: site title, colours, fonts, plugins |
 | `quartz.ts`                   | sidebar ordering (reads the order the build writes)  |

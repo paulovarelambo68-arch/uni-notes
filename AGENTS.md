@@ -6,7 +6,10 @@ Static site of Obsidian uni notes built with Quartz v5, deployed to GitHub Pages
 ## Pipeline
 
 ```
-vault/<Subject>/*.md, images   author's Obsidian folder, flat, source of truth
+~/Documents/Obsidian Vault     the author writes here; subjects listed in Subjects.md
+  │  sync-notes.sh → scripts/sync-vault.mjs (commits and pushes vault/ only)
+  ▼
+vault/<Subject>/*.md, images   repo copy of the notes, flat, source of truth for the build
   │  scripts/build-content.mjs (+ site.yaml)
   ▼
 content/<Subject>/<Section>/<Subsection>/<Note>.md   generated, never commit
@@ -33,6 +36,15 @@ Commands: `npm run content`, `npm run site`, `npm run serve` (port 8080).
   deleted.
 
 ## Non-obvious details
+
+- **The Obsidian vault is mixed.** Neurophysiology is a folder; other subjects are an index
+  note with their notes loose at the vault root, and some Neurophysiology notes live at the root
+  too. `sync-vault.mjs` therefore copies a subject's folder (if any) and then follows links from
+  its index, note by note, resolving by basename anywhere in the vault (skipping dot-folders and
+  `__auto_backup__`). A file inside one subject's folder, or first reached from an earlier
+  subject in `Subjects.md`, belongs to that subject only, so basenames stay unique. Subjects
+  whose index links to nothing are skipped, and the home page shows them as plain text.
+- **Subject order** in the sidebar follows the link order in `Subjects.md`.
 
 - **`content/` can't be in `.gitignore`.** Quartz globs with `gitignore: true` and would find
   zero files. `build-content.mjs` adds `/content/` and `/.generated/` to `.git/info/exclude`

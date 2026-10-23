@@ -1,6 +1,7 @@
 #!/bin/sh
 # Sync the Obsidian vault into the repo, then commit and push so the website rebuilds.
-# Synced: the Neurophysiology subject folder, plus the Subjects.md home note if present.
+# Synced: every subject linked from Subjects.md, with the notes and images its index links to
+# (wherever they are in the vault), plus Subjects.md itself. See scripts/sync-vault.mjs.
 # Usage: sh ~/Documents/uni-notes/sync-notes.sh  (or: ./sync-notes.sh)
 
 set -e
@@ -10,17 +11,9 @@ OBSIDIAN="$HOME/Documents/Obsidian Vault"
 cd "$REPO"
 git pull --ff-only --quiet
 
-rsync -a --delete --exclude='.obsidian' "$OBSIDIAN/Neurophysiology/" "$REPO/vault/Neurophysiology/"
+node scripts/sync-vault.mjs "$OBSIDIAN"
 
-# Home note at the vault root becomes the site's home page. Remove it from the repo
-# if it disappears from the vault, so the site falls back to the generated list.
-if [ -f "$OBSIDIAN/Subjects.md" ]; then
-  cp "$OBSIDIAN/Subjects.md" "$REPO/vault/Subjects.md"
-else
-  rm -f "$REPO/vault/Subjects.md"
-fi
-
-if git diff --quiet && git diff --cached --quiet && [ -z "$(git status --porcelain)" ]; then
+if [ -z "$(git status --porcelain -- vault)" ]; then
   echo "No changes — the site is already up to date."
   exit 0
 fi

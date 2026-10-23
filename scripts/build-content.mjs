@@ -43,7 +43,7 @@ const subjects = fs
   .readdirSync(VAULT, { withFileTypes: true })
   .filter((d) => d.isDirectory() && !IGNORED.has(d.name) && !d.name.startsWith("."))
   .map((d) => d.name)
-  .sort((a, b) => a.localeCompare(b))
+  .sort((a, b) => subjectOrder(a) - subjectOrder(b) || a.localeCompare(b))
 
 const summaries = subjects.map(buildSubject)
 writeHome(summaries)
@@ -57,6 +57,18 @@ for (const s of summaries) {
     `${s.subject}: ${s.indexed} indexed notes, ${s.concepts} concepts, ${s.assets} attachments` +
       (s.warnings.length ? `\n  ${s.warnings.join("\n  ")}` : ""),
   )
+}
+
+// Subjects appear in the sidebar in the order Subjects.md lists them, the rest after.
+function subjectOrder(subject) {
+  const home = path.join(VAULT, "Subjects.md")
+  const listed = fs.existsSync(home)
+    ? [...fs.readFileSync(home, "utf8").matchAll(/\[\[([^\]|#\\]+)/g)].map((m) =>
+        m[1].trim().toLowerCase(),
+      )
+    : []
+  const i = listed.indexOf(subject.toLowerCase())
+  return i < 0 ? Infinity : i
 }
 
 // content/ and .generated/ must stay out of git, but they can't go in .gitignore: Quartz skips
@@ -298,9 +310,18 @@ function addCallouts(md) {
 }
 
 function dropEmptySections(md) {
-  // Remove "##" sections (from the index's H1s) that contain no links.
-  const parts = md.split(/(?=^## )/m)
-  return parts.filter((p) => !p.startsWith("## ") || /\[\[/.test(p)).join("")
+  // Remove headings with no links under them (counting their subsections), and bare "-" bullets.
+  const parts = md.replace(/^[ \t]*[-*+][ \t]*$/gm, "").split(/(?=^#{1,6} )/m)
+  const level = (p) => p.match(/^(#{1,6}) /)?.[1].length ?? 0
+  return parts
+    .filter((p, i) => {
+      if (!level(p)) return true
+      for (let j = i; j < parts.length && (j === i || level(parts[j]) > level(p)); j++) {
+        if (/\[\[/.test(parts[j])) return true
+      }
+      return false
+    })
+    .join("")
 }
 
 function splitFrontmatter(text) {
@@ -321,15 +342,23 @@ function writeNote(file, frontmatter, body) {
 function writeHome(summaries) {
   // If the author keeps a Subjects.md note at the vault root, it becomes the home page.
   // Links named after a subject ([[Neurophysiology]]) are pointed at that subject's index.
+  // Links to anything with no page yet (a subject without notes) become plain text.
   const homeFile = path.join(VAULT, "Subjects.md")
   if (fs.existsSync(homeFile)) {
     const { frontmatter, content } = splitFrontmatter(fs.readFileSync(homeFile, "utf8"))
     const bySubject = new Map(summaries.map((s) => [s.subject.toLowerCase(), s.subject]))
+    const pages = new Set(
+      [...walk(OUT)]
+        .filter((f) => f.endsWith(".md"))
+        .map((f) => path.basename(f, ".md").toLowerCase()),
+    )
     const body = content.replace(
       /(!?)\[\[([^\]|#]+)(#[^\]|]*)?(\|[^\]]*)?\]\]/g,
       (m, bang, target, anchor = "", alias = "") => {
         const subject = bySubject.get(target.trim().toLowerCase())
-        return subject ? `${bang}[[${subject}/index${anchor}${alias || `|${target.trim()}`}]]` : m
+        if (subject) return `${bang}[[${subject}/index${anchor}${alias || `|${target.trim()}`}]]`
+        if (bang || pages.has(path.basename(target.trim()).toLowerCase())) return m
+        return alias ? alias.slice(1) : target.trim()
       },
     )
     writeNote(path.join(OUT, "index.md"), { title: frontmatter.title ?? "Study Notes" }, body)
