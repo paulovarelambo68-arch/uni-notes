@@ -61,6 +61,34 @@ Commands: `npm run content`, `npm run site`, `npm run serve` (port 8080).
 - Mobile fix in `custom.scss`: the closed explorer drawer leaked open folder titles, because
   `.folder-outer.open` sets `visibility: visible` inside a `visibility: hidden` parent.
 
+## Local plugins (`plugins/`)
+
+Two component plugins live in the repo, registered in `quartz.config.yaml`:
+
+- **`back-button`**: floating arrow on concept pages (`/concepts/`) that returns to the note
+  at its previous scroll position. Renders a fixed `<button class="concept-back">` on every
+  page; the inline script shows it only on concept pages (toggling `html.bb-visible`) and
+  restores scroll. Styles in `custom.scss`.
+- **`focus-fullscreen`**: script-only (component returns `null`). Listens for
+  `readermodechange` and toggles the browser Fullscreen API, so focus mode also hides the
+  browser chrome. Syncs back: a `fullscreenchange` exit (e.g. Esc) while `reader-mode="on"`
+  clicks `.readermode` to turn focus mode off.
+
+Pattern for another script-only plugin: `package.json` with a `quartz` block
+(`category: "component"`), `index.js` re-exporting from `components/index.js`, a component
+whose `afterDOMLoaded` string is the inline script, then a `- source: "./plugins/<name>"`
+entry in `quartz.config.yaml`.
+
+## Reader-mode ("focus mode") contract
+
+The sidebar button comes from `@quartz-community/reader-mode` (npm), restyled in
+`custom.scss` (sidebar-toggle glyph; pinned top-left while active; hidden on concept pages).
+Clicking it toggles `reader-mode="on|off"` on `<html>` and synchronously dispatches
+`readermodechange` (`CustomEvent`, `detail.mode`) on `document` from inside the click
+handler, so listeners still count as a user gesture. State persists across SPA navigation
+(module-level flag, re-applied on `nav`/`render`). React to focus mode by listening for
+`readermodechange`, never by re-binding the button.
+
 ## Checking a change
 
 1. `npm run content`: read the per-subject summary and warnings (dropped embeds, missing
