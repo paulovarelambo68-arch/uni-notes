@@ -13,6 +13,7 @@
   },
   "scripts": {
     "import": "scripts/import-vault.sh",
+    "audio": "node scripts/narrate.mjs",
     "content": "node scripts/build-content.mjs",
     "site": "node scripts/build-content.mjs && npx quartz build",
     "serve": "node scripts/build-content.mjs && npx quartz build --serve",

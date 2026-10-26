@@ -1,0 +1,3 @@
+# Keep local secrets and caches out of Docker images.
+.env
+audio/.cache

@@ -1,0 +1,323 @@
+/* Narration player (plugins/narration-player). Colours come from the Quartz theme variables. */
+
+.narration {
+  margin: 0.6rem 0 1.4rem;
+}
+
+.nar-credit {
+  margin: 0.3rem 0 0 0.9rem;
+  font-size: 0.72rem;
+  color: var(--gray);
+}
+
+.nar-credit a {
+  color: inherit;
+}
+
+/* Link popovers and search previews copy the page header; their player would be inert. */
+.popover .narration,
+.search-space .narration {
+  display: none;
+}
+
+.narration-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem 0.9rem;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--lightgray);
+  border-radius: 14px;
+  background: var(--light);
+  font-family: var(--bodyFont);
+  box-sizing: border-box;
+}
+
+.narration-bar.docked {
+  position: fixed;
+  left: var(--nar-center, 50%);
+  bottom: max(0.9rem, env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  width: min(var(--nar-width, 820px), calc(100vw - 1.5rem));
+  z-index: 60;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+}
+
+.nar-controls,
+.nar-extra {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  flex: none;
+}
+
+.nar-extra {
+  gap: 0.4rem;
+}
+
+.nar-btn {
+  appearance: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  color: var(--darkgray);
+  cursor: pointer;
+  font: inherit;
+}
+
+.nar-btn:hover:not(:disabled),
+.nar-btn:focus-visible {
+  background: var(--highlight);
+  color: var(--dark);
+}
+
+.nar-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.nar-btn svg {
+  width: 1.3rem;
+  height: 1.3rem;
+  fill: currentColor;
+}
+
+.nar-flip {
+  transform: scaleX(-1);
+}
+
+.nar-play {
+  width: 2.75rem;
+  height: 2.75rem;
+  margin: 0 0.2rem;
+  background: var(--secondary);
+  color: var(--light);
+}
+
+.nar-play:hover:not(:disabled),
+.nar-play:focus-visible {
+  background: var(--secondary);
+  color: var(--light);
+  filter: brightness(1.12);
+}
+
+.nar-play svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.nar-icon-pause,
+.narration.is-playing .nar-icon-play {
+  display: none;
+}
+
+.narration.is-playing .nar-icon-pause {
+  display: inline;
+}
+
+.nar-speed {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--lightgray);
+  border-radius: 999px;
+}
+
+.nar-speed .nar-btn {
+  width: 1.9rem;
+  height: 1.9rem;
+}
+
+.nar-speed .nar-btn svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.nar-speed-value {
+  appearance: none;
+  border: 0;
+  margin: 0;
+  padding: 0 0.1rem;
+  min-width: 2.4rem;
+  background: none;
+  color: var(--dark);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+
+.nar-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.nar-caption {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  min-width: 0;
+  font-size: 0.85rem;
+  line-height: 1.35;
+}
+
+.nar-section {
+  appearance: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  background: none;
+  font: inherit;
+  font-weight: 600;
+  color: var(--dark);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 45%;
+  flex: none;
+  cursor: pointer;
+}
+
+.nar-sentence {
+  flex: 1;
+  color: var(--gray);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.nar-progress {
+  position: relative;
+  height: 6px;
+  margin-top: 0.5rem;
+  border-radius: 3px;
+  background: var(--lightgray);
+  cursor: pointer;
+  touch-action: none;
+}
+
+/* Bigger hit area than the visible bar. */
+.nar-progress::before {
+  content: "";
+  position: absolute;
+  inset: -9px 0;
+}
+
+.nar-progress:focus-visible {
+  outline: 2px solid var(--secondary);
+  outline-offset: 4px;
+}
+
+.nar-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0;
+  border-radius: 3px;
+  background: var(--secondary);
+  pointer-events: none;
+}
+
+/* Section boundaries: small gaps in the bar. */
+.nar-tick {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  margin-left: -1.5px;
+  background: var(--light);
+  pointer-events: none;
+}
+
+.nar-time {
+  flex: none;
+  font-size: 0.8rem;
+  color: var(--gray);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* The part of the note being read, and its "listen from here" button. */
+.narration-current {
+  background: var(--highlight);
+  border-radius: 6px;
+  box-shadow: 0 0 0 0.35rem var(--highlight);
+  transition: background-color 0.3s ease;
+}
+
+.narration-jump {
+  appearance: none;
+  border: 0;
+  margin: 0 0 0 0.35em;
+  padding: 0;
+  width: 1.35em;
+  height: 1.35em;
+  display: inline-grid;
+  place-items: center;
+  vertical-align: -0.2em;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--secondary);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.narration-jump svg {
+  width: 0.95em;
+  height: 0.95em;
+  fill: currentColor;
+}
+
+:hover > .narration-jump,
+.narration-current .narration-jump,
+.narration-jump:focus-visible {
+  opacity: 1;
+}
+
+.narration-jump:hover {
+  background: var(--highlight);
+}
+
+@media (hover: none) {
+  .narration-jump {
+    opacity: 0.6;
+  }
+}
+
+@media (max-width: 640px) {
+  .narration-bar {
+    flex-wrap: wrap;
+    padding: 0.55rem 0.6rem 0.45rem;
+  }
+
+  .nar-main {
+    order: -1;
+    flex-basis: 100%;
+  }
+
+  .nar-controls {
+    flex: 1;
+  }
+
+  .nar-section {
+    max-width: 40%;
+  }
+
+  .narration-bar.docked {
+    width: calc(100vw - 1rem);
+    bottom: max(0.5rem, env(safe-area-inset-bottom));
+  }
+}
+
+@media print {
+  .narration,
+  .narration-jump {
+    display: none;
+  }
+}

@@ -12,3 +12,7 @@ replit.nix
 .quartz/
 quartz/cli/tui/dist/
 .turbo/
+
+# Local secrets (ElevenLabs key for npm run audio)
+.env
+audio/.cache/

@@ -13,14 +13,17 @@
 //   - opening blockquote -> "Definition" callout, blockquote under "Summary" -> summary callout,
 //     blockquotes starting with a bold label ("**Memory hook:**") -> tip callout
 //   - image-placeholder embeds that point nowhere are dropped
+//   - notes with an audio track in audio/ get a `narration` field for the narration player
 
 import fs from "node:fs"
 import path from "node:path"
+import crypto from "node:crypto"
 import { execFileSync } from "node:child_process"
 import YAML from "yaml"
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..")
 const VAULT = path.join(ROOT, "vault")
+const AUDIO = path.join(ROOT, "audio")
 const OUT = path.join(ROOT, "content")
 const GENERATED = path.join(ROOT, ".generated")
 
@@ -168,6 +171,8 @@ function buildSubject(subject) {
       label: (key, written) => (preferTitle ? titleFor(notes.get(key).name, renames) : written),
     })
 
+  const scripts = narrationScripts(subject)
+
   // Notes
   let indexed = 0
   let concepts = 0
@@ -190,6 +195,8 @@ function buildSubject(subject) {
       ...frontmatter,
     }
     if (renamed) fm.aliases = [...new Set([...(fm.aliases ?? []), n.name])]
+    const narration = addNarration(subject, n, outName.get(key), warnings, scripts)
+    if (narration) fm.narration = narration
     writeNote(path.join(OUT, subject, folder, `${outName.get(key)}.md`), fm, text)
   }
 
@@ -215,7 +222,69 @@ function buildSubject(subject) {
     writeNote(path.join(OUT, subject, "index.md"), { title: subject }, "")
   }
 
+  for (const base of scripts.values()) {
+    warnings.push(`${path.relative(ROOT, base)}.md matches no note in vault/${subject}`)
+  }
+
   return { subject, indexed, concepts, assets: assets.size, warnings }
+}
+
+// Narration scripts of a subject, keyed by lowercased note name, so the lookup doesn't depend
+// on the file system's case sensitivity (macOS ignores case, the CI runner doesn't).
+function narrationScripts(subject) {
+  const scripts = new Map()
+  if (!fs.existsSync(AUDIO)) return scripts
+  const dir = fs
+    .readdirSync(AUDIO, { withFileTypes: true })
+    .find((d) => d.isDirectory() && d.name.toLowerCase() === subject.toLowerCase())
+  if (!dir) return scripts
+  for (const file of fs.readdirSync(path.join(AUDIO, dir.name))) {
+    if (file.endsWith(".md")) {
+      scripts.set(file.slice(0, -3).toLowerCase(), path.join(AUDIO, dir.name, file.slice(0, -3)))
+    }
+  }
+  return scripts
+}
+
+// Audio track from audio/<Subject>/<Note>.{md,mp3,json} (see scripts/narrate.mjs): copies the
+// MP3 next to the subject's attachments and returns the timings for the narration player.
+function addNarration(subject, note, name, warnings, scripts) {
+  const base = scripts.get(note.name.toLowerCase())
+  if (!base) return null
+  scripts.delete(note.name.toLowerCase())
+  const label = path.relative(ROOT, base)
+  const script = fs.readFileSync(`${base}.md`, "utf8")
+  const source = script.match(/^---\n[\s\S]*?^source:\s*(\S+)/m)?.[1]
+  if (source && source !== shortHash(fs.readFileSync(note.file))) {
+    warnings.push(
+      `${label}.md was written for an older version of the note; update it and run npm run audio`,
+    )
+  }
+  let timeline = null
+  try {
+    timeline = JSON.parse(fs.readFileSync(`${base}.json`, "utf8"))
+  } catch {}
+  if (!timeline || !fs.existsSync(`${base}.mp3`)) {
+    warnings.push(`${label}.md has no audio yet; run npm run audio`)
+    return null
+  }
+  if (timeline.script !== shortHash(script)) {
+    warnings.push(`${label}.md changed since its audio was made; run npm run audio`)
+  }
+  const src = `${subject}/audio/${name}.mp3`
+  fs.mkdirSync(path.join(OUT, subject, "audio"), { recursive: true })
+  fs.copyFileSync(`${base}.mp3`, path.join(OUT, src))
+  return {
+    src,
+    voice: timeline.voice,
+    duration: timeline.duration,
+    sections: timeline.sections,
+    credit: siteConfig.audio?.credit ?? null,
+  }
+}
+
+function shortHash(data) {
+  return crypto.createHash("sha1").update(data).digest("hex").slice(0, 12)
 }
 
 function rewriteLinks(md, ctx) {

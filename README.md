@@ -10,6 +10,7 @@ rebuilds the website from them.
 - [Updating the notes](#updating-the-notes)
 - [How notes become the site](#how-notes-become-the-site)
 - [Adding a subject](#adding-a-subject)
+- [Audio narration](#audio-narration)
 - [Working on the site](#working-on-the-site)
 
 ## First-time setup
@@ -167,6 +168,48 @@ note, in the order `Subjects.md` lists the subjects.
 Otherwise, create `vault/<Subject>/` with an index note `vault/<Subject>/<Subject>.md`. With
 option A, just add the folder next to `Neurophysiology/` in Obsidian.
 
+## Audio narration
+
+A note can have an audio track, read by an ElevenLabs voice. The player sits under the title:
+
+| Control                   | What it does                                                                                                 |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| ‹ ›                       | previous / next sentence ("previous" restarts the sentence if you're past its start)                         |
+| « »                       | previous / next section                                                                                      |
+| − 1.0× +                  | speed in steps of 0.1, from 0.5× to 3.0×; click the number to reset                                          |
+| progress bar              | click or drag to seek; the gaps mark sections. With it focused, ← → move by sentence, Shift + ← → by section |
+| speaker next to a heading | listen from that part of the note                                                                            |
+
+Once playing, the player docks to the bottom of the window when you scroll past it, the part
+being read is highlighted, and it remembers where you stopped. Headphone and lock-screen
+next/previous buttons move by sentence.
+
+**How a track is made.** The audio isn't read straight from the note. A narration script,
+`audio/<Subject>/<Note>.md`, is a spoken version of it: no tables or images, symbols spelled
+out ("Na⁺" → "sodium"), and connectors so it sounds narrated. One `## Section` per part of the
+note (named like its heading or bold label, so the player can highlight it), one sentence per
+line. You can edit the wording freely. Then:
+
+```sh
+npm run audio -- --dry-run   # what would be generated, and how many characters it costs
+npm run audio                # generate every missing or changed track (only those)
+```
+
+It needs an ElevenLabs API key with **Text to Speech** access in `.env`
+(`ELEVENLABS_API_KEY=…`; `.env` is gitignored, never commit it). ElevenLabs charges about one
+credit per character of script, and never twice for the same audio: finished sections are
+cached in `audio/.cache/` (so a run that fails part-way resumes), and renaming a section or
+splitting a sentence differently only recomputes the timings. `--force` asks for a fresh
+reading of a note. Commit the `audio/` folder (scripts, `.mp3`, `.json`) the normal way;
+`sync-notes.sh` only commits `vault/`. When a note changes after its script was written,
+`npm run content` warns that the narration is out of date.
+
+Voices are set in `site.yaml` under `audio.voices`, and scripts alternate between them from
+note to note. `npm run audio -- --find-voices irish female` searches the ElevenLabs voice
+library (the key needs **Voices: Read** for that). The same section sets the pause between
+sections (`sectionPause`) and the "Voice by ElevenLabs" credit under the player, which the free
+plan requires.
+
 ## Working on the site
 
 ```sh
@@ -175,18 +218,21 @@ npm run site      # one-off build into public/, as CI does
 npm run content   # only regenerate content/ from vault/ (prints warnings)
 ```
 
-| File                          | What it's for                                        |
-| ----------------------------- | ---------------------------------------------------- |
-| `vault/`                      | the notes, one folder per subject                    |
-| `site.yaml`                   | page title renames, index heading fixes              |
-| `scripts/build-content.mjs`   | vault → content: structure, callouts, link rewriting |
-| `sync-notes.sh`               | sync the Obsidian vault, commit `vault/`, push       |
-| `scripts/sync-vault.mjs`      | Obsidian vault → `vault/`, following `Subjects.md`   |
-| `scripts/import-vault.sh`     | `npm run import`: sync a zipped folder into `vault/` |
-| `quartz.config.yaml`          | Quartz settings: site title, colours, fonts, plugins |
-| `quartz.ts`                   | sidebar ordering (reads the order the build writes)  |
-| `quartz/styles/custom.scss`   | custom CSS                                           |
-| `.github/workflows/site.yaml` | build on push, deploy to Pages                       |
+| File                          | What it's for                                         |
+| ----------------------------- | ----------------------------------------------------- |
+| `vault/`                      | the notes, one folder per subject                     |
+| `site.yaml`                   | page title renames, index heading fixes               |
+| `scripts/build-content.mjs`   | vault → content: structure, callouts, link rewriting  |
+| `sync-notes.sh`               | sync the Obsidian vault, commit `vault/`, push        |
+| `scripts/sync-vault.mjs`      | Obsidian vault → `vault/`, following `Subjects.md`    |
+| `scripts/import-vault.sh`     | `npm run import`: sync a zipped folder into `vault/`  |
+| `audio/`                      | narration scripts and the generated audio tracks      |
+| `scripts/narrate.mjs`         | `npm run audio`: narration scripts → ElevenLabs audio |
+| `plugins/narration-player/`   | the audio player on narrated notes                    |
+| `quartz.config.yaml`          | Quartz settings: site title, colours, fonts, plugins  |
+| `quartz.ts`                   | sidebar ordering (reads the order the build writes)   |
+| `quartz/styles/custom.scss`   | custom CSS                                            |
+| `.github/workflows/site.yaml` | build on push, deploy to Pages                        |
 
 Change the site title or colours in `quartz.config.yaml` (`pageTitle`, `theme`). The
 [Quartz docs](https://quartz.jzhao.xyz) cover the rest.

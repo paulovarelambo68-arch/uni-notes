@@ -24,3 +24,30 @@ subjects:
     # Fix typos in index headings.
     headings:
       "Neurotransmiters": "Neurotransmitters"
+
+# Audio tracks (scripts/narrate.mjs, npm run audio). Narration scripts live in
+# audio/<Subject>/<Note>.md and pick a voice by the names below. Voices alternate between
+# notes. "owner" is the voice-library owner id; with it, narrate.mjs adds a library voice to
+# the account the first time it's needed. Find voices: npm run audio -- --find-voices irish female
+audio:
+  model: eleven_multilingual_v2
+  # Pause between sections, in seconds (changing it rebuilds the tracks from the local cache).
+  sectionPause: 0.8
+  # Shown under the player. ElevenLabs' free plan requires crediting them.
+  credit:
+    text: Voice by ElevenLabs
+    url: https://elevenlabs.io
+  settings:
+    stability: 0.5
+    similarity_boost: 0.75
+    style: 0.15
+    use_speaker_boost: true
+    speed: 1
+  voices:
+    # Placeholders until the Irish voices are picked: ElevenLabs' default British voices.
+    irish-female:
+      name: Alice (British)
+      id: Xb7hH8MSUJpSbSDYk0k2
+    irish-male:
+      name: George (British)
+      id: JBFqnCBsd6RMkjVDRZzb
