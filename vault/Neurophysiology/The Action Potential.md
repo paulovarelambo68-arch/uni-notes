@@ -23,7 +23,7 @@ The AP is regenerated at full size at every point along the axon: local current 
 
 2. **Repolarisation (falling phase):** Na⁺ inactivation gates close and voltage gated K⁺ channels (slower to open) finally open → K⁺ leaves the cell → the interior becomes negative again.
 
-3. **Hyperpolarisation (undershoot):** K⁺ channels are slow to close, so K⁺ keeps leaving and the membrane dips below RMP, toward the K⁺ equilibrium potential (≈ −90 mV), before returning to rest. This phase matches the relative refractory period.
+3. **Hyperpolarisation (undershoot):** K⁺ channels are slow to close, so K⁺ keeps leaving and the membrane dips below RMP, toward the K⁺ equilibrium potential (≈ −80 mV), before returning to rest. This phase matches the relative refractory period.
 
 ![[Screenshot 2026-09-12 at 21.25.14.png]]
 ![[Screenshot 2026-09-12 at 23.15.59.png]]

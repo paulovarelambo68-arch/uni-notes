@@ -29,9 +29,3 @@ Myelin is produced by glial cells: Schwann cells in the peripheral nervous syste
 
 ![[Screenshot 2026-09-13 at 12.59.04.png]]
 
-## Likely exam extras
-
-- A Schwann cell myelinates one segment of one axon, while a single oligodendrocyte can myelinate segments of several axons.
-- Conduction speed increases with axon diameter and with myelination.
-- Demyelinating disease breaks this system down: multiple sclerosis destroys myelin in the central nervous system, and Guillain Barré syndrome damages myelin in the peripheral nervous system. In both, conduction is slowed or blocked.
-- Conduction in the natural direction is called orthodromic; conduction forced in the opposite direction, as in the midpoint stimulation experiment on the slides, is called antidromic.

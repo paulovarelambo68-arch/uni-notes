@@ -117,5 +117,10 @@
 - [[Neurochemistry and Brainstem Control of Sleep]]
 - [[Narcolepsy and Sleep Disorders]]
 
-# Memory
+# Movement
 
+- [[Class 3 Notes]] 
+
+## Appetite, thirst, thermoregulation and emotion
+
+- [[Emotional Response Class Notes]] 

@@ -1,0 +1,24 @@
+
+- Basis Physics basis behind tha paralell tract 
+- What's Ohm's Law.
+- MAP formula, most important formula in the cardiovascular system. 
+- We have more vessels and of bigger size on the venal side than on the arterial side, why?
+- Unequal distribution of blood volume distribution between...
+- Hearth tranplanted people have a random (100bmp??) HR because nerves are not connected, but HR can raise accordingly to exercise needs. 
+- All sorts of questions will be asked about the details of the different steps of the cardiac cycle.
+- Same volumes processed by both sides of the heart, just different pressures. 
+- Figure 2.6 pressure-volume cyle of human left ventricle -> usually more than one question from this diagram. 
+- Changes in pressure when diving into the bed (suddenly coming from standing to lying).
+- Understand the actual meaning of contractility. 
+- How does hypoxia mechanistically occurs?
+- Figure 3.13 also important (which are the main details I already don't know).
+- Sympathetic simulation: contraction of the heart Figure without a name describes the whole process (without release channels I think) of increasing contractility, professor asks med students to memorize it. 
+- Protein Kinase -> Phosphorylation.
+- Will be asked to calculate BPMs based on a ECG reading (squares between pulses).
+- Will be asked which º in the frontal plane the different places of a ECG reading have, and the basic reasoning/mechanism behind this positioning. 
+- Sinus arrythmia: when you breath in HR goes up, when you breath out HR goes down. 
+- Identifying and explaining the AV-Nodal Block usually appears in exams. 
+- Defebrillation is basically depolarising all of the heart muscle cells at the same time hoping they 'reset'.
+- Coronary Circulations details prolly not going to be asked. 
+- Most MCQ questions in coronary blood flow during cardiac cycle will be about the concepts and steps of left-right side of the heart, systole-dyastole etc...
+- You have to use ACh as a neurotransmitter in nonglabrous skin during exercise because you have opposite CNS regulation in glabrous skin. 
