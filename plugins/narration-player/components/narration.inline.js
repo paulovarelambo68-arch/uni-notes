@@ -63,6 +63,7 @@
     const fill = $(".nar-fill")
     const timeEl = $(".nar-time")
     const speedValue = $(".nar-speed-value")
+    const closeBtn = $(".nar-close")
     const buttons = {
       slower: $(".nar-slower"),
       faster: $(".nar-faster"),
@@ -139,6 +140,7 @@
     }
 
     function play() {
+      closed = false
       if (!started) {
         started = true
         const saved = parseFloat(store.get(posKey))
@@ -246,16 +248,25 @@
     }
 
     // Dock to the bottom of the window while the player's own spot is scrolled out of view.
-    // It stays centred on the note's column, which the player's empty spot still spans.
+    // It stays centred on the note's column, which the player's empty spot still spans, but
+    // inside the page's visible width (clientWidth leaves out a scrollbar) with room for the ×
+    // badge. Closing it (×) keeps it in its spot until the narration is played again.
     let inView = true
+    let closed = false
     function dock() {
-      const docked = started && !inView
+      const docked = started && !inView && !closed
       if (docked && !bar.classList.contains("docked"))
         root.style.minHeight = root.offsetHeight + "px"
       if (docked) {
         const rect = root.getBoundingClientRect()
-        bar.style.setProperty("--nar-center", rect.left + rect.width / 2 + "px")
-        bar.style.setProperty("--nar-width", rect.width + "px")
+        const vw = document.documentElement.clientWidth
+        const narrow = matchMedia("(max-width: 640px)").matches
+        const margin = narrow ? 8 : 16
+        const width = narrow ? vw - 2 * margin : Math.min(rect.width, vw - 2 * margin)
+        const center = rect.left + rect.width / 2
+        const clamped = Math.min(Math.max(center, margin + width / 2), vw - margin - width / 2)
+        bar.style.setProperty("--nar-center", clamped + "px")
+        bar.style.setProperty("--nar-width", width + "px")
       }
       bar.classList.toggle("docked", docked)
       if (!docked) root.style.minHeight = ""
@@ -326,6 +337,15 @@
     on(buttons.slower, "click", () => setSpeed(speed - SPEED_STEP))
     on(buttons.faster, "click", () => setSpeed(speed + SPEED_STEP))
     on(speedValue, "click", () => setSpeed(1))
+    on(closeBtn, "click", (e) => {
+      closed = true
+      audio.pause()
+      dock()
+      // From the keyboard, focus goes to Play. After a click, nothing keeps focus, so Space
+      // scrolls the page instead of resuming from a button that's now out of view.
+      if (e.detail === 0) playBtn.focus({ preventScroll: true })
+      else closeBtn.blur()
+    })
     on(sectionEl, "click", () => {
       if (!started) return play()
       const target = targets[currentSection]

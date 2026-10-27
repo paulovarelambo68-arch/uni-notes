@@ -32,7 +32,10 @@ const cfg = siteConfig.audio ?? {}
 const MODEL = cfg.model ?? "eleven_multilingual_v2"
 const SETTINGS = sortKeys(cfg.settings ?? {})
 const FORMAT = "mp3_44100_128"
-const MAX_CHARS = 9500 // eleven_multilingual_v2 takes up to 10,000 characters per request
+// Characters per request: eleven_v3 takes up to 5,000, eleven_multilingual_v2 up to 10,000.
+const MAX_CHARS = MODEL.startsWith("eleven_v3") ? 4900 : 9500
+// The neighbouring sections' text keeps the intonation continuous; eleven_v3 rejects it.
+const STITCH = !MODEL.startsWith("eleven_v3")
 // ElevenLabs leaves almost no silence at the end of a request, so sections get a pause between them.
 const PAUSE = cfg.sectionPause ?? 0.8
 
@@ -116,11 +119,7 @@ for (const file of scripts) {
     let res = FORCE ? null : readJson(cache)
     const wasCached = Boolean(res)
     if (!res) {
-      res = await speak(voice, {
-        text: section.text,
-        previous_text: script.sections[i - 1]?.text.slice(-400),
-        next_text: script.sections[i + 1]?.text.slice(0, 400),
-      })
+      res = await speak(voice, { text: section.text, ...context(script, i) })
       if (!res.audio_base64 || !res.alignment?.characters)
         fail(`ElevenLabs returned no audio or timings for section "${section.title}"`)
       fs.mkdirSync(CACHE, { recursive: true })
@@ -192,13 +191,19 @@ function writeTimeline(file, timeline) {
   fs.writeFileSync(file, `${head},\n  "segments": [\n${body}\n  ]\n}\n`)
 }
 
-function cacheFile(script, i, voice) {
+function context(script, i) {
+  if (!STITCH) return {}
   const s = script.sections
+  return { previous_text: s[i - 1]?.text.slice(-400), next_text: s[i + 1]?.text.slice(0, 400) }
+}
+
+function cacheFile(script, i, voice) {
+  const { previous_text, next_text } = context(script, i)
   const key = hash(
     JSON.stringify([
-      s[i].text,
-      s[i - 1]?.text.slice(-400),
-      s[i + 1]?.text.slice(0, 400),
+      script.sections[i].text,
+      previous_text,
+      next_text,
       voice.id,
       MODEL,
       SETTINGS,

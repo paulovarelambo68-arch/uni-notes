@@ -13,6 +13,10 @@
 //   - opening blockquote -> "Definition" callout, blockquote under "Summary" -> summary callout,
 //     blockquotes starting with a bold label ("**Memory hook:**") -> tip callout
 //   - image-placeholder embeds that point nowhere are dropped
+//   - with `publish` in site.yaml, only the listed index sections and the notes they reach go
+//     on the site (sync-vault.mjs applies the same rule when it copies the vault)
+//   - links to notes that aren't on the site (not written yet, or held back) become plain text,
+//     and index sections left without links are hidden; links in code are left alone
 //   - notes with an audio track in audio/ get a `narration` field for the narration player
 
 import fs from "node:fs"
@@ -20,6 +24,14 @@ import path from "node:path"
 import crypto from "node:crypto"
 import { execFileSync } from "node:child_process"
 import YAML from "yaml"
+import {
+  MARKDOWN_LINK,
+  headingText,
+  indexLines,
+  publishList,
+  stripBold,
+  subjectConfig,
+} from "./index-sections.mjs"
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..")
 const VAULT = path.join(ROOT, "vault")
@@ -38,9 +50,6 @@ const setRank = (name) => {
 }
 
 excludeGeneratedFromGit()
-fs.rmSync(OUT, { recursive: true, force: true })
-fs.mkdirSync(OUT, { recursive: true })
-fs.mkdirSync(GENERATED, { recursive: true })
 
 const subjects = fs
   .readdirSync(VAULT, { withFileTypes: true })
@@ -48,13 +57,58 @@ const subjects = fs
   .map((d) => d.name)
   .sort((a, b) => subjectOrder(a) - subjectOrder(b) || a.localeCompare(b))
 
-const summaries = subjects.map(buildSubject)
+// Each subject's index and `publish` list. A list that is empty or names no heading stops the
+// build before anything is written, so a typo can't take a subject off the live site.
+const indexes = new Map(subjects.map((s) => [s, readIndex(s)]))
+const problems = []
+for (const [s, { publish, sections }] of indexes) {
+  if (publish?.length === 0) problems.push(`${s} has an empty publish list`)
+  else if (sections.unmatched.length) {
+    const names = sections.unmatched.map((p) => `"${p}"`).join(", ")
+    problems.push(`${s} publishes ${names}, but its index has no such heading`)
+  }
+}
+if (problems.length) {
+  console.error(
+    `site.yaml: ${problems.join("; ")}. Fix it (or delete the publish line); nothing built.`,
+  )
+  process.exit(1)
+}
+
+fs.rmSync(OUT, { recursive: true, force: true })
+fs.mkdirSync(OUT, { recursive: true })
+fs.mkdirSync(GENERATED, { recursive: true })
+
+// What each subject puts on the site. One with no notes besides its index gets no page, and the
+// home page shows it as plain text. Every note (by name and alias) and attachment name on the
+// site is collected so links across subjects still count.
+const onSite = new Map(subjects.map((s) => [s, subjectFiles(s)]))
+const empty = subjects.filter((s) => {
+  const { index } = indexes.get(s)
+  return !onSite.get(s).files.some((f) => f !== index && f.toLowerCase().endsWith(".md"))
+})
+const siteNotes = new Set()
+const siteAssets = new Set()
+for (const s of subjects.filter((s) => !empty.includes(s))) {
+  for (const file of onSite.get(s).files) {
+    const base = path.basename(file).toLowerCase()
+    if (!base.endsWith(".md")) {
+      siteAssets.add(base)
+      continue
+    }
+    siteNotes.add(base.slice(0, -3))
+    for (const alias of aliasesOf(file)) siteNotes.add(alias)
+  }
+}
+
+const summaries = subjects.filter((s) => !empty.includes(s)).map(buildSubject)
 writeHome(summaries)
 fs.writeFileSync(
   path.join(GENERATED, "explorer-order.json"),
   JSON.stringify(explorerOrder, null, 2),
 )
 
+for (const s of empty) console.log(`${s}: no notes on the site yet, left out`)
 for (const s of summaries) {
   console.log(
     `${s.subject}: ${s.indexed} indexed notes, ${s.concepts} concepts, ${s.assets} attachments` +
@@ -89,17 +143,72 @@ function excludeGeneratedFromGit() {
   )
 }
 
+// A subject's files by lowercased note name (no .md) or attachment file name, its index note,
+// which lines of the index its `publish` list covers, and the notes held back: listed only
+// under unpublished headings (the same notes sync-vault.mjs leaves out of this subject).
+function readIndex(subject) {
+  const config = subjectConfig(siteConfig, subject)
+  const publish = publishList(config)
+  const files = [...walk(path.join(VAULT, subject))]
+  const byName = new Map()
+  for (const file of files) byName.set(nameOf(file), file)
+  const index = byName.get(subject.toLowerCase()) ?? byName.get("index")
+  const sections = indexLines(index ? readText(index) : "", publish, config.headings)
+  const shown = new Set()
+  const hidden = new Set()
+  sections.lines.forEach((line, i) => {
+    for (const t of linkTargets(line)) (sections.published[i] ? shown : hidden).add(t)
+  })
+  const subjectNames = new Set(subjects.map((s) => s.toLowerCase()))
+  const held = new Set([...hidden].filter((t) => !shown.has(t) && !subjectNames.has(t)))
+  return { files, byName, index, publish, sections, held }
+}
+
+// The files of vault/<Subject> that go on the site: all but held-back notes, or with a `publish`
+// list only the index and what its published sections reach, link by link, never through a
+// held-back note. sync-vault.mjs copies by the same rule; applying it here too covers notes
+// written straight into vault/.
+function subjectFiles(subject) {
+  const { files, byName, index, publish, sections, held } = indexes.get(subject)
+  const isNote = (file) => file.toLowerCase().endsWith(".md")
+  const visible = (file) => file === index || !isNote(file) || !held.has(nameOf(file))
+  if (!publish || !index) return { files: files.filter(visible), publish }
+
+  const keep = new Set([index])
+  const queue = sections.lines.flatMap((line, i) =>
+    sections.published[i] ? linkTargets(line) : [],
+  )
+  while (queue.length) {
+    const file = byName.get(queue.shift())
+    if (!file || keep.has(file) || !visible(file)) continue
+    keep.add(file)
+    if (isNote(file)) queue.push(...linkTargets(readText(file)))
+  }
+  return { files: files.filter((f) => keep.has(f)), publish }
+}
+
+// "Note.md" -> "note", "img.png" -> "img.png": how links name a file.
+function nameOf(file) {
+  const base = path.basename(file).toLowerCase()
+  return base.endsWith(".md") ? base.slice(0, -3) : base
+}
+
+function readText(file) {
+  return fs.readFileSync(file, "utf8").replace(/\r\n/g, "\n")
+}
+
 function buildSubject(subject) {
   const dir = path.join(VAULT, subject)
-  const cfg = siteConfig.subjects?.[subject] ?? {}
+  const cfg = subjectConfig(siteConfig, subject)
   const renames = cfg.rename ?? {}
   const headingFixes = cfg.headings ?? {}
+  const { files, publish } = onSite.get(subject)
   const warnings = []
 
   // Collect files by basename, the way Obsidian's shortest-path links resolve them.
   const notes = new Map() // lowercased name -> { name, file }
   const assets = new Map() // lowercased filename -> { name, file }
-  for (const file of walk(dir)) {
+  for (const file of files) {
     const base = path.basename(file)
     if (base.toLowerCase().endsWith(".md")) {
       const name = base.slice(0, -3)
@@ -128,10 +237,11 @@ function buildSubject(subject) {
   if (indexNote) {
     let section = null
     let subsection = null
-    for (const line of fs.readFileSync(indexNote.file, "utf8").split("\n")) {
+    const index = indexLines(fs.readFileSync(indexNote.file, "utf8"), publish, headingFixes)
+    for (const [i, line] of index.lines.entries()) {
       const h = line.match(/^(#{1,6})\s+(.*?)\s*$/)
       if (h) {
-        const text = fixHeading(stripBold(h[2]), headingFixes)
+        const text = headingText(h[2], headingFixes)
         if (h[1].length === 1) {
           section = text
           subsection = null
@@ -140,6 +250,7 @@ function buildSubject(subject) {
         }
         continue
       }
+      if (!index.published[i]) continue
       for (const link of line.matchAll(/(?<!!)\[\[([^\]|#\\]+)/g)) {
         const key = link[1].trim().toLowerCase()
         if (!notes.has(key) || placement.has(key) || notes.get(key) === indexNote) continue
@@ -159,7 +270,8 @@ function buildSubject(subject) {
   const resolveAsset = (target) => assets.get(path.basename(target.trim()).toLowerCase()) ?? null
 
   // In prose a renamed link keeps its original wording; on the index page it shows the new title.
-  const rewrite = (md, { preferTitle = false } = {}) =>
+  const missing = new Set() // targets of links in notes with no page on the site
+  const rewrite = (md, { preferTitle = false, index = false } = {}) =>
     rewriteLinks(md, {
       resolveNote,
       resolveAsset,
@@ -168,6 +280,7 @@ function buildSubject(subject) {
       indexNote,
       subject,
       warnings,
+      missing: index ? new Set() : missing, // the index's own missing entries aren't news
       label: (key, written) => (preferTitle ? titleFor(notes.get(key).name, renames) : written),
     })
 
@@ -207,16 +320,16 @@ function buildSubject(subject) {
     fs.copyFileSync(a.file, dest)
   }
 
-  // Subject home page = the index note, with empty sections removed.
+  // Subject home page = the index note's published sections, with empty sections removed.
   if (indexNote) {
     let text = fs.readFileSync(indexNote.file, "utf8").replace(/\r\n/g, "\n")
-    text = splitFrontmatter(text).content
+    const index = indexLines(text, publish, headingFixes)
+    text = index.lines.filter((_, i) => index.published[i]).join("\n")
     text = text.replace(/^(#{1,6})[ \t]+(.*?)[ \t]*$/gm, (_, hashes, t) => {
-      const fixed = fixHeading(stripBold(t), headingFixes)
-      return `${hashes.length === 1 ? "##" : "###"} ${fixed}`
+      return `${hashes.length === 1 ? "##" : "###"} ${headingText(t, headingFixes)}`
     })
+    text = rewrite(text, { preferTitle: true, index: true })
     text = dropEmptySections(text).replace(/^---\s*$/gm, "") // headings already separate sections
-    text = rewrite(text, { preferTitle: true })
     writeNote(path.join(OUT, subject, "index.md"), { title: subject }, text)
   } else {
     writeNote(path.join(OUT, subject, "index.md"), { title: subject }, "")
@@ -224,6 +337,14 @@ function buildSubject(subject) {
 
   for (const base of scripts.values()) {
     warnings.push(`${path.relative(ROOT, base)}.md matches no note in vault/${subject}`)
+  }
+  if (missing.size) {
+    const names = [...missing].sort()
+    warnings.push(
+      `${names.length} linked notes aren't on the site, their links are plain text: ` +
+        names.slice(0, 6).join(", ") +
+        (names.length > 6 ? ", …" : ""),
+    )
   }
 
   return { subject, indexed, concepts, assets: assets.size, warnings }
@@ -288,8 +409,36 @@ function shortHash(data) {
 }
 
 function rewriteLinks(md, ctx) {
-  const { resolveNote, resolveAsset, outName, notes, indexNote, subject, warnings, label } = ctx
-  return md.replace(/(!?)\[\[([^\]]+?)\]\]/g, (whole, bang, inner) => {
+  const {
+    resolveNote,
+    resolveAsset,
+    outName,
+    notes,
+    indexNote,
+    subject,
+    warnings,
+    missing,
+    label,
+  } = ctx
+  // [text](Note%20Name.md) links to notes that aren't on the site become their text.
+  let inCode = codeRanges(md)
+  md = md.replace(MARKDOWN_LINK, (whole, text, angled, plain, at) => {
+    const href = (angled ?? plain).replace(/#.*$/, "")
+    if (md[at - 1] === "!" || inCode(at) || !/\.md$/i.test(href)) return whole
+    if (/^([a-z][a-z0-9+.-]*:|\/)/i.test(href)) return whole // http:, /absolute, //host
+    let file = href
+    try {
+      file = decodeURIComponent(href)
+    } catch {}
+    const name = path.basename(file).slice(0, -3)
+    if (resolveNote(name) || siteNotes.has(name.toLowerCase())) return whole
+    missing.add(name)
+    return text
+  })
+
+  inCode = codeRanges(md)
+  return md.replace(/(!?)\[\[([^\]]+?)\]\]/g, (whole, bang, inner, at) => {
+    if (inCode(at)) return whole // code shows the link as written
     // Inside tables Obsidian escapes the alias pipe as \|; keep whatever was used.
     const sep = inner.includes("\\|") ? "\\|" : "|"
     const [targetPart, ...rest] = inner.split(sep)
@@ -298,10 +447,15 @@ function rewriteLinks(md, ctx) {
     const target = hashAt >= 0 ? targetPart.slice(0, hashAt) : targetPart
     const anchor = hashAt >= 0 ? targetPart.slice(hashAt) : ""
 
+    const base = path.basename(target.trim()).toLowerCase()
+    // In another subject: Quartz resolves it across the site.
+    const elsewhere = siteAssets.has(base) || siteNotes.has(base.replace(/\.md$/, ""))
+
     if (bang) {
       const asset = resolveAsset(target)
       if (asset) return whole
       if (!resolveNote(target)) {
+        if (elsewhere) return whole
         warnings.push(
           `dropped embed with no file: ![[${inner.slice(0, 60)}${inner.length > 60 ? "…" : ""}]]`,
         )
@@ -310,7 +464,13 @@ function rewriteLinks(md, ctx) {
     }
 
     const key = resolveNote(target)
-    if (!key) return whole
+    if (!key) {
+      const name = path.basename(target.trim()).replace(/\.md$/i, "")
+      // [[#Heading]], attachments and notes in other subjects resolve in Quartz itself.
+      if (!name || resolveAsset(target) || elsewhere) return whole
+      missing.add(name)
+      return alias ?? target.trim()
+    }
     if (notes.get(key) === indexNote) {
       return `${bang}[[${subject}/index${anchor}${sep}${alias ?? target.trim()}]]`
     }
@@ -477,15 +637,6 @@ function titleFor(name, renames) {
   return firstWord === firstWord.toLowerCase() ? name[0].toUpperCase() + name.slice(1) : name
 }
 
-function stripBold(text) {
-  const m = text.trim().match(/^(\*\*|__)(.*)\1$/)
-  return m ? m[2].trim() : text.trim()
-}
-
-function fixHeading(text, fixes) {
-  return fixes[text] ?? text
-}
-
 function sanitize(name) {
   return name
     .replace(/[\\/:*?"<>|#^[\]]/g, "")
@@ -500,4 +651,42 @@ function* walk(dir) {
     if (entry.isDirectory()) yield* walk(full)
     else yield full
   }
+}
+
+// Lowercased names a note links to or embeds, like nameOf(): "Note.md" -> "note".
+function linkTargets(text) {
+  const targets = []
+  for (const m of text.matchAll(/\[\[([^\]|#\\]+)/g)) targets.push(m[1].trim())
+  for (const m of text.matchAll(MARKDOWN_LINK)) {
+    const dest = (m[2] ?? m[3]).replace(/#.*$/, "")
+    if (!dest || /^[a-z][a-z0-9+.-]*:/i.test(dest)) continue // #heading, http:, mailto:, …
+    try {
+      targets.push(decodeURIComponent(dest))
+    } catch {
+      targets.push(dest)
+    }
+  }
+  return targets.map((t) => path.basename(t).toLowerCase().replace(/\.md$/, ""))
+}
+
+// Aliases the way Quartz reads them: `aliases` or `alias`, a list or comma-separated text.
+function aliasesOf(file) {
+  const text = fs.readFileSync(file, "utf8").replace(/\r\n/g, "\n")
+  const { aliases, alias } = splitFrontmatter(text).frontmatter
+  const values = [aliases ?? alias ?? []].flat().map(String)
+  return [...values, ...values.flatMap((v) => v.split(","))]
+    .map((a) => a.trim().toLowerCase())
+    .filter(Boolean)
+}
+
+// Whether a position in the text is inside a code fence or an inline code span.
+function codeRanges(md) {
+  const ranges = []
+  // Fences may be indented (in a list) or quoted (in a callout).
+  const fence = /^[ \t>]*(```|~~~)[^\n]*\n[\s\S]*?(?:^[ \t>]*\1[^\n]*$|(?![\s\S]))/gm
+  for (const m of md.matchAll(fence)) {
+    ranges.push([m.index, m.index + m[0].length])
+  }
+  for (const m of md.matchAll(/`[^`\n]+`/g)) ranges.push([m.index, m.index + m[0].length])
+  return (at) => ranges.some(([from, to]) => at >= from && at < to)
 }

@@ -15,6 +15,8 @@ const DOUBLE_CHEVRON =
   "M5.6 5.4 4.2 6.8l5.2 5.2-5.2 5.2 1.4 1.4 6.6-6.6zm7 0-1.4 1.4 5.2 5.2-5.2 5.2 1.4 1.4 6.6-6.6z"
 const MINUS = "M6 11h12v2H6z"
 const PLUS = "M11 6h2v5h5v2h-5v5h-2v-5H6v-2h5z"
+const CROSS =
+  "M6.4 5 5 6.4l5.6 5.6L5 17.6 6.4 19l5.6-5.6 5.6 5.6 1.4-1.4-5.6-5.6L19 6.4 17.6 5 12 10.6z"
 
 const icon = (d, flip) =>
   h(
@@ -132,6 +134,8 @@ const NarrationComponent = ({ fileData, displayClass } = {}) => {
           button("nar-faster", "Faster (+0.1×)", PLUS),
         ),
       ),
+      // Only shown while docked: stops the narration and puts the player back under the title.
+      button("nar-close", "Close the player", CROSS),
     ),
     n.credit?.text
       ? h(

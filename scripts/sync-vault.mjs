@@ -8,6 +8,10 @@
 //     image or file linked from it is followed, link by link, wherever it lives in the vault.
 // So a subject can be a folder, or just an index note with its notes loose in the vault.
 // A subject whose index links to nothing yet is skipped until it has notes.
+// With `publish: [Section, …]` for a subject in site.yaml, only the notes listed under those
+// index headings, and what they link to, are copied (a subject folder is then followed link by
+// link too). Notes listed only under other headings stay out, whoever links to them. A
+// `publish` list naming a subject or heading that doesn't exist stops the sync.
 //
 // vault/<Subject>/ is made to match exactly (files gone from Obsidian are deleted here), and
 // subjects no longer listed in Subjects.md are removed. Nothing in the Obsidian vault is changed.
@@ -15,12 +19,15 @@
 import fs from "node:fs"
 import os from "node:os"
 import path from "node:path"
+import YAML from "yaml"
+import { MARKDOWN_LINK, indexLines, publishList, subjectConfig } from "./index-sections.mjs"
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..")
 const DEST = path.join(ROOT, "vault")
 const SRC = path.resolve(process.argv[2] ?? path.join(os.homedir(), "Documents", "Obsidian Vault"))
 const SKIPPED_DIRS = new Set(["__auto_backup__"]) // plus every dot-folder (.obsidian, .trash, …)
 const HOME = "Subjects.md"
+const siteConfig = YAML.parse(fs.readFileSync(path.join(ROOT, "site.yaml"), "utf8")) ?? {}
 
 if (!fs.existsSync(SRC)) fail(`Obsidian vault not found: ${SRC}`)
 
@@ -53,36 +60,88 @@ for (const s of subjects) {
 }
 
 const warnings = []
+const indexOf = (s, dir) => {
+  const own = dir && path.join(dir, `${s}.md`)
+  return own && fs.existsSync(own) ? own : resolve(`${s}.md`, dir, `${s} (index)`)
+}
+
+// site.yaml `publish` lists. One naming a subject or heading that doesn't exist would publish
+// too much or nothing, so stop before anything is copied (sync-notes.sh then commits nothing).
+for (const [name, config] of Object.entries(siteConfig.subjects ?? {})) {
+  if (publishList(config) && !subjects.some((s) => s.toLowerCase() === name.toLowerCase())) {
+    fail(
+      `site.yaml: "${name}" has a publish list, but ${HOME} links no such subject. Nothing synced.`,
+    )
+  }
+}
+const indexLinks = new Map() // subject -> links in the published parts of its index
+const shown = new Set() // files listed in a published index section, any subject
+const hidden = new Set() // files listed in an unpublished one
+const indexes = new Set([homeFile])
+for (const s of subjects) {
+  const dir = folderOf(s)
+  const index = indexOf(s, dir)
+  if (!index) continue
+  const config = subjectConfig(siteConfig, s)
+  const publish = publishList(config)
+  if (publish?.length === 0) {
+    fail(
+      `site.yaml: ${s} has an empty publish list. List the headings to publish, or delete the ` +
+        "line to publish the whole subject. Nothing synced.",
+    )
+  }
+  const sections = indexLines(fs.readFileSync(index, "utf8"), publish, config.headings)
+  if (sections.unmatched.length) {
+    const names = sections.unmatched.map((p) => `"${p}"`).join(", ")
+    fail(`site.yaml: ${s} publishes ${names}, but its index has no such heading. Nothing synced.`)
+  }
+  indexes.add(index)
+  const links = []
+  sections.lines.forEach((line, i) => {
+    for (const link of linksInText(line)) {
+      const file = resolve(linkKey(link), dir, `[[${link}]] in ${path.basename(index)}`)
+      if (file) (sections.published[i] ? shown : hidden).add(file)
+      if (sections.published[i]) links.push(link)
+    }
+  })
+  // Without a publish list the whole index is followed, frontmatter links included, as always.
+  indexLinks.set(s, publish ? links : linksIn(index))
+}
+// Notes listed only in unpublished sections: held back site-wide. Subject indexes never are;
+// attachments aren't either (a published note may embed the same image).
+const held = new Set([...hidden].filter((f) => isNote(f) && !shown.has(f) && !indexes.has(f)))
+
 const synced = []
 for (const subject of subjects) {
   const dir = folderOf(subject)
-  const files = new Map() // path relative to vault/<Subject>/ -> absolute source path
-  if (dir) for (const file of walk(dir)) files.set(path.relative(dir, file), file)
-
-  const index =
-    (dir && files.get(`${subject}.md`)) ?? resolve(`${subject}.md`, dir, `${subject} (index)`)
+  const publish = publishList(subjectConfig(siteConfig, subject))
+  const index = indexOf(subject, dir)
   if (!index) {
     console.log(`${subject}: no ${subject}.md in the vault, skipped`)
     continue
   }
-  if (!dir && linksIn(index).length === 0) {
-    console.log(`${subject}: index links to no notes yet, skipped`)
-    continue
-  }
-  if (!dir) files.set(`${subject}.md`, index)
 
-  // Follow links from the index and from every note reached, collecting notes and attachments.
+  // A subject folder is copied whole, unless a publish list asks for its sections only.
+  const files = new Map() // path relative to vault/<Subject>/ -> absolute source path
+  if (dir && !publish) {
+    for (const file of walk(dir)) {
+      if (!held.has(file)) files.set(path.relative(dir, file), file)
+    }
+  }
+  if (![...files.values()].includes(index)) files.set(`${subject}.md`, index)
+
+  // Follow links from the index (its published sections) and from every note reached,
+  // collecting notes and attachments.
   const queue = [...files.values()].filter(isNote)
   const seen = new Set(files.values())
   while (queue.length) {
     const note = queue.shift()
-    for (const link of linksIn(note)) {
-      const base = path.basename(link)
-      const key = (path.extname(base) ? base : `${base}.md`).toLowerCase()
+    for (const link of note === index ? indexLinks.get(subject) : linksIn(note)) {
+      const key = linkKey(link)
       if (key === HOME.toLowerCase()) continue
       if (subjectKeys.has(key) && key !== `${subject.toLowerCase()}.md`) continue // other index
       const file = resolve(key, dir, `[[${link}]] in ${path.basename(note)}`)
-      if (!file || seen.has(file)) continue
+      if (!file || seen.has(file) || held.has(file)) continue
       seen.add(file)
       const taken = owner.get(file)
       if (taken && taken !== subject) continue // lives in another subject; the link still works
@@ -97,12 +156,18 @@ for (const subject of subjects) {
     }
   }
 
+  const notes = [...files.keys()].filter(isNote).length
+  if (notes === 1) {
+    const what = publish ? "its published sections link to no notes" : "index links to no notes"
+    console.log(`${subject}: ${what} yet, skipped`)
+    continue
+  }
   const changes = mirror(files, path.join(DEST, subject))
   synced.push(subject)
-  const notes = [...files.keys()].filter(isNote).length
   console.log(
     `${subject}: ${notes} notes, ${files.size - notes} attachments` +
-      (changes ? `, ${changes} files changed` : ", up to date"),
+      (changes ? `, ${changes} files changed` : ", up to date") +
+      (publish ? ` (only ${publish.join(", ")})` : ""),
   )
 }
 
@@ -144,17 +209,28 @@ function mirror(files, dest) {
   return changes
 }
 
+// Lowercased file name a link points to: "Note" -> "note.md", "img.png" -> "img.png",
+// "pH 7.4 Buffering" -> "ph 7.4 buffering.md".
+function linkKey(link) {
+  const base = path.basename(link).toLowerCase()
+  return base.endsWith(".md") || (path.extname(base) && byName.has(base)) ? base : `${base}.md`
+}
+
 // Wikilink, embed and markdown-link targets in a note, without aliases or #headings.
 function linksIn(file) {
-  const text = fs.readFileSync(file, "utf8")
+  return linksInText(fs.readFileSync(file, "utf8"))
+}
+
+function linksInText(text) {
   const targets = []
   for (const m of text.matchAll(/\[\[([^\]|#\\]+)/g)) targets.push(m[1].trim())
-  for (const m of text.matchAll(/\]\(([^)\s#]+)(?:#[^)]*)?\)/g)) {
-    if (/^[a-z][a-z0-9+.-]*:/i.test(m[1])) continue // http:, mailto:, …
+  for (const m of text.matchAll(MARKDOWN_LINK)) {
+    const dest = (m[2] ?? m[3]).replace(/#.*$/, "")
+    if (!dest || /^[a-z][a-z0-9+.-]*:/i.test(dest)) continue // #heading, http:, mailto:, …
     try {
-      targets.push(decodeURIComponent(m[1]))
+      targets.push(decodeURIComponent(dest))
     } catch {
-      targets.push(m[1])
+      targets.push(dest)
     }
   }
   return targets.filter(Boolean)

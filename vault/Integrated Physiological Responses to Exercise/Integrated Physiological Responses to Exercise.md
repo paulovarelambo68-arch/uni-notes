@@ -3,6 +3,7 @@
 
 - [[Inmune System Class Notes]] 
 - [[Cardiovascular System Notes]] 
+- [[Lung Class Notes]] 
 ---
 ## Immunology I
 
@@ -21,7 +22,7 @@
 ---
 ### Exercise Immunology 
 
-- [[Inflammation - Acute, Chronic and CRP]] 
+- [[Inflammation – Acute, Chronic and CRP]] 
 - [[Exercise and Infection Risk – J-Shaped Curve and Open Window]] 
 - [[Mechanisms of Exercise Induced Immune Changes]]  
 - [[IL-6 in Exercise]] 

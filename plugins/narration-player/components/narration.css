@@ -32,12 +32,16 @@
   box-sizing: border-box;
 }
 
+.narration-bar {
+  position: relative;
+}
+
 .narration-bar.docked {
   position: fixed;
   left: var(--nar-center, 50%);
   bottom: max(0.9rem, env(safe-area-inset-bottom));
   transform: translateX(-50%);
-  width: min(var(--nar-width, 820px), calc(100vw - 1.5rem));
+  width: var(--nar-width, calc(100vw - 2rem)); /* set by dock() */
   z-index: 60;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
 }
@@ -89,6 +93,41 @@
 
 .nar-flip {
   transform: scaleX(-1);
+}
+
+/* Close badge on the docked bar's top-right corner, clear of the speed buttons below it. */
+.nar-close {
+  display: none;
+  position: absolute;
+  top: -0.85rem;
+  right: -0.5rem;
+  width: 1.7rem;
+  height: 1.7rem;
+  border: 1px solid var(--lightgray);
+  background: var(--light);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.narration-bar.docked .nar-close {
+  display: grid;
+}
+
+.nar-close svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Opaque on hover too: the badge sticks out over the page. */
+.narration-bar.docked .nar-close:hover,
+.narration-bar.docked .nar-close:focus-visible {
+  background: linear-gradient(var(--highlight), var(--highlight)), var(--light);
+}
+
+/* Bigger hit area than the visible badge, outwards only (not over the bar's buttons). */
+.nar-close::before {
+  content: "";
+  position: absolute;
+  inset: -0.45rem -0.45rem 0;
 }
 
 .nar-play {
@@ -310,8 +349,12 @@
   }
 
   .narration-bar.docked {
-    width: calc(100vw - 1rem);
     bottom: max(0.5rem, env(safe-area-inset-bottom));
+  }
+
+  /* The docked bar is only 0.5rem from the screen edge here. */
+  .nar-close {
+    right: -0.15rem;
   }
 }
 

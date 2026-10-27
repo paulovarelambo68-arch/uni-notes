@@ -73,9 +73,23 @@ sh ~/Documents/uni-notes/sync-notes.sh
 It publishes every subject linked from the vault's `Subjects.md`. For each one it copies the
 subject's folder if there is one (like `Neurophysiology/`), plus the index note and everything
 it links to, wherever those notes and images sit in the vault, following links from note to
-note. Then it commits `vault/` and pushes. Notes you delete or unlink disappear from the site;
+note. Then it commits `vault/` (and `site.yaml`) and pushes. Notes you delete or unlink disappear from the site;
 a subject whose index doesn't link to any note yet is left off until it does. The copy step on
 its own is `node scripts/sync-vault.mjs` (nothing is committed).
+
+To publish only part of a subject, list the index headings that are ready in `site.yaml`:
+
+```yaml
+subjects:
+  Integrated Physiological Responses to Exercise:
+    publish: [Immunology I] # add "Immunology II" when it's ready
+```
+
+The other sections' notes stay out of the repo and off the site, including their subsections,
+and links to them from published notes show as plain text until they're published. Headings
+are matched as the site shows them, ignoring case. If a name matches no heading, or the list is
+empty, the sync and the build stop without changing anything, so a typo can't publish or delete
+a whole subject. `sync-notes.sh` commits `site.yaml` along with the notes.
 
 **A. Write straight into the repo.** In Obsidian, _Open folder as vault_ → pick
 the repo's `vault/` folder. Your notes are `vault/Neurophysiology/`. Install the community
@@ -179,6 +193,7 @@ A note can have an audio track, read by an ElevenLabs voice. The player sits und
 | − 1.0× +                  | speed in steps of 0.1, from 0.5× to 3.0×; click the number to reset                                          |
 | progress bar              | click or drag to seek; the gaps mark sections. With it focused, ← → move by sentence, Shift + ← → by section |
 | speaker next to a heading | listen from that part of the note                                                                            |
+| × on the floating player  | close it: the narration pauses and the player goes back under the title until you press play again           |
 
 Once playing, the player docks to the bottom of the window when you scroll past it, the part
 being read is highlighted, and it remembers where you stopped. Headphone and lock-screen
@@ -201,14 +216,16 @@ credit per character of script, and never twice for the same audio: finished sec
 cached in `audio/.cache/` (so a run that fails part-way resumes), and renaming a section or
 splitting a sentence differently only recomputes the timings. `--force` asks for a fresh
 reading of a note. Commit the `audio/` folder (scripts, `.mp3`, `.json`) the normal way;
-`sync-notes.sh` only commits `vault/`. When a note changes after its script was written,
+`sync-notes.sh` only commits `vault/` and `site.yaml`. When a note changes after its script was written,
 `npm run content` warns that the narration is out of date.
 
 Voices are set in `site.yaml` under `audio.voices`, and scripts alternate between them from
-note to note. `npm run audio -- --find-voices irish female` searches the ElevenLabs voice
-library (the key needs **Voices: Read** for that). The same section sets the pause between
-sections (`sectionPause`) and the "Voice by ElevenLabs" credit under the player, which the free
-plan requires.
+note to note. They are Irish voices from the ElevenLabs voice library's "Educational" category,
+read with `eleven_v3`, ElevenLabs' most expressive model (`audio.model`). Any library voice works
+by its id with a Text to Speech key; `npm run audio -- --find-voices irish female` searches the
+library, but the key needs **Voices: Read** for that. Changing a voice regenerates the
+tracks that use it; changing the model regenerates every track. The same section sets the pause between sections (`sectionPause`) and the "Voice by
+ElevenLabs" credit under the player, which the free plan requires.
 
 ## Working on the site
 
@@ -221,9 +238,9 @@ npm run content   # only regenerate content/ from vault/ (prints warnings)
 | File                          | What it's for                                         |
 | ----------------------------- | ----------------------------------------------------- |
 | `vault/`                      | the notes, one folder per subject                     |
-| `site.yaml`                   | page title renames, index heading fixes               |
+| `site.yaml`                   | renames, heading fixes, sections to publish, audio    |
 | `scripts/build-content.mjs`   | vault → content: structure, callouts, link rewriting  |
-| `sync-notes.sh`               | sync the Obsidian vault, commit `vault/`, push        |
+| `sync-notes.sh`               | sync the vault, commit `vault/` and `site.yaml`, push |
 | `scripts/sync-vault.mjs`      | Obsidian vault → `vault/`, following `Subjects.md`    |
 | `scripts/import-vault.sh`     | `npm run import`: sync a zipped folder into `vault/`  |
 | `audio/`                      | narration scripts and the generated audio tracks      |

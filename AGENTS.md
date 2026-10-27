@@ -7,7 +7,7 @@ Static site of Obsidian uni notes built with Quartz v5, deployed to GitHub Pages
 
 ```
 ~/Documents/Obsidian Vault     the author writes here; subjects listed in Subjects.md
-  │  sync-notes.sh → scripts/sync-vault.mjs (commits and pushes vault/ only)
+  │  sync-notes.sh → scripts/sync-vault.mjs (commits and pushes vault/ and site.yaml)
   ▼
 vault/<Subject>/*.md, images   repo copy of the notes, flat, source of truth for the build
   │  scripts/build-content.mjs (+ site.yaml)
@@ -47,6 +47,29 @@ Commands: `npm run content`, `npm run site`, `npm run serve` (port 8080).
   subject in `Subjects.md`, belongs to that subject only, so basenames stay unique. Subjects
   whose index links to nothing are skipped, and the home page shows them as plain text.
 - **Subject order** in the sidebar follows the link order in `Subjects.md`.
+- **Publishing part of a subject.** `publish: [Heading, …]` under a subject in `site.yaml`
+  limits it to those index headings (subsections included). `scripts/index-sections.mjs` decides
+  which index lines that covers, matching a heading as written or after the `headings` fixes,
+  without bold, ignoring case; `sync-vault.mjs` and `build-content.mjs` both use it.
+  The index is read without its frontmatter. An empty `publish:` (key present, no entries) is an
+  empty list, not "everything".
+  - **Sync:** follows links from the published lines only (a subject folder is then followed
+    link by link too, not copied whole). A note file listed only under unpublished headings, in
+    any subject's index, is held back site-wide (by path) and never followed; subject indexes
+    and attachments never are. An empty `publish`, one naming no heading, or a site.yaml subject
+    with `publish` that Subjects.md doesn't link makes the sync fail before copying, so
+    `sync-notes.sh` commits nothing. `sync-notes.sh` commits `site.yaml` with `vault/`, since CI
+    builds with the committed `publish` lists. A subject left with no notes besides its index
+    is skipped.
+  - **Build:** applies the same rule to `vault/` (for notes written straight into it; held back
+    by name, per subject), places and shows only published index lines, gives a subject with no
+    notes no page (links to it become text), and exits non-zero on an empty or unmatched
+    `publish` before writing anything, so CI keeps the last deployed site.
+  - Links to notes that aren't on the site become plain text: wikilinks and markdown links to
+    `.md` files (`[t](Note.md)`, `[t](<Note.md>)`, `[t](Note.md "title")`), but not inside code
+    (inline, fenced, indented or quoted fences). Links to notes and attachments of other
+    subjects are kept (`siteNotes` reads aliases like Quartz: `aliases` or `alias`, a list or
+    comma-separated).
 
 - **`content/` can't be in `.gitignore`.** Quartz globs with `gitignore: true` and would find
   zero files. `build-content.mjs` adds `/content/` and `/.generated/` to `.git/info/exclude`
@@ -128,13 +151,22 @@ content/<Subject>/audio/<Note>.mp3 + a `narration` frontmatter field → narrati
   all-zero frames between sections (verified silent by decoding with `afconvert`).
 - **Credit.** ElevenLabs' free plan requires attribution; `audio.credit` in `site.yaml` is shown
   under the player. Remove it only on a paid plan.
-- **The key's permissions.** Text to Speech is required; Voices: Read for `--find-voices`;
-  Voices: Write only if a voice-library voice has to be added to the account (`owner` set in
-  `site.yaml`, added automatically on `voice_not_found`).
+- **Model.** `eleven_v3` for every track since 2026-10-27, when Neuron and The Cell Membrane were
+  remade with it and the Irish voices.
+  It rejects `previous_text`/`next_text`, so `narrate.mjs` sends them only to other models
+  (`STITCH`), and takes up to 5,000 characters per request.
+- **The key's permissions.** Text to Speech is required, and is enough to use any voice-library
+  voice by its id (checked 2026-10-27). Voices: Read is needed for `--find-voices`; Voices: Write
+  only if ElevenLabs ever answers `voice_not_found` for a library voice (`owner` set in
+  `site.yaml` makes `narrate.mjs` add it then). Without Voices: Read, library voice ids can be
+  read from the public page elevenlabs.io/text-to-speech/irish-accent (voice ids are in the
+  preview URLs).
 - **Player contract.** One `.narration` per page; `narration.inline.js` sets up on `nav` and
   tears down via `window.addCleanup` with an `AbortController`, because micromorph reuses the
   player's DOM between two narrated notes. Speed (0.5–3.0, steps of 0.1) is stored in
-  `localStorage["narration:speed"]`, the position per page in `narration:<pathname>`.
+  `localStorage["narration:speed"]`, the position per page in `narration:<pathname>`. The `×`
+  badge (`.nar-close`) shows only while docked; it pauses and sets `closed`, which keeps the
+  player undocked until `play()` runs again.
 
 ## Reader-mode ("focus mode") contract
 
