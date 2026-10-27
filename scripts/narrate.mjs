@@ -32,7 +32,7 @@ const cfg = siteConfig.audio ?? {}
 const MODEL = cfg.model ?? "eleven_multilingual_v2"
 const SETTINGS = sortKeys(cfg.settings ?? {})
 const FORMAT = "mp3_44100_128"
-// Characters per request: eleven_v3 takes up to 5,000, eleven_multilingual_v2 up to 10,000.
+// Characters per request: eleven_v3 takes up to 5,000; eleven_v4 and eleven_multilingual_v2 10,000.
 const MAX_CHARS = MODEL.startsWith("eleven_v3") ? 4900 : 9500
 // The neighbouring sections' text keeps the intonation continuous; eleven_v3 rejects it.
 const STITCH = !MODEL.startsWith("eleven_v3")

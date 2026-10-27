@@ -34,8 +34,8 @@ subjects:
 # notes. "owner" is the voice-library owner id; with it, narrate.mjs adds a library voice to
 # the account the first time it's needed. Find voices: npm run audio -- --find-voices irish female
 audio:
-  # eleven_v3 is the most expressive model; eleven_multilingual_v2 is steadier on long text.
-  model: eleven_v3
+  # eleven_v4 is ElevenLabs' highest-quality model (it sounded better than eleven_v3 here).
+  model: eleven_v4
   # Pause between sections, in seconds (changing it rebuilds the tracks from the local cache).
   sectionPause: 0.8
   # Shown under the player. ElevenLabs' free plan requires crediting them.

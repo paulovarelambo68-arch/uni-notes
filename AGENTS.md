@@ -151,10 +151,11 @@ content/<Subject>/audio/<Note>.mp3 + a `narration` frontmatter field → narrati
   all-zero frames between sections (verified silent by decoding with `afconvert`).
 - **Credit.** ElevenLabs' free plan requires attribution; `audio.credit` in `site.yaml` is shown
   under the player. Remove it only on a paid plan.
-- **Model.** `eleven_v3` for every track since 2026-10-27, when Neuron and The Cell Membrane were
-  remade with it and the Irish voices.
-  It rejects `previous_text`/`next_text`, so `narrate.mjs` sends them only to other models
-  (`STITCH`), and takes up to 5,000 characters per request.
+- **Model.** `eleven_v4` for every track since 2026-10-27 (chosen by ear over `eleven_v3` on the
+  Cytokines note; v4 reads about 7% faster and about 4 dB quieter). It takes `previous_text`/
+  `next_text`, timestamps and the voice settings, and up to 10,000 characters per request.
+  `eleven_v3` rejects `previous_text`/`next_text` and takes 5,000, so `narrate.mjs` special-cases
+  it (`STITCH`, `MAX_CHARS`).
 - **The key's permissions.** Text to Speech is required, and is enough to use any voice-library
   voice by its id (checked 2026-10-27). Voices: Read is needed for `--find-voices`; Voices: Write
   only if ElevenLabs ever answers `voice_not_found` for a library voice (`owner` set in

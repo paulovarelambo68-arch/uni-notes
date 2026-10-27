@@ -221,7 +221,7 @@ reading of a note. Commit the `audio/` folder (scripts, `.mp3`, `.json`) the nor
 
 Voices are set in `site.yaml` under `audio.voices`, and scripts alternate between them from
 note to note. They are Irish voices from the ElevenLabs voice library's "Educational" category,
-read with `eleven_v3`, ElevenLabs' most expressive model (`audio.model`). Any library voice works
+read with `eleven_v4`, ElevenLabs' highest-quality model (`audio.model`). Any library voice works
 by its id with a Text to Speech key; `npm run audio -- --find-voices irish female` searches the
 library, but the key needs **Voices: Read** for that. Changing a voice regenerates the
 tracks that use it; changing the model regenerates every track. The same section sets the pause between sections (`sectionPause`) and the "Voice by
