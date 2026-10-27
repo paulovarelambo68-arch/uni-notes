@@ -82,12 +82,14 @@ To publish only part of a subject, list the index headings that are ready in `si
 ```yaml
 subjects:
   Integrated Physiological Responses to Exercise:
-    publish: [Immunology I] # add "Immunology II" when it's ready
+    publish: [Immunology I, Immunology II] # add "Exercise Immunology" when it's ready
 ```
 
-The other sections' notes stay out of the repo and off the site, including their subsections,
-and links to them from published notes show as plain text until they're published. Headings
-are matched as the site shows them, ignoring case. If a name matches no heading, or the list is
+The other sections' notes stay out of the repo and off the site, and links to them from
+published notes show as plain text until they're published. Sections are the folders the site
+shows: a `# Section` includes its subsections, while `##` and deeper headings are each their own
+(so `## Immunology II` doesn't include a `### Exercise Immunology` below it). Headings are matched
+as the site shows them, ignoring case. If a name matches no heading, or the list is
 empty, the sync and the build stop without changing anything, so a typo can't publish or delete
 a whole subject. `sync-notes.sh` commits `site.yaml` along with the notes.
 
@@ -211,7 +213,9 @@ npm run audio                # generate every missing or changed track (only tho
 ```
 
 It needs an ElevenLabs API key with **Text to Speech** access in `.env`
-(`ELEVENLABS_API_KEY=…`; `.env` is gitignored, never commit it). ElevenLabs charges about one
+(`ELEVENLABS_API_KEY=…`; `.env` is gitignored, never commit it), and a way to decode MP3 to check
+the end of each section: `afconvert`, built into macOS, or `ffmpeg`. ElevenLabs sometimes starts
+saying the next section at the very end of one; that stray syllable is cut off automatically. ElevenLabs charges about one
 credit per character of script, and never twice for the same audio: finished sections are
 cached in `audio/.cache/` (so a run that fails part-way resumes), and renaming a section or
 splitting a sentence differently only recomputes the timings. `--force` asks for a fresh

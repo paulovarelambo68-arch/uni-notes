@@ -18,8 +18,10 @@
 // character timings, so renaming sections or re-splitting sentences needs no new audio.
 
 import fs from "node:fs"
+import os from "node:os"
 import path from "node:path"
 import crypto from "node:crypto"
+import { execFileSync } from "node:child_process"
 import YAML from "yaml"
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..")
@@ -38,6 +40,15 @@ const MAX_CHARS = MODEL.startsWith("eleven_v3") ? 4900 : 9500
 const STITCH = !MODEL.startsWith("eleven_v3")
 // ElevenLabs leaves almost no silence at the end of a request, so sections get a pause between them.
 const PAUSE = cfg.sectionPause ?? 0.8
+// Stray sounds at the end of a section (see trimTail): RMS levels of 10 ms windows, in seconds.
+const TAIL = {
+  version: "tail-2",
+  quiet: 60,
+  loud: 150,
+  minPause: 0.12,
+  maxBurst: 0.2,
+  wordLead: 0.1,
+}
 
 const argv = process.argv.slice(2)
 const flags = new Set(argv.filter((a) => a.startsWith("--")))
@@ -85,6 +96,7 @@ for (const file of scripts) {
       SETTINGS,
       PAUSE,
       ...(steps ? [steps] : []), // so a gain change rebuilds the track from the cache
+      TAIL.version, // and so does a change to trimTail()
     ]),
   )
   const existing = readJson(`${out}.json`)
@@ -137,7 +149,10 @@ for (const file of scripts) {
       )
       spent += section.text.length
     }
-    const mp3 = mp3Frames(Buffer.from(res.audio_base64, "base64"))
+    let mp3 = mp3Frames(Buffer.from(res.audio_base64, "base64"))
+    if (context(script, i).next_text) {
+      mp3 = trimTail(mp3, res.alignment, `${label}: section ${i + 1}`)
+    }
     parts.push({ mp3, alignment: res.alignment })
     process.stdout.write(
       `  ${i + 1}/${script.sections.length} ${section.title} (${mp3.duration.toFixed(1)}s${wasCached ? ", cached" : ""})\n`,
@@ -469,6 +484,109 @@ function mp3Frames(buf) {
 
 // Appends silent frames shaped like the stream's own: same header, no padding, all-zero side
 // information and main data, which every MP3 decoder plays as silence.
+// eleven_v4 sometimes ends a section by starting on the next one, the next_text it gets for
+// context: a fraction of a syllable after a pause. The decoded audio shows it (the character
+// timings don't: they stretch the last letters over the pause), so such a tail is cut off, in
+// whole frames, in the middle of the pause. Only when the section's last word is timed to start
+// well before the burst (the timings run late near the end, but never early), so a short last
+// word of the section's own text is never cut. Levels are RMS of 10 ms
+// windows of 16-bit samples.
+
+function trimTail(mp3, alignment, label) {
+  const pcm = decodeMp3(mp3.data)
+  const rate = mp3.sampleRate
+  const win = Math.round(rate / 100)
+  const from = Math.max(0, pcm.length - Math.round(rate * 1.2))
+  const levels = []
+  for (let k = from; k + win <= pcm.length; k += win) {
+    let q = 0
+    for (let n = k; n < k + win; n++) q += pcm[n] * pcm[n]
+    levels.push(Math.sqrt(q / win))
+  }
+  // From the end: up to 50 ms of quiet, the burst (not quiet, and loud somewhere), then the
+  // pause before it.
+  let i = levels.length - 1
+  while (i >= levels.length - 5 && levels[i] < TAIL.quiet) i--
+  let loud = false
+  for (; i >= 0 && levels[i] >= TAIL.quiet; i--) if (levels[i] >= TAIL.loud) loud = true
+  const burst = (levels.length - 1 - i) / 100
+  const burstStart = (from + (i + 1) * win) / rate
+  let pause = 0
+  for (; i >= 0 && levels[i] < TAIL.quiet; i--) pause++
+  pause /= 100
+  if (!loud || burst > TAIL.maxBurst || pause < TAIL.minPause || i < 0) return mp3
+
+  const pauseStart = (from + (i + 1) * win) / rate
+  const chars = alignment.characters
+  let last = chars.length - 1
+  while (last > 0 && !/[\p{L}\p{N}]/u.test(chars[last])) last--
+  let first = last
+  while (first > 0 && /[\p{L}\p{N}'’-]/u.test(chars[first - 1])) first--
+  if (alignment.character_start_times_seconds[first] > burstStart - TAIL.wordLead) return mp3
+
+  const samplesPerFrame = Math.round((mp3.duration * rate) / countFrames(mp3))
+  const keep = Math.round(((pauseStart + pause / 2) * rate) / samplesPerFrame)
+  let end = 0
+  for (let f = 0; f < keep; f++) end += mp3.frameLength(mp3.data.subarray(end, end + 4))
+  const duration = (keep * samplesPerFrame) / rate
+  console.log(
+    `  ${label}: cut ${Math.round((mp3.duration - duration) * 1000)} ms with a stray sound after the last word`,
+  )
+  return { ...mp3, data: mp3.data.subarray(0, end), duration }
+}
+
+function countFrames(mp3) {
+  let n = 0
+  for (let i = 0; i + 4 <= mp3.data.length; i += mp3.frameLength(mp3.data.subarray(i, i + 4))) n++
+  return n
+}
+
+// MP3 -> 16-bit samples of the first channel, with afconvert (macOS) or ffmpeg. Problems are
+// reported after the temp folder is gone (fail() exits, which would skip the finally).
+function decodeMp3(data) {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "narrate-"))
+  let samples = null
+  let problem = null
+  try {
+    const input = path.join(dir, "in.mp3")
+    const output = path.join(dir, "out.wav")
+    fs.writeFileSync(input, data)
+    const run = (cmd, args) => {
+      try {
+        execFileSync(cmd, args, { stdio: "ignore" })
+        return true
+      } catch (err) {
+        if (err.code === "ENOENT") return false
+        throw err
+      }
+    }
+    const decoded =
+      run("afconvert", ["-f", "WAVE", "-d", "LEI16", input, output]) ||
+      run("ffmpeg", ["-v", "error", "-y", "-i", input, "-c:a", "pcm_s16le", output])
+    if (!decoded) problem = "checking the end of each section needs afconvert (macOS) or ffmpeg"
+    const wav = decoded ? fs.readFileSync(output) : Buffer.alloc(0)
+    let channels = 1
+    for (let at = 12; at + 8 <= wav.length;) {
+      const id = wav.toString("latin1", at, at + 4)
+      const size = wav.readUInt32LE(at + 4)
+      if (id === "fmt ") channels = wav.readUInt16LE(at + 10)
+      if (id === "data") {
+        const all = new Int16Array(
+          wav.buffer.slice(wav.byteOffset + at + 8, wav.byteOffset + at + 8 + size),
+        )
+        samples = channels === 1 ? all : all.filter((_, n) => n % channels === 0)
+        break
+      }
+      at += 8 + size + (size % 2)
+    }
+    if (!samples && !problem) problem = "could not read the decoded audio"
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true })
+  }
+  if (problem) fail(problem)
+  return samples
+}
+
 // A voice's `gain` in site.yaml (dB, in steps of 1.5) as global_gain steps; see applyGain().
 function gainSteps(voice, label) {
   const steps = (voice.gain ?? 0) / 1.5
@@ -600,7 +718,8 @@ function sortKeys(obj) {
 }
 
 function formatTime(seconds) {
-  return `${Math.floor(seconds / 60)}:${String(Math.round(seconds % 60)).padStart(2, "0")}`
+  const total = Math.round(seconds) // round first, so 419.6 s is 7:00, not 6:60
+  return `${Math.floor(total / 60)}:${String(total % 60).padStart(2, "0")}`
 }
 
 function fail(message) {

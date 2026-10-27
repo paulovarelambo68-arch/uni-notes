@@ -27,7 +27,7 @@ subjects:
   Integrated Physiological Responses to Exercise:
     # Only these index sections go on the site for now (sync-notes.sh copies only their notes).
     # Add a section when it's ready, or delete the line to publish the whole subject.
-    publish: [Immunology I]
+    publish: [Immunology I, Immunology II]
 
 # Audio tracks (scripts/narrate.mjs, npm run audio). Narration scripts live in
 # audio/<Subject>/<Note>.md and pick a voice by the names below. Voices alternate between

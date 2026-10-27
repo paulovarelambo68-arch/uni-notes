@@ -326,7 +326,16 @@ function buildSubject(subject) {
   if (indexNote) {
     let text = fs.readFileSync(indexNote.file, "utf8").replace(/\r\n/g, "\n")
     const index = indexLines(text, publish, headingFixes)
-    text = index.lines.filter((_, i) => index.published[i]).join("\n")
+    // A published subsection keeps its "# Section" heading above it, as in the sidebar.
+    const section = (i) => /^#\s/.test(index.lines[i])
+    const keep = index.lines.map((line, i) => {
+      if (index.published[i] || !section(i)) return index.published[i]
+      for (let k = i + 1; k < index.lines.length && !section(k); k++) {
+        if (index.published[k]) return true
+      }
+      return false
+    })
+    text = index.lines.filter((_, i) => keep[i]).join("\n")
     text = text.replace(/^(#{1,6})[ \t]+(.*?)[ \t]*$/gm, (_, hashes, t) => {
       return `${hashes.length === 1 ? "##" : "###"} ${headingText(t, headingFixes)}`
     })

@@ -35,9 +35,12 @@ export const MARKDOWN_LINK =
   /\[([^\]\n]*)\]\(\s*(?:<([^>\n]+)>|([^)\s]+))(?:\s+(?:"[^"]*"|'[^']*'))?\s*\)/g
 
 // The index's lines after its frontmatter, with one flag per line: is that line published? A
-// heading is published when its text (as written or as fixed, ignoring case) is in `publish`,
-// or a heading above it is; other lines follow the nearest heading above them, and lines before
-// the first heading are published. Also returns the `publish` entries that match no heading.
+// heading is published when its text (as written or as fixed, ignoring case) is in `publish`, or
+// it sits under a published "# Section". Levels follow the site's folders, not the Markdown:
+// "# " is a sidebar folder and every deeper heading a subfolder of it, so "## A" followed by
+// "### B" are sibling subfolders and publishing A doesn't publish B. Other lines follow the
+// nearest heading above them, and lines before the first heading are published. Also returns
+// the `publish` entries that match no heading.
 export function indexLines(text, publish, fixes = {}) {
   const body = text.replace(/\r\n/g, "\n").replace(/^---\n[\s\S]*?\n---\n?/, "")
   const lines = body.split("\n")
@@ -48,12 +51,13 @@ export function indexLines(text, publish, fixes = {}) {
   const published = lines.map((line) => {
     const h = line.match(/^(#{1,6})\s+(.*?)\s*$/)
     if (!h) return stack.length === 0 || stack.at(-1).published
-    while (stack.length && stack.at(-1).level >= h[1].length) stack.pop()
+    const level = h[1].length === 1 ? 1 : 2 // folder or subfolder, as build-content places notes
+    while (stack.length && stack.at(-1).level >= level) stack.pop()
     const names = [stripBold(h[2]), headingText(h[2], fixes)].map((n) => n.toLowerCase())
     const match = names.find((n) => wanted.has(n))
     if (match) found.add(match)
     const on = Boolean(match) || stack.some((s) => s.published)
-    stack.push({ level: h[1].length, published: on })
+    stack.push({ level, published: on })
     return on
   })
   return { lines, published, unmatched: publish.filter((p) => !found.has(p.toLowerCase())) }

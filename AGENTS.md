@@ -48,7 +48,10 @@ Commands: `npm run content`, `npm run site`, `npm run serve` (port 8080).
   whose index links to nothing are skipped, and the home page shows them as plain text.
 - **Subject order** in the sidebar follows the link order in `Subjects.md`.
 - **Publishing part of a subject.** `publish: [Heading, …]` under a subject in `site.yaml`
-  limits it to those index headings (subsections included). `scripts/index-sections.mjs` decides
+  limits it to those index headings. Levels follow the sidebar, not Markdown: a `#` heading
+  includes the subsections under it, but `##`…`######` are sibling subfolders (that is how
+  `build-content.mjs` places notes), so `## A` does not include a following `### B`.
+  `scripts/index-sections.mjs` decides
   which index lines that covers, matching a heading as written or after the `headings` fixes,
   without bold, ignoring case; `sync-vault.mjs` and `build-content.mjs` both use it.
   The index is read without its frontmatter. An empty `publish:` (key present, no entries) is an
@@ -158,6 +161,17 @@ content/<Subject>/audio/<Note>.mp3 + a `narration` frontmatter field → narrati
   offsets are frame counts × 1152 / sample rate, so timings stay exact. ElevenLabs ends each
   request almost without silence, so `joinSilence()` adds `audio.sectionPause` seconds of
   all-zero frames between sections (verified silent by decoding with `afconvert`).
+- **Stray syllables at section ends.** With `next_text`, eleven_v4 sometimes ends a section by
+  starting on the next one: after the last word and a 200–450 ms pause, 40–140 ms of (mostly
+  voiced) sound, cut off by the end of the request. Found in 33 of 301 non-final sections on
+  2026-10-27 and never in final sections, which get no `next_text`. The character timings don't
+  show it (they stretch the last letters over the pause and run late), so `trimTail()` decodes
+  each non-final section with `afconvert` or `ffmpeg`, looks at 10 ms RMS windows over its last
+  1.2 s, and cuts whole frames in the middle of the pause when a burst of at most 200 ms follows
+  at least 120 ms of quiet and the last word is timed to start at least 0.1 s before the burst
+  (so a real short last word is never cut). It cut 38 sections; every cut section still ends in
+  at least 160 ms of silence. One faint unvoiced breath (-43 dBFS) remains in Membrane Potential.
+  `TAIL.version` is in the fingerprint, so changing the rule rebuilds tracks from the cache.
 - **Loudness.** A voice's `gain` in `site.yaml` is applied by `applyGain()` before joining, the way
   mp3gain works: it adds `gain / 1.5` to the 8-bit `global_gain` of every Layer III granule that
   has coded audio, which scales the decoded sound by exactly 1.5 dB per step (verified: decoded
