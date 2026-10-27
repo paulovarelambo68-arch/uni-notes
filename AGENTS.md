@@ -78,6 +78,15 @@ Commands: `npm run content`, `npm run site`, `npm run serve` (port 8080).
   `.toString()`, so it can't close over variables. `quartz.ts` builds it with `new Function`
   and inlines the ranks from `.generated/explorer-order.json`. Ranks are keyed by display
   name (page title or folder name).
+- **Explorer titles are shortened.** `mapFn` in `quartz.ts` drops a " – subtitle" (spaced
+  hyphen, en or em dash) from note names in the sidebar only. The plugin ignores its `order`
+  option and always runs filter, map, sort, so `sortFn` looks ranks up by `node.data.title`
+  (the full title), falling back to `displayName` for folders.
+- **Highlights with markup inside.** The OFM plugin keeps `==…==` content as raw text, so
+  `==**bold**==`, links or math inside showed their syntax. `expandHighlights()` turns such
+  highlights into `<span class="text-highlight">…</span>` (inline HTML, so the content is
+  still parsed); plain ones are left to Quartz.
+- Heading anchor links (the chain icon on hover) are hidden in `custom.scss`.
 - **Plugin option overrides** (`componentRegistry.setOptionOverrides`) are keyed by the
   plugin's full source string from `quartz.config.yaml`, e.g. `"@quartz-community/explorer"`,
   not `"explorer"`.

@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "site",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["quartz", "build", "--serve", "--port", "8090", "--wsPort", "3091", "-o", ".preview-public"],
+      "port": 8090,
+      "autoPort": false
+    }
+  ]
+}

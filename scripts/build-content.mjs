@@ -12,6 +12,7 @@
 //   - headings start at h2 and lose redundant **bold**
 //   - opening blockquote -> "Definition" callout, blockquote under "Summary" -> summary callout,
 //     blockquotes starting with a bold label ("**Memory hook:**") -> tip callout
+//   - ==highlights== containing **bold**, links or math render that markup instead of showing it
 //   - image-placeholder embeds that point nowhere are dropped
 //   - with `publish` in site.yaml, only the listed index sections and the notes they reach go
 //     on the site (sync-vault.mjs applies the same rule when it copies the vault)
@@ -299,6 +300,7 @@ function buildSubject(subject) {
     let text = rewrite(content)
     text = normalizeHeadings(text)
     text = addCallouts(text)
+    text = expandHighlights(text)
     if (!text.replace(/!\[\[[^\]]*\]\]/g, "").trim() && !/!\[\[/.test(text)) {
       text = "*This note is still empty.*\n"
     }
@@ -536,6 +538,22 @@ function addCallouts(md) {
     lastContent = block[block.length - 1]
   }
   return out.join("\n")
+}
+
+// Quartz's ==highlight== keeps its content as raw text, so **bold**, links or $math$ inside one
+// show their markup. Such highlights become an HTML span, whose content Markdown still parses.
+// Same matching as Quartz: one line, closes at the first "==", content can't start with "=".
+function expandHighlights(md) {
+  const inCode = codeRanges(md)
+  const math = [...md.matchAll(/\$\$[\s\S]*?\$\$|\$[^$\n]+\$/g)].map((m) => [
+    m.index,
+    m.index + m[0].length,
+  ])
+  const inMath = (at) => math.some(([from, to]) => at >= from && at < to)
+  return md.replace(/==(?!=)((?:[^=\n]|=(?!=))+?)==/g, (whole, inner, at) => {
+    if (inCode(at) || inMath(at) || !/[*_[\]$`<&~]/.test(inner)) return whole
+    return `<span class="text-highlight">${inner}</span>`
+  })
 }
 
 function dropEmptySections(md) {

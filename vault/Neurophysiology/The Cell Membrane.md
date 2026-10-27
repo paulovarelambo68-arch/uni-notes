@@ -5,7 +5,7 @@
 
 - **Cholesterol:** Interspersed between phospholipids; modulates membrane **fluidity and stability** (prevents it becoming too rigid or too fluid).
 
-- **Integral (transmembrane) proteins:** Span the entire bilayer. Serve as **channels, carriers/pumps, receptors, and [[enzymes]] , meaning, they mediate in selective transport and signal transduction.
+- **Integral (transmembrane) proteins:** Span the entire bilayer. Serve as **channels, carriers/pumps, receptors, and [[enzymes]]**, meaning, they mediate in selective transport and signal transduction.
 
 - **Channel proteins:** Form water-filled pores allowing **passive ion diffusion** (down electrochemical gradients), e.g., Na⁺, K⁺, Cl⁻, Ca²⁺ channels.
 
