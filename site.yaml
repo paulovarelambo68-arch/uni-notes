@@ -49,10 +49,15 @@ audio:
     use_speaker_boost: true
     speed: 1
   voices:
-    # Irish voices from the ElevenLabs voice library, "Educational" category.
+    # Irish voices from the ElevenLabs voice library, "Educational" category. `gain` (dB, steps of
+    # 1.5, applied without re-encoding) evens out their loudness: with eleven_v4 Patrick's speech
+    # measured 5.7 dB quieter, and his peaks leave room for only +1.5 dB. Changing it rebuilds the
+    # tracks from the local cache.
     irish-female:
       name: Jessica Gallagher - Clear and Neutral
       id: DbwWo4rVEd5NrejHYUnm
+      gain: -4.5
     irish-male:
       name: Patrick - Engaging and Warm
       id: qwaVDEGNsBllYcZO1ZOJ
+      gain: 1.5

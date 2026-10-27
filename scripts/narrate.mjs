@@ -76,8 +76,16 @@ for (const file of scripts) {
   if (long) fail(`${label}: section "${long.title}" is over ${MAX_CHARS} characters; split it`)
   const out = file.replace(/\.md$/, "")
   // Only what ElevenLabs hears: section titles and sentence splits don't change the audio.
+  const steps = gainSteps(voice, label)
   const fingerprint = hash(
-    JSON.stringify([script.sections.map((s) => s.text), voice.id, MODEL, SETTINGS, PAUSE]),
+    JSON.stringify([
+      script.sections.map((s) => s.text),
+      voice.id,
+      MODEL,
+      SETTINGS,
+      PAUSE,
+      ...(steps ? [steps] : []), // so a gain change rebuilds the track from the cache
+    ]),
   )
   const existing = readJson(`${out}.json`)
   const chars = script.sections.reduce((n, s) => n + s.text.length, 0)
@@ -136,8 +144,12 @@ for (const file of scripts) {
     )
   }
 
-  // Each section's audio, followed by a pause unless it's the last; durations include the pause.
-  const audio = parts.map(({ mp3 }, i) => (i < parts.length - 1 ? joinSilence(mp3, PAUSE) : mp3))
+  // Each section's audio at the voice's gain, followed by a pause unless it's the last; durations
+  // include the pause.
+  const audio = parts.map(({ mp3 }, i) => {
+    const level = applyGain(mp3, steps)
+    return i < parts.length - 1 ? joinSilence(level, PAUSE) : level
+  })
   const segments = parts.map(({ alignment }, i) => ({
     duration: round(audio[i].duration, 6),
     alignment: compactAlignment(alignment),
@@ -457,6 +469,57 @@ function mp3Frames(buf) {
 
 // Appends silent frames shaped like the stream's own: same header, no padding, all-zero side
 // information and main data, which every MP3 decoder plays as silence.
+// A voice's `gain` in site.yaml (dB, in steps of 1.5) as global_gain steps; see applyGain().
+function gainSteps(voice, label) {
+  const steps = (voice.gain ?? 0) / 1.5
+  if (!Number.isInteger(steps))
+    fail(`${label}: voice gain ${voice.gain} is not a multiple of 1.5 dB`)
+  return steps
+}
+
+// Volume change without re-encoding, the way mp3gain does it: every Layer III granule stores a
+// global_gain, and one step of it scales the decoded sound by exactly 1.5 dB. Granules with no
+// coded audio (silence) are left alone.
+function applyGain(mp3, steps) {
+  if (!steps) return mp3
+  const data = Buffer.from(mp3.data)
+  for (let i = 0; i + 4 <= data.length; i += mp3.frameLength(data.subarray(i, i + 4))) {
+    const mpeg1 = ((data[i + 1] >> 3) & 3) === 3
+    const mono = data[i + 3] >> 6 === 3
+    if ((data[i + 1] & 1) === 0) fail("can't change the gain of MP3 frames that carry a CRC")
+    // Side info follows the header: main_data_begin, private bits and (MPEG-1) scfsi, then one
+    // block per granule and channel that starts with part2_3_length (12 bits), big_values (9)
+    // and global_gain (8).
+    const channels = mono ? 1 : 2
+    const first = mpeg1 ? 9 + (mono ? 5 : 3) + 4 * channels : 8 + (mono ? 1 : 2)
+    const block = mpeg1 ? 59 : 63
+    for (let g = 0; g < (mpeg1 ? 2 : 1) * channels; g++) {
+      const at = first + g * block
+      if (readBits(data, i + 4, at, 12) === 0) continue
+      const gain = readBits(data, i + 4, at + 21, 8)
+      writeBits(data, i + 4, at + 21, 8, Math.min(255, Math.max(0, gain + steps)))
+    }
+  }
+  return { ...mp3, data }
+}
+
+function readBits(buf, start, bit, count) {
+  let value = 0
+  for (let k = bit; k < bit + count; k++) {
+    value = (value << 1) | ((buf[start + (k >> 3)] >> (7 - (k & 7))) & 1)
+  }
+  return value
+}
+
+function writeBits(buf, start, bit, count, value) {
+  for (let k = 0; k < count; k++) {
+    const at = start + ((bit + k) >> 3)
+    const mask = 1 << (7 - ((bit + k) & 7))
+    if ((value >> (count - 1 - k)) & 1) buf[at] |= mask
+    else buf[at] &= ~mask
+  }
+}
+
 function joinSilence(mp3, seconds) {
   const header = Buffer.from(mp3.data.subarray(0, 4))
   header[2] &= ~0x02

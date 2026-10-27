@@ -149,6 +149,14 @@ content/<Subject>/audio/<Note>.mp3 + a `narration` frontmatter field → narrati
   offsets are frame counts × 1152 / sample rate, so timings stay exact. ElevenLabs ends each
   request almost without silence, so `joinSilence()` adds `audio.sectionPause` seconds of
   all-zero frames between sections (verified silent by decoding with `afconvert`).
+- **Loudness.** A voice's `gain` in `site.yaml` is applied by `applyGain()` before joining, the way
+  mp3gain works: it adds `gain / 1.5` to the 8-bit `global_gain` of every Layer III granule that
+  has coded audio, which scales the decoded sound by exactly 1.5 dB per step (verified: decoded
+  output equals the original × the gain to within 1 LSB, same sample count). It enters the
+  fingerprint only when non-zero, so changing it rebuilds tracks from `audio/.cache` for free.
+  Values were picked by measuring active-speech RMS and peaks after decoding: v4 Patrick was
+  5.7 dB quieter than Jessica with peaks near -2 dBFS, hence +1.5 / -4.5 (both about -22 dBFS
+  speech, Patrick's peak -0.4 dBFS). Re-measure before raising a voice: it must not clip.
 - **Credit.** ElevenLabs' free plan requires attribution; `audio.credit` in `site.yaml` is shown
   under the player. Remove it only on a paid plan.
 - **Model.** `eleven_v4` for every track since 2026-10-27 (chosen by ear over `eleven_v3` on the

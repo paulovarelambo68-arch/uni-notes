@@ -224,8 +224,10 @@ note to note. They are Irish voices from the ElevenLabs voice library's "Educati
 read with `eleven_v4`, ElevenLabs' highest-quality model (`audio.model`). Any library voice works
 by its id with a Text to Speech key; `npm run audio -- --find-voices irish female` searches the
 library, but the key needs **Voices: Read** for that. Changing a voice regenerates the
-tracks that use it; changing the model regenerates every track. The same section sets the pause between sections (`sectionPause`) and the "Voice by
-ElevenLabs" credit under the player, which the free plan requires.
+tracks that use it; changing the model regenerates every track. Each voice's `gain` (in dB,
+steps of 1.5) evens out loudness between voices without re-encoding; changing it, or the pause
+between sections (`sectionPause`), rebuilds the tracks from the local cache for free. The same
+section sets the "Voice by ElevenLabs" credit under the player, which the free plan requires.
 
 ## Working on the site
 
