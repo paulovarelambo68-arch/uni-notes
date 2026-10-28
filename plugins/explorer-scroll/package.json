@@ -1,0 +1,30 @@
+{
+  "name": "explorer-scroll",
+  "version": "1.0.0",
+  "description": "Keeps the Explorer's scroll to the open note inside the Explorer, so a page opens at its top",
+  "type": "module",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./components": "./components/index.js",
+    "./package.json": "./package.json"
+  },
+  "quartz": {
+    "name": "explorer-scroll",
+    "displayName": "Explorer Scroll",
+    "category": "component",
+    "version": "1.0.0",
+    "quartzVersion": ">=5.0.0",
+    "dependencies": [],
+    "defaultOrder": 50,
+    "defaultEnabled": true,
+    "defaultOptions": {},
+    "components": {
+      "ExplorerScroll": {
+        "displayName": "Explorer Scroll",
+        "defaultPosition": "beforeBody",
+        "defaultPriority": 0
+      }
+    }
+  }
+}

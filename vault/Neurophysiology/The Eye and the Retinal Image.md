@@ -21,8 +21,6 @@ A rise in pressure of the aqueous humour at the front of the eye is ==glaucoma==
 
 **Accommodation** is the process by which the ==lens changes shape== to focus light sharply on the retina. The diagram contrasts the two states side by side: in the **unaccommodated** state the ==ciliary muscle== is relaxed, the ==zonule fibres== are [[pulled taut]] and the lens is held thin and flattened, which suits distant vision. In the **accommodated** state the ciliary muscle contracts, the zonule fibres [[slacken]], and the elastic lens rounds up into a thicker, more curved shape, which increases its ==refractive power== for near vision. 
 
-**Accommodation** is the process by which the ==lens changes shape== to focus light sharply on the retina, and the diagram contrasts the two states side by side. In the **unaccommodated** state the ==ciliary muscle== is relaxed, the ==zonule fibres== are pulled taut and the lens is held thin and flattened, which suits distant vision. In the **accommodated** state the ciliary muscle contracts, the zonule fibres slacken, and the elastic lens rounds up into a thicker, more curved shape, which increases its ==refractive power== for near vision.
-
 The key to understand this is that the ==ciliary muscle is a ring==: relaxed, the ring is wide and pulls the zonule fibres tight, stretching the lens flat; contracted, the ring narrows and the fibres go slack, so the elastic lens springs back to its natural rounded shape.
 
 ![[Gemini_Generated_Image_q4y2ufq4y2ufq4y2.jpeg|484]]

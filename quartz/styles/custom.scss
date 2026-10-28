@@ -27,14 +27,73 @@
   }
 }
 
-// Keep long lines comfortable to read, like Obsidian's readable line length.
+// The site title and the note title start near the top of the window, level with each
+// other (Quartz leaves 6rem above both).
+$topGap: 2.5rem;
+
+@media all and not ($mobile) {
+  .page > #quartz-body .sidebar.left {
+    padding-top: $topGap;
+  }
+
+  .page > #quartz-body .page-header {
+    margin-top: $topGap;
+  }
+
+  .page-header .article-title {
+    margin-top: 0;
+  }
+}
+
+// The note itself: larger type and a wider column than Quartz's defaults, so it uses more
+// of the screen. Line length stays about what it was (860px at 16px). Headings are sized
+// in em so they grow with the text, here and in reader mode.
+$noteWidth: 1000px;
+
+@media all and not ($mobile) {
+  .center > article {
+    font-size: 1.125rem;
+  }
+
+  .page-header .article-title {
+    font-size: 2rem;
+  }
+}
+
+// The separator line and the footer under the note follow the same column. Quartz stretches
+// them across the grid, which in reader mode is the whole window, so they sat at its edge.
 @media all and ($desktop) {
   .center article,
   .center .page-header,
-  .center .page-footer {
-    max-width: 860px;
+  .center .page-footer,
+  .center > hr,
+  .page > #quartz-body > footer {
+    max-width: $noteWidth;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .page > #quartz-body > footer {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+.center > article {
+  & h1 {
+    font-size: 1.75em;
+  }
+
+  & h2 {
+    font-size: 1.4em;
+  }
+
+  & h3 {
+    font-size: 1.12em;
+  }
+
+  & :is(h4, h5, h6) {
+    font-size: 1em;
   }
 }
 
@@ -79,8 +138,8 @@ article :is(h1, h2, h3, h4, h5, h6) > a[role="anchor"] {
 }
 
 // Reader mode on: drop the left sidebar entirely, centre the note, larger type.
-:root[reader-mode="on"] article {
-  font-size: 1.14rem;
+:root[reader-mode="on"] .center > article {
+  font-size: 1.25rem;
 }
 
 @media all and ($desktop) {
@@ -139,40 +198,59 @@ article :is(h1, h2, h3, h4, h5, h6) > a[role="anchor"] {
     }
   }
 
-  // When the back button is also showing (concept pages), sit beside it.
-  :root[reader-mode="on"].bb-visible .sidebar.left {
-    left: 4.4rem;
-  }
-
   :root[reader-mode="on"] .center article,
   :root[reader-mode="on"] .center .page-header,
-  :root[reader-mode="on"] .center .page-footer {
-    max-width: 920px;
+  :root[reader-mode="on"] .center .page-footer,
+  :root[reader-mode="on"] .center > hr,
+  :root[reader-mode="on"] .page > #quartz-body > footer {
+    max-width: $noteWidth * 1.12;
   }
 }
 
-// Back button (local plugin ./plugins/back-button): a floating arrow in the top-left
-// corner of concept pages that returns to the note at its previous scroll position.
-// Same look as the pinned reader-mode button. Visibility is toggled from JS.
+// Back button (local plugin ./plugins/back-button): an arrow in front of the title of
+// concept pages that returns to the note at its previous scroll position. Concept pages are
+// a line or two long, so it sits in the header instead of floating over the site title.
+// Visibility is toggled from JS (html.bb-visible and the button's inline display).
 .concept-back {
   display: none;
-  position: fixed;
-  top: 1.2rem;
-  left: 1.5rem;
-  z-index: 50;
   cursor: pointer;
   background: none;
   border: none;
   padding: 0;
+  margin-left: -0.2rem;
   width: 32px;
-  height: 36px;
+  height: 32px;
   align-items: center;
   justify-content: center;
 }
 
+html.bb-visible .page-header > .popover-hint {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 0.4rem;
+
+  & > * {
+    flex: 0 0 100%;
+  }
+
+  & > .concept-back {
+    flex: none;
+  }
+
+  & > .article-title {
+    flex: 1 1 0;
+    margin-top: 0;
+  }
+
+  @media all and ($mobile) {
+    margin-top: 2.25rem;
+  }
+}
+
 .concept-back-icon {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   background-color: var(--darkgray);
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m12 19-7-7 7-7'/%3E%3Cpath d='M19 12H5'/%3E%3C/svg%3E")
     center / contain no-repeat;
@@ -197,18 +275,11 @@ html.bb-visible .readermode {
   display: none;
 }
 
-// The breadcrumb is a location indicator only. Its middle segments are section and
-// subsection folders, which have no page of their own, so the whole bar is inert.
-.breadcrumb-container a {
-  pointer-events: none;
-  cursor: default;
-}
-
 // Smaller, centered images so a figure never fills the whole column.
 article img {
   display: block;
   margin: 1.2rem auto;
-  max-width: min(100%, 540px);
+  max-width: min(100%, 600px);
   max-height: 70vh;
   width: auto;
   height: auto;
@@ -221,4 +292,130 @@ article table img {
   margin: 0;
   max-width: 100%;
   max-height: none;
+}
+
+// Explorer: a quiet outline in the page's own ink. Folders are ink instead of accent purple,
+// chevrons are small and muted, guide lines faint, and the open note is a soft accent pill.
+// Every row tints on hover, so it reads as something to click. The "Explorer" heading is
+// gone on wider screens: it only collapsed the whole tree, which is the sidebar's content.
+@media all and ($mobile) {
+  // The drawer is full width; keep the row tints off the screen's right edge.
+  .explorer .explorer-content {
+    padding-right: 2rem;
+  }
+}
+
+@media all and not ($mobile) {
+  .explorer {
+    // Rows carry padding for the hover tint; pull the tree out by that much so its text
+    // lines up with the site title and the search box.
+    margin: 0 -0.5rem;
+  }
+
+  .explorer button.desktop-explorer {
+    display: none;
+  }
+
+  .explorer-content {
+    margin-top: 0;
+  }
+}
+
+.explorer-content {
+  scrollbar-width: thin;
+  scrollbar-color: var(--lightgray) transparent;
+
+  & ul li > a,
+  & .folder-container {
+    border-radius: 6px;
+    padding: 0.2rem 0.5rem;
+    transition:
+      background-color 0.15s ease,
+      color 0.15s ease;
+  }
+
+  & ul li > a:hover,
+  & .folder-container:hover {
+    background-color: color-mix(in srgb, var(--lightgray) 55%, transparent);
+  }
+
+  & ul li > a {
+    display: block;
+    color: var(--darkgray);
+    opacity: 1;
+    font-size: 0.9375rem;
+    font-weight: $normalWeight;
+    line-height: 1.35;
+  }
+
+  & ul li > a:hover {
+    color: var(--dark);
+  }
+
+  & ul li > a.active {
+    color: var(--secondary);
+    background-color: var(--highlight);
+    font-weight: 500;
+  }
+
+  // The whole row toggles the folder, not just its label.
+  & .folder-container {
+    align-items: flex-start;
+    cursor: pointer;
+
+    & > div {
+      flex: 1;
+      min-width: 0;
+    }
+
+    & div > button {
+      width: 100%;
+      font-family: var(--bodyFont);
+    }
+
+    & div > button span {
+      color: var(--dark);
+      font-size: 0.9375rem;
+      font-weight: $semiBoldWeight;
+      line-height: 1.35;
+    }
+  }
+
+  // Subjects, the top level, are set like the page headings; sections and notes below them
+  // share the body font.
+  & .explorer-ul > li > .folder-container div > button {
+    font-family: var(--headerFont);
+
+    & span {
+      font-size: 0.9rem;
+      font-weight: 650;
+    }
+  }
+
+  // Centred on the first line of the label (about 20px tall).
+  & .folder-icon {
+    width: 10px;
+    height: 10px;
+    margin: 0.3rem 0.45rem 0 0;
+    color: var(--gray);
+  }
+
+  & .folder-container:hover .folder-icon {
+    color: var(--darkgray);
+  }
+
+  // Guide line straight below the chevron's centre.
+  & .folder-outer > ul {
+    margin-left: calc(0.5rem + 4.5px);
+    padding-left: 0.3rem;
+    border-left: 1px solid var(--lightgray);
+  }
+
+  & .folder-outer > ul > li:first-child {
+    margin-top: 1px;
+  }
+
+  & .explorer-ul > li + li {
+    margin-top: 0.35rem;
+  }
 }

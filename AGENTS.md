@@ -90,6 +90,22 @@ Commands: `npm run content`, `npm run site`, `npm run serve` (port 8080).
   highlights into `<span class="text-highlight">…</span>` (inline HTML, so the content is
   still parsed); plain ones are left to Quartz.
 - Heading anchor links (the chain icon on hover) are hidden in `custom.scss`.
+- **Overriding Quartz styles.** Quartz wraps `base.scss` and every component's CSS in
+  `@layer quartz-base`; `custom.scss` is unlayered, so it wins whatever the specificity. That
+  also means an override applies at every width unless it sits in a media query: scope desktop
+  tweaks with `@media all and not ($mobile)` or `($desktop)`.
+- **Page layout** (`custom.scss`, no breadcrumbs since 2026-10-28): the site title and the
+  note title both start `$topGap` (2.5rem) from the top. The note column is `$noteWidth`
+  (1000px) at 1.125rem on desktop, 1.12× both in reader mode; article headings are in em so they
+  follow. These rules target `.center > article`, so popovers keep Quartz's sizes. The
+  separator `hr` and the `footer` under the note get the same column, or they span the window.
+- **Explorer look** (`custom.scss`): no "Explorer" heading on wider screens (it only collapsed
+  the whole tree, and that state isn't saved, so nothing can get stuck collapsed). Subjects
+  use the header font; sections and notes the body font. Each row has 0.5rem padding for the
+  hover tint, and `.explorer` has -0.5rem side margins so the text lines up with the site
+  title. Folder rows toggle anywhere along their width.
+- `npx quartz build --serve` sometimes misses a `custom.scss` save. If a change doesn't show,
+  compare the time of `.preview-public/index.css` and restart the server.
 - **Plugin option overrides** (`componentRegistry.setOptionOverrides`) are keyed by the
   plugin's full source string from `quartz.config.yaml`, e.g. `"@quartz-community/explorer"`,
   not `"explorer"`.
@@ -112,13 +128,19 @@ Commands: `npm run content`, `npm run site`, `npm run serve` (port 8080).
 
 ## Local plugins (`plugins/`)
 
-Three component plugins live in the repo, registered in `quartz.config.yaml`
+Four component plugins live in the repo, registered in `quartz.config.yaml`
 (`narration-player` is described under Audio narration below):
 
-- **`back-button`**: floating arrow on concept pages (`/concepts/`) that returns to the note
-  at its previous scroll position. Renders a fixed `<button class="concept-back">` on every
-  page; the inline script shows it only on concept pages (toggling `html.bb-visible`) and
-  restores scroll. Styles in `custom.scss`.
+- **`back-button`**: arrow in front of the title of concept pages (`/concepts/`) that returns
+  to the note at its previous scroll position. Renders a `<button class="concept-back">` in
+  the page header of every page; the inline script shows it only on concept pages (toggling
+  `html.bb-visible`, which makes the header a flex row) and restores scroll. It used to float
+  in the top-left corner, where it now would cover the site title. Styles in `custom.scss`.
+- **`explorer-scroll`**: script-only, in `beforeDOMLoaded` so it runs before the Explorer
+  renders. Without a saved Explorer position (a new tab), the Explorer calls
+  `scrollIntoView()` on the open note, which also scrolled the page about 300px down, past
+  the note's title. The script wraps `Element.prototype.scrollIntoView` so that, for elements
+  inside `.explorer-ul`, only that list scrolls (centring the item if it's out of view).
 - **`focus-fullscreen`**: script-only (component returns `null`). Listens for
   `readermodechange` and toggles the browser Fullscreen API, so focus mode also hides the
   browser chrome. Syncs back: a `fullscreenchange` exit (e.g. Esc) while `reader-mode="on"`

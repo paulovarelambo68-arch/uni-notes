@@ -1,7 +1,7 @@
 ---
 note: Emotional Response Class Notes
 voice: irish-male
-source: 2755fd08b782
+source: 76caf8c5710a
 ---
 
 ## Emotional Response Class Notes
