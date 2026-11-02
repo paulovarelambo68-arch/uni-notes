@@ -233,6 +233,38 @@ steps of 1.5) evens out loudness between voices without re-encoding; changing it
 between sections (`sectionPause`), rebuilds the tracks from the local cache for free. The same
 section sets the "Voice by ElevenLabs" credit under the player, which the free plan requires.
 
+## Practice tests
+
+A note with `type: test` in its frontmatter becomes a multiple-choice test you take on the site.
+Pick an answer and it shows whether it's right, with the explanation underneath. A bar above the
+questions keeps the score, your answers are remembered in that browser, and you can retry the
+ones you got wrong or start again. Write it as an ordinary note:
+
+```markdown
+---
+type: test
+---
+
+An optional introduction.
+
+## Which antibody subtype is mainly found in saliva?
+
+- [ ] IgG
+- [ ] IgM
+- [x] IgA
+
+> Shown once the question is answered. IgA is abundant in saliva… See [[B Cells and Antibodies]].
+```
+
+- Each question is a heading followed by a checklist, and `- [x]` marks the right answer. Mark
+  two or more for a "select all that apply" question, which gets a **Check answer** button.
+- Whatever follows the checklist, up to the next heading or `---`, is the explanation. A `>`
+  quote is the usual way; it isn't turned into a Definition or tip box in a test.
+- Text or an image between the heading and the checklist is part of the question.
+- Headings without a checklist (say `## Part A`) just group the questions.
+- List the test in the subject's index like any other note, for example under
+  `## Immunology Tests`. In Obsidian it reads as a checklist with the answers ticked.
+
 ## Working on the site
 
 ```sh
@@ -252,6 +284,7 @@ npm run content   # only regenerate content/ from vault/ (prints warnings)
 | `audio/`                      | narration scripts and the generated audio tracks      |
 | `scripts/narrate.mjs`         | `npm run audio`: narration scripts → ElevenLabs audio |
 | `plugins/narration-player/`   | the audio player on narrated notes                    |
+| `plugins/practice-test/`      | practice tests: `type: test` notes become quizzes     |
 | `quartz.config.yaml`          | Quartz settings: site title, colours, fonts, plugins  |
 | `quartz.ts`                   | sidebar ordering (reads the order the build writes)   |
 | `quartz/styles/custom.scss`   | custom CSS                                            |

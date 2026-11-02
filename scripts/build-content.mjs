@@ -19,6 +19,8 @@
 //   - links to notes that aren't on the site (not written yet, or held back) become plain text,
 //     and index sections left without links are hidden; links in code are left alone
 //   - notes with an audio track in audio/ get a `narration` field for the narration player
+//   - practice tests (`type: test`, see plugins/practice-test) keep their quotes as written:
+//     they are the explanations of the questions, not callouts
 
 import fs from "node:fs"
 import path from "node:path"
@@ -33,6 +35,7 @@ import {
   stripBold,
   subjectConfig,
 } from "./index-sections.mjs"
+import { isTest } from "../plugins/practice-test/transformer.js"
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..")
 const VAULT = path.join(ROOT, "vault")
@@ -299,7 +302,7 @@ function buildSubject(subject) {
     const { frontmatter, content } = splitFrontmatter(body)
     let text = rewrite(content)
     text = normalizeHeadings(text)
-    text = addCallouts(text)
+    if (!isTest(frontmatter)) text = addCallouts(text)
     text = expandHighlights(text)
     if (!text.replace(/!\[\[[^\]]*\]\]/g, "").trim() && !/!\[\[/.test(text)) {
       text = "*This note is still empty.*\n"

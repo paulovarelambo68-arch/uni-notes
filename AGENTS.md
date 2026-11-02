@@ -118,7 +118,8 @@ Commands: `npm run content`, `npm run site`, `npm run serve` (port 8080).
   with `fetch-depth: 0` for this).
 - **Callout heuristics** in `addCallouts()`: the note's first block being a quote → Definition;
   a quote right after a heading containing "summary" → Summary; a quote starting with a bold
-  `Label:` → tip titled Label. Existing `> [!…]` callouts are left alone.
+  `Label:` → tip titled Label. Existing `> [!…]` callouts are left alone. Practice tests
+  (`type: test`) skip all of this: their quotes are the questions' explanations.
 - **Base URL.** The deploy workflow rewrites `baseUrl` and the footer "Source" link from the
   repo owner and name at build time. The values committed in `quartz.config.yaml` are
   placeholders for local builds.
@@ -128,8 +129,8 @@ Commands: `npm run content`, `npm run site`, `npm run serve` (port 8080).
 
 ## Local plugins (`plugins/`)
 
-Four component plugins live in the repo, registered in `quartz.config.yaml`
-(`narration-player` is described under Audio narration below):
+Five plugins live in the repo, registered in `quartz.config.yaml` (`narration-player` is
+described under Audio narration below, `practice-test` under Practice tests):
 
 - **`back-button`**: arrow in front of the title of concept pages (`/concepts/`) that returns
   to the note at its previous scroll position. Renders a `<button class="concept-back">` in
@@ -232,18 +233,53 @@ handler, so listeners still count as a user gesture. State persists across SPA n
 (module-level flag, re-applied on `nav`/`render`). React to focus mode by listening for
 `readermodechange`, never by re-binding the button.
 
+## Practice tests (`plugins/practice-test`)
+
+A note with frontmatter `type: test` is a multiple-choice test (format in README.md: a heading
+per question, a task list of options with `[x]` on the right ones, anything after the list is
+the explanation). The first one is `Sample MCQ – Exercise Immunology`, under the
+`## Immunology Tests` index heading of Integrated Physiological Responses to Exercise; its
+question and option wording is copied from the course's quiz, so only explanations are ours.
+
+- **One plugin, two halves.** `category: ["transformer", "component"]`: the loader instantiates
+  `index.js`'s default export (`PracticeTestTransformer`, `transformer.js`) and loads the
+  component from `./components`. The component renders nothing; it carries the CSS and the
+  inline script.
+- **Build time** (`transformer.js`, an `htmlPlugins` rehype step at order 95, so after OFM has
+  rewritten checkboxes to `input.checkbox-toggle` and after KaTeX): a top-level heading whose
+  section (up to the next heading or `hr`) contains a `.contains-task-list` becomes a
+  `section.pt-question`. The heading stays (class `pt-stem`, keeps its id), options become
+  `button.pt-option`s in a `div[role=group]`, the explanation goes in a `div.callout.pt-feedback`
+  (plain quotes unwrapped) that starts `hidden`. `data-pt-answer` holds the right indexes and
+  `data-pt-id` a hash of the question's text (`-2`, `-3` on identical questions). A `.pt-bar`
+  goes before the first heading, a `.pt-results` box after the questions, and GFM's footnotes
+  section after that (otherwise the last explanation would swallow it). Only `[x]` is right
+  (OFM marks `[-]`, `[/]` and the like as checked too; they're read as wrong, with a warning).
+  A button can only hold inline content, so in options links are unwrapped to text and blocks
+  (sub-lists, quotes, code) are left out with a warning; questions with no `[x]` stay plain
+  lists. Option parsing copies nodes, so a list that isn't a question is output untouched.
+- **Markup avoids `p` and `li`.** `custom.scss` styles `article p` (justified) and `article li`
+  (margins), and unlayered rules beat the plugin's layered CSS whatever the specificity. For the
+  same reason the question's size on the page is set in `custom.scss`, where
+  `.center > article .pt-stem` outranks `.center > article h2`; the plugin CSS sizes it
+  elsewhere (popovers).
+- **In the browser** (`practice-test.inline.js`): same lifecycle as the narration player (set up
+  on `nav`, one delegated click listener on the content with an `AbortController`, torn down in
+  `addCleanup`). Answers are stored per page in `localStorage["practice-test:<pathname>"]` as
+  `{ <data-pt-id>: [indexes] }`, so editing a question forgets only its answer, and a `storage`
+  listener keeps two tabs of the same test in step. A single-answer question locks on the first
+  click; with several `[x]` the options toggle until "Check answer". Each question has a
+  `role=status` element that announces its verdict (and, for the last one, the final score);
+  `.pt-score` is deliberately not live, since it also changes on load. Right and wrong use the
+  success and failure callout colours, with darker fills behind the white letters for contrast.
+  Popovers and search previews show the questions inert, without bar, results or Check button.
+- **Not built:** numeric questions (`answer:`/`tolerance:` lines were the original sketch).
+
 ## Checking a change
 
 1. `npm run content`: read the per-subject summary and warnings (dropped embeds, missing
    index).
 2. `npm run site`: it must finish without errors.
 3. For visual changes, `npm run serve` and look at a topic page, a Concepts page, the subject
-   index, and a phone-width viewport. Hover a link to check popovers.
-
-## Planned
-
-Practice tests the reader can take in the browser, also written as Markdown. One sketch:
-frontmatter `type: test`, one `##` heading per question, `- [x]`/`- [ ]` options,
-`answer:`/`tolerance:` lines for numeric questions, `> ` for explanations. It would be a
-custom Quartz transformer plus a client-side component, with scores kept in `localStorage`.
-Nothing is built yet.
+   index, and a phone-width viewport. Hover a link to check popovers. For the practice test,
+   answer a question, reload, and navigate away and back.

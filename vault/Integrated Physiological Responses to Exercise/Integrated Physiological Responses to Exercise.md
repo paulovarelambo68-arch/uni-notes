@@ -24,6 +24,10 @@
 
 - [[Inflammation – Acute, Chronic and CRP]] 
 - [[Exercise and Infection Risk – J-Shaped Curve and Open Window]] 
-- [[Mechanisms of Exercise Induced Immune Changes]]  
+- [[Mechanisms of Exercise-Induced Immune Changes]]  
 - [[IL-6 in Exercise]] 
 - [[Chronic Exercise and Immune Function – Moderate versus High Intensity]] 
+---
+## Immunology Tests
+
+- [[Sample MCQ – Exercise Immunology]]

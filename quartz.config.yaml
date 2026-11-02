@@ -222,6 +222,12 @@ plugins:
       position: beforeBody
       priority: 25
       condition: not-index
+  - source: "./plugins/practice-test"
+    enabled: true
+    order: 95
+    layout:
+      position: beforeBody
+      priority: 0
   - source: "@quartz-community/page-title"
     enabled: true
     layout:

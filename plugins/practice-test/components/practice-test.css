@@ -1,0 +1,304 @@
+/* Practice tests (plugins/practice-test). Colours come from the Quartz theme variables; right and
+   wrong answers use the success and failure callout colours. */
+
+.pt-question,
+.pt-bar,
+.pt-results {
+  --pt-right: #09ad7a;
+  --pt-wrong: #db4242;
+  /* Darker fills behind the white answer letters, for 5:1 contrast. */
+  --pt-right-fill: #067a56;
+  --pt-wrong-fill: #c53030;
+}
+
+/* Score bar above the questions, drawn like the narration player. */
+.pt-bar,
+.pt-results {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--lightgray);
+  border-radius: 14px;
+  font-family: var(--bodyFont);
+}
+
+.pt-bar {
+  margin: 1.4rem 0 2rem;
+}
+
+.pt-results {
+  margin: 2.5rem 0 1rem;
+}
+
+.pt-results[hidden],
+.pt-btn[hidden],
+.pt-feedback[hidden] {
+  display: none;
+}
+
+.pt-progress {
+  flex: 0 0 100%;
+  display: flex;
+  height: 6px;
+  border-radius: 3px;
+  overflow: hidden;
+  background: var(--lightgray);
+}
+
+.pt-progress > span {
+  width: 0;
+  transition: width 0.25s ease;
+}
+
+.pt-progress-right {
+  background: var(--pt-right);
+}
+
+.pt-progress-wrong {
+  background: var(--pt-wrong);
+}
+
+.pt-tally,
+.pt-score {
+  flex: 1 1 14rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--darkgray);
+}
+
+.pt-score {
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.pt-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.pt-btn {
+  appearance: none;
+  margin: 0;
+  padding: 0.3rem 0.85rem;
+  border: 1px solid var(--lightgray);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--darkgray);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.pt-btn:hover:not(:disabled),
+.pt-btn:focus-visible {
+  background: var(--highlight);
+  color: var(--dark);
+}
+
+.pt-btn:focus-visible,
+.pt-option:focus-visible {
+  outline: 2px solid var(--secondary);
+  outline-offset: 2px;
+}
+
+/* One question. */
+.pt-question {
+  margin: 1.75rem 0 2.5rem;
+}
+
+.pt-number {
+  margin-bottom: 0.15rem;
+  font-size: 0.75em;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+
+/* The question is a heading. On the page itself custom.scss sets its size, since its unlayered
+   heading sizes would beat this; this covers popovers and search previews. */
+.pt-question > .pt-stem {
+  margin: 0 0 0.9rem;
+  font-size: 1.2em;
+  line-height: 1.4;
+}
+
+.pt-hint {
+  margin: -0.4rem 0 0.6rem;
+  font-size: 0.9em;
+  font-style: italic;
+  color: var(--gray);
+}
+
+.pt-options {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0.8rem 0;
+}
+
+.pt-option {
+  appearance: none;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  width: 100%;
+  margin: 0;
+  padding: 0.6rem 0.85rem;
+  border: 1px solid var(--lightgray);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--darkgray);
+  font: inherit;
+  line-height: 1.5;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.pt-option:hover:not([aria-disabled="true"]) {
+  border-color: var(--tertiary);
+  background: var(--highlight);
+  color: var(--dark);
+}
+
+.pt-letter {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 1.7em;
+  height: 1.7em;
+  margin-top: -0.1em;
+  border: 1px solid var(--lightgray);
+  border-radius: 50%;
+  font-size: 0.85em;
+  font-weight: 600;
+  color: var(--darkgray);
+}
+
+.pt-text {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Chosen in a "select all that apply" question, before checking. */
+.pt-option.pt-picked .pt-letter {
+  border-color: var(--secondary);
+  background: var(--secondary);
+  color: var(--light);
+}
+
+/* Answered: the right options in green, a wrong pick in red, the rest faded. */
+.pt-done .pt-option {
+  cursor: default;
+}
+
+.pt-done .pt-option:not(.pt-right, .pt-wrong) {
+  opacity: 0.55;
+}
+
+.pt-option.pt-right {
+  border-color: var(--pt-right);
+  background: color-mix(in srgb, var(--pt-right) 10%, transparent);
+  color: var(--dark);
+}
+
+.pt-option.pt-wrong {
+  border-color: var(--pt-wrong);
+  background: color-mix(in srgb, var(--pt-wrong) 10%, transparent);
+  color: var(--dark);
+}
+
+.pt-option.pt-right .pt-letter {
+  border-color: var(--pt-right-fill);
+  background: var(--pt-right-fill);
+  color: #fff;
+}
+
+.pt-option.pt-wrong .pt-letter {
+  border-color: var(--pt-wrong-fill);
+  background: var(--pt-wrong-fill);
+  color: #fff;
+}
+
+/* A right option the reader didn't pick (a miss in "select all that apply", or the answer to a
+   wrong pick) gets an outline instead of a fill, so the reader's own choices stand out. */
+.pt-option.pt-right:not(.pt-picked) {
+  background: transparent;
+  border-style: dashed;
+}
+
+.pt-check {
+  margin: 0 0 0.8rem;
+  border-color: var(--secondary);
+  background: var(--secondary);
+  color: var(--light);
+}
+
+.pt-check:hover:not(:disabled),
+.pt-check:focus-visible {
+  background: var(--secondary);
+  color: var(--light);
+  filter: brightness(1.12);
+}
+
+.pt-check:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.pt-check[hidden] {
+  display: none;
+}
+
+/* Feedback and explanation, a callout once the question is answered. */
+.pt-feedback {
+  margin-top: 0.9rem;
+}
+
+.pt-feedback > .callout-content > :last-child {
+  margin-bottom: 1rem;
+}
+
+/* Announced to screen readers only. */
+.pt-status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Link popovers and search previews show the questions without the test around them. */
+.popover .pt-bar,
+.popover .pt-results,
+.popover .pt-check,
+.search-space .pt-bar,
+.search-space .pt-results,
+.search-space .pt-check {
+  display: none;
+}
+
+.popover .pt-option,
+.search-space .pt-option {
+  pointer-events: none;
+}
+
+@media print {
+  .pt-bar,
+  .pt-results,
+  .pt-check {
+    display: none;
+  }
+}

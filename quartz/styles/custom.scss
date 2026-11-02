@@ -95,6 +95,12 @@ $noteWidth: 1000px;
   & :is(h4, h5, h6) {
     font-size: 1em;
   }
+
+  // Practice-test questions (plugins/practice-test) are headings as well, but a page of them
+  // at h2 size reads like a wall of titles. Set here because unlayered rules beat the plugin's.
+  & .pt-stem {
+    font-size: 1.2em;
+  }
 }
 
 // Justified body text, as in print. Paragraphs only: justifying list items stretches

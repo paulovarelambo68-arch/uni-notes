@@ -1,0 +1,33 @@
+{
+  "name": "practice-test",
+  "version": "1.0.0",
+  "description": "Multiple-choice practice tests written in Markdown (type: test): answer in the browser, see the explanation and a running score",
+  "type": "module",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./components": "./components/index.js",
+    "./package.json": "./package.json"
+  },
+  "quartz": {
+    "name": "practice-test",
+    "displayName": "Practice Test",
+    "category": [
+      "transformer",
+      "component"
+    ],
+    "version": "1.0.0",
+    "quartzVersion": ">=5.0.0",
+    "dependencies": [],
+    "defaultOrder": 95,
+    "defaultEnabled": true,
+    "defaultOptions": {},
+    "components": {
+      "PracticeTest": {
+        "displayName": "Practice Test",
+        "defaultPosition": "beforeBody",
+        "defaultPriority": 0
+      }
+    }
+  }
+}
