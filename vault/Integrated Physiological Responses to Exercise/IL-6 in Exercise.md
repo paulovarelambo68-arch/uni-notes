@@ -25,7 +25,7 @@ In acute exercise, meaning a single bout, this muscle IL-6 has ==anti-inflammato
 
 In this figure (Petersen and Pedersen, 2005) contraction switches on IL-6 mRNA in the red muscle fibre on the left, and the blue spheres are the released IL-6. Their arrows run to adipose tissue (yellow) for ==lipolysis, the breakdown of stored fat==, to the liver for ==glycogen breakdown to glucose==, back into the muscle for fat oxidation, and into the blood vessel, where small arrows show TNF falling and IL-1ra, IL-10 and soluble TNF receptor rising. The message is that one muscle signal ==releases fuel from fat and liver== while ==tilting the blood towards an anti-inflammatory state==.
 
-Blood glucose benefits too, because acute elevations in IL-6, and training, ==stimulate secretion of GLP-1== (glucagon-like peptide-1, a gut hormone that boosts insulin release) ==from intestinal cells and pancreatic β-cells==, ==improving insulin secretion and glycaemic control== (blood glucose control). All these metabolic effects can ==indirectly support immune cell energy needs==.
+Blood glucose benefits too, because acute elevations in IL-6, and training, ==stimulate secretion of GLP-1== (glucagon-like peptide-1, a gut hormone that boosts insulin release) ==from intestinal cells and pancreatic α-cells==, ==improving insulin secretion and glycaemic control== (blood glucose control). All these metabolic effects can ==indirectly support immune cell energy needs==.
 
 ### 4. Immune effects of exercise-induced IL-6
 

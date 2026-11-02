@@ -1,7 +1,7 @@
 ---
 note: IL-6 in Exercise
 voice: irish-female
-source: b319fd1160e4
+source: c56de30f75ae
 ---
 
 ## IL-6 in Exercise
@@ -57,7 +57,7 @@ And in the blood, tumour necrosis factor falls, while the interleukin one recept
 The message is that one muscle signal releases fuel from fat and liver, while tilting the blood towards an anti-inflammatory state.
 Blood glucose benefits as well.
 Acute elevations in interleukin six, and training, stimulate secretion of glucagon-like peptide one, a gut hormone that boosts insulin release.
-It comes from intestinal cells and pancreatic beta cells, and it improves insulin secretion and glycaemic control, that is, blood glucose control.
+It comes from intestinal cells and pancreatic alpha cells, and it improves insulin secretion and glycaemic control, that is, blood glucose control.
 All these metabolic effects can indirectly support immune cell energy needs.
 
 ## 4. Immune effects of exercise-induced IL-6
