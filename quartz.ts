@@ -28,10 +28,18 @@ const sortFn = new Function(
 const filterFn = (node: { slugSegment: string }) =>
   node.slugSegment !== "tags" && node.slugSegment !== "attachments"
 
-// The sidebar shows note titles without their " – subtitle", so they're quicker to scan.
-// Pages keep the full title.
-const mapFn = (node: { isFolder: boolean; displayName: string }) => {
-  if (!node.isFolder) node.displayName = node.displayName.replace(/\s+[-–—]\s.*$/, "")
+// The sidebar shows note titles without their " – subtitle", so they're quicker to scan,
+// except in a folder where that would make two notes look the same ("MCQ 1 – Immunology I",
+// "MCQ 1 – Immunology II"): its notes all keep their full titles. Pages keep the full title.
+// The explorer calls this on a folder before its children, so the folder names its notes.
+type ExplorerNode = { isFolder: boolean; displayName: string; children: ExplorerNode[] }
+const mapFn = (node: ExplorerNode) => {
+  if (!node.isFolder) return node
+  const notes = node.children.filter((child) => !child.isFolder)
+  const short = notes.map((child) => child.displayName.replace(/\s+[-–—]\s.*$/, ""))
+  if (new Set(short).size === short.length) {
+    notes.forEach((child, i) => (child.displayName = short[i]))
+  }
   return node
 }
 

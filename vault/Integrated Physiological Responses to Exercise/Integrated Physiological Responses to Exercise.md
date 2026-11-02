@@ -31,6 +31,15 @@
 ## Immunology Tests
 
 - [[Sample MCQ – Exercise Immunology]]
+- [[MCQ 1 – Immunology I]]
+- [[MCQ 2 – Immunology I]]
+- [[MCQ 1 – Immunology II]]
+- [[MCQ 2 – Immunology II]]
+- [[MCQ 1 – Exercise Immunology]]
+- [[MCQ 2 – Exercise Immunology]]
+- [[MCQ 1 – Immunology (All Lectures)]]
+- [[MCQ 2 – Immunology (All Lectures)]]
+- [[MCQ 3 – Immunology (All Lectures)]]
 ---
 ## Cardiovascular System
 

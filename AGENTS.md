@@ -82,9 +82,12 @@ Commands: `npm run content`, `npm run site`, `npm run serve` (port 8080).
   and inlines the ranks from `.generated/explorer-order.json`. Ranks are keyed by display
   name (page title or folder name).
 - **Explorer titles are shortened.** `mapFn` in `quartz.ts` drops a " – subtitle" (spaced
-  hyphen, en or em dash) from note names in the sidebar only. The plugin ignores its `order`
-  option and always runs filter, map, sort, so `sortFn` looks ranks up by `node.data.title`
-  (the full title), falling back to `displayName` for folders.
+  hyphen, en or em dash) from note names in the sidebar only, unless that would give two notes
+  in one folder the same name: then all that folder's notes keep their full titles (only
+  Immunology Tests, where the names are "MCQ 1 – Immunology I", "MCQ 1 – Immunology II", …).
+  The trie calls `mapFn` on a folder before its children, so the folder sets its notes' names.
+  The plugin ignores its `order` option and always runs filter, map, sort, so `sortFn` looks
+  ranks up by `node.data.title` (the full title), falling back to `displayName` for folders.
 - **Highlights with markup inside.** The OFM plugin keeps `==…==` content as raw text, so
   `==**bold**==`, links or math inside showed their syntax. `expandHighlights()` turns such
   highlights into `<span class="text-highlight">…</span>` (inline HTML, so the content is
@@ -237,9 +240,12 @@ handler, so listeners still count as a user gesture. State persists across SPA n
 
 A note with frontmatter `type: test` is a multiple-choice test (format in README.md: a heading
 per question, a task list of options with `[x]` on the right ones, anything after the list is
-the explanation). The first one is `Sample MCQ – Exercise Immunology`, under the
-`## Immunology Tests` index heading of Integrated Physiological Responses to Exercise; its
-question and option wording is copied from the course's quiz, so only explanations are ours.
+the explanation). The tests sit under the `## Immunology Tests` index heading of Integrated
+Physiological Responses to Exercise: `Sample MCQ – Exercise Immunology` (wording copied from
+the course's quiz, explanations ours) and nine sets from the author, `MCQ 1`/`MCQ 2 – Immunology
+I`, `– Immunology II`, `– Exercise Immunology` and `MCQ 1`–`3 – Immunology (All Lectures)`,
+whose explanations link to the section that covers each point (`[[Note#Heading]]`, which
+the site shows as "Note > Heading").
 
 - **One plugin, two halves.** `category: ["transformer", "component"]`: the loader instantiates
   `index.js`'s default export (`PracticeTestTransformer`, `transformer.js`) and loads the
