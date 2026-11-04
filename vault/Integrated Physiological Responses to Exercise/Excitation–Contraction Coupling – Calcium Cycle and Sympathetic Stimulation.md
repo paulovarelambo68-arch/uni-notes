@@ -59,7 +59,7 @@ The graph shows the force of one contraction of a strip of heart muscle (in gram
 
 Because the starting stretch was the same, the stronger beat is not Starling's law at work but a true rise in contractility.
 
-The next figure, which the professor would asks medical students to memorise, shows how adrenaline does this, and one rule explains it: ==protein kinase means phosphorylation==. A protein kinase is an enzyme that sticks a phosphate tag, taken from ATP, onto other proteins, and the tag switches those proteins on or off. Every effect in the cascade is one of these tags.
+The next figure, which the professor would ask medical students to memorise, shows how adrenaline does this, and one rule explains it: ==protein kinase means phosphorylation==. A protein kinase is an enzyme that sticks a phosphate tag, taken from ATP, onto other proteins, and the tag switches those proteins on or off. Every effect in the cascade is one of these tags.
 
 ![[Screenshot 2026-11-03 at 20.21.48.png]]
 

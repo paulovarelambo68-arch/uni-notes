@@ -1,7 +1,7 @@
 ---
 note: Excitation–Contraction Coupling – Calcium Cycle and Sympathetic Stimulation
 voice: irish-male
-source: 6a5a8f553e9d
+source: 274ef0243fb1
 ---
 
 ## Excitation–Contraction Coupling – Calcium Cycle and Sympathetic Stimulation

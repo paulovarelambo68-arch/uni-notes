@@ -9,7 +9,7 @@ Between each atrium and its ventricle lies an ==atrioventricular (AV) valve==, t
 
 ### 2. What a cardiac cycle is
 
-Each of these cycle lengths is simply 60 seconds divided by the heart rate, ==cycle length (s) = 60 / heart rate (beats per minute)==, so 60/60 = 1.0 s and 60/180 = 0.33 s. A rate of 120 per minute therefore gives 60/120 = ==0.5 s==, and a cycle of only 0.25 s would need 240 beats per minute.
+The length of a cycle is simply 60 seconds divided by the heart rate, ==cycle length (s) = 60 / heart rate (beats per minute)==, so 60/60 = 1.0 s and 60/180 = 0.33 s. A rate of 120 per minute therefore gives 60/120 = ==0.5 s==, and a cycle of only 0.25 s would need 240 beats per minute.
 
 Between rest and maximum rate, ==diastole loses 0.53 s but systole only 0.14 s==, because the two phases are timed differently. Systole lasts roughly as long as the ventricular action potential and the contraction it triggers ([[Cardiac Action Potential – Resting Potential, Phases and Refractory Period]]), and these shorten only modestly as the rate rises. Diastole, by contrast, is simply the time left before the next beat begins, so ==most of the time saved by beating faster comes out of diastole==. Because diastole is when the ventricles fill, this costs filling time. Little is lost at first, because most filling happens quickly in early diastole, but at the highest rates ==the ventricle fills less and so ejects less== with each beat.
 

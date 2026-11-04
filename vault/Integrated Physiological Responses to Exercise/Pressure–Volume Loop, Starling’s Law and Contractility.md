@@ -52,16 +52,11 @@ The curve rises, then flattens as the fibres near their optimum length. Its two 
 
 ### 4. Contractility: what it actually means
 
-The two boxes on that curve define contractility, and the idea behind them is simple. There are two ways to make the heart eject more blood per beat. The first is to fill it more, which stretches the muscle and moves the heart ==along the same Starling curve==. The second is to make it contract more strongly with the same filling, which lifts the heart ==onto a higher curve==, and only this second way is a rise in contractility. That is what the boxes mean: the SV for a given EDV measures how strongly the muscle contracts, while moving along one curve changes only the filling. Contractility is therefore a property of the muscle itself, separate from how much the heart is filled (preload) and the pressure it pumps against (afterload). For the same reason, more venous return is not an inotropic (contractility-changing) effect: it only fills the heart more. On the pressure–volume loop, a stronger contraction empties the ventricle further, to a ==smaller end-systolic volume==, so the loop gets wider to the left.
+The two boxes on that curve define contractility, and the idea behind them is simple. There are two ways to make the heart eject more blood per beat. The first is to fill it more, which stretches the muscle and moves the heart ==along the same Starling curve==. The second is to make it contract more strongly with the same filling, which lifts the heart ==onto a higher curve==, and only this second way is a rise in contractility. That is what the boxes mean: the SV for a given EDV measures how strongly the muscle contracts, while moving along one curve changes only the filling, ==whereas a change in contractility moves the heart to a different curve==. Put precisely, ==contractility is the force the muscle develops at a given length, that is, at a given preload==, so it is a property of the muscle itself, independent of how much the heart is filled (preload) and the pressure it pumps against (afterload). For the same reason, more venous return is not an inotropic (contractility-changing) effect: it only fills the heart more, raising SV by stretch along the same curve. On the pressure–volume loop, a stronger contraction empties the ventricle further, to a ==smaller end-systolic volume from the same EDV==, so the loop gets wider to the left.
 
 ![[Screenshot 2026-11-03 at 18.38.02.png|421]]
 
 Each curve is one level of sympathetic activity. At the same EDV of 130 mL, the dots show the SV rising from about 50 mL to about 110 mL as sympathetic activity increases. So ==sympathetic activity increases contractility: a higher curve gives a higher SV for the same EDV==.
-### 4. Contractility: what it actually means
-
-Those two boxes are the key to what contractility actually means. ==Contractility is the force the muscle develops at a given length, that is, at a given preload, independent of preload and afterload==. Stretching the muscle ==moves the heart along one Starling curve, whereas a change in contractility moves it to a different curve==. This is why increased venous return is not an inotropic (contractility-changing) effect: it raises SV by stretch, along the same curve. On the pressure–volume loop, a more contractile ventricle empties further, to a ==smaller end-systolic volume from the same EDV==, so the loop widens to the left.
-
-![[Screenshot 2026-11-03 at 18.38.02.png|443]]
 
 ### 5. Measuring contractility
 
