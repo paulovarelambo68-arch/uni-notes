@@ -33,8 +33,12 @@
     s = Math.max(0, Math.floor(s || 0))
     return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0")
   }
+  // Section titles are copied from the Markdown, where quotes are straight, while the page shows
+  // headings with Quartz's curly ones ("Starling's" becomes "Starling’s"), so quotes count as equal.
   const norm = (text) =>
     (text || "")
+      .replace(/[‘’]/g, "'")
+      .replace(/[“”]/g, '"')
       .replace(/\s+/g, " ")
       .replace(/[:.]\s*$/, "")
       .trim()

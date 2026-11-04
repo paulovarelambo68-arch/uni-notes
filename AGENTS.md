@@ -56,10 +56,45 @@ Commands: `npm run content`, `npm run site`, `npm run serve` (port 8080).
   without bold, ignoring case; `sync-vault.mjs` and `build-content.mjs` both use it.
   The index is read without its frontmatter. An empty `publish:` (key present, no entries) is an
   empty list, not "everything".
-  - **Sync:** follows links from the published lines only (a subject folder is then followed
-    link by link too, not copied whole). A note file listed only under unpublished headings, in
-    any subject's index, is held back site-wide (by path) and never followed; subject indexes
-    and attachments never are. An empty `publish`, one naming no heading, or a site.yaml subject
+  - **Single notes of a heading.** An entry `- Heading:` followed by `- Note` lines (a YAML
+    mapping inside the list; `publishList()` returns `{ heading, notes }`, notes null for a whole
+    heading) publishes only those notes of it, and what they link to. Write the names one per
+    line: most contain commas, which a `[a, b]` flow list splits. A name YAML reads as a mapping
+    (a line ending in `:`) is taken back as text. The heading's other notes are held back like
+    those of an unpublished heading, also when a published note links to them. A `#` heading's
+    list applies to its subsections too, an entry for the whole heading wins over a list, and a
+    heading may be named as written and as fixed in two entries.
+    - Because one index line can link to several notes, `indexLines()` decides per link:
+      consumers ask `publishes(i, target)`. `published[i]` (which lines the subject page shows)
+      is decided per list item (`listedLines()`): an item, with the lines nested in it or lazily
+      continuing it, shows when it links to a listed note and hides when it links only to others,
+      and one with no note links follows its parent. An unlisted item that holds a listed one
+      stays as plain text, or the listed one would become an indented code block.
+    - Attachments (images, PDFs) in the index follow their line. Each consumer passes an `isNote`
+      classifier that knows its files (sync: the Obsidian vault, build: all of `vault/`), with
+      `ATTACHMENT` (media extensions only, as note names can contain dots) as the fallback. A
+      link to another subject's note counts like any note of the heading: list it to show its
+      line.
+    - Limits: the per-item rule is built for bullet lists of links, which is how every index is
+      written. Hiding lines inside a callout, a multi-line paragraph that mixes listed and
+      unlisted links, a numbered list whose first item is hidden right after text, or an item
+      that embeds an unlisted note (`- ![[Note]]`) can break the subject page's Markdown (a
+      leftover fragment, a code block, items run into a paragraph). Two reviews found these with
+      made-up indexes. If an index ever uses such shapes, have `listedLines()` keep those lines
+      (their unlisted links then show as plain text) rather than add more Markdown heuristics.
+    - A note matches by its link's name or its `rename` title. `matchKey()` compares headings and
+      notes ignoring case and extra whitespace, with hyphens equal to dashes and straight quotes
+      to curly ones (note names here use en dashes and `’`), but spaces around a dash count.
+      `publishProblems()` gives the shared error text: an empty list, an unknown heading, a
+      heading with no notes, or a listed note that nothing under its heading links to (also when
+      it sits under another heading, or has no file yet) all stop the sync and the build.
+  - **Sync:** follows only the index's published links (a subject folder is then followed
+    link by link too, not copied whole). A note file listed only under unpublished headings (or
+    left off its heading's list), in any subject's index, is held back site-wide (by path) and
+    never followed; subject indexes and attachments never are. A note one subject's index hides
+    but another's shows is held back from the first only (`ownHeld`), as the build does, so the
+    first can't take it into its folder and lose it for the second. An empty `publish`, one naming no
+    heading or note, or a site.yaml subject
     with `publish` that Subjects.md doesn't link makes the sync fail before copying, so
     `sync-notes.sh` commits nothing. `sync-notes.sh` commits `site.yaml` with `vault/`, since CI
     builds with the committed `publish` lists. A subject left with no notes besides its index
@@ -67,7 +102,7 @@ Commands: `npm run content`, `npm run site`, `npm run serve` (port 8080).
   - **Build:** applies the same rule to `vault/` (for notes written straight into it; held back
     by name, per subject), places and shows only published index lines, gives a subject with no
     notes no page (links to it become text), and exits non-zero on an empty or unmatched
-    `publish` before writing anything, so CI keeps the last deployed site.
+    `publish` (heading or note) before writing anything, so CI keeps the last deployed site.
   - Links to notes that aren't on the site become plain text: wikilinks and markdown links to
     `.md` files (`[t](Note.md)`, `[t](<Note.md>)`, `[t](Note.md "title")`), but not inside code
     (inline, fenced, indented or quoted fences). Links to notes and attachments of other
@@ -176,7 +211,9 @@ content/<Subject>/audio/<Note>.mp3 + a `narration` frontmatter field → narrati
   British/Irish spelling, varied connectors (no connector more than twice), sentences under 35
   words. Section titles must equal the note's heading text, callout title or list-item bold
   label (without the colon) so the player can highlight and offer "listen from here"; the
-  first section is the opening and is never matched. `source` is the first 12 hex characters
+  first section is the opening and is never matched. The player compares them ignoring case,
+  spacing and straight versus curly quotes (Quartz renders `Starling's` as `Starling’s`). A
+  heading the note repeats gets one section, which the player attaches to the first. `source` is the first 12 hex characters
   of the SHA-1 of the vault note (`shasum -a 1`), which lets the build flag stale scripts.
   Alternate `voice` between notes. The first two scripts were written by one agent and then
   checked by separate fidelity and listenability reviewers; do the same for new ones.

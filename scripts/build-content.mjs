@@ -14,8 +14,9 @@
 //     blockquotes starting with a bold label ("**Memory hook:**") -> tip callout
 //   - ==highlights== containing **bold**, links or math render that markup instead of showing it
 //   - image-placeholder embeds that point nowhere are dropped
-//   - with `publish` in site.yaml, only the listed index sections and the notes they reach go
-//     on the site (sync-vault.mjs applies the same rule when it copies the vault)
+//   - with `publish` in site.yaml, only the listed index sections (or the listed notes of a
+//     section) and the notes they reach go on the site (sync-vault.mjs applies the same rule
+//     when it copies the vault)
 //   - links to notes that aren't on the site (not written yet, or held back) become plain text,
 //     and index sections left without links are hidden; links in code are left alone
 //   - notes with an audio track in audio/ get a `narration` field for the narration player
@@ -28,10 +29,13 @@ import crypto from "node:crypto"
 import { execFileSync } from "node:child_process"
 import YAML from "yaml"
 import {
+  ATTACHMENT,
   MARKDOWN_LINK,
   headingText,
   indexLines,
+  linksInText,
   publishList,
+  publishProblems,
   stripBold,
   subjectConfig,
 } from "./index-sections.mjs"
@@ -61,16 +65,21 @@ const subjects = fs
   .map((d) => d.name)
   .sort((a, b) => subjectOrder(a) - subjectOrder(b) || a.localeCompare(b))
 
-// Each subject's index and `publish` list. A list that is empty or names no heading stops the
-// build before anything is written, so a typo can't take a subject off the live site.
+// Each subject's index and `publish` list. A list that is empty, or names a heading or note
+// the index doesn't have, stops the build before anything is written, so a typo can't take a
+// subject off the live site.
+// Every file in vault/ by nameOf(), so an index link to an attachment that another subject's
+// folder holds still counts as an attachment.
+const vaultFiles = new Map()
+for (const s of subjects) {
+  for (const file of walk(path.join(VAULT, s))) {
+    if (!vaultFiles.has(nameOf(file))) vaultFiles.set(nameOf(file), file)
+  }
+}
 const indexes = new Map(subjects.map((s) => [s, readIndex(s)]))
 const problems = []
 for (const [s, { publish, sections }] of indexes) {
-  if (publish?.length === 0) problems.push(`${s} has an empty publish list`)
-  else if (sections.unmatched.length) {
-    const names = sections.unmatched.map((p) => `"${p}"`).join(", ")
-    problems.push(`${s} publishes ${names}, but its index has no such heading`)
-  }
+  for (const problem of publishProblems(publish, sections)) problems.push(`${s} ${problem}`)
 }
 if (problems.length) {
   console.error(
@@ -148,8 +157,9 @@ function excludeGeneratedFromGit() {
 }
 
 // A subject's files by lowercased note name (no .md) or attachment file name, its index note,
-// which lines of the index its `publish` list covers, and the notes held back: listed only
-// under unpublished headings (the same notes sync-vault.mjs leaves out of this subject).
+// which lines (and links) of the index its `publish` list covers, and the notes held back:
+// listed only under unpublished headings or left out of a heading's list of notes (the same
+// notes sync-vault.mjs leaves out of this subject).
 function readIndex(subject) {
   const config = subjectConfig(siteConfig, subject)
   const publish = publishList(config)
@@ -157,11 +167,17 @@ function readIndex(subject) {
   const byName = new Map()
   for (const file of files) byName.set(nameOf(file), file)
   const index = byName.get(subject.toLowerCase()) ?? byName.get("index")
-  const sections = indexLines(index ? readText(index) : "", publish, config.headings)
+  // Whether an index link names a note: a file in vault/ decides (the subject's own first),
+  // otherwise its extension.
+  const isNote = (target) => {
+    const file = byName.get(nameOf(target)) ?? vaultFiles.get(nameOf(target))
+    return file ? file.toLowerCase().endsWith(".md") : !ATTACHMENT.test(target)
+  }
+  const sections = indexLines(index ? readText(index) : "", publish, { ...config, isNote })
   const shown = new Set()
   const hidden = new Set()
   sections.lines.forEach((line, i) => {
-    for (const t of linkTargets(line)) (sections.published[i] ? shown : hidden).add(t)
+    for (const t of linkTargets(line)) (sections.publishes(i, t) ? shown : hidden).add(t)
   })
   const subjectNames = new Set(subjects.map((s) => s.toLowerCase()))
   const held = new Set([...hidden].filter((t) => !shown.has(t) && !subjectNames.has(t)))
@@ -180,7 +196,7 @@ function subjectFiles(subject) {
 
   const keep = new Set([index])
   const queue = sections.lines.flatMap((line, i) =>
-    sections.published[i] ? linkTargets(line) : [],
+    linkTargets(line).filter((t) => sections.publishes(i, t)),
   )
   while (queue.length) {
     const file = byName.get(queue.shift())
@@ -241,7 +257,7 @@ function buildSubject(subject) {
   if (indexNote) {
     let section = null
     let subsection = null
-    const index = indexLines(fs.readFileSync(indexNote.file, "utf8"), publish, headingFixes)
+    const index = indexes.get(subject).sections
     for (const [i, line] of index.lines.entries()) {
       const h = line.match(/^(#{1,6})\s+(.*?)\s*$/)
       if (h) {
@@ -257,6 +273,7 @@ function buildSubject(subject) {
       if (!index.published[i]) continue
       for (const link of line.matchAll(/(?<!!)\[\[([^\]|#\\]+)/g)) {
         const key = link[1].trim().toLowerCase()
+        if (!index.publishes(i, link[1])) continue // left out of the heading's list of notes
         if (!notes.has(key) || placement.has(key) || notes.get(key) === indexNote) continue
         const parts = [section, subsection].filter(Boolean).map(sanitize)
         parts.forEach(setRank)
@@ -327,8 +344,7 @@ function buildSubject(subject) {
 
   // Subject home page = the index note's published sections, with empty sections removed.
   if (indexNote) {
-    let text = fs.readFileSync(indexNote.file, "utf8").replace(/\r\n/g, "\n")
-    const index = indexLines(text, publish, headingFixes)
+    const index = indexes.get(subject).sections
     // A published subsection keeps its "# Section" heading above it, as in the sidebar.
     const section = (i) => /^#\s/.test(index.lines[i])
     const keep = index.lines.map((line, i) => {
@@ -338,7 +354,7 @@ function buildSubject(subject) {
       }
       return false
     })
-    text = index.lines.filter((_, i) => keep[i]).join("\n")
+    let text = index.lines.filter((_, i) => keep[i]).join("\n")
     text = text.replace(/^(#{1,6})[ \t]+(.*?)[ \t]*$/gm, (_, hashes, t) => {
       return `${hashes.length === 1 ? "##" : "###"} ${headingText(t, headingFixes)}`
     })
@@ -685,18 +701,7 @@ function* walk(dir) {
 
 // Lowercased names a note links to or embeds, like nameOf(): "Note.md" -> "note".
 function linkTargets(text) {
-  const targets = []
-  for (const m of text.matchAll(/\[\[([^\]|#\\]+)/g)) targets.push(m[1].trim())
-  for (const m of text.matchAll(MARKDOWN_LINK)) {
-    const dest = (m[2] ?? m[3]).replace(/#.*$/, "")
-    if (!dest || /^[a-z][a-z0-9+.-]*:/i.test(dest)) continue // #heading, http:, mailto:, …
-    try {
-      targets.push(decodeURIComponent(dest))
-    } catch {
-      targets.push(dest)
-    }
-  }
-  return targets.map((t) => path.basename(t).toLowerCase().replace(/\.md$/, ""))
+  return linksInText(text).map((t) => path.basename(t).toLowerCase().replace(/\.md$/, ""))
 }
 
 // Aliases the way Quartz reads them: `aliases` or `alias`, a list or comma-separated text.

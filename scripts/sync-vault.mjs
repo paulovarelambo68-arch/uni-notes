@@ -10,8 +10,10 @@
 // A subject whose index links to nothing yet is skipped until it has notes.
 // With `publish: [Section, …]` for a subject in site.yaml, only the notes listed under those
 // index headings, and what they link to, are copied (a subject folder is then followed link by
-// link too). Notes listed only under other headings stay out, whoever links to them. A
-// `publish` list naming a subject or heading that doesn't exist stops the sync.
+// link too). A section can also list the only notes of it to publish (`- Section:` followed by
+// `- Note` lines). Notes listed only under other headings, or left off such a list, stay out,
+// whoever links to them. A `publish` list naming a subject Subjects.md doesn't link, a heading
+// the index doesn't have, or a note its heading doesn't list, stops the sync.
 //
 // vault/<Subject>/ is made to match exactly (files gone from Obsidian are deleted here), and
 // subjects no longer listed in Subjects.md are removed. Nothing in the Obsidian vault is changed.
@@ -20,7 +22,14 @@ import fs from "node:fs"
 import os from "node:os"
 import path from "node:path"
 import YAML from "yaml"
-import { MARKDOWN_LINK, indexLines, publishList, subjectConfig } from "./index-sections.mjs"
+import {
+  ATTACHMENT,
+  indexLines,
+  linksInText,
+  publishList,
+  publishProblems,
+  subjectConfig,
+} from "./index-sections.mjs"
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..")
 const DEST = path.join(ROOT, "vault")
@@ -65,8 +74,9 @@ const indexOf = (s, dir) => {
   return own && fs.existsSync(own) ? own : resolve(`${s}.md`, dir, `${s} (index)`)
 }
 
-// site.yaml `publish` lists. One naming a subject or heading that doesn't exist would publish
-// too much or nothing, so stop before anything is copied (sync-notes.sh then commits nothing).
+// site.yaml `publish` lists. One naming a subject, heading or note the vault doesn't have would
+// publish too much or nothing, so stop before anything is copied (sync-notes.sh then commits
+// nothing).
 for (const [name, config] of Object.entries(siteConfig.subjects ?? {})) {
   if (publishList(config) && !subjects.some((s) => s.toLowerCase() === name.toLowerCase())) {
     fail(
@@ -75,41 +85,56 @@ for (const [name, config] of Object.entries(siteConfig.subjects ?? {})) {
   }
 }
 const indexLinks = new Map() // subject -> links in the published parts of its index
-const shown = new Set() // files listed in a published index section, any subject
-const hidden = new Set() // files listed in an unpublished one
+const shown = new Set() // files a published index link points to, any subject
+const hidden = new Set() // files an unpublished index link points to
+const ownLinks = new Map() // subject -> { shown, hidden }, the same for its own index only
 const indexes = new Set([homeFile])
+// Whether an index link names a note: an existing file decides, otherwise its extension.
+const isNoteLink = (link) => {
+  const base = path.basename(link).toLowerCase()
+  return byName.has(base) ? base.endsWith(".md") : !ATTACHMENT.test(base)
+}
 for (const s of subjects) {
   const dir = folderOf(s)
   const index = indexOf(s, dir)
   if (!index) continue
   const config = subjectConfig(siteConfig, s)
   const publish = publishList(config)
-  if (publish?.length === 0) {
+  const sections = indexLines(fs.readFileSync(index, "utf8"), publish, {
+    ...config,
+    isNote: isNoteLink,
+  })
+  const problems = publishProblems(publish, sections)
+  if (problems.length) {
     fail(
-      `site.yaml: ${s} has an empty publish list. List the headings to publish, or delete the ` +
-        "line to publish the whole subject. Nothing synced.",
+      `site.yaml: ${s} ${problems.join("; ")}. Fix the publish list, or delete it to publish ` +
+        "the whole subject. Nothing synced.",
     )
-  }
-  const sections = indexLines(fs.readFileSync(index, "utf8"), publish, config.headings)
-  if (sections.unmatched.length) {
-    const names = sections.unmatched.map((p) => `"${p}"`).join(", ")
-    fail(`site.yaml: ${s} publishes ${names}, but its index has no such heading. Nothing synced.`)
   }
   indexes.add(index)
   const links = []
+  const own = { shown: new Set(), hidden: new Set() }
   sections.lines.forEach((line, i) => {
     for (const link of linksInText(line)) {
+      const on = sections.publishes(i, link)
       const file = resolve(linkKey(link), dir, `[[${link}]] in ${path.basename(index)}`)
-      if (file) (sections.published[i] ? shown : hidden).add(file)
-      if (sections.published[i]) links.push(link)
+      if (file) (on ? shown : hidden).add(file)
+      if (file) (on ? own.shown : own.hidden).add(file)
+      if (on) links.push(link)
     }
   })
+  ownLinks.set(s, own)
   // Without a publish list the whole index is followed, frontmatter links included, as always.
   indexLinks.set(s, publish ? links : linksIn(index))
 }
-// Notes listed only in unpublished sections: held back site-wide. Subject indexes never are;
-// attachments aren't either (a published note may embed the same image).
-const held = new Set([...hidden].filter((f) => isNote(f) && !shown.has(f) && !indexes.has(f)))
+// Notes listed only under unpublished headings, or left off a heading's list of notes: held back
+// site-wide. Subject indexes never are; attachments aren't either (a published note may embed
+// the same image). A note another subject's index shows is held back only from the subjects
+// whose own index hides it, as the build does, so it can still go to the subject that shows it.
+const heldBy = (links) =>
+  new Set([...links.hidden].filter((f) => isNote(f) && !links.shown.has(f) && !indexes.has(f)))
+const held = heldBy({ shown, hidden })
+const ownHeld = new Map([...ownLinks].map(([s, links]) => [s, heldBy(links)]))
 
 const synced = []
 for (const subject of subjects) {
@@ -141,7 +166,7 @@ for (const subject of subjects) {
       if (key === HOME.toLowerCase()) continue
       if (subjectKeys.has(key) && key !== `${subject.toLowerCase()}.md`) continue // other index
       const file = resolve(key, dir, `[[${link}]] in ${path.basename(note)}`)
-      if (!file || seen.has(file) || held.has(file)) continue
+      if (!file || seen.has(file) || held.has(file) || ownHeld.get(subject)?.has(file)) continue
       seen.add(file)
       const taken = owner.get(file)
       if (taken && taken !== subject) continue // lives in another subject; the link still works
@@ -167,7 +192,7 @@ for (const subject of subjects) {
   console.log(
     `${subject}: ${notes} notes, ${files.size - notes} attachments` +
       (changes ? `, ${changes} files changed` : ", up to date") +
-      (publish ? ` (only ${publish.join(", ")})` : ""),
+      (publish ? ` (only ${publish.map(describe).join(", ")})` : ""),
   )
 }
 
@@ -184,6 +209,11 @@ if (fs.existsSync(homeFile)) fs.copyFileSync(homeFile, path.join(DEST, HOME))
 else fs.rmSync(path.join(DEST, HOME), { force: true })
 
 for (const w of new Set(warnings)) console.log(`  warning: ${w}`)
+
+// A `publish` entry for the log: "Immunology I", or "Cardiovascular System (4 notes)".
+function describe({ heading, notes }) {
+  return notes ? `${heading} (${notes.length} note${notes.length === 1 ? "" : "s"})` : heading
+}
 
 // Make dest match files exactly. Returns how many files were added, changed or removed.
 function mirror(files, dest) {
@@ -219,21 +249,6 @@ function linkKey(link) {
 // Wikilink, embed and markdown-link targets in a note, without aliases or #headings.
 function linksIn(file) {
   return linksInText(fs.readFileSync(file, "utf8"))
-}
-
-function linksInText(text) {
-  const targets = []
-  for (const m of text.matchAll(/\[\[([^\]|#\\]+)/g)) targets.push(m[1].trim())
-  for (const m of text.matchAll(MARKDOWN_LINK)) {
-    const dest = (m[2] ?? m[3]).replace(/#.*$/, "")
-    if (!dest || /^[a-z][a-z0-9+.-]*:/i.test(dest)) continue // #heading, http:, mailto:, …
-    try {
-      targets.push(decodeURIComponent(dest))
-    } catch {
-      targets.push(dest)
-    }
-  }
-  return targets.filter(Boolean)
 }
 
 // The vault file a link points to. With duplicates, prefer the subject's folder, then the root.

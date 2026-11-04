@@ -26,8 +26,20 @@ subjects:
       "Neurotransmiters": "Neurotransmitters"
   Integrated Physiological Responses to Exercise:
     # Only these index sections go on the site for now (sync-notes.sh copies only their notes).
-    # Add a section when it's ready, or delete the line to publish the whole subject.
-    publish: [Immunology I, Immunology II, Exercise Immunology, Immunology Tests]
+    # Add a section when it's ready, or delete `publish:` and its entries to publish the whole
+    # subject. A section followed by note names (one per line) publishes only those notes of it:
+    # add the next ones as they're ready, or make the entry just "- Cardiovascular System" (no
+    # colon, no names) to publish all of it.
+    publish:
+      - Immunology I
+      - Immunology II
+      - Exercise Immunology
+      - Immunology Tests
+      - Cardiovascular System:
+          - Circulation Overview – Circuits, Vessels and the MAP Equation
+          - The Cardiac Cycle – Phases, Pressures, Volumes and Heart Sounds
+          - Pressure–Volume Loop, Starling’s Law and Contractility
+          - Excitation–Contraction Coupling – Calcium Cycle and Sympathetic Stimulation
 
 # Audio tracks (scripts/narrate.mjs, npm run audio). Narration scripts live in
 # audio/<Subject>/<Note>.md and pick a voice by the names below. Voices alternate between

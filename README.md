@@ -77,21 +77,32 @@ note. Then it commits `vault/` (and `site.yaml`) and pushes. Notes you delete or
 a subject whose index doesn't link to any note yet is left off until it does. The copy step on
 its own is `node scripts/sync-vault.mjs` (nothing is committed).
 
-To publish only part of a subject, list the index headings that are ready in `site.yaml`:
+To publish only part of a subject, list the index headings that are ready in `site.yaml`. To
+publish only some of a heading's notes, list them under it:
 
 ```yaml
 subjects:
   Integrated Physiological Responses to Exercise:
-    publish: [Immunology I, Immunology II] # add "Exercise Immunology" when it's ready
+    publish:
+      - Immunology I
+      - Immunology II # add "Exercise Immunology" when it's ready
+      - Cardiovascular System: # only these notes of it for now; add the next ones when ready
+          - Circulation Overview – Circuits, Vessels and the MAP Equation
+          - The Cardiac Cycle – Phases, Pressures, Volumes and Heart Sounds
 ```
 
-The other sections' notes stay out of the repo and off the site, and links to them from
-published notes show as plain text until they're published. Sections are the folders the site
-shows: a `# Section` includes its subsections, while `##` and deeper headings are each their own
-(so `## Immunology II` doesn't include a `### Exercise Immunology` below it). Headings are matched
-as the site shows them, ignoring case. If a name matches no heading, or the list is
-empty, the sync and the build stop without changing anything, so a typo can't publish or delete
-a whole subject. `sync-notes.sh` commits `site.yaml` along with the notes.
+Write the note names one per line, as above: most contain commas, which a `[a, b]` list would
+split. The other sections' notes, and the notes left off a heading's list, stay out of the repo
+and off the site, and links to them from published notes show as plain text until they're
+published.
+Sections are the folders the site shows: a `# Section` includes its subsections, while `##` and
+deeper headings are each their own (so `## Immunology II` doesn't include a
+`### Exercise Immunology` below it). Headings are matched as the site shows them, notes by their
+name (or their `rename` title below), ignoring case, and a hyphen or straight apostrophe matches
+a dash or curly one, so `Pressure-Volume Loop, Starling's Law…` finds
+`Pressure–Volume Loop, Starling’s Law…`. If a heading isn't in the index, a note isn't listed
+under its heading there, or the list is empty, the sync and the build stop without changing
+anything, so a typo can't publish or delete a whole subject. `sync-notes.sh` commits `site.yaml` along with the notes.
 
 **A. Write straight into the repo.** In Obsidian, _Open folder as vault_ → pick
 the repo's `vault/` folder. Your notes are `vault/Neurophysiology/`. Install the community
