@@ -40,6 +40,10 @@ subjects:
           - The Cardiac Cycle – Phases, Pressures, Volumes and Heart Sounds
           - Pressure–Volume Loop, Starling’s Law and Contractility
           - Excitation–Contraction Coupling – Calcium Cycle and Sympathetic Stimulation
+          - Cardiac Action Potential – Resting Potential, Phases and Refractory Period
+          - Pacemaker Cells and Autonomic Control of Heart Rate
+          - The ECG – Conduction, Leads and the Hexaxial System
+          - Arrhythmias – Sinus Arrhythmia, AV Block, Ectopic Beats and Fibrillation
 
 # Audio tracks (scripts/narrate.mjs, npm run audio). Narration scripts live in
 # audio/<Subject>/<Note>.md and pick a voice by the names below. Voices alternate between
