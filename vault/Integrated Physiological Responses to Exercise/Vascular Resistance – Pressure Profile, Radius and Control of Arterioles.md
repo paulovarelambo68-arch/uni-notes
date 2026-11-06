@@ -1,0 +1,76 @@
+
+>  Blood moves only when a pressure difference pushes it, and that pressure is spent overcoming the friction, or ==resistance==, of the vessels it flows through. This note first locates that resistance, which turns out to sit mainly in the ==arterioles==, and explains why their ==radius== matters so much. It then follows the four kinds of signal, local, neural, hormonal and paracrine, that tighten or relax the smooth muscle in the arteriolar wall and so set resistance and blood flow.
+
+### 1. The pressure profile
+
+This note is about the TPR in ==MAP = CO x TPR== (mean arterial pressure equals cardiac output times total peripheral resistance; see [[Circulation Overview – Circuits, Vessels and the MAP Equation]]). Pressure is used up in overcoming resistance, so a map of pressure along the circulation shows where the resistance is. Pressure in the ==left ventricle falls to close to zero in diastole and rises to about 120 mmHg in systole==. In the ==large arteries it is pulsatile==, rising in systole and falling in diastole, though never far, because the stretched elastic arteries recoil between beats. ==This pulsatility is lost in the arterioles==, which are also ==the major site of pressure fall, from about 75 to about 35 mmHg==. ==In the capillaries pressure falls further, from 35 to 15 mmHg==, leaving only a ==low pressure gradient to drive blood back to the heart through the veins==, where it approaches 0 mmHg at the right atrium. Venous pressure is therefore lower than capillary pressure, not higher.
+
+![[Screenshot 2026-11-05 at 15.47.16 1.png]]
+
+In the top graph, pressure is plotted against position from the left ventricle to the veins. The oscillation in the large arteries is the pulse, and it fades between the dashed lines, across the arterioles, exactly where the mean drops most steeply. The red arrow and yellow box make the central point: ==the gradient from the aorta to the right atrium drives blood through the whole systemic circulation==. The small graph beneath the box, 'Total cross-sectional area', shows the aorta's 4 cm² branching into ==over 1000 cm² of capillaries==, far more than the arterioles' area, which is why blood moves slowest there.
+
+### 2. The site of resistance
+
+Why does the biggest pressure drop mark the biggest resistance? Blood behaves like electric current, which flows down a voltage gradient according to Ohm's law, ==V = iR== (voltage V equals current i times resistance R). In the circulation the pressure difference ΔP plays the part of voltage: ==flow (Q) is directly proportional to ΔP and inversely proportional to resistance (R)==, so ΔP = Q x R, or ==R is proportional to ΔP/Q==. Flow in an individual vessel varies enormously, because the circulation divides into parallel organ beds and each level into countless parallel vessels. The levels themselves, however, are in series (arteries, then arterioles, capillaries and veins), so all the arterioles together carry the same total flow, the whole cardiac output, as all the capillaries together. ==With Q the same at every level, the pressure drop across a level is directly proportional to that level's combined resistance==, so the level that costs the most pressure, ==the arterioles, must be the major site of resistance==. The same reasoning holds within any single organ, whose own flow passes through each of its levels in turn.
+
+### 3. Radius to the fourth power
+
+What gives arterioles their resistance, and lets them vary it, is their radius. Compare two tubes draining one reservoir: ==tube B, of radius 1 unit, passes 1 unit of flow (1^4), while tube A, of radius 2 units, passes 16 units (2^4)==; a radius of 3 would pass ==81 units (3 x 3 x 3 x 3 = 3^4)==. Flow rises with the fourth power of the radius, and since resistance is the inverse of flow at a given pressure, ==tube B's resistance is 16 times tube A's==: ==R is proportional to 1/r^4==.
+
+![[Screenshot 2026-11-05 at 15.47.57 1.png|398]]
+
+In the drawing the wider tube A fills its beaker far faster, and the green box states the rule, the radius term of ==Poiseuille's law== (its other terms, vessel length and blood viscosity, hardly change in the body). The rule cuts both ways, so ==halving a radius raises resistance sixteenfold==. 
+
+ ==**To sum up sections 1 to 3:**== the more resistance a stretch of the circulation offers, the more pressure is lost in crossing it, and how much a stretch resists depends on how narrow its vessels are and on how many of them the blood can spread across. The wide arteries resist little, so pressure falls only slightly along them. The ==arterioles resist most== and take the biggest drop (about 75 to 35 mmHg). The capillaries are narrower still, but blood is spread across billions of them at once, so ==together they resist less than the arterioles== and pressure falls less across them (35 to 15 mmHg). The ==wide veins resist least== and use up the small remainder on the way back to the heart. The arterioles are called the ==resistance vessels== because most of the resistance sits in them and because their thick muscular wall can change their radius, so they are where the body adjusts resistance; the rest of the note is about what controls that muscle.
+
+### 4. Autoregulation
+
+The first control is built into the organs themselves. Some organs, notably the ==brain, kidney and heart==, ==autoregulate== their blood flow: ==when the metabolism within the organ is constant, autoregulation keeps blood flow constant in the face of changing arterial pressure==. ==Between MAPs of 70 and 170 mmHg flow stays constant==, because ==a rise in MAP constricts the arterioles and a fall dilates them==, which, through the fourth-power rule, offsets the change in driving pressure. Beyond that range the adjustment runs out: ==above 170 mmHg flow increases==, ==below 70 mmHg it falls==, and it ==drops to zero at 20 to 30 mmHg==, the ==critical closing pressure==, believed to be the ==minimum pressure needed to keep small blood vessels open==.
+
+![[Screenshot 2026-11-05 at 15.48.30 1.png]]
+
+The flat stretch of the curve between the red lines (the blue box) is the autoregulated range, where flow no longer follows pressure; outside it the curve simply slopes with pressure, down to zero at the arrow marking the critical closing pressure. The adjustment behind that flat stretch is the ==myogenic response==, so called because it ==originates in the smooth muscle cells themselves==, with no nerve or hormone involved. What the muscle senses is not pressure but its own ==wall tension==, the stretching force in the vessel wall, which rises with the pressure inside (tension equals pressure times radius, Laplace's law): ==stretch makes the arteriolar smooth muscle contract, and a fall in tension makes it relax==.
+
+### 5. Arteriolar tone and the four factors that set it
+
+Autoregulation serves the organ; the body as a whole also needs resistance regulated, because ==regulation of total peripheral resistance is very important for maintaining arterial blood pressure==. The ==resistance vessels, the arterioles, lie within each tissue==, and since the tissues' vascular beds are in parallel, each organ's arterioles set its share of the cardiac output. ==Were they all to dilate at once, blood pressure would drop to a dangerously low level==. Resistance is set by ==contraction (vasoconstriction) or relaxation (vasodilation) of the smooth muscle in the arteriolar wall==, which changes the calibre of the arteriole, and the ==tone== (state of tension) of that muscle is ==influenced by four factors: local factors, neural activity, hormones and paracrines==.
+
+![[Screenshot 2026-11-05 at 15.48.54 1.png|456]]
+
+Every input acts on the same thing, vessel diameter, so the arteriole's tone is the balance of dilators (solid arrows) against constrictors (dashed arrows). The two local groups serve the tissue itself: ==metabolites dilate== because they build up when blood supply falls short of demand, ==oxygen constricts== because plenty of it means supply is ample, and a rise in blood pressure constricts the arteriole through the ==myogenic response==. Nerves and hormones serve the whole body. The sympathetic group has ==both arrows== because in many beds the nerves fire constantly at rest, so more firing constricts and less firing dilates; ==noradrenaline==, written above it, is their transmitter. ==Adrenaline sits on both sides== because ==α receptors make it constrict and β receptors make it dilate==. Among the paracrines, EDRF and EDCF, the endothelium-derived relaxing and constricting factors, are ==nitric oxide and endothelin==, both made by the vessel's own lining.
+
+### 6. Neural control
+
+Nervous control ==acts extremely rapidly and can control large parts of the circulation simultaneously==. The ==parasympathetic system contributes by regulating heart rate== ([[Pacemaker Cells and Autonomic Control of Heart Rate]]), but the ==sympathetic nervous system (SNS) plays the major role in controlling TPR==, and it is the pathway through which the baroreflex adjusts resistance ([[Arterial Blood Pressure – Measurement, Normal Values and the Baroreflex]]). ==All blood vessels except capillaries and small arterioles are innervated by the SNS==, whose transmitter ==noradrenaline== binds ==α-adrenergic receptors== on vascular smooth muscle and makes it contract. ==Innervation of the arterioles lets sympathetic stimulation raise resistance and so reduce blood flow through an organ==; ==innervation of the veins lets it change the volume of blood they hold, and a change in venous volume changes venous return and cardiac output== (the capacitance role in [[Circulation Overview – Circuits, Vessels and the MAP Equation]]). The innervation is ==dense in the arterioles of the skin, kidney and gut== and ==poor in those of the brain and heart==, so a sympathetic surge redirects blood from the first three to the last two. ==In some organs the SNS fires constantly, giving a resting vasomotor tone==, so that ==more sympathetic discharge causes vasoconstriction and less causes vasodilation==: nerves can dilate a bed simply by firing less.
+
+### 7. Local metabolic control
+
+Nerves serve the whole body; metabolites serve the tissue, matching its flow to its need. ==When an organ's metabolic activity rises, O2 in its interstitial fluid falls and metabolites accumulate, its arterioles dilate and blood flow to it increases==, a response called ==active hyperaemia== (hyperaemia means increased blood flow) or ==metabolic vasodilation==. ==Vasodilator metabolites are produced locally whenever the supply of O2 falls below O2 consumption==, and together with the low PO2 (partial pressure of oxygen) itself they ==reduce local vascular resistance and increase blood flow to meet tissue needs==. ==No single metabolite has been identified; the candidates are CO2, H+, lactate and adenosine==, with ==ATP and K+== also named. The response limits itself: ==the increased flow washes the metabolites out, so resistance rises and flow falls== back towards normal. 
+
+### 8. Hormonal control
+
+Hormones reach every vascular bed through the blood. The ==adrenal medulla== (the core of the adrenal gland) releases ==adrenaline (epinephrine) and a small amount of noradrenaline==. ==Noradrenaline always causes vasoconstriction==, but ==the action of adrenaline depends on the relative distribution of α- and β-adrenergic receptors== in an organ's vessels, because α receptors contract vascular smooth muscle and β2 receptors relax it: ==in organs with a high β-receptor density, the vasculature of the heart and of skeletal muscle, adrenaline causes vasodilation==. Skeletal muscle shows both effects at once, ==sympathetic nerves constricting its arterioles through α receptors while circulating adrenaline dilates them through β2 receptors==. Two other hormones constrict: ==angiotensin II, a powerful vasoconstrictor==, and ==vasopressin (ADH)==; both return in [[Hypertension – Causes, Mechanisms, Consequences and Treatment]] ![[Screenshot 2026-11-05 at 15.49.37 2.png]]
+
+### 9. Paracrine control and the endothelium
+
+The last factor acts over the shortest distance: ==paracrines are released by one type of cell and act on the neighbouring cells==. In the vessel wall the chief source is the ==endothelium==, the single layer of cells lining the lumen directly beneath the smooth muscle, so what it releases reaches the muscle by diffusion; mast cells (immune cells of connective tissue) and platelets (the cell fragments that start clotting) contribute too, and prostaglandins, which are lipid messengers, come in dilator and constrictor forms.
+
+| Paracrine | Source | Effect |
+|---|---|---|
+| ==Histamine== | Mast cells | Vasodilator |
+| ==Nitric oxide (NO)== | Endothelial cells | Vasodilator |
+| ==Prostacyclin== (a prostaglandin) | Endothelial cells and platelets | Vasodilator |
+| ==Endothelin== | Endothelial cells | Vasoconstrictor |
+| ==Thromboxane== (a prostaglandin) | Endothelium and platelets | Vasoconstrictor |
+
+Of the endothelium's products, ==one of the most important is NO==. ==Endothelial cells release NO, which diffuses to the underlying vascular smooth muscle (VSM) cells==; there it activates the enzyme guanylyl cyclase, so the ==concentration of cyclic GMP (cGMP), a second messenger, rises, the VSM cell relaxes and the vessel dilates==. ==NO is released continuously in significant amounts by the endothelium of the arterioles and contributes to arteriolar vasodilation in the basal state==, so resting arterioles are already held partly open. ==Viagra inhibits the breakdown of cGMP== (by blocking the enzyme phosphodiesterase-5) ==and so maintains vasodilation==.
+
+![[Screenshot 2026-11-05 at 15.50.10 1.png]]
+
+The cut-away arteriole shows the endothelial cells lining the lumen, the VSM cells just outside them, and a sympathetic vasoconstrictor fibre in the outer layer; the red arrows are NO diffusing from endothelium to muscle.
+
+Oxygen also works through NO: ==hyperoxaemia (a high O2 concentration) causes vasoconstriction by reducing NO levels==, probably because excess oxygen generates reactive oxygen species that destroy NO; this is the 'oxygen' constrictor arrow on the map. 
+
+### Summary
+
+> Pressure is spent overcoming resistance, and the ==steepest fall (about 75 to 35 mmHg) and the loss of the pulse occur in the arterioles==, which, since ==R is proportional to ΔP/Q== at constant flow, are the ==resistance vessels==. Their resistance depends on radius to the fourth power, so ==halving the radius raises it sixteenfold==. ==Brain, kidney and heart autoregulate== flow between ==MAPs of 70 and 170 mmHg== through the ==myogenic response==, with flow stopping at the ==critical closing pressure of 20 to 30 mmHg==. ==Metabolites such as adenosine dilate until washed out==; ==sympathetic noradrenaline constricts==, mainly in skin, kidney and gut; ==angiotensin II, ADH and noradrenaline constrict== while ==adrenaline dilates where β-receptors dominate==; and ==endothelial NO relaxes smooth muscle through cGMP==, its loss in hyperoxaemia causing constriction.

@@ -154,6 +154,10 @@ linked.
 - Headings start at the right level, and `### **Bold heading**` loses the redundant bold.
 - `![[PASTE IMAGE: …]]` placeholders (embeds with no file) are hidden.
 - Term notes starting lowercase get a capitalised page title (`cation` → "Cation").
+- A link typed with a straight apostrophe or a hyphen, like `[[… Starling's Law …]]`, still
+  reaches the note named with a curly one or a dash (`Starling’s`), within the same subject. If
+  clicking the link in Obsidian created an empty note under the typed name, `sync-notes.sh`
+  leaves that empty note off the site.
 
 Obsidian features that work as usual: wikilinks, `[[Note|alias]]`, `[[Note#Heading]]`, image
 embeds with sizes (`![[img.png|300]]`), `==highlights==`, tables, callouts (`> [!tip]`), LaTeX

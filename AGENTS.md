@@ -152,6 +152,16 @@ Commands: `npm run content`, `npm run site`, `npm run serve` (port 8080).
   every `[[wikilink]]` to the output name, keeping the written text as the alias. In tables,
   Obsidian escapes the alias pipe as `\|`, and the rewrite keeps that. Links resolve with
   Quartz's `shortest` strategy, so basenames must stay unique within the site.
+- **Quote and dash slips in links.** Note names here use curly `’` and en dashes, but links are
+  sometimes typed with `'` or `-` (`[[Pressure–Volume Loop, Starling's Law and Contractility]]`
+  in three cardiovascular notes), and clicking one in Obsidian creates an empty note under the
+  typed name. The sync resolves a link whose name has no note, or only an empty one, to the note
+  with text whose name is equal under `matchKey()`, so the empty note isn't published; the build's
+  `resolveNote` does the same within a subject, for links in notes and in the index, keeping the
+  written text. An exact match wins otherwise. Not covered: such a link to another subject's
+  note still becomes plain text, since Quartz resolves those and needs the exact name; and an
+  empty note created inside `vault/` itself (Obsidian opened on the repo) is published like any
+  other note, with exact links going to it, as the build doesn't drop empty notes.
 - **Dates.** `content/` is generated, so Quartz can't get dates from git. The build writes a
   `modified` frontmatter field from the last commit touching each vault file (CI checks out
   with `fetch-depth: 0` for this).

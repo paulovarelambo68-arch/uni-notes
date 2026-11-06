@@ -44,6 +44,10 @@ subjects:
           - Pacemaker Cells and Autonomic Control of Heart Rate
           - The ECG – Conduction, Leads and the Hexaxial System
           - Arrhythmias – Sinus Arrhythmia, AV Block, Ectopic Beats and Fibrillation
+          - Vascular Resistance – Pressure Profile, Radius and Control of Arterioles
+          - Arterial Blood Pressure – Measurement, Normal Values and the Baroreflex
+          - Hypertension – Causes, Mechanisms, Consequences and Treatment
+          - Coronary and Cutaneous Blood Flow
 
 # Audio tracks (scripts/narrate.mjs, npm run audio). Narration scripts live in
 # audio/<Subject>/<Note>.md and pick a voice by the names below. Voices alternate between

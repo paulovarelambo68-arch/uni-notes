@@ -26,6 +26,7 @@ import {
   ATTACHMENT,
   indexLines,
   linksInText,
+  matchKey,
   publishList,
   publishProblems,
   subjectConfig,
@@ -46,6 +47,22 @@ for (const file of walk(SRC)) {
   const key = path.basename(file).toLowerCase()
   byName.set(key, [...(byName.get(key) ?? []), file])
 }
+// Notes with text, by matchKey of their name, for links typed with a straight quote or a hyphen
+// where the name has a curly quote or a dash ("Starling's" for "Starling’s"). Clicking such a
+// link in Obsidian creates an empty note under the typed name, so empty notes don't count.
+const byLooseName = new Map() // matchKey(name) -> [absolute paths]
+const emptyNotes = new Set()
+for (const files of byName.values()) {
+  for (const file of files.filter(isNote)) {
+    if (!/\S/.test(fs.readFileSync(file, "utf8"))) {
+      emptyNotes.add(file)
+      continue
+    }
+    const key = matchKey(path.basename(file).slice(0, -3))
+    byLooseName.set(key, [...(byLooseName.get(key) ?? []), file])
+  }
+}
+const isEmptyNote = (file) => emptyNotes.has(file)
 
 const homeFile = path.join(SRC, HOME)
 const subjects = fs.existsSync(homeFile)
@@ -252,8 +269,13 @@ function linksIn(file) {
 }
 
 // The vault file a link points to. With duplicates, prefer the subject's folder, then the root.
+// A link to a note that doesn't exist, or exists only empty, goes to a note with text whose name
+// differs only in quote or dash style, case or spacing, if there is one.
 function resolve(key, dir, where) {
-  const candidates = byName.get(key.toLowerCase()) ?? []
+  let candidates = byName.get(key.toLowerCase()) ?? []
+  if (isNote(key) && candidates.every(isEmptyNote)) {
+    candidates = byLooseName.get(matchKey(path.basename(key).slice(0, -3))) ?? candidates
+  }
   if (candidates.length === 0) return null
   if (candidates.length === 1) return candidates[0]
   const inFolder = candidates.find((f) => dir && f.startsWith(dir + path.sep))

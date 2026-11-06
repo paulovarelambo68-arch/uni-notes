@@ -34,6 +34,7 @@ import {
   headingText,
   indexLines,
   linksInText,
+  matchKey,
   publishList,
   publishProblems,
   stripBold,
@@ -237,6 +238,18 @@ function buildSubject(subject) {
       assets.set(base.toLowerCase(), { name: base, file })
     }
   }
+  // A link typed with a straight quote or a hyphen where the note's name has a curly quote or a
+  // dash ("Starling's" for "Starling’s") still finds it, as in the sync. A key two notes share
+  // finds neither.
+  const looseNotes = new Map() // matchKey(name) -> lowercased name, or null
+  for (const key of notes.keys()) {
+    const loose = matchKey(key)
+    looseNotes.set(loose, looseNotes.has(loose) ? null : key)
+  }
+  const resolveNote = (target) => {
+    const key = path.basename(target.trim()).replace(/\.md$/i, "").toLowerCase()
+    return notes.has(key) ? key : (looseNotes.get(matchKey(key)) ?? null)
+  }
 
   const modified = lastModifiedDates(dir)
 
@@ -272,9 +285,9 @@ function buildSubject(subject) {
       }
       if (!index.published[i]) continue
       for (const link of line.matchAll(/(?<!!)\[\[([^\]|#\\]+)/g)) {
-        const key = link[1].trim().toLowerCase()
+        const key = resolveNote(link[1])
         if (!index.publishes(i, link[1])) continue // left out of the heading's list of notes
-        if (!notes.has(key) || placement.has(key) || notes.get(key) === indexNote) continue
+        if (!key || placement.has(key) || notes.get(key) === indexNote) continue
         const parts = [section, subsection].filter(Boolean).map(sanitize)
         parts.forEach(setRank)
         placement.set(key, parts.join("/"))
@@ -284,10 +297,6 @@ function buildSubject(subject) {
   }
   explorerOrder[CONCEPTS] = 1e6
 
-  const resolveNote = (target) => {
-    const key = path.basename(target.trim()).replace(/\.md$/i, "").toLowerCase()
-    return notes.has(key) ? key : null
-  }
   const resolveAsset = (target) => assets.get(path.basename(target.trim()).toLowerCase()) ?? null
 
   // In prose a renamed link keeps its original wording; on the index page it shows the new title.
