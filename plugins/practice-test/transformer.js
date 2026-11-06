@@ -127,6 +127,10 @@ function questionId(heading, options, used) {
 function question(heading, before, options, after, number, id) {
   const answer = options.flatMap((o, i) => (o.correct ? [i] : []))
   const multi = answer.length > 1
+  // Options that are only a letter (points on a figure) are labelled by that letter, so the
+  // button and the verdict ("the answer is D") name the point, not the option's position.
+  const own = options.map((o) => o.children.map(toText).join("").trim())
+  const lettered = own.every((t) => /^[A-Z]$/.test(t))
   heading.properties = { ...heading.properties, className: [...classes(heading), "pt-stem"] }
   const body = explanation(after).filter((n) => !isBlank(n))
 
@@ -153,8 +157,10 @@ function question(heading, before, options, after, number, id) {
         },
         options.map((o, i) =>
           h("button", { type: "button", className: ["pt-option"], dataPtOption: String(i) }, [
-            h("span", { className: ["pt-letter"] }, [text(LETTERS[i] ?? String(i + 1))]),
-            h("span", { className: ["pt-text"] }, o.children),
+            h("span", { className: ["pt-letter"] }, [
+              text(lettered ? own[i] : (LETTERS[i] ?? String(i + 1))),
+            ]),
+            lettered ? null : h("span", { className: ["pt-text"] }, o.children),
           ]),
         ),
       ),

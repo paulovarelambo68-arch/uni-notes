@@ -324,6 +324,10 @@ which the site shows as "Note > Heading").
   A button can only hold inline content, so in options links are unwrapped to text and blocks
   (sub-lists, quotes, code) are left out with a warning; questions with no `[x]` stay plain
   lists. Option parsing copies nodes, so a list that isn't a question is output untouched.
+  When every option is a single capital letter (points on a figure, as in the PV-loop
+  questions), each button shows only that letter as its badge, so the badge and the verdict
+  ("the answer is D") name the point; positional letters there read "B C", "C D" and named
+  the wrong point.
 - **Markup avoids `p` and `li`.** `custom.scss` styles `article p` (justified) and `article li`
   (margins), and unlayered rules beat the plugin's layered CSS whatever the specificity. For the
   same reason the question's size on the page is set in `custom.scss`, where

@@ -276,6 +276,8 @@ An optional introduction.
 - Whatever follows the checklist, up to the next heading or `---`, is the explanation. A `>`
   quote is the usual way; it isn't turned into a Definition or tip box in a test.
 - Text or an image between the heading and the checklist is part of the question.
+- Options that are just a letter (points on a figure) keep that letter on their button, so
+  "the answer is D" means point D.
 - Headings without a checklist (say `## Part A`) just group the questions.
 - List the test in the subject's index like any other note, for example under
   `## Immunology Tests`. In Obsidian it reads as a checklist with the answers ticked.
