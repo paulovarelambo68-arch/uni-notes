@@ -292,9 +292,20 @@ the explanation). In Integrated Physiological Responses to Exercise, each lectur
 ends with its two tests (`MCQ 1`/`MCQ 2 – Immunology I`, `– Immunology II`,
 `– Exercise Immunology`), and the `## Immunology Tests` heading holds the ones that span the
 lectures: `Sample MCQ – Exercise Immunology` (wording copied from the course's quiz,
-explanations ours) and `MCQ 1`–`3 – Immunology (All Lectures)`. The author's nine sets link
-each explanation to the section that covers the point (`[[Note#Heading]]`, which the site
-shows as "Note > Heading").
+explanations ours) and `MCQ 1`–`3 – Immunology (All Lectures)`. `## Cardiovascular Tests`,
+right after `## Cardiovascular System`, holds `Sample MCQ – Cardiovascular System` (the
+professor's 30 practice questions in his order and with his key; the explanations of 1, 16 and
+18 say where the key seems to contradict the slides) and `MCQ 1`–`3 – Cardiovascular System
+(All Lectures)`; they embed `PV_loop_lettered_A-F.png` and two `ECG_strip_lead_II_…` images.
+Every set links each explanation to the section that covers the point (`[[Note#Heading]]`,
+which the site shows as "Note > Heading").
+
+- **Options appear in the order written**; nothing shuffles them, so spread the right answers
+  over the letters when writing a test. The cardiovascular `MCQ 1`–`3` arrived with the right
+  answer first in 63 of 72 questions and had their option lines moved (not retyped) to about
+  six per letter; option sets with a natural order (figure letters, numbers) keep it. A figure
+  shared by several questions goes after a `---`, or the previous question's explanation
+  swallows it (the Sample does this before question 11).
 
 - **One plugin, two halves.** `category: ["transformer", "component"]`: the loader instantiates
   `index.js`'s default export (`PracticeTestTransformer`, `transformer.js`) and loads the
