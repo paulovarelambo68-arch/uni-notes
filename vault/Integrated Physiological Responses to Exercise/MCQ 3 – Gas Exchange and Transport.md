@@ -57,14 +57,14 @@ Ten more multiple-choice questions on gas exchange and transport: the structure 
 
 > Partial pressure is the fractional concentration times the total pressure, so in dry air at 760 mmHg oxygen contributes 159 mmHg, nitrogen 600 mmHg and CO2 0.2 mmHg. Pressure falling as volume rises is Boyle's law. See [[The Respiratory Gases – Composition of Air, Partial Pressures and Exchange across the Alveolar Membrane#2. Each gas pushes on its own partial pressure]].
 
-## After endurance training the haematocrit typically
+## With endurance training the haematocrit usually
 
-- [ ] rises to about 60%
-- [ ] stays exactly the same
-- [x] falls, because plasma volume expands
-- [ ] falls because red cells are destroyed
+- [ ] rises, as plasma volume falls and concentrates the red cells
+- [ ] rises, as red-cell mass grows faster than plasma volume
+- [x] falls, as plasma volume grows more than red-cell mass
+- [ ] falls, as red-cell mass shrinks while plasma volume is unchanged
 
-> Training expands the plasma (from 55% to 63% of whole blood in the example), so the same red cells are diluted and the haematocrit falls from 45% to 38%: haemoglobin per 100 mL falls from 15 to 13 g and the O2 carried from 19.7 to 17.0 mL per 100 mL, without any loss of red cells. A haematocrit of 60% is the blood-doping range. See [[Oxygen in the Blood – Dissolved Oxygen, Haemoglobin and the Dissociation Curve#2. Haemoglobin – Carrying Capacity, Structure and the Route of Oxygen]].
+> Training raises both plasma volume and red-cell mass, the total volume of red cells, but the plasma grows sooner and usually by more, so red cells make up a smaller share of the blood. In McArdle's Figure 13.5, an untrained person's haematocrit drops from 45% to 38% after four days of aerobic training, and haemoglobin from 15 to 13 g per 100 mL, while red-cell mass stays the same or rises slightly. This is dilution, not a loss of red cells: each 100 mL carries less oxygen, but the total oxygen-carrying capacity of the larger blood volume does not fall, and it rises as red cells are added. It is at altitude, not with training, that plasma volume falls and the haematocrit rises. See Training & Detraining, slide 14 (Aerobic Training Increases Oxygen Delivery to Active Muscles) and slide 15 (Cardiovascular adaptations to endurance training), and [[Altitude – Less Oxygen, Acclimatisation, Performance and Altitude Training#4. The first weeks acclimatisation]].
 
 ## Which of the following shifts the oxygen dissociation curve to the right?
 
