@@ -49,6 +49,30 @@ subjects:
           - Hypertension – Causes, Mechanisms, Consequences and Treatment
           - Coronary and Cutaneous Blood Flow
       - Cardiovascular Tests
+      # Respiratory sections: only their tests for now. The notes are held back until they're
+      # ready, so the tests' links to them show as plain text; add each note under its heading.
+      - Introduction to Respiratory Physiology:
+          - MCQ 1 – Introduction to Respiratory Physiology
+          - MCQ 2 – Introduction to Respiratory Physiology
+          - MCQ 3 – Introduction to Respiratory Physiology
+      - Gas Exchange and Transport:
+          - MCQ 1 – Gas Exchange and Transport
+          - MCQ 2 – Gas Exchange and Transport
+          - MCQ 3 – Gas Exchange and Transport
+      - Breathing Control and Oxygen Uptake:
+          - MCQ 1 – Breathing Control and Oxygen Uptake
+          - MCQ 2 – Breathing Control and Oxygen Uptake
+          - MCQ 3 – Breathing Control and Oxygen Uptake
+      - The Respiratory System under Stress:
+          - MCQ 1 – The Respiratory System under Stress
+          - MCQ 2 – The Respiratory System under Stress
+          - MCQ 3 – The Respiratory System under Stress
+          - MCQ 4 – The Respiratory System under Stress
+      - Lung Immunity and Disease:
+          - MCQ 1 – Lung Immunity and Disease
+          - MCQ 2 – Lung Immunity and Disease
+          - MCQ 3 – Lung Immunity and Disease
+      - Pulmonary Tests
 
 # Audio tracks (scripts/narrate.mjs, npm run audio). Narration scripts live in
 # audio/<Subject>/<Note>.md and pick a voice by the names below. Voices alternate between

@@ -297,6 +297,13 @@ right after `## Cardiovascular System`, holds `Sample MCQ – Cardiovascular Sys
 professor's 30 practice questions in his order and with his key; the explanations of 1, 16 and
 18 say where the key seems to contradict the slides) and `MCQ 1`–`3 – Cardiovascular System
 (All Lectures)`; they embed `PV_loop_lettered_A-F.png` and two `ECG_strip_lead_II_…` images.
+The five respiratory sections each end with their tests (`MCQ 1`–`3`, and `MCQ 4 – The
+Respiratory System under Stress`), and `## Pulmonary Tests`, after `## Lung Immunity and
+Disease`, holds `Sample MCQ – Pulmonary Responses to Exercise` (the lecturer's five example
+questions in his wording and option order) and `MCQ 1`–`2 – Pulmonary (All Lectures)`. Since
+2026-11-07 `site.yaml` lists only these tests under the respiratory headings: the notes are
+held back until the author publishes them, so the tests' links to them show as the note's title
+in plain text.
 Every set links each explanation to the section that covers the point (`[[Note#Heading]]`,
 which the site shows as "Note > Heading").
 

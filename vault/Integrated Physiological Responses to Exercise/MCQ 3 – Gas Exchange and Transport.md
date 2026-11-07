@@ -1,0 +1,94 @@
+---
+type: test
+---
+Ten more multiple-choice questions on gas exchange and transport: the structure of haemoglobin, arterial saturation, erythropoietin, nitrogen, the direction of CO2 movement, Dalton's law, haematocrit after training, what shifts the dissociation curve, when 2,3-DPG rises and the fractions of CO2 in blood. Each answer comes with a short explanation and the note and section that cover it.
+
+## A haemoglobin molecule contains
+
+- [ ] one globin chain and one haem
+- [ ] two globin chains and two haems
+- [ ] four globin chains and one haem
+- [x] four globin chains (2 α and 2 β), each with a haem
+
+> Each of the four haem groups holds an Fe2+ ion that binds one O2. There are about 280 million haemoglobin molecules per red cell, so each cell can carry more than 10^9 O2 molecules. See [[Oxygen in the Blood – Dissolved Oxygen, Haemoglobin and the Dissociation Curve#2. Haemoglobin – Carrying Capacity, Structure and the Route of Oxygen]].
+
+## Arterial blood at a PO2 of 100 mmHg is about
+
+- [ ] 75% saturated
+- [ ] 50% saturated
+- [x] 98% saturated
+- [ ] 100% saturated
+
+> 98% at 100 mmHg and 75% at 40 mmHg: the difference is the share of the haemoglobin's oxygen unloaded to the tissues at rest. The plateau of the curve never quite reaches 100%. See [[Oxygen in the Blood – Dissolved Oxygen, Haemoglobin and the Dissociation Curve#4. The Oxygen Dissociation Curve and What Its Shape Does]].
+
+## Erythropoietin (EPO) production is stimulated by
+
+- [ ] oestrogen
+- [ ] carbon dioxide
+- [x] testosterone and hypoxia
+- [ ] 2,3-DPG
+
+> Testosterone stimulates EPO, which drives red cell production (erythropoiesis) in the bone marrow, one reason men carry more haemoglobin than women; training at altitude also raises EPO because the low PO2 is a hypoxic stimulus. See [[Oxygen in the Blood – Dissolved Oxygen, Haemoglobin and the Dissociation Curve#2. Haemoglobin – Carrying Capacity, Structure and the Route of Oxygen]].
+
+## Nitrogen in alveolar-capillary gas
+
+- [ ] diffuses rapidly into the blood
+- [ ] is the main stimulus for breathing
+- [ ] is produced by the tissues
+- [x] remains essentially unchanged
+
+> N2 is neither consumed nor produced, so its partial pressure stays the same across the membrane; it matters in diving physiology, where the high pressure forces it into solution. See [[The Respiratory Gases – Composition of Air, Partial Pressures and Exchange across the Alveolar Membrane#3. The pressure staircase from air to muscle and back]].
+
+## Compared with alveolar air, CO2 in venous blood is at a
+
+- [ ] lower partial pressure, so it diffuses into the blood
+- [x] higher partial pressure, so it diffuses into the alveoli
+- [ ] equal partial pressure, so there is no net movement
+- [ ] higher partial pressure, but it stays in the blood
+
+> Venous PCO2 is 46 mmHg against 40 mmHg in the alveoli, so CO2 leaves the blood down its gradient; about 200 mL of CO2 crosses into the alveoli each minute at rest while 250 mL of O2 goes the other way. See [[The Respiratory Gases – Composition of Air, Partial Pressures and Exchange across the Alveolar Membrane#3. The pressure staircase from air to muscle and back]].
+
+## Dalton's law states that
+
+- [x] each gas in a mixture exerts its own partial pressure
+- [ ] a gas dissolves in proportion to its solubility
+- [ ] the pressure of a gas falls as its volume rises
+- [ ] oxygen binds haemoglobin cooperatively
+
+> Partial pressure is the fractional concentration times the total pressure, so in dry air at 760 mmHg oxygen contributes 159 mmHg, nitrogen 600 mmHg and CO2 0.2 mmHg. Pressure falling as volume rises is Boyle's law. See [[The Respiratory Gases – Composition of Air, Partial Pressures and Exchange across the Alveolar Membrane#2. Each gas pushes on its own partial pressure]].
+
+## After endurance training the haematocrit typically
+
+- [ ] rises to about 60%
+- [ ] stays exactly the same
+- [x] falls, for example from 45% to 38%, because plasma volume expands
+- [ ] falls because red cells are destroyed
+
+> Training expands the plasma (from 55% to 63% of whole blood in the example), so the same red cells are diluted: haemoglobin per 100 mL falls from 15 to 13 g and the O2 carried from 19.7 to 17.0 mL per 100 mL, without any loss of red cells. A haematocrit of 60% is the blood-doping range. See [[Oxygen in the Blood – Dissolved Oxygen, Haemoglobin and the Dissociation Curve#2. Haemoglobin – Carrying Capacity, Structure and the Route of Oxygen]].
+
+## Which of the following shifts the oxygen dissociation curve to the right?
+
+- [ ] A fall in temperature
+- [ ] A rise in pH
+- [x] A rise in PCO2
+- [ ] A fall in 2,3-DPG
+
+> A rise in PCO2, a fall in pH (more H+) and a rise in temperature all lower haemoglobin's affinity and shift the curve right (the Bohr effect), as does a rise in 2,3-DPG. The other three options are the opposite changes, which shift it left. See [[Unloading Oxygen and Carrying Carbon Dioxide – Bohr Effect, 2,3-DPG, Myoglobin and Bicarbonate#1. Muscle tells haemoglobin to let go the Bohr effect]].
+
+## 2,3-DPG concentration in red cells rises in
+
+- [x] high altitude, anaemia and pregnancy
+- [ ] rest at sea level
+- [ ] hyperoxia
+- [ ] fast-twitch muscle
+
+> The enzyme that produces 2,3-DPG is inhibited by oxyhaemoglobin, so whenever oxyhaemoglobin falls, at altitude or in anaemia, 2,3-DPG rises and unloading improves; in pregnancy the rise helps O2 and CO2 cross the placenta. See [[Unloading Oxygen and Carrying Carbon Dioxide – Bohr Effect, 2,3-DPG, Myoglobin and Bicarbonate#2. The red cell's own release signal 2,3-DPG]].
+
+## The fraction of blood CO2 carried in loose combination with haemoglobin is about
+
+- [ ] 7%
+- [x] 23%
+- [ ] 70%
+- [ ] 98.5%
+
+> About 7% is in physical solution (setting the PCO2), 23% is combined with haemoglobin and 70% is bicarbonate. 98.5% is the share of oxygen, not CO2, that is bound to haemoglobin. See [[Unloading Oxygen and Carrying Carbon Dioxide – Bohr Effect, 2,3-DPG, Myoglobin and Bicarbonate#4. The return journey carrying carbon dioxide]].
