@@ -25,7 +25,7 @@ Twenty-four multiple-choice questions drawn from all seven cardiovascular lectur
 
 - [ ] Closure of the AV valves gives rise to the second heart sound
 - [ ] Approximately 80% of ventricular filling is due to atrial contraction
-- [x] Closure of the semilunar valves marks the end of systole and the beginning of diastole
+- [x] Closure of the semilunar valves marks the start of diastole
 - [ ] End-diastolic volume at rest is approximately 60 mL
 
 > When ventricular pressure falls below aortic pressure the aortic and pulmonary valves close (S2, the incisura) and the cycle enters isovolumetric relaxation. AV-valve closure gives S1; filling is about 80% passive with atrial contraction adding the final 20%; 60 mL is the end-systolic volume, the EDV being about 130 mL. See [[The Cardiac Cycle – Phases, Pressures, Volumes and Heart Sounds#5. Closing the loop]] and [[The Cardiac Cycle – Phases, Pressures, Volumes and Heart Sounds#3. Diastole in three steps]].
@@ -65,7 +65,7 @@ Twenty-four multiple-choice questions drawn from all seven cardiovascular lectur
 - [ ] About 75% of the Ca2+ needed for contraction enters from the extracellular fluid
 - [ ] Ca2+ binds to tropomyosin, which then moves troponin away from the myosin-binding sites
 - [ ] During systole the intracellular Ca2+ concentration rises about 2-fold
-- [x] Ca2+ entering through L-type channels triggers the release of a larger amount of Ca2+ from the sarcoplasmic reticulum
+- [x] Ca2+ entering through L-type channels triggers a larger Ca2+ release from the SR
 
 > This is calcium-induced calcium release: the 25% that enters through the L-type channels opens the ryanodine receptors and the SR supplies the other 75%, raising intracellular Ca2+ 10- to 100-fold. Ca2+ binds troponin C, and it is tropomyosin that moves to uncover the binding sites on actin. See [[Excitation–Contraction Coupling – Calcium Cycle and Sympathetic Stimulation#2. The calcium cycle during systole]].
 
@@ -80,12 +80,12 @@ Twenty-four multiple-choice questions drawn from all seven cardiovascular lectur
 
 ## In relation to the ventricular muscle action potential, which statement is correct:
 
-- [x] The plateau (phase 2) is produced by a small but sustained inward Ca2+ current through L-type channels
+- [x] The plateau (phase 2) is produced by an inward Ca2+ current
 - [ ] The upstroke (phase 0) is caused by a rapid increase in permeability to Ca2+
 - [ ] Early repolarisation (phase 1) is due to an inward Na+ current
 - [ ] Late repolarisation (phase 3) is caused by Na+ leaving the cell
 
-> The inward Ca2+ current almost balances the outward K+ current, holding the membrane near 0 to −20 mV. The upstroke is the fast Na+ current (iNa), the notch of phase 1 is the transient outward K+ current (ito), and phase 3 is K+ leaving the cell (iK) as the Ca2+ channels inactivate. See [[Cardiac Action Potential – Resting Potential, Phases and Refractory Period#3. The five phases]].
+> The small, sustained inward Ca2+ current through L-type channels almost balances the outward K+ current, holding the membrane near 0 to −20 mV. The upstroke is the fast Na+ current (iNa), the notch of phase 1 is the transient outward K+ current (ito), and phase 3 is K+ leaving the cell (iK) as the Ca2+ channels inactivate. See [[Cardiac Action Potential – Resting Potential, Phases and Refractory Period#3. The five phases]].
 
 ## In relation to the refractory periods of cardiac muscle, which statement is correct:
 
@@ -134,7 +134,7 @@ Twenty-four multiple-choice questions drawn from all seven cardiovascular lectur
 
 ## In relation to sinus arrhythmia, which statement is correct:
 
-- [x] Heart rate increases during inspiration because vagal activity falls
+- [x] Heart rate increases during inspiration
 - [ ] It is an abnormal rhythm that requires treatment
 - [ ] Heart rate increases during expiration
 - [ ] It is caused by slowed conduction through the AV node
@@ -145,10 +145,10 @@ Twenty-four multiple-choice questions drawn from all seven cardiovascular lectur
 
 - [ ] First degree AV-nodal block
 - [ ] Second degree AV-nodal block
-- [x] Third degree (complete) AV-nodal block
+- [x] Third degree AV-nodal block
 - [ ] Sinus arrhythmia
 
-> In third degree block the AV node conducts nothing, so the atria keep their own rhythm while a slower secondary pacemaker below the block drives the ventricles, and the PR interval keeps changing. First degree block is a PR interval over 0.20 s with every P wave conducted; second degree block drops some beats (3:2, 2:1). See [[Arrhythmias – Sinus Arrhythmia, AV Block, Ectopic Beats and Fibrillation#2. AV-nodal block, three degrees]].
+> In third degree (complete) block the AV node conducts nothing, so the atria keep their own rhythm while a slower secondary pacemaker below the block drives the ventricles, and the PR interval keeps changing. First degree block is a PR interval over 0.20 s with every P wave conducted; second degree block drops some beats (3:2, 2:1). See [[Arrhythmias – Sinus Arrhythmia, AV Block, Ectopic Beats and Fibrillation#2. AV-nodal block, three degrees]].
 
 ## In relation to the pressure profile of the systemic circulation, which statement is correct:
 
@@ -189,7 +189,7 @@ Twenty-four multiple-choice questions drawn from all seven cardiovascular lectur
 ## In relation to the definition and classification of hypertension, which statement is correct:
 
 - [ ] Secondary hypertension represents about 90% of all cases
-- [x] Most physicians diagnose hypertension when repeated resting measurements exceed 140/90 mmHg in a patient under 50 years old
+- [x] Under 50, repeated resting readings above 140/90 mmHg indicate hypertension
 - [ ] Essential hypertension has an identifiable pathological cause
 - [ ] A high-normal pressure of 130–139/85–89 mmHg carries no increase in cardiovascular risk
 
@@ -216,7 +216,7 @@ Twenty-four multiple-choice questions drawn from all seven cardiovascular lectur
 ## In relation to skin blood flow during exercise, which statement is correct:
 
 - [ ] Vasodilation in glabrous skin is produced by an increase in sympathetic discharge
-- [x] Vasodilation in non-glabrous (hairy) skin is produced by sympathetic cholinergic fibres releasing acetylcholine
+- [x] Vasodilation in hairy skin is produced by sympathetic cholinergic fibres
 - [ ] Skin blood flow rises at the onset of exercise, before core temperature changes
 - [ ] The rise in skin blood flow as core temperature rises is an example of autoregulation
 

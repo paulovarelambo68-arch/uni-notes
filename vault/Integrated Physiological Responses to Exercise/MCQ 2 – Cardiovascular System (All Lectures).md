@@ -16,7 +16,7 @@ Twenty-four multiple-choice questions drawn from all seven cardiovascular lectur
 ## In relation to blood flow velocity in the systemic circulation, which statement is correct:
 
 - [ ] Volume flow (L/min) is highest in the aorta and lowest in the capillaries
-- [x] The velocity of flow is inversely proportional to the total cross-sectional area of the vessels
+- [x] Velocity is inversely proportional to total cross-sectional area
 - [ ] Blood flow velocity in the vena cava is lower than in the capillaries
 - [ ] The total cross-sectional area is greatest at the level of the arterioles
 
@@ -35,7 +35,7 @@ Twenty-four multiple-choice questions drawn from all seven cardiovascular lectur
 
 - [ ] The second heart sound (S2) is caused by the opening of the aortic and pulmonary valves
 - [ ] The third heart sound (S3) is caused by atrial contraction
-- [x] The first heart sound (S1) is caused by closure of the mitral and tricuspid valves, mitral before tricuspid
+- [x] The first heart sound (S1) is caused by closure of the mitral and tricuspid valves
 - [ ] Murmurs are caused by laminar flow through a narrowed valve
 
 > S1 is the low, long 'lub' of AV-valve closure (M1 before T1) at the start of isovolumetric contraction; S2 is the short, high 'dub' of semilunar-valve closure (A2 before P2). S3 comes from passive early-diastolic filling and S4 from the rapid filling after atrial contraction, both detected by phonocardiography; murmurs are turbulent flow. See [[The Cardiac Cycle – Phases, Pressures, Volumes and Heart Sounds#7. Heart sounds and the ECG on the same timeline]] and [[The Cardiac Cycle – Phases, Pressures, Volumes and Heart Sounds#8. Murmurs]].
@@ -55,11 +55,11 @@ Twenty-four multiple-choice questions drawn from all seven cardiovascular lectur
 ## In relation to myocardial contractility, which statement is correct:
 
 - [ ] Contractility is the stroke volume for a given heart rate
-- [x] The maximum rate of rise of ventricular pressure during isovolumetric contraction (dP/dt max) is a good measure of contractility
+- [x] dP/dt max in isovolumetric contraction is a good measure of contractility
 - [ ] Every point on a single Starling curve represents a different contractility
 - [ ] An increase in venous return is an example of a positive inotropic effect
 
-> Contractility is the SV for a given EDV, the force developed at a given length, so every point on one Starling curve has the same contractility and only a rise to a higher curve (as with sympathetic stimulation) is a rise in contractility. During isovolumetric contraction fibre length is fixed and no blood is yet being ejected, so the steepness of the pressure rise reflects the muscle alone. See [[Pressure–Volume Loop, Starling’s Law and Contractility#4. Contractility what it actually means]] and [[Pressure–Volume Loop, Starling’s Law and Contractility#5. Measuring contractility]].
+> Contractility is the SV for a given EDV, the force developed at a given length, so every point on one Starling curve has the same contractility and only a rise to a higher curve (as with sympathetic stimulation) is a rise in contractility. During isovolumetric contraction fibre length is fixed and no blood is yet being ejected, so the steepness of the pressure rise (dP/dt max, the maximum rate of rise of ventricular pressure) reflects the muscle alone. See [[Pressure–Volume Loop, Starling’s Law and Contractility#4. Contractility what it actually means]] and [[Pressure–Volume Loop, Starling’s Law and Contractility#5. Measuring contractility]].
 
 ## In relation to cardiac muscle relaxation, which statement is correct:
 
@@ -101,19 +101,19 @@ Twenty-four multiple-choice questions drawn from all seven cardiovascular lectur
 
 - [ ] It has five phases, like the ventricular action potential
 - [ ] The pacemaker potential (phase 4) is caused by a progressive rise in K+ permeability
-- [x] The upstroke is due primarily to a slow inward Ca2+ current, because the cells lack functional fast Na+ channels
+- [x] The upstroke is due primarily to a slow inward Ca2+ current
 - [ ] It shows a prolonged plateau phase
 
-> The SA node action potential has only phases 4, 0 and 3: the pre-potential climbs from about −60 to −70 mV because the funny inward Na+ current (if) grows while K+ permeability (and iK) falls, the upstroke is slow and small and carried by Ca2+, and iK repolarises it; there is no plateau. See [[Pacemaker Cells and Autonomic Control of Heart Rate#2. The SA node action potential]].
+> The SA node action potential has only phases 4, 0 and 3: the pre-potential climbs from about −60 to −70 mV because the funny inward Na+ current (if) grows while K+ permeability (and iK) falls, the upstroke is slow and small and carried by Ca2+ because the cells lack functional fast Na+ channels, and iK repolarises it; there is no plateau. See [[Pacemaker Cells and Autonomic Control of Heart Rate#2. The SA node action potential]].
 
 ## In relation to the intrinsic rates of the pacemaker tissues, which statement is correct:
 
-- [x] The SA node discharges at about 100/min, the AV node at 40–60/min and the Purkinje fibres at 20–40/min
+- [x] The SA node's intrinsic rate is about 100/min
 - [ ] The AV node normally sets the heart rate because it is the fastest pacemaker
 - [ ] A resting heart rate of 60–70/min is the intrinsic rate of the SA node
 - [ ] The Purkinje fibres cannot generate impulses spontaneously
 
-> The fastest pacemaker wins, firing the slower ones before they reach threshold, so the SA node leads; a resting rate below 100 is the SA node under vagal tone. If the SA impulses cannot reach the ventricles (complete block) a lower pacemaker takes over at its slower rate. See [[Pacemaker Cells and Autonomic Control of Heart Rate#4. Why the SA node is the pacemaker, and the heart without nerves]].
+> The fastest pacemaker wins, firing the slower ones before they reach threshold, so the SA node (about 100/min) leads the AV node (40–60/min) and the Purkinje fibres (20–40/min); a resting rate below 100 is the SA node under vagal tone. If the SA impulses cannot reach the ventricles (complete block) a lower pacemaker takes over at its slower rate. See [[Pacemaker Cells and Autonomic Control of Heart Rate#4. Why the SA node is the pacemaker, and the heart without nerves]].
 
 ## Shown is a Lead II ECG trace (25 mm/sec). The heart rate of the patient is in which range (beats/min):
 
@@ -156,7 +156,7 @@ Twenty-four multiple-choice questions drawn from all seven cardiovascular lectur
 ## In relation to Ohm's law applied to the circulation (which statement is correct):
 
 - [ ] Flow is directly proportional to resistance
-- [x] When flow is constant, the site of the biggest pressure drop is the major site of resistance
+- [x] With constant flow, the biggest pressure drop marks the biggest resistance
 - [ ] Pressure difference equals flow divided by resistance
 - [ ] Resistance is directly proportional to the fourth power of the vessel radius
 
@@ -184,7 +184,7 @@ Twenty-four multiple-choice questions drawn from all seven cardiovascular lectur
 
 - [ ] When standing, the pressure in the femoral artery is about 50 mmHg lower than at heart level
 - [ ] When standing, blood pools in the leg arteries, reducing venous return
-- [x] On suddenly lying down, venous return and cardiac output rise, the carotid sinus detects a higher pressure and the heart rate slows
+- [x] On suddenly lying down, the carotid sinus detects a higher pressure and the heart slows
 - [ ] On lying down the carotid sinus detects a lower pressure, so heart rate rises
 
 > Standing adds about 50 mmHg to pressures below the heart (femoral 170/130 for brachial 120/80) and blood pools in the distensible leg veins, lowering venous return; lying down removes the column, raises venous return and CO and brings the carotid sinus level with the heart, so the reflex slows the heart and dilates vessels. See [[Arterial Blood Pressure – Measurement, Normal Values and the Baroreflex#5. The baroreceptor reflex]].

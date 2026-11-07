@@ -62,7 +62,7 @@ Twenty-four multiple-choice questions drawn from all seven cardiovascular lectur
 
 ## In relation to the mechanism by which hypoxia reduces myocardial contractility, which statement is correct:
 
-- [x] Reduced ATP availability and the accumulation of H+ and phosphate reduce the force produced for a given Ca2+ concentration and length
+- [x] Less ATP and a build-up of H+ and phosphate weaken force for the same Ca2+
 - [ ] Hypoxia increases Ca2+ entry through the L-type channels
 - [ ] Hypoxia increases SERCA activity so that Ca2+ is removed from the cytoplasm more rapidly
 - [ ] Hypoxia raises the intracellular cAMP concentration
@@ -107,12 +107,12 @@ Twenty-four multiple-choice questions drawn from all seven cardiovascular lectur
 
 ## In relation to sympathetic control of heart rate, which statement is correct:
 
-- [x] Noradrenaline binds β1-adrenergic receptors and increases both if and iCa, steepening the pacemaker potential
+- [x] Noradrenaline acts on β1 receptors and steepens the pacemaker potential
 - [ ] Noradrenaline binds α1-adrenergic receptors on the SA node
 - [ ] Sympathetic stimulation prolongs the action potential of working myocardial cells
 - [ ] Sympathetic stimulation lowers cAMP in the SA node cells
 
-> Through cAMP and protein kinase A the sympathetic transmitter raises GNa (if) and GCa (iCa) in the node, and in working muscle PKA also phosphorylates the K+ channel, increasing iK and shortening the action potential so that its length does not limit heart rate. α receptors are the vascular ones. See [[Pacemaker Cells and Autonomic Control of Heart Rate#3. Autonomic control of heart rate]].
+> Through β1 receptors, cAMP and protein kinase A the sympathetic transmitter raises GNa (if) and GCa (iCa) in the node, and in working muscle PKA also phosphorylates the K+ channel, increasing iK and shortening the action potential so that its length does not limit heart rate. α receptors are the vascular ones. See [[Pacemaker Cells and Autonomic Control of Heart Rate#3. Autonomic control of heart rate]].
 
 ## When travelling at −150° in the frontal plane, a ventricular depolarisation wave causes a large positive deflection in which lead?
 
@@ -134,8 +134,8 @@ Twenty-four multiple-choice questions drawn from all seven cardiovascular lectur
 
 ## In relation to defibrillation, which statement is correct:
 
-- [x] The shock depolarises all the heart muscle cells simultaneously, so the re-entrant circuits die out and the SA node regains control
-- [ ] The shock selectively stimulates the SA node
+- [x] The shock depolarises all the heart muscle cells at once
+- [ ] The shock selectively stimulates the SA node, which then overrides the fibrillating ventricles
 - [ ] It is the treatment of choice for first degree AV-nodal block
 - [ ] It works by hyperpolarising the ventricular muscle
 
@@ -172,7 +172,7 @@ Twenty-four multiple-choice questions drawn from all seven cardiovascular lectur
 
 - [ ] Diastolic pressure continues to rise throughout life
 - [ ] Mean arterial pressure falls with age because TPR falls
-- [x] Systolic pressure rises with age because the compliance of the aorta falls
+- [x] Systolic pressure rises with age as the aorta stiffens
 - [ ] A typical blood pressure at 20 years old is 140/80 mmHg
 
 > Normal resting values are 110 to 139 over 70 to 84 mmHg, MAP 95 to 100; a typical 20-year-old reads 110/70 and a 60-year-old 140/80. The stiffening aorta pushes systolic up throughout life, diastolic peaks at about 50 and then falls (which may reduce coronary flow), and MAP rises moderately because TPR rises. See [[Arterial Blood Pressure – Measurement, Normal Values and the Baroreflex#4. Normal values and age]].
@@ -217,7 +217,7 @@ Twenty-four multiple-choice questions drawn from all seven cardiovascular lectur
 
 - [ ] The fall in MAP is caused by a rise in TPR
 - [ ] Sweating increases plasma volume and venous return
-- [x] Cutaneous and muscle vasodilation lower TPR while sweating lowers plasma volume and venous return, so cardiac output and MAP fall
+- [x] Vasodilation lowers TPR and sweating cuts venous return, so MAP falls
 - [ ] Cardiac output rises because the Frank–Starling mechanism increases stroke volume
 
-> With MAP = CO x TPR both terms fall: skin and muscle beds in parallel compete for an output that cannot rise without venous return, and the Frank-Starling mechanism lowers stroke volume as filling drops, so the athlete collapses; the soldier standing to attention in the heat faints by the same route. See [[Coronary and Cutaneous Blood Flow#6. When skin vasodilation lowers blood pressure]].
+> With MAP = CO x TPR both terms fall: cutaneous and muscle vasodilation lowers TPR, and sweating lowers plasma volume, venous return and so cardiac output. Skin and muscle beds in parallel compete for an output that cannot rise without venous return, and the Frank-Starling mechanism lowers stroke volume as filling drops, so the athlete collapses; the soldier standing to attention in the heat faints by the same route. See [[Coronary and Cutaneous Blood Flow#6. When skin vasodilation lowers blood pressure]].

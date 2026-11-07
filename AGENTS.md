@@ -318,7 +318,9 @@ which the site shows as "Note > Heading").
   explanation. On 2026-11-07, 40 of them were evened out (right answers kept their letter): the
   right option was cut to its point and the detail moved into the explanation, and in 19 a
   wrong option became the longest, built from a neighbouring fact the explanation rules out.
-  The lecturer's Sample keeps his wording. Write new tests the same way.
+  The cardiovascular `MCQ 1`–`3` had it longest in 45 of 72, though rarely by much, and 19 were
+  trimmed the same way (26 of 72 now). The lecturers' Samples keep their wording. Write new
+  tests the same way.
 
 - **One plugin, two halves.** `category: ["transformer", "component"]`: the loader instantiates
   `index.js`'s default export (`PracticeTestTransformer`, `transformer.js`) and loads the
