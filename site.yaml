@@ -49,9 +49,10 @@ subjects:
           - Hypertension – Causes, Mechanisms, Consequences and Treatment
           - Coronary and Cutaneous Blood Flow
       - Cardiovascular Tests
-      # Respiratory sections: Introduction to Respiratory Physiology has its notes; the others
-      # only their tests for now. Their notes are held back until they're ready, so the tests'
-      # links to them show as plain text; add each note under its heading.
+      # Respiratory sections: Introduction to Respiratory Physiology and Gas Exchange and
+      # Transport have their notes; the others only their tests for now. Their notes are held
+      # back until they're ready, so the tests' links to them show as plain text; add each note
+      # under its heading.
       - Introduction to Respiratory Physiology:
           - The Lungs and the Breathing Pump – Alveoli, Airways, Muscles, Surfactant and the Valsalva Manoeuvre
           - Lung Volumes and Capacities – Spirometry, FEV1 and FVC
@@ -60,6 +61,9 @@ subjects:
           - MCQ 2 – Introduction to Respiratory Physiology
           - MCQ 3 – Introduction to Respiratory Physiology
       - Gas Exchange and Transport:
+          - The Respiratory Gases – Composition of Air, Partial Pressures and Exchange across the Alveolar Membrane
+          - Oxygen in the Blood – Dissolved Oxygen, Haemoglobin and the Dissociation Curve
+          - Unloading Oxygen and Carrying Carbon Dioxide – Bohr Effect, 2,3-DPG, Myoglobin and Bicarbonate
           - MCQ 1 – Gas Exchange and Transport
           - MCQ 2 – Gas Exchange and Transport
           - MCQ 3 – Gas Exchange and Transport
