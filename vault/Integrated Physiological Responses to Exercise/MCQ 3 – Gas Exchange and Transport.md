@@ -57,14 +57,14 @@ Ten more multiple-choice questions on gas exchange and transport: the structure 
 
 > Partial pressure is the fractional concentration times the total pressure, so in dry air at 760 mmHg oxygen contributes 159 mmHg, nitrogen 600 mmHg and CO2 0.2 mmHg. Pressure falling as volume rises is Boyle's law. See [[The Respiratory Gases – Composition of Air, Partial Pressures and Exchange across the Alveolar Membrane#2. Each gas pushes on its own partial pressure]].
 
-## With endurance training the haematocrit usually
+## In the first days of endurance training, the resting haematocrit
 
-- [ ] rises, as plasma volume falls and concentrates the red cells
-- [ ] rises, as red-cell mass grows faster than plasma volume
-- [x] falls, as plasma volume grows more than red-cell mass
-- [ ] falls, as red-cell mass shrinks while plasma volume is unchanged
+- [ ] rises, as fluid shifts from the plasma into the tissues
+- [ ] stays about the same, as plasma and red cells grow together
+- [x] falls, as plasma volume expands before red-cell mass changes
+- [ ] falls, as red-cell mass shrinks while plasma volume holds steady
 
-> Training raises both plasma volume and red-cell mass, the total volume of red cells, but the plasma grows sooner and usually by more, so red cells make up a smaller share of the blood. In McArdle's Figure 13.5, an untrained person's haematocrit drops from 45% to 38% after four days of aerobic training, and haemoglobin from 15 to 13 g per 100 mL, while red-cell mass stays the same or rises slightly. This is dilution, not a loss of red cells: each 100 mL carries less oxygen, but the total oxygen-carrying capacity of the larger blood volume does not fall, and it rises as red cells are added. It is at altitude, not with training, that plasma volume falls and the haematocrit rises. See Training & Detraining, slide 14 (Aerobic Training Increases Oxygen Delivery to Active Muscles) and slide 15 (Cardiovascular adaptations to endurance training), and [[Altitude – Less Oxygen, Acclimatisation, Performance and Altitude Training#4. The first weeks acclimatisation]].
+> Plasma volume starts to grow within a day of the first session and is 12 to 20% larger after three to six sessions, before red-cell mass has changed, so the red cells are diluted: in McArdle's Figure 13.5, four days of aerobic training lower an untrained person's haematocrit from 45% to 38%. No red cells are lost, so the blood's total oxygen-carrying capacity does not fall. Over months of training red-cell mass catches up: endurance athletes have about 35% more haemoglobin and blood volume than untrained people, with little difference in haemoglobin concentration. A single bout works the other way: fluid leaves the plasma for the tissues and as sweat, so the haematocrit rises for a while (haemoconcentration). See Training & Detraining, slide 14 (Aerobic Training Increases Oxygen Delivery to Active Muscles) and slide 15 (Cardiovascular adaptations to endurance training), and McArdle, chapters 13, 17 and 21.
 
 ## Which of the following shifts the oxygen dissociation curve to the right?
 
