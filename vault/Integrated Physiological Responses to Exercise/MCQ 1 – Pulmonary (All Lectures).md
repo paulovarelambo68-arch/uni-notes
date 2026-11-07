@@ -7,8 +7,8 @@ Ten multiple-choice questions drawn from all five pulmonary lectures, two per le
 
 - [ ] conducting zone
 - [ ] nasal mucosa
-- [x] transitional and respiratory zones
 - [ ] pleura
+- [x] transitional and respiratory zones
 
 > The respiratory bronchioles, alveolar ducts and alveoli exchange gas, produce surfactant, activate and inactivate molecules, regulate blood clotting and have endocrine and innate immune functions; the conducting zone only transports, warms, humidifies and filters the air. See [[The Lungs and the Breathing Pump – Alveoli, Airways, Muscles, Surfactant and the Valsalva Manoeuvre#3. The two zones of the airways]].
 
@@ -43,8 +43,8 @@ Ten multiple-choice questions drawn from all five pulmonary lectures, two per le
 
 - [ ] phrenic and intercostal nerves
 - [ ] sympathetic chain
-- [x] glossopharyngeal and vagal nerves
 - [ ] optic nerve
+- [x] glossopharyngeal and vagal nerves
 
 > The carotid and aortic bodies signal through the glossopharyngeal and vagal nerves; the resulting rise in ventilation lowers PaCO2 again. See [[Control of Breathing – Brainstem Centres, Chemoreceptors and the Three Phases of Exercise Ventilation#4. The sensors chemoreceptors]].
 
