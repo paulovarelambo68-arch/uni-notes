@@ -226,7 +226,11 @@ content/<Subject>/audio/<Note>.mp3 + a `narration` frontmatter field → narrati
   heading the note repeats gets one section, which the player attaches to the first. `source` is the first 12 hex characters
   of the SHA-1 of the vault note (`shasum -a 1`), which lets the build flag stale scripts.
   Alternate `voice` between notes. The first two scripts were written by one agent and then
-  checked by separate fidelity and listenability reviewers; do the same for new ones.
+  checked by separate fidelity and listenability reviewers; do the same for new ones. A
+  sentence that only points to another note ("covered in [[…]]") is left out; a fact in it is
+  kept. The three Introduction to Respiratory Physiology scripts (2026-11-07) were written,
+  reviewed and revised by Claude Opus 5.5 at max effort through the API: each request thought
+  for 40,000 to 100,000 tokens, so allow the 128,000-token output cap.
 - **Regeneration is cached.** `<Note>.json` stores a fingerprint of the sentences, voice id,
   model and settings; `npm run audio` skips scripts whose fingerprint matches, so editing
   frontmatter alone costs nothing. `--force` regenerates.
@@ -301,9 +305,10 @@ The five respiratory sections each end with their tests (`MCQ 1`–`3`, and `MCQ
 Respiratory System under Stress`), and `## Pulmonary Tests`, after `## Lung Immunity and
 Disease`, holds `Sample MCQ – Pulmonary Responses to Exercise` (the lecturer's five example
 questions in his wording and option order) and `MCQ 1`–`2 – Pulmonary (All Lectures)`. Since
-2026-11-07 `site.yaml` lists only these tests under the respiratory headings: the notes are
-held back until the author publishes them, so the tests' links to them show as the note's title
-in plain text.
+2026-11-07 `site.yaml` lists only these tests under the respiratory headings, apart from the
+three notes of `## Introduction to Respiratory Physiology` (published with narration the same
+day): the other notes are held back until the author publishes them, so the tests' links to
+them show as the note's title in plain text.
 Every set links each explanation to the section that covers the point (`[[Note#Heading]]`,
 which the site shows as "Note > Heading").
 `## Physiological Response to Exercise`, at the end of the index, has no notes, only Dr Burns'

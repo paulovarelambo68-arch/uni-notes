@@ -49,9 +49,13 @@ subjects:
           - Hypertension – Causes, Mechanisms, Consequences and Treatment
           - Coronary and Cutaneous Blood Flow
       - Cardiovascular Tests
-      # Respiratory sections: only their tests for now. The notes are held back until they're
-      # ready, so the tests' links to them show as plain text; add each note under its heading.
+      # Respiratory sections: Introduction to Respiratory Physiology has its notes; the others
+      # only their tests for now. Their notes are held back until they're ready, so the tests'
+      # links to them show as plain text; add each note under its heading.
       - Introduction to Respiratory Physiology:
+          - The Lungs and the Breathing Pump – Alveoli, Airways, Muscles, Surfactant and the Valsalva Manoeuvre
+          - Lung Volumes and Capacities – Spirometry, FEV1 and FVC
+          - Minute and Alveolar Ventilation – Dead Space, the Ventilation–Perfusion Ratio and Shunt
           - MCQ 1 – Introduction to Respiratory Physiology
           - MCQ 2 – Introduction to Respiratory Physiology
           - MCQ 3 – Introduction to Respiratory Physiology
