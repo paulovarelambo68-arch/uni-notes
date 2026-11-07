@@ -306,11 +306,18 @@ held back until the author publishes them, so the tests' links to them show as t
 in plain text.
 Every set links each explanation to the section that covers the point (`[[Note#Heading]]`,
 which the site shows as "Note > Heading").
+`## Physiological Response to Exercise`, at the end of the index, has no notes, only Dr Burns'
+`Sample MCQ – Training and Exercise Response` (her five practice questions and key) and
+`MCQ 1`–`10 – Training and Exercise Response (Both Lectures)`. Its two lectures have no notes
+yet, so those explanations cite the lecture slide ("See Training & Detraining, slide 15 (…)")
+instead of linking; swap in `[[Note#Heading]]` links once the notes exist.
 
 - **Options appear in the order written**; nothing shuffles them, so spread the right answers
   over the letters when writing a test. The cardiovascular `MCQ 1`–`3` arrived with the right
   answer first in 63 of 72 questions and had their option lines moved (not retyped) to about
-  six per letter; option sets with a natural order (figure letters, numbers) keep it. A figure
+  six per letter; option sets with a natural order (figure letters, numbers) keep it. Avoid
+  cycles too: the training `MCQ 2`, `3` and `9` arrived reading A B C D A B C D… and had a few
+  right answers moved to other letters, keeping each letter's count. A figure
   shared by several questions goes after a `---`, or the previous question's explanation
   swallows it (the Sample does this before question 11).
 - **Option length gives answers away too.** The pulmonary tests arrived with the right option
@@ -319,8 +326,9 @@ which the site shows as "Note > Heading").
   right option was cut to its point and the detail moved into the explanation, and in 19 a
   wrong option became the longest, built from a neighbouring fact the explanation rules out.
   The cardiovascular `MCQ 1`–`3` had it longest in 45 of 72, though rarely by much, and 19 were
-  trimmed the same way (26 of 72 now). The lecturers' Samples keep their wording. Write new
-  tests the same way.
+  trimmed the same way (26 of 72 now). The training `MCQ 1`–`10` arrived with it longest in 52
+  of 100 and went up evened out: 25 trimmed, 12 of them with a longer wrong option (28 of 100).
+  The lecturers' Samples keep their wording. Write new tests the same way.
 
 - **One plugin, two halves.** `category: ["transformer", "component"]`: the loader instantiates
   `index.js`'s default export (`PracticeTestTransformer`, `transformer.js`) and loads the

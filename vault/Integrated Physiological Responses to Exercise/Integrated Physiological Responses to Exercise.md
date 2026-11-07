@@ -114,4 +114,18 @@
 - [[MCQ 1 – Pulmonary (All Lectures)]]
 - [[MCQ 2 – Pulmonary (All Lectures)]]
 ---
+## Physiological Response to Exercise
+
+- [[Sample MCQ – Training and Exercise Response]]
+- [[MCQ 1 – Training and Exercise Response (Both Lectures)]]
+- [[MCQ 2 – Training and Exercise Response (Both Lectures)]]
+- [[MCQ 3 – Training and Exercise Response (Both Lectures)]]
+- [[MCQ 4 – Training and Exercise Response (Both Lectures)]]
+- [[MCQ 5 – Training and Exercise Response (Both Lectures)]]
+- [[MCQ 6 – Training and Exercise Response (Both Lectures)]]
+- [[MCQ 7 – Training and Exercise Response (Both Lectures)]]
+- [[MCQ 8 – Training and Exercise Response (Both Lectures)]]
+- [[MCQ 9 – Training and Exercise Response (Both Lectures)]]
+- [[MCQ 10 – Training and Exercise Response (Both Lectures)]]
+---
 
