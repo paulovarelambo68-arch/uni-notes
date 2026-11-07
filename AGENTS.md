@@ -168,7 +168,10 @@ Commands: `npm run content`, `npm run site`, `npm run serve` (port 8080).
 - **Callout heuristics** in `addCallouts()`: the note's first block being a quote → Definition;
   a quote right after a heading containing "summary" → Summary; a quote starting with a bold
   `Label:` → tip titled Label. Existing `> [!…]` callouts are left alone. Practice tests
-  (`type: test`) skip all of this: their quotes are the questions' explanations.
+  (`type: test`) skip all of this: their quotes are the questions' explanations. Instead
+  `dropTestIntro()` leaves out a test's introduction (the plain paragraphs before its first
+  heading; the author found them useless on the page), while Obsidian keeps it. An introduction
+  holding a figure, list, quote, table or code is kept whole.
 - **Base URL.** The deploy workflow rewrites `baseUrl` and the footer "Source" link from the
   repo owner and name at build time. The values committed in `quartz.config.yaml` are
   placeholders for local builds.
@@ -311,11 +314,19 @@ day): the other notes are held back until the author publishes them, so the test
 them show as the note's title in plain text.
 Every set links each explanation to the section that covers the point (`[[Note#Heading]]`,
 which the site shows as "Note > Heading").
-`## Physiological Response to Exercise`, at the end of the index, has no notes, only Dr Burns'
+`## Physiological Response to Exercise`, after `## Pulmonary Tests`, has no notes, only Dr Burns'
 `Sample MCQ – Training and Exercise Response` (her five practice questions and key) and
 `MCQ 1`–`10 – Training and Exercise Response (Both Lectures)`. Its two lectures have no notes
 yet, so those explanations cite the lecture slide ("See Training & Detraining, slide 15 (…)")
 instead of linking; swap in `[[Note#Heading]]` links once the notes exist.
+`## Final MCQ Tests`, at the end of the index, holds `Final MCQ Test 1` and `2 – All Sections`:
+mock papers in the exam's format, 40 questions each, ten per lecturer in the paper's order
+(immunology, cardiovascular, respiratory, training and exercise response) under a `#` heading
+per section, in each lecturer's style from `ET1501 sample MCQ and written questions.pdf`, with
+the two papers on different points. Claude Opus 5.5 wrote them on 2026-11-07 at max effort, one
+request per section with the notes (Dr Burns' slides for the last), and they were checked
+against the notes and evened out like the others. At max effort a request this size needs a
+task budget (`output_config.task_budget`), or it can spend all 128K output tokens thinking.
 
 - **Options appear in the order written**; nothing shuffles them, so spread the right answers
   over the letters when writing a test. The cardiovascular `MCQ 1`–`3` arrived with the right

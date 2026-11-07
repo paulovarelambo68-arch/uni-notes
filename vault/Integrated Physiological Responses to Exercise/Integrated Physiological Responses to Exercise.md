@@ -128,4 +128,9 @@
 - [[MCQ 9 – Training and Exercise Response (Both Lectures)]]
 - [[MCQ 10 – Training and Exercise Response (Both Lectures)]]
 ---
+## Final MCQ Tests
+
+- [[Final MCQ Test 1 – All Sections]]
+- [[Final MCQ Test 2 – All Sections]]
+---
 

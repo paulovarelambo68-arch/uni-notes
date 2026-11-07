@@ -78,6 +78,7 @@ subjects:
           - MCQ 3 – Lung Immunity and Disease
       - Pulmonary Tests
       - Physiological Response to Exercise
+      - Final MCQ Tests
 
 # Audio tracks (scripts/narrate.mjs, npm run audio). Narration scripts live in
 # audio/<Subject>/<Note>.md and pick a voice by the names below. Voices alternate between

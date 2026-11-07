@@ -21,7 +21,8 @@
 //     and index sections left without links are hidden; links in code are left alone
 //   - notes with an audio track in audio/ get a `narration` field for the narration player
 //   - practice tests (`type: test`, see plugins/practice-test) keep their quotes as written:
-//     they are the explanations of the questions, not callouts
+//     they are the explanations of the questions, not callouts; their introduction (plain
+//     paragraphs before the first heading) is left out
 
 import fs from "node:fs"
 import path from "node:path"
@@ -328,7 +329,7 @@ function buildSubject(subject) {
     const { frontmatter, content } = splitFrontmatter(body)
     let text = rewrite(content)
     text = normalizeHeadings(text)
-    if (!isTest(frontmatter)) text = addCallouts(text)
+    text = isTest(frontmatter) ? dropTestIntro(text) : addCallouts(text)
     text = expandHighlights(text)
     if (!text.replace(/!\[\[[^\]]*\]\]/g, "").trim() && !/!\[\[/.test(text)) {
       text = "*This note is still empty.*\n"
@@ -541,6 +542,17 @@ function normalizeHeadings(md) {
       return `${"#".repeat(level)} ${stripBold(m[2])}`
     })
     .join("\n")
+}
+
+// A practice test's introduction (the plain paragraphs before its first heading) only says what
+// the title and the quiz bar already say, so the site leaves it out; the note keeps it. An
+// introduction holding anything else (a figure, list, quote, table or code) is kept whole.
+function dropTestIntro(md) {
+  const first = md.search(/^#{1,6}\s/m)
+  if (first <= 0) return md
+  const paragraphs = md.slice(0, first).split(/\n\s*\n/)
+  const plain = paragraphs.every((p) => !/^\s*(!?\[\[|!\[|[-*+]\s|\d+[.)]\s|>|\||```|~~~|<)/m.test(p))
+  return plain ? md.slice(first) : md
 }
 
 function addCallouts(md) {
