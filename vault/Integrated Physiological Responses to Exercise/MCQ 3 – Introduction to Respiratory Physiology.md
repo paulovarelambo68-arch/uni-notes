@@ -35,25 +35,25 @@ Ten more multiple-choice questions on the first pulmonary lecture: the respirato
 - [ ] stronger elastic recoil
 - [ ] a rise in surfactant
 - [ ] a fall in thoracic blood volume
-- [x] closure of small peripheral airways and a rise in thoracic blood volume
+- [x] small-airway closure and more blood in the chest
 
 > Both changes trap air at the end of a maximal exhalation, and the effect passes. Residual volume rises permanently only with age, as elastic tissue is lost. See [[Lung Volumes and Capacities – Spirometry, FEV1 and FVC#2. The air that never leaves residual volume]].
 
 ## Forward airflow velocity falls sharply in the terminal bronchioles because
 
-- [ ] the airways narrow
-- [x] the total cross-sectional area of the airways increases greatly
 - [ ] flow becomes turbulent
+- [x] the total cross-sectional area rises greatly
+- [ ] each airway is narrower, which raises resistance and slows the air
 - [ ] the air is warmed
 
-> The same flow spread across a far larger total area moves more slowly, laminar flow is maintained, and in the distal lung the air moves by diffusion rather than convection. See [[The Lungs and the Breathing Pump – Alveoli, Airways, Muscles, Surfactant and the Valsalva Manoeuvre#4. Why air slows down deep in the lung]].
+> Each airway is narrower, but there are so many that their combined area is far larger, and the same flow spread across it moves more slowly; laminar flow is maintained, and in the distal lung the air moves by diffusion rather than convection. See [[The Lungs and the Breathing Pump – Alveoli, Airways, Muscles, Surfactant and the Valsalva Manoeuvre#4. Why air slows down deep in the lung]].
 
 ## Compared with men, women have
 
 - [ ] larger airway diameters
 - [ ] a larger diffusion surface
-- [x] a smaller lung size and airway diameter, leading to expiratory flow limitation
-- [ ] higher static lung volumes
+- [x] smaller lungs and narrower airways
+- [ ] higher static lung volumes, so they keep more ventilatory reserve
 
 > Reduced lung size, airway diameter and diffusion surface mean expiratory flow limitation, greater respiratory muscle work and use of the ventilatory reserve during maximal exercise, especially in highly trained women, which can impair alveolar-to-arterial oxygen exchange compared with male athletes. See [[Limits to Ventilation – Work of Breathing, Breathing Reserve, Exercise-Induced Hypoxaemia, Smoking and Cold#5. What training changes in the lung, and why women reach their limit sooner]].
 

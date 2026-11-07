@@ -5,12 +5,12 @@ Ten more multiple-choice questions on the control of breathing and oxygen uptake
 
 ## The pneumotaxic centre of the pons
 
-- [x] coordinates the switch from inspiration to expiration and prevents over-expansion of the lungs
+- [x] times the switch from inspiration to expiration
 - [ ] prolongs inspiration and deepens the breath
 - [ ] sets the basic rhythm of breathing at rest
 - [ ] senses arterial PCO2
 
-> It modifies the expiratory neurons of the VRG, directly promotes expiration and indirectly inhibits the apneustic centre's promotion of inspiration. Prolonging inspiration is the apneustic centre, the rhythm is the DRG and PCO2 is sensed by the chemoreceptors. See [[Control of Breathing – Brainstem Centres, Chemoreceptors and the Three Phases of Exercise Ventilation#3. The fine-tuners in the pons]].
+> It prevents over-expansion of the lungs, modifies the expiratory neurons of the VRG, directly promotes expiration and indirectly inhibits the apneustic centre's promotion of inspiration. Prolonging inspiration is the apneustic centre, the rhythm is the DRG and PCO2 is sensed by the chemoreceptors. See [[Control of Breathing – Brainstem Centres, Chemoreceptors and the Three Phases of Exercise Ventilation#3. The fine-tuners in the pons]].
 
 ## The apneustic centre
 
@@ -23,21 +23,21 @@ Ten more multiple-choice questions on the control of breathing and oxygen uptake
 
 ## The ventral respiratory group of the medulla
 
-- [ ] sets the respiratory rhythm at rest
-- [x] contains inspiratory and expiratory neurons, is active in forceful breathing and drives the abdominal and accessory muscles
 - [ ] lies in the pons
+- [x] becomes active in forceful breathing
 - [ ] responds to arterial PO2
+- [ ] sets the respiratory rhythm at rest by firing bursts to the diaphragm
 
-> The VRG is associated mainly with expiration and is recruited as breathing becomes more forceful in exercise, when exhalation becomes active and costs energy. The resting rhythm belongs to the DRG. See [[Control of Breathing – Brainstem Centres, Chemoreceptors and the Three Phases of Exercise Ventilation#2. The rhythm generators in the medulla]].
+> The VRG contains inspiratory and expiratory neurons but is associated mainly with expiration. It is recruited as breathing becomes more forceful in exercise, when exhalation becomes active and costs energy, and it drives the abdominal and accessory muscles. The resting rhythm, the bursts that drive the diaphragm, belongs to the DRG. See [[Control of Breathing – Brainstem Centres, Chemoreceptors and the Three Phases of Exercise Ventilation#2. The rhythm generators in the medulla]].
 
 ## Chemoreceptors stimulate ventilation in response to
 
 - [ ] a fall in CO2
 - [ ] a rise in PO2
-- [x] a rise in CO2, acidity and temperature and a fall in O2 and blood pressure
-- [ ] a rise in blood pressure
+- [x] a rise in CO2 and acidity and a fall in O2
+- [ ] a rise in blood pressure and a fall in body temperature
 
-> The chemical state of the blood ("humoral" factors, carried in the blood) largely regulates ventilation at rest, and during exercise the peripheral chemoreceptors also respond to rising potassium. The other options reverse the direction of the stimuli. See [[Control of Breathing – Brainstem Centres, Chemoreceptors and the Three Phases of Exercise Ventilation#4. The sensors chemoreceptors]].
+> Chemoreceptors respond to a rise in CO2, acidity and temperature and a fall in O2 and blood pressure, so the other options reverse the direction of the stimuli. The chemical state of the blood ("humoral" factors, carried in the blood) largely regulates ventilation at rest, and during exercise the peripheral chemoreceptors also respond to rising potassium. See [[Control of Breathing – Brainstem Centres, Chemoreceptors and the Three Phases of Exercise Ventilation#4. The sensors chemoreceptors]].
 
 ## The carotid bodies monitor arterial blood
 
@@ -70,10 +70,10 @@ Ten more multiple-choice questions on the control of breathing and oxygen uptake
 
 - [ ] the abrupt rise at the start of exercise
 - [ ] the gradual rise to a steady level
-- [x] the fine tuning of ventilation by peripheral sensory feedback such as temperature, CO2 and H+
+- [x] the fine tuning by peripheral feedback
 - [ ] the fall in ventilation during recovery
 
-> Phase I is the abrupt neurogenic rise, phase II the gradual rise from central command with the medullary neurons, chemoreceptors and mechanoreceptors, and phase III the fine tuning. See [[Control of Breathing – Brainstem Centres, Chemoreceptors and the Three Phases of Exercise Ventilation#7. Putting it together the three phases]].
+> Phase I is the abrupt neurogenic rise, phase II the gradual rise from central command with the medullary neurons, chemoreceptors and mechanoreceptors, and phase III the fine tuning by peripheral sensory feedback such as temperature, CO2 and H+. See [[Control of Breathing – Brainstem Centres, Chemoreceptors and the Three Phases of Exercise Ventilation#7. Putting it together the three phases]].
 
 ## With aerobic training, the point at which OBLA occurs
 
@@ -86,7 +86,7 @@ Ten more multiple-choice questions on the control of breathing and oxygen uptake
 
 ## After endurance training, ventilation at the same work rate is
 
-- [x] lower, because lower blood lactate gives less feedback to stimulate breathing
+- [x] lower, because less lactate is made
 - [ ] higher, because tidal volume is larger
 - [ ] unchanged
 - [ ] lower, because dead space is smaller

@@ -6,7 +6,7 @@ Ten more multiple-choice questions on the control of breathing and oxygen uptake
 ## "Humoral" factors in the control of ventilation are those
 
 - [ ] arising in the motor cortex
-- [x] carried in the blood, such as PCO2, acidity, PO2 and temperature
+- [x] carried in the blood
 - [ ] arising in joints and tendons
 - [ ] arising in the pons
 
@@ -87,8 +87,8 @@ Ten more multiple-choice questions on the control of breathing and oxygen uptake
 ## Measuring VO2max requires
 
 - [ ] resting spirometry
-- [ ] a single-stage six-minute walk
 - [ ] a resting blood lactate sample
-- [x] a graded exercise test to exhaustion while measuring ventilation, O2 and CO2 in the inhaled and exhaled air
+- [ ] a single-stage six-minute walk with heart rate monitoring
+- [x] a graded exercise test to exhaustion with gas analysis
 
-> The cardiopulmonary exercise test (CPX) on a treadmill or cycle ergometer raises intensity progressively, for example an incline raised every 2 minutes (0, 3, 6, 8% over 8:30 of running), so that the effort is long and hard enough to fully tax the aerobic energy system. Estimates without gas measurement are less accurate. See [[Oxygen Uptake – VO2, VO2max and the Lactate Threshold#3. The ceiling VO2max and how it is tested]].
+> The cardiopulmonary exercise test (CPX) on a treadmill or cycle ergometer raises intensity progressively, for example an incline raised every 2 minutes (0, 3, 6, 8% over 8:30 of running), so that the effort is long and hard enough to fully tax the aerobic energy system. Ventilation and the O2 and CO2 in the inhaled and exhaled air are measured throughout; estimates without gas measurement, such as a walk test with heart rate, are less accurate. See [[Oxygen Uptake – VO2, VO2max and the Lactate Threshold#3. The ceiling VO2max and how it is tested]].

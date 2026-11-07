@@ -15,7 +15,7 @@ Ten more multiple-choice questions on lung immunity and disease: the water conte
 ## Cilia are dysfunctional in
 
 - [x] cystic fibrosis and primary ciliary dyskinesia
-- [ ] asthma and COPD
+- [ ] asthma and exercise-induced bronchospasm
 - [ ] ARDS
 - [ ] pneumonia
 
@@ -23,9 +23,9 @@ Ten more multiple-choice questions on lung immunity and disease: the water conte
 
 ## α-defensins are produced by
 
-- [ ] epithelial cells
 - [ ] the liver
 - [ ] goblet cells
+- [ ] the airway epithelium, which also makes β-defensins
 - [x] neutrophils and NK cells
 
 > Defensins are very small (18–45 amino acids) membrane-disrupting peptides: α-defensins come from neutrophils and NK cells, β-defensins from leukocytes and epithelial cells, and both can be secreted or act in the phagosome. See [[The Lung's First Line of Defence – Nose, Cilia, Mucus and Antimicrobial Peptides#5. Molecules that attack microbes antimicrobial peptides, lysozyme and lactoferrin]].
@@ -43,10 +43,10 @@ Ten more multiple-choice questions on lung immunity and disease: the water conte
 
 - [ ] leucine-rich repeat
 - [ ] transmembrane helix
-- [x] TIR (toll/interleukin-1 receptor) domain
+- [x] TIR domain
 - [ ] MD2 co-receptor
 
-> A TLR has an extracellular horseshoe of 18–25 leucine-rich repeats that binds the PAMP, a transmembrane helix and a cytosolic TIR domain; on binding, the receptors usually dimerise and TIR starts the signalling cascade (MyD88, TRIF, NF-κB) that leads to phagocytosis, cytokines and co-stimulatory molecules. See [[Lung Immune Cells – Toll-like Receptors, Macrophages and Neutrophils#3. Toll-like receptors structure and signal]].
+> A TLR has an extracellular horseshoe of 18–25 leucine-rich repeats that binds the PAMP, a transmembrane helix and a cytosolic TIR (Toll/interleukin-1 receptor) domain; on binding, the receptors usually dimerise and TIR starts the signalling cascade (MyD88, TRIF, NF-κB) that leads to phagocytosis, cytokines and co-stimulatory molecules. See [[Lung Immune Cells – Toll-like Receptors, Macrophages and Neutrophils#3. Toll-like receptors structure and signal]].
 
 ## Peptidoglycan and lipopolysaccharide are examples of
 
@@ -69,11 +69,11 @@ Ten more multiple-choice questions on lung immunity and disease: the water conte
 ## M1 macrophages are
 
 - [ ] broadly anti-inflammatory
-- [x] broadly pro-inflammatory, induced by IFN-γ and LPS
+- [x] induced by IFN-γ and LPS
 - [ ] induced by IL-4 and IL-13
 - [ ] marked by CD163 and CD206
 
-> M1 cells are driven by IFN-γ, LPS, TNF-α and GM-CSF through STAT1, IRF1, IRF5 and NF-κB, secrete IFN-γ, IL-1β, IL-6, IL-8 and TNF-α, make iNOS and ROS, carry CD16, CD32, CD64, CD80/86 and HLA-DR, and phagocytose more. IL-4, IL-13, IL-10 and TGF-β induce the anti-inflammatory M2 cells, marked by CD163 and CD206. See [[Lung Immune Cells – Toll-like Receptors, Macrophages and Neutrophils#4. The macrophage two forms]].
+> M1 cells are broadly pro-inflammatory, driven by IFN-γ, LPS, TNF-α and GM-CSF through STAT1, IRF1, IRF5 and NF-κB, secrete IFN-γ, IL-1β, IL-6, IL-8 and TNF-α, make iNOS and ROS, carry CD16, CD32, CD64, CD80/86 and HLA-DR, and phagocytose more. IL-4, IL-13, IL-10 and TGF-β induce the anti-inflammatory M2 cells, marked by CD163 and CD206. See [[Lung Immune Cells – Toll-like Receptors, Macrophages and Neutrophils#4. The macrophage two forms]].
 
 ## The neutrophil oxidative burst is mediated by
 

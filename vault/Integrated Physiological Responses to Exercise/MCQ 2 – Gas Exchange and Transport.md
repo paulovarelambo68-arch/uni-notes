@@ -23,7 +23,7 @@ Ten more multiple-choice questions on gas exchange and transport: the oxygen con
 
 ## The normal arterial PO2 is
 
-- [x] 75–100 mmHg (10.5–13.5 kPa)
+- [x] 75–100 mmHg
 - [ ] 40–46 mmHg
 - [ ] 149–159 mmHg
 - [ ] 600–760 mmHg

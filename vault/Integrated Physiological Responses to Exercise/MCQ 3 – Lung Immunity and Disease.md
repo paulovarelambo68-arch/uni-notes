@@ -34,37 +34,37 @@ Ten more multiple-choice questions on lung immunity and disease: the timescale o
 
 - [ ] JAK–STAT only
 - [ ] SMAD2
-- [x] the MyD88 and TRIF pathways
+- [x] MyD88 and TRIF
 - [ ] Rab5 and Rab7
 
 > Both pathways lead to NF-κB and the production of cytokines and co-stimulatory molecules. Rab5 and Rab7 belong to the maturation of the phagosome (early phagosome pH 6.1, late 5.5, phagolysosome 4.5). See [[Lung Immune Cells – Toll-like Receptors, Macrophages and Neutrophils#3. Toll-like receptors structure and signal]].
 
 ## In asthma the predominant macrophage phenotype is
 
-- [ ] M1
-- [x] M2, leading to airway remodelling and fibrosis
+- [ ] M1, which drives the airway inflammation
+- [x] M2
 - [ ] neither
 - [ ] M1 and M2 equally
 
-> Asthmatic macrophages phagocytose less (raising infection risk), clear dying cells less (efferocytosis, so infiltrates persist), already sit in an inflammatory state (high TNF-α, IL-1β, IL-6, IL-8, so they cannot respond to LPS) and make IL-10 mRNA but little IL-10 protein, so inflammation is not resolved. See [[Lung Disease and Exercise – ARDS, Asthma and COVID#2. When the airways narrow asthma]].
+> M2, the repair type, predominates, and its repair work remodels and scars the airway wall (fibrosis). Asthmatic macrophages also phagocytose less (raising infection risk), clear dying cells less (efferocytosis, so infiltrates persist), already sit in an inflammatory state (high TNF-α, IL-1β, IL-6, IL-8, so they cannot respond to LPS) and make IL-10 mRNA but little IL-10 protein, so inflammation is not resolved. See [[Lung Disease and Exercise – ARDS, Asthma and COVID#2. When the airways narrow asthma]].
 
 ## Once fully activated at a site of injury, neutrophils
 
 - [ ] live for months
 - [ ] become macrophages
 - [ ] return to the bone marrow
-- [x] release granule proteins, phagocytose, form NETs and then quickly undergo apoptosis
+- [x] quickly undergo apoptosis
 
-> They move up the chemotactic gradient through G-protein-coupled receptors that reorganise actin, act, and die quickly to limit the tissue injury their products would cause; the debris is cleared by macrophages in the liver, bone marrow stroma and spleen. See [[Lung Immune Cells – Toll-like Receptors, Macrophages and Neutrophils#5. The neutrophil]].
+> They move up the chemotactic gradient through G-protein-coupled receptors that reorganise actin, release granule proteins, phagocytose and form NETs, and then die quickly to limit the tissue injury their products would cause; the debris is cleared by macrophages in the liver, bone marrow stroma and spleen. See [[Lung Immune Cells – Toll-like Receptors, Macrophages and Neutrophils#5. The neutrophil]].
 
 ## Neutropenia in late-phase pneumonia raises the risk of
 
-- [x] a secondary infection about one week after presentation
+- [x] a secondary infection
 - [ ] asthma
 - [ ] ARDS on the first day
 - [ ] anaemia
 
-> The neutrophils are used up faster than the bone marrow replaces them, so patients are given prophylactic antibiotics and drugs that stimulate neutrophil progenitors; the same neutropenia is seen in acute radiation sickness. See [[Lung Immune Cells – Toll-like Receptors, Macrophages and Neutrophils#7. When neutrophils run out]].
+> The neutrophils are used up faster than the bone marrow replaces them, leaving the lung open to a secondary infection about one week after presentation, so patients are given prophylactic antibiotics and drugs that stimulate neutrophil progenitors; the same neutropenia is seen in acute radiation sickness. See [[Lung Immune Cells – Toll-like Receptors, Macrophages and Neutrophils#7. When neutrophils run out]].
 
 ## The Gram-positive bacteria, with teichoic acid and a thick peptidoglycan wall, include
 
@@ -77,8 +77,8 @@ Ten more multiple-choice questions on lung immunity and disease: the timescale o
 
 ## Salbutamol (Ventolin) is
 
-- [ ] a steroid preventer
-- [x] a short-acting β2-adrenergic agonist reliever
+- [ ] an inhaled corticosteroid preventer taken daily
+- [x] a short-acting β2-agonist reliever
 - [ ] an antibiotic
 - [ ] an antihistamine
 
@@ -87,8 +87,8 @@ Ten more multiple-choice questions on lung immunity and disease: the timescale o
 ## Three months after severe COVID-19, the Basel study of 58 patients found that
 
 - [ ] all had a normal VO2max
-- [ ] all had a pulmonary limitation
+- [ ] most were limited by lung damage rather than by deconditioning
 - [ ] none had recovered any exercise capacity
-- [x] about half had reduced exercise capacity, but only a minority had a pulmonary limitation
+- [x] about half had a reduced VO2max
 
-> 46% had a normal VO2max (82% of predicted or more) and 54% an impaired one, mostly mild, at a time when most radiological abnormalities had vanished. The Hungarian study of 165 elite athletes found good fitness regained within three months and no long-term restriction, and the Cypriot footballer study warned of silent symptoms. See [[Lung Disease and Exercise – ARDS, Asthma and COVID#3. After COVID what three studies found]].
+> 46% had a normal VO2max (82% of predicted or more) and 54% an impaired one, mostly mild, at a time when most radiological abnormalities had vanished; only a minority were limited by their lungs, most by deconditioning or the heart and circulation. The Hungarian study of 165 elite athletes found good fitness regained within three months and no long-term restriction, and the Cypriot footballer study warned of silent symptoms. See [[Lung Disease and Exercise – ARDS, Asthma and COVID#3. After COVID what three studies found]].

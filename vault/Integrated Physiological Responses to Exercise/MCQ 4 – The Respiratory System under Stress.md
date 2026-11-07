@@ -5,9 +5,9 @@ Ten multiple-choice questions on the altitude lecture: the oxygen fraction at al
 
 ## At altitude, the percentage of oxygen in the air
 
-- [ ] falls to about 15%
 - [ ] falls to about 10%
-- [x] stays at about 21%, but there is less O2 in a given volume of air
+- [ ] falls in proportion to the barometric pressure, so each breath holds less O2
+- [x] stays at about 21%
 - [ ] rises slightly
 
 > The fraction is unchanged; it is the barometric pressure that falls, so the same 21% gives a lower PO2 and fewer O2 molecules per breath. At 3,000 m the pressure is 526 mmHg and the PO2 110 mmHg, against 760 and 159 mmHg at sea level. See [[Altitude – Less Oxygen, Acclimatisation, Performance and Altitude Training#1. Less oxygen in every breath]].
@@ -33,11 +33,11 @@ Ten multiple-choice questions on the altitude lecture: the oxygen fraction at al
 ## In most people, decreases in VO2max begin above an altitude of
 
 - [ ] 580 m
-- [x] 1,524 m (5,000 ft)
+- [x] 1,524 m
 - [ ] 3,000 m
 - [ ] 5,500 m
 
-> Moderate altitude begins at 1,524 m, higher than any Irish mountain (Carrauntoohil is 1,038 m), but elite athletes may lose VO2max from as low as 580 m. See [[Altitude – Less Oxygen, Acclimatisation, Performance and Altitude Training#1. Less oxygen in every breath]].
+> Moderate altitude begins at 1,524 m (5,000 ft), higher than any Irish mountain (Carrauntoohil is 1,038 m), but elite athletes may lose VO2max from as low as 580 m. See [[Altitude – Less Oxygen, Acclimatisation, Performance and Altitude Training#1. Less oxygen in every breath]].
 
 ## Altitude has no adverse effect on events lasting
 
@@ -60,9 +60,9 @@ Ten multiple-choice questions on the altitude lecture: the oxygen fraction at al
 ## Longer-term haematological acclimatisation to altitude includes
 
 - [ ] an increase in plasma volume
-- [ ] a fall in haematocrit
+- [ ] a fall in haematocrit as plasma volume expands
 - [ ] fewer red blood cells
-- [x] a fall in plasma volume with a rise in haematocrit, haemoglobin and red cell number
+- [x] a rise in haematocrit and haemoglobin
 
 > Plasma volume shrinks and red cells multiply, so haematocrit and haemoglobin concentration rise; locally the muscle may gain capillaries, 2,3-DPG, mitochondria and aerobic enzymes, while body weight and lean mass are lost. The first two options are the opposite of what happens. See [[Altitude – Less Oxygen, Acclimatisation, Performance and Altitude Training#4. The first weeks acclimatisation]].
 

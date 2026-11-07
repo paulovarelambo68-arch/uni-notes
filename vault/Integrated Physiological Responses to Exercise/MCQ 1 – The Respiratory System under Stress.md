@@ -78,7 +78,7 @@ Ten multiple-choice questions on the third and fourth pulmonary lectures: airway
 ## Cold lowers aerobic endurance partly because
 
 - [ ] resting VO2 falls
-- [x] HRmax, Qmax and VO2max fall and the dissociation curve shifts left
+- [x] maximal heart rate and VO2max fall
 - [ ] ventilation falls
 - [ ] airway resistance halves
 

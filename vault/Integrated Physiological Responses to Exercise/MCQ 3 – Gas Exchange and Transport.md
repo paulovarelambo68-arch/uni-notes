@@ -61,10 +61,10 @@ Ten more multiple-choice questions on gas exchange and transport: the structure 
 
 - [ ] rises to about 60%
 - [ ] stays exactly the same
-- [x] falls, for example from 45% to 38%, because plasma volume expands
+- [x] falls, because plasma volume expands
 - [ ] falls because red cells are destroyed
 
-> Training expands the plasma (from 55% to 63% of whole blood in the example), so the same red cells are diluted: haemoglobin per 100 mL falls from 15 to 13 g and the O2 carried from 19.7 to 17.0 mL per 100 mL, without any loss of red cells. A haematocrit of 60% is the blood-doping range. See [[Oxygen in the Blood – Dissolved Oxygen, Haemoglobin and the Dissociation Curve#2. Haemoglobin – Carrying Capacity, Structure and the Route of Oxygen]].
+> Training expands the plasma (from 55% to 63% of whole blood in the example), so the same red cells are diluted and the haematocrit falls from 45% to 38%: haemoglobin per 100 mL falls from 15 to 13 g and the O2 carried from 19.7 to 17.0 mL per 100 mL, without any loss of red cells. A haematocrit of 60% is the blood-doping range. See [[Oxygen in the Blood – Dissolved Oxygen, Haemoglobin and the Dissociation Curve#2. Haemoglobin – Carrying Capacity, Structure and the Route of Oxygen]].
 
 ## Which of the following shifts the oxygen dissociation curve to the right?
 
@@ -79,7 +79,7 @@ Ten more multiple-choice questions on gas exchange and transport: the structure 
 
 - [x] high altitude, anaemia and pregnancy
 - [ ] rest at sea level
-- [ ] hyperoxia
+- [ ] hyperoxia, when oxyhaemoglobin is plentiful
 - [ ] fast-twitch muscle
 
 > The enzyme that produces 2,3-DPG is inhibited by oxyhaemoglobin, so whenever oxyhaemoglobin falls, at altitude or in anaemia, 2,3-DPG rises and unloading improves; in pregnancy the rise helps O2 and CO2 cross the placenta. See [[Unloading Oxygen and Carrying Carbon Dioxide – Bohr Effect, 2,3-DPG, Myoglobin and Bicarbonate#2. The red cell's own release signal 2,3-DPG]].

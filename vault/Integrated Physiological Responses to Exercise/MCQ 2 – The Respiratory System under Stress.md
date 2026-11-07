@@ -7,10 +7,10 @@ Ten more multiple-choice questions on the respiratory system under stress: what 
 
 - [ ] haemoglobin concentration
 - [ ] cardiac output
-- [x] the compliance of the lungs and thorax and the resistance of the airways
+- [x] lung compliance and airway resistance
 - [ ] the anatomic dead space alone
 
-> Compliance is reduced by smoking-related COPD, ARDS and fibrosis, and airway resistance is raised by asthma and COPD, so in respiratory disease the work of breathing becomes excessive and alveolar ventilation often becomes inadequate in exercise. See [[Limits to Ventilation – Work of Breathing, Breathing Reserve, Exercise-Induced Hypoxaemia, Smoking and Cold#1. What breathing costs – compliance, airway resistance and the oxygen cost of breathing]].
+> The compliance of the lungs and thorax is reduced by smoking-related COPD, ARDS and fibrosis, and airway resistance is raised by asthma and COPD, so in respiratory disease the work of breathing becomes excessive and alveolar ventilation often becomes inadequate in exercise. See [[Limits to Ventilation – Work of Breathing, Breathing Reserve, Exercise-Induced Hypoxaemia, Smoking and Cold#1. What breathing costs – compliance, airway resistance and the oxygen cost of breathing]].
 
 ## In pulmonary disease, the energy requirement of breathing during exercise can reach
 
@@ -24,11 +24,11 @@ Ten more multiple-choice questions on the respiratory system under stress: what 
 ## Exercise-induced arterial hypoxaemia is
 
 - [ ] the normal rise in PaO2 with hyperventilation
-- [ ] a fall in alveolar PO2 at maximal exercise
+- [ ] a fall in alveolar PO2 at maximal exercise as breathing fails to keep up
 - [ ] the fall in ventilation after training
-- [x] an impaired ventilation–perfusion ratio in intense exercise that lowers arterial saturation
+- [x] a fall in arterial O2 saturation in intense exercise
 
-> In endurance athletes the pulmonary system lags behind their exceptional cardiovascular and muscular adaptations, so during maximal exercise the A-a gradient widens and PaO2 falls. The possible causes are V-P inequality within the lungs, shunting between venous and arterial circulations and failure to reach end-capillary equilibrium. See [[Limits to Ventilation – Work of Breathing, Breathing Reserve, Exercise-Induced Hypoxaemia, Smoking and Cold#4. The exception – exercise-induced arterial hypoxaemia]].
+> In endurance athletes the pulmonary system lags behind their exceptional cardiovascular and muscular adaptations, so during maximal exercise the A-a gradient widens: alveolar PO2 rises with hyperventilation while PaO2 falls. The possible causes are V-P inequality within the lungs, shunting between venous and arterial circulations and failure to reach end-capillary equilibrium. See [[Limits to Ventilation – Work of Breathing, Breathing Reserve, Exercise-Induced Hypoxaemia, Smoking and Cold#4. The exception – exercise-induced arterial hypoxaemia]].
 
 ## As a buffer, haemoglobin is more potent than the other plasma proteins by a factor of about
 
@@ -62,9 +62,9 @@ Ten more multiple-choice questions on the respiratory system under stress: what 
 - [ ] 1% per 1,000 m
 - [ ] 10% per 300 m
 - [ ] 3% per 1,000 m
-- [x] 3% per 300 m (1,000 ft)
+- [x] 3% per 300 m
 
-> The decline begins above about 1,524 m in most people, and above 6,000 m there is progressive deterioration leading to death. The O2 cost of a given task is the same at altitude, so it is performed at a higher percentage of the reduced VO2max and feels harder. See [[Altitude – Less Oxygen, Acclimatisation, Performance and Altitude Training#6. Exercising up there]].
+> 300 m is about 1,000 ft. The decline begins above about 1,524 m in most people, and above 6,000 m there is progressive deterioration leading to death. The O2 cost of a given task is the same at altitude, so it is performed at a higher percentage of the reduced VO2max and feels harder. See [[Altitude – Less Oxygen, Acclimatisation, Performance and Altitude Training#6. Exercising up there]].
 
 ## Marco Pantani's haematocrit at the height of EPO abuse was
 
@@ -86,9 +86,9 @@ Ten more multiple-choice questions on the respiratory system under stress: what 
 
 ## A prolonged Valsalva manoeuvre lowers blood pressure because
 
-- [x] the raised intrathoracic pressure collapses the thoracic veins and cuts venous return
+- [x] venous return to the heart falls
 - [ ] the glottis opens and air escapes
 - [ ] the diaphragm relaxes
 - [ ] the heart rate falls
 
-> Less venous return means a smaller stroke volume, a lower blood pressure and less blood to the brain, hence dizziness, spots before the eyes and fainting (syncope). The manoeuvre is thought to improve leverage during lifting, but it should not be held. See [[The Lungs and the Breathing Pump – Alveoli, Airways, Muscles, Surfactant and the Valsalva Manoeuvre#8. Straining against a closed throat the Valsalva manoeuvre]].
+> The raised intrathoracic pressure collapses the thoracic veins, and less venous return means a smaller stroke volume, a lower blood pressure and less blood to the brain, hence dizziness, spots before the eyes and fainting (syncope). The manoeuvre is thought to improve leverage during lifting, but it should not be held. See [[The Lungs and the Breathing Pump – Alveoli, Airways, Muscles, Surfactant and the Valsalva Manoeuvre#8. Straining against a closed throat the Valsalva manoeuvre]].

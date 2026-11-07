@@ -50,21 +50,21 @@ Ten multiple-choice questions on the control of breathing and oxygen uptake: the
 
 ## The abrupt rise in breathing at the very start of exercise (phase I) is caused by
 
-- [ ] a rise in arterial PCO2
+- [ ] a rise in arterial PCO2 sensed by the central chemoreceptors
 - [ ] a fall in arterial PO2
-- [x] neurogenic stimuli from the cerebral cortex and the active limbs
+- [x] neural signals from the cortex and the limbs
 - [ ] a rise in body temperature
 
-> Phase I is neurogenic. Phase II is the gradual rise to a steady level from central command plus the medullary neurons, chemoreceptors and mechanoreceptors, and phase III is the fine tuning by peripheral sensory feedback (temperature, CO2 and H+). No single factor controls breathing in exercise. See [[Control of Breathing – Brainstem Centres, Chemoreceptors and the Three Phases of Exercise Ventilation#7. Putting it together the three phases]].
+> Phase I is neurogenic, too quick for any chemical signal to reach the chemoreceptors. Phase II is the gradual rise to a steady level from central command plus the medullary neurons, chemoreceptors and mechanoreceptors, and phase III is the fine tuning by peripheral sensory feedback (temperature, CO2 and H+). No single factor controls breathing in exercise. See [[Control of Breathing – Brainstem Centres, Chemoreceptors and the Three Phases of Exercise Ventilation#7. Putting it together the three phases]].
 
 ## The ventilatory threshold is the point at which
 
-- [x] pulmonary ventilation increases disproportionately with oxygen uptake
+- [x] ventilation starts to outpace oxygen uptake
 - [ ] oxygen uptake stops rising
-- [ ] breathing rate begins to rise
+- [ ] breathing rate first rises above its resting 12–15 breaths per minute
 - [ ] arterial PO2 falls
 
-> Up to that point ventilation rises in line with VO2; beyond it, the extra CO2 released by the buffering of the lactate that is beginning to accumulate from anaerobic metabolism drives ventilation up faster than VO2. See [[Control of Breathing – Brainstem Centres, Chemoreceptors and the Three Phases of Exercise Ventilation#8. Ventilation against work the ventilatory threshold]].
+> Up to that point ventilation rises in line with VO2; beyond it, the extra CO2 released by the buffering of the lactate that is beginning to accumulate from anaerobic metabolism drives ventilation up faster than VO2. Breathing rate starts to rise as soon as exercise begins, well below the threshold. See [[Control of Breathing – Brainstem Centres, Chemoreceptors and the Three Phases of Exercise Ventilation#8. Ventilation against work the ventilatory threshold]].
 
 ## VO2max is expressed, to allow comparison between endurance athletes, in
 
@@ -87,8 +87,8 @@ Ten multiple-choice questions on the control of breathing and oxygen uptake: the
 ## VO2max is reached when
 
 - [ ] heart rate stops rising
-- [ ] blood lactate first rises
-- [x] oxygen consumption stays at a steady state despite a further increase in workload
 - [ ] ventilation stops rising
+- [x] oxygen uptake plateaus despite a rising workload
+- [ ] blood lactate first rises above resting levels as the workload increases
 
-> The plateau of VO2 against workload defines VO2max. It measures aerobic endurance potential but is not necessarily a predictor of performance; the lactate threshold shows how much of that potential is being used. See [[Oxygen Uptake – VO2, VO2max and the Lactate Threshold#3. The ceiling VO2max and how it is tested]].
+> The plateau of VO2 against workload defines VO2max. It measures aerobic endurance potential but is not necessarily a predictor of performance; the lactate threshold, where blood lactate first rises, comes well before it and shows how much of that potential is being used. See [[Oxygen Uptake – VO2, VO2max and the Lactate Threshold#3. The ceiling VO2max and how it is tested]].

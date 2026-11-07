@@ -6,7 +6,7 @@ Ten more multiple-choice questions on the respiratory system under stress: the c
 ## For an elite endurance athlete ventilating 150 L/min or more, the oxygen cost of breathing
 
 - [ ] is 3–5% of VO2
-- [x] equals or exceeds 15% of VO2
+- [x] is 15% of VO2 or more
 - [ ] is 40% of VO2
 - [ ] is negligible
 
@@ -16,7 +16,7 @@ Ten more multiple-choice questions on the respiratory system under stress: the c
 
 - [ ] raises alveolar PCO2 and PO2
 - [ ] lowers alveolar PCO2 and PO2
-- [ ] raises alveolar PCO2
+- [ ] raises alveolar PCO2, as more CO2 is produced in strenuous effort
 - [x] lowers alveolar PCO2 and slightly raises alveolar PO2
 
 > Healthy people hyperventilate at the higher levels of VO2, washing CO2 out of the alveoli and pushing alveolar PO2 a little above 100 mmHg; a breathing reserve still exists because VE at VO2max is only 60–85% of MVV. See [[Limits to Ventilation – Work of Breathing, Breathing Reserve, Exercise-Induced Hypoxaemia, Smoking and Cold#3. The breathing reserve – why ventilation does not limit healthy people]].
@@ -70,10 +70,10 @@ Ten more multiple-choice questions on the respiratory system under stress: the c
 
 - [ ] 500–1,000 m
 - [ ] 5,000–6,000 m
-- [x] 2,200–3,500 m and train below 1,200 m
+- [x] 2,200–3,500 m
 - [ ] 8,000 m
 
-> That altitude stimulates erythropoiesis without causing AMS, while driving down to train keeps the high-intensity stimulus; alternatively the athlete sleeps in a hypoxic tent (about 14% O2, PiO2 106 mmHg). In the 1997 study VO2max, running endurance and 3,000 m performance improved, but only in the "responders" whose EPO rose. See [[Altitude – Less Oxygen, Acclimatisation, Performance and Altitude Training#7. Altitude training]].
+> That altitude stimulates erythropoiesis without causing AMS, while driving down to train below 1,200 m keeps the high-intensity stimulus; alternatively the athlete sleeps in a hypoxic tent (about 14% O2, PiO2 106 mmHg). In the 1997 study VO2max, running endurance and 3,000 m performance improved, but only in the "responders" whose EPO rose. See [[Altitude – Less Oxygen, Acclimatisation, Performance and Altitude Training#7. Altitude training]].
 
 ## Cigarette smoking blunts
 
