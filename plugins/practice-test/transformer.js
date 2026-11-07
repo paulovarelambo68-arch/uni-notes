@@ -45,6 +45,18 @@ export function isTest(frontmatter) {
   )
 }
 
+// `mode: exam` beside `type: test` makes the test a mock exam: nothing is marked while the reader
+// answers; Finish marks every question and shows the score as an honours band, with the
+// explanations of the wrong answers only.
+export function isExam(frontmatter) {
+  return (
+    isTest(frontmatter) &&
+    String(frontmatter?.mode ?? "")
+      .trim()
+      .toLowerCase() === "exam"
+  )
+}
+
 // What a button can't hold: blocks are left out of an option (with a warning), links are
 // unwrapped to their text and checkboxes of nested task lists dropped.
 const BLOCK =
@@ -124,7 +136,7 @@ function questionId(heading, options, used) {
 
 // The generated markup uses divs, not p or li: custom.scss styles `article p` and `article li`,
 // and being unlayered it beats this plugin's CSS whatever the specificity.
-function question(heading, before, options, after, number, id) {
+function question(heading, before, options, after, number, id, exam) {
   const answer = options.flatMap((o, i) => (o.correct ? [i] : []))
   const multi = answer.length > 1
   // Options that are only a letter (points on a figure) are labelled by that letter, so the
@@ -137,7 +149,7 @@ function question(heading, before, options, after, number, id) {
   return h(
     "section",
     {
-      className: ["pt-question"],
+      className: exam ? ["pt-question", "pt-exam"] : ["pt-question"],
       dataPtId: id,
       dataPtAnswer: answer.join(" "),
     },
@@ -164,7 +176,8 @@ function question(heading, before, options, after, number, id) {
           ]),
         ),
       ),
-      multi
+      // In an exam the picks of every question are checked together, by Finish.
+      multi && !exam
         ? h("button", { type: "button", className: ["pt-btn", "pt-check"], disabled: true }, [
             text("Check answer"),
           ])
@@ -182,17 +195,43 @@ function question(heading, before, options, after, number, id) {
   )
 }
 
-const actions = () =>
+const actions = (exam) =>
   h("div", { className: ["pt-actions"] }, [
+    exam
+      ? h("button", { type: "button", className: ["pt-btn", "pt-finish"] }, [text("Finish")])
+      : null,
     h("button", { type: "button", className: ["pt-btn", "pt-next"], hidden: true }, [
       text("Next unanswered"),
     ]),
-    h("button", { type: "button", className: ["pt-btn", "pt-retry"], hidden: true }, [
-      text("Retry wrong answers"),
-    ]),
+    exam
+      ? null
+      : h("button", { type: "button", className: ["pt-btn", "pt-retry"], hidden: true }, [
+          text("Retry wrong answers"),
+        ]),
     h("button", { type: "button", className: ["pt-btn", "pt-reset"], hidden: true }, [
-      text("Start again"),
+      text(exam ? "Retake" : "Start again"),
     ]),
+  ])
+
+// The end of an exam: Finish, then the score as an honours band (filled in by the script) and
+// the wrong answers with their explanations.
+const examResults = () =>
+  h("section", { className: ["pt-results", "pt-exam-results"] }, [
+    h("div", { className: ["pt-exam-note"] }, [
+      text("Answered everything? Press Finish to see your result."),
+    ]),
+    h("div", { className: ["pt-grade"], hidden: true }, [
+      h("div", { className: ["pt-percent"] }),
+      h("div", { className: ["pt-band"] }),
+      h("div", { className: ["pt-score"] }),
+      h("div", { className: ["pt-message"] }),
+    ]),
+    h("div", { className: ["pt-review"], hidden: true }, [
+      h("div", { className: ["pt-review-title"] }),
+      h("div", { className: ["pt-review-list"] }),
+    ]),
+    actions(true),
+    h("div", { className: ["pt-status"], role: "status" }),
   ])
 
 // GFM collects footnotes into a section at the end of the note. Kept out of the questions, or
@@ -203,7 +242,7 @@ const isFootnotes = (node) =>
 
 // Turns the note's top-level blocks into question cards, with a score bar above them and the
 // result below. Returns the number of questions.
-function buildTest(tree, warn) {
+function buildTest(tree, warn, exam) {
   const nodes = tree.children.filter((node) => !isFootnotes(node))
   const footnotes = tree.children.filter(isFootnotes)
   const out = []
@@ -241,27 +280,39 @@ function buildTest(tree, warn) {
     })
     count++
     const id = questionId(node, options, used)
-    out.push(question(node, section.slice(0, at), options, section.slice(at + 1), count, id))
+    out.push(
+      question(node, section.slice(0, at), options, section.slice(at + 1), count, id, exam),
+    )
   }
   if (count === 0) return 0
 
   const noun = count === 1 ? "question" : "questions"
-  const bar = h("div", { className: ["pt-bar"], dataPtTotal: String(count) }, [
-    h("div", { className: ["pt-progress"], ariaHidden: "true" }, [
-      h("span", { className: ["pt-progress-right"] }),
-      h("span", { className: ["pt-progress-wrong"] }),
-    ]),
-    h("div", { className: ["pt-tally"] }, [
-      text(`${count} ${noun}. Choose an answer to see whether it's right.`),
-    ]),
-    actions(),
-  ])
+  const bar = h(
+    "div",
+    { className: ["pt-bar"], dataPtTotal: String(count), ...(exam ? { dataPtMode: "exam" } : {}) },
+    [
+      h("div", { className: ["pt-progress"], ariaHidden: "true" }, [
+        h("span", { className: ["pt-progress-right"] }),
+        h("span", { className: ["pt-progress-wrong"] }),
+      ]),
+      h("div", { className: ["pt-tally"] }, [
+        text(
+          exam
+            ? `${count} ${noun}. Answer them all, then press Finish to see your result.`
+            : `${count} ${noun}. Choose an answer to see whether it's right.`,
+        ),
+      ]),
+      actions(exam),
+    ],
+  )
   // Not a live region: it changes on load too. The final score is announced with the verdict
-  // of the last question answered.
-  const results = h("section", { className: ["pt-results"], hidden: true }, [
-    h("div", { className: ["pt-score"] }),
-    actions(),
-  ])
+  // of the last question answered (in an exam, by the results' own status line).
+  const results = exam
+    ? examResults()
+    : h("section", { className: ["pt-results"], hidden: true }, [
+        h("div", { className: ["pt-score"] }),
+        actions(false),
+      ])
   // The bar goes under the note's introduction, right above the first heading.
   const first = out.findIndex((n) => isHeading(n) || classes(n).includes("pt-question"))
   out.splice(Math.max(first, 0), 0, bar)
@@ -277,7 +328,8 @@ export const PracticeTestTransformer = () => ({
         if (!isTest(file.data.frontmatter)) return
         const where = file.data.slug ?? file.path ?? "a test note"
         const warn = (message) => console.warn(`Practice test ${where}: ${message}`)
-        if (buildTest(tree, warn) === 0) warn("has `type: test` but no questions")
+        const exam = isExam(file.data.frontmatter)
+        if (buildTest(tree, warn, exam) === 0) warn("has `type: test` but no questions")
       },
     ]
   },

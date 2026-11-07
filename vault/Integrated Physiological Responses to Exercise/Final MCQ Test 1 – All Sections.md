@@ -1,5 +1,6 @@
 ---
 type: test
+mode: exam
 ---
 
 # Immunology (Dr Louise Horrigan)

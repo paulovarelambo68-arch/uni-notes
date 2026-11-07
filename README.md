@@ -260,7 +260,7 @@ ones you got wrong or start again. Write it as an ordinary note:
 type: test
 ---
 
-An optional introduction.
+An optional introduction (Obsidian only: the site leaves it out).
 
 ## Which antibody subtype is mainly found in saliva?
 
@@ -279,6 +279,12 @@ An optional introduction.
 - Options that are just a letter (points on a figure) keep that letter on their button, so
   "the answer is D" means point D.
 - Headings without a checklist (say `## Part A`) just group the questions.
+- Add `mode: exam` under `type: test` for a mock exam, as in the Final MCQ Tests. Nothing is
+  marked while you answer, and you can change your picks. **Finish** then marks every question
+  and shows your percentage, big and coloured by Irish honours class (green for a First at 70%
+  or more, then 2.1 from 60, 2.2 from 50, Third from 45, Pass from 40, red below), with a line
+  of encouragement and only the questions you got wrong, each with its explanation. **Retake**
+  clears it.
 - List the test in the subject's index like any other note, for example under
   `## Immunology Tests`. In Obsidian it reads as a checklist with the answers ticked.
 

@@ -327,6 +327,7 @@ the two papers on different points. Claude Opus 5.5 wrote them on 2026-11-07 at 
 request per section with the notes (Dr Burns' slides for the last), and they were checked
 against the notes and evened out like the others. At max effort a request this size needs a
 task budget (`output_config.task_budget`), or it can spend all 128K output tokens thinking.
+Both have `mode: exam`, so they run as exams (below), not as practice.
 
 - **Options appear in the order written**; nothing shuffles them, so spread the right answers
   over the letters when writing a test. The cardiovascular `MCQ 1`–`3` arrived with the right
@@ -382,6 +383,19 @@ task budget (`output_config.task_budget`), or it can spend all 128K output token
   `.pt-score` is deliberately not live, since it also changes on load. Right and wrong use the
   success and failure callout colours, with darker fills behind the white letters for contrast.
   Popovers and search previews show the questions inert, without bar, results or Check button.
+- **Exam mode** (`mode: exam` beside `type: test`; `isExam()`): the author wanted the final
+  tests to feel like the exam, with only the result and the explanations of the errors at the
+  end. The transformer marks the bar `data-pt-mode="exam"` and the questions `.pt-exam`, drops
+  the Check button, and ends the page with `.pt-exam-results` (Finish, `.pt-grade`,
+  `.pt-review`, Retake, a `role=status` line). `setupExam()` keeps picks in
+  `localStorage["practice-exam:<pathname>"]` as `{ answers, finished }`, apart from practice
+  answers. Before Finish a pick is only `.pt-picked` (changeable, a second click clears it) and
+  the bar counts answers; Finish (confirming if some are blank, which count as wrong) marks every
+  question right/wrong in place, explanations stay hidden there, and the results show the
+  percentage in its University of Galway honours band (`BANDS`: First ≥ 70, 2.1 ≥ 60,
+  2.2 ≥ 50, Third ≥ 45, Pass ≥ 40, Fail; colours set per band for light and dark themes), a
+  message picked by score from the band's list, and only the wrong or blank questions with
+  their explanation cloned from the hidden callout (links kept; cloned links get no popover).
 - **Not built:** numeric questions (`answer:`/`tolerance:` lines were the original sketch).
 
 ## Checking a change

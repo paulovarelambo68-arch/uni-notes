@@ -280,6 +280,205 @@
   border: 0;
 }
 
+/* Exam mode (`mode: exam`): until Finish, a pick is only marked as chosen and the bar counts
+   answers, not right ones. */
+.pt-exam:not(.pt-done) .pt-option.pt-picked {
+  border-color: var(--secondary);
+  background: color-mix(in srgb, var(--secondary) 10%, transparent);
+  color: var(--dark);
+}
+
+.pt-bar[data-pt-mode="exam"]:not(.pt-finished) .pt-progress-right {
+  background: var(--secondary);
+}
+
+.pt-finish {
+  border-color: var(--secondary);
+  background: var(--secondary);
+  color: var(--light);
+}
+
+.pt-finish:hover:not(:disabled),
+.pt-finish:focus-visible {
+  background: var(--secondary);
+  color: var(--light);
+  filter: brightness(1.12);
+}
+
+.pt-exam-results {
+  margin-top: 3rem;
+}
+
+.pt-exam-note {
+  flex: 1 1 14rem;
+  font-size: 0.9rem;
+  color: var(--darkgray);
+}
+
+.pt-exam-note[hidden],
+.pt-grade[hidden],
+.pt-review[hidden] {
+  display: none;
+}
+
+/* The result: the percentage, big, in the colour of its Irish honours band. Darker shades on
+   the light theme and lighter ones on the dark theme keep the band name readable. */
+.pt-grade {
+  --pt-grade: var(--darkgray);
+  flex: 0 0 100%;
+  display: grid;
+  justify-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 0 1rem;
+  text-align: center;
+}
+
+.pt-grade[data-band="first"] {
+  --pt-grade: #15803d;
+}
+.pt-grade[data-band="upper-second"] {
+  --pt-grade: #4d7c0f;
+}
+.pt-grade[data-band="lower-second"] {
+  --pt-grade: #a16207;
+}
+.pt-grade[data-band="third"] {
+  --pt-grade: #b45309;
+}
+.pt-grade[data-band="pass"] {
+  --pt-grade: #c2410c;
+}
+.pt-grade[data-band="fail"] {
+  --pt-grade: #b91c1c;
+}
+:root[saved-theme="dark"] .pt-grade[data-band="first"] {
+  --pt-grade: #4ade80;
+}
+:root[saved-theme="dark"] .pt-grade[data-band="upper-second"] {
+  --pt-grade: #a3e635;
+}
+:root[saved-theme="dark"] .pt-grade[data-band="lower-second"] {
+  --pt-grade: #facc15;
+}
+:root[saved-theme="dark"] .pt-grade[data-band="third"] {
+  --pt-grade: #fbbf24;
+}
+:root[saved-theme="dark"] .pt-grade[data-band="pass"] {
+  --pt-grade: #fb923c;
+}
+:root[saved-theme="dark"] .pt-grade[data-band="fail"] {
+  --pt-grade: #f87171;
+}
+
+.pt-percent {
+  font-family: var(--headerFont);
+  font-size: clamp(3.2rem, 14vw, 5rem);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--pt-grade);
+}
+
+.pt-band {
+  padding: 0.2rem 0.85rem;
+  border: 2px solid var(--pt-grade);
+  border-radius: 999px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--pt-grade);
+}
+
+.pt-grade .pt-score {
+  flex: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--darkgray);
+}
+
+.pt-message {
+  max-width: 32rem;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: var(--dark);
+}
+
+/* Only the wrong (and unanswered) questions, with their explanations. */
+.pt-review {
+  flex: 0 0 100%;
+}
+
+.pt-review-title {
+  margin: 0.4rem 0 0.2rem;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.pt-review-item {
+  padding: 0.9rem 0;
+  border-top: 1px solid var(--lightgray);
+}
+
+.pt-review-jump {
+  appearance: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--secondary);
+  cursor: pointer;
+}
+
+.pt-review-jump:hover,
+.pt-review-jump:focus-visible {
+  text-decoration: underline;
+}
+
+.pt-review-stem {
+  margin: 0.2rem 0 0.4rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--dark);
+}
+
+.pt-review-answers {
+  display: grid;
+  gap: 0.1rem;
+  font-size: 0.9rem;
+}
+
+.pt-yours {
+  color: var(--pt-wrong-fill);
+}
+
+.pt-correct {
+  color: var(--pt-right-fill);
+}
+
+:root[saved-theme="dark"] .pt-yours {
+  color: var(--pt-wrong);
+}
+
+:root[saved-theme="dark"] .pt-correct {
+  color: var(--pt-right);
+}
+
+.pt-review-explanation {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.pt-review-explanation > :first-child {
+  margin-top: 0;
+}
+
+.pt-review-explanation > :last-child {
+  margin-bottom: 0;
+}
+
 /* Link popovers and search previews show the questions without the test around them. */
 .popover .pt-bar,
 .popover .pt-results,
