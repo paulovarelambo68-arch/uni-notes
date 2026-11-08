@@ -311,12 +311,13 @@ professor's 30 practice questions in his order and with his key; the explanation
 The five respiratory sections each end with their tests (`MCQ 1`–`3`, and `MCQ 4 – The
 Respiratory System under Stress`), and `## Pulmonary Tests`, after `## Lung Immunity and
 Disease`, holds `Sample MCQ – Pulmonary Responses to Exercise` (the lecturer's five example
-questions in his wording and option order) and `MCQ 1`–`2 – Pulmonary (All Lectures)`. Since
-2026-11-07 `site.yaml` lists only these tests under the respiratory headings, apart from the
-notes of `## Introduction to Respiratory Physiology` and `## Gas Exchange and Transport` (three
-each, published with narration that day) and `## Breathing Control and Oxygen Uptake` (two, on
-2026-11-08): the other notes are held back until the author publishes them, so the tests' links
-to them show as the note's title in plain text.
+questions in his wording and option order) and `MCQ 1`–`2 – Pulmonary (All Lectures)`. All
+fourteen respiratory notes are on the site: the eight of the first three sections with
+narration (2026-11-07 and 08), and since 2026-11-08 the six of `## The Respiratory System under
+Stress` and `## Lung Immunity and Disease` without it, at the author's request, so classmates
+could read them while the author was still checking them. Twelve figures those six embed
+(`Pulm3_slide18_…`, `Pulm4_…`, `Pulm5_…`) weren't in the Obsidian vault yet, so the build drops
+them with a warning until they are added.
 Every set links each explanation to the section that covers the point (`[[Note#Heading]]`,
 which the site shows as "Note > Heading").
 `## Physiological Response to Exercise`, after `## Pulmonary Tests`, has no notes, only Dr Burns'

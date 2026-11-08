@@ -49,10 +49,9 @@ subjects:
           - Hypertension – Causes, Mechanisms, Consequences and Treatment
           - Coronary and Cutaneous Blood Flow
       - Cardiovascular Tests
-      # Respiratory sections: Introduction to Respiratory Physiology, Gas Exchange and Transport,
-      # and Breathing Control and Oxygen Uptake have their notes; the others only their tests for
-      # now. Their notes are held back until they're ready, so the tests' links to them show as
-      # plain text; add each note under its heading.
+      # Respiratory sections: all their notes are listed. Those of The Respiratory System under
+      # Stress and Lung Immunity and Disease went up before their narration, which comes later.
+      # A note added under one of these headings stays off the site until it's listed here.
       - Introduction to Respiratory Physiology:
           - The Lungs and the Breathing Pump – Alveoli, Airways, Muscles, Surfactant and the Valsalva Manoeuvre
           - Lung Volumes and Capacities – Spirometry, FEV1 and FVC
@@ -74,11 +73,17 @@ subjects:
           - MCQ 2 – Breathing Control and Oxygen Uptake
           - MCQ 3 – Breathing Control and Oxygen Uptake
       - The Respiratory System under Stress:
+          - Limits to Ventilation – Work of Breathing, Breathing Reserve, Exercise-Induced Hypoxaemia, Smoking and Cold
+          - Acid–Base Balance in Exercise – Buffers, Ventilation and the Kidney
+          - Altitude – Less Oxygen, Acclimatisation, Performance and Altitude Training
           - MCQ 1 – The Respiratory System under Stress
           - MCQ 2 – The Respiratory System under Stress
           - MCQ 3 – The Respiratory System under Stress
           - MCQ 4 – The Respiratory System under Stress
       - Lung Immunity and Disease:
+          - The Lung's First Line of Defence – Nose, Cilia, Mucus and Antimicrobial Peptides
+          - Lung Immune Cells – Toll-like Receptors, Macrophages and Neutrophils
+          - Lung Disease and Exercise – ARDS, Asthma and COVID
           - MCQ 1 – Lung Immunity and Disease
           - MCQ 2 – Lung Immunity and Disease
           - MCQ 3 – Lung Immunity and Disease

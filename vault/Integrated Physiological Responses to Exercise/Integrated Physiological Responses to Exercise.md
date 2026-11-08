@@ -91,7 +91,7 @@
 ---
 ## The Respiratory System under Stress
 
-- [[Limits to Ventilation – Work of Breathing, Breathing Reserve, Exercise-Induced Hypoxaemia, Smoking and Cold]]
+- [[Limits to Ventilation – Work of Breathing, Breathing Reserve, Exercise-Induced Hypoxaemia, Smoking and Cold]] 
 - [[Acid–Base Balance in Exercise – Buffers, Ventilation and the Kidney]] 
 - [[Altitude – Less Oxygen, Acclimatisation, Performance and Altitude Training]] 
 - [[MCQ 1 – The Respiratory System under Stress]]
