@@ -231,11 +231,13 @@ content/<Subject>/audio/<Note>.mp3 + a `narration` frontmatter field → narrati
   Alternate `voice` between notes. The first two scripts were written by one agent and then
   checked by separate fidelity and listenability reviewers; do the same for new ones. A
   sentence that only points to another note ("covered in [[…]]") is left out; a fact in it is
-  kept. The six scripts of Introduction to Respiratory Physiology and Gas Exchange and Transport
-  (2026-11-07) were written and reviewed by Claude Opus 5.5 at max effort through the API, and
-  revised there too except for Gas Exchange, revised in the session after the key stopped
-  working. Each request thought for 30,000 to 110,000 tokens, so allow the 128,000-token output
-  cap.
+  kept. The scripts of Introduction to Respiratory Physiology, Gas Exchange and Transport
+  (2026-11-07) and Breathing Control and Oxygen Uptake (2026-11-08) were written, reviewed and
+  revised by Claude Opus 5.5 at max effort through the API, except the Gas Exchange revisions,
+  done in the session while the key was refused. On 2026-11-07 requests thought for 30,000 to
+  110,000 tokens, so allow the 128,000-token output cap. On 2026-11-08 the same requests thought
+  only 2,500 to 16,000, yet the effort setting did reach the API (an invalid value came back as
+  the API's own error) and the reviews stayed thorough.
 - **Regeneration is cached.** `<Note>.json` stores a fingerprint of the sentences, voice id,
   model and settings; `npm run audio` skips scripts whose fingerprint matches, so editing
   frontmatter alone costs nothing. `--force` regenerates.
@@ -312,8 +314,9 @@ Disease`, holds `Sample MCQ – Pulmonary Responses to Exercise` (the lecturer's
 questions in his wording and option order) and `MCQ 1`–`2 – Pulmonary (All Lectures)`. Since
 2026-11-07 `site.yaml` lists only these tests under the respiratory headings, apart from the
 notes of `## Introduction to Respiratory Physiology` and `## Gas Exchange and Transport` (three
-each, published with narration the same day): the other notes are held back until the author
-publishes them, so the tests' links to them show as the note's title in plain text.
+each, published with narration that day) and `## Breathing Control and Oxygen Uptake` (two, on
+2026-11-08): the other notes are held back until the author publishes them, so the tests' links
+to them show as the note's title in plain text.
 Every set links each explanation to the section that covers the point (`[[Note#Heading]]`,
 which the site shows as "Note > Heading").
 `## Physiological Response to Exercise`, after `## Pulmonary Tests`, has no notes, only Dr Burns'
