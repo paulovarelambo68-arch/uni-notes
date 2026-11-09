@@ -175,11 +175,22 @@ Commands: `npm run content`, `npm run site`, `npm run serve` (port 8080).
 - **Base URL.** The deploy workflow rewrites `baseUrl` and the footer "Source" link from the
   repo owner and name at build time. The values committed in `quartz.config.yaml` are
   placeholders for local builds.
-- **Site size and deploy time.** On 2026-11-09 the built site was 862 MB (a 748 MB Pages
-  artifact), 625 MB of it the 92 narration MP3s. GitHub Pages caps a site at 1 GB. Its file
-  sync for a site this size took from under 2 to over 10 minutes; two deploys hit the default
-  10-minute timeout of `actions/deploy-pages`, so `site.yaml` gives it 30. Before narrating a
-  new subject, check the size (`du -sh public`).
+- **Site size and deploy time.** GitHub Pages caps a published site at 1 GB, recommends at most
+  1 GB for the repo, and times a deployment out after 10 minutes. On 2026-11-09 the built site
+  was 862 MB (a 748 MB Pages artifact): 625 MB of narration MP3s (92 tracks, mono 128 kbps)
+  and 174 MB of images. Two deploys sat in "syncing_files" until the 10-minute timeout; a
+  re-push deployed in 2 minutes. `site.yaml` gives `actions/deploy-pages` a 30-minute timeout,
+  but GitHub's own 10-minute limit still applies, so keeping the site small is what helps.
+  Since then the build shrinks images (next point), which brought the site to 742 MB. Before
+  narrating a new subject, check the size (`du -sh public`); the options weighed then were
+  64 kbps narration (half the size per track) and moving the audio to its own repo and site.
+- **Images are shrunk at build time.** `build-content.mjs` scales PNG and JPEG attachments
+  down to 2000px wide (the note column is 1000px) and recompresses them, JPEG at quality 82
+  and PNG losslessly, keeping the original when that is smaller; vault/ keeps the originals.
+  That took the images from 174 to 85 MB. Results are cached in `.generated/images`, keyed by
+  the image and the settings, so a rebuild takes seconds and CI (no cache) about 15 s more.
+  Note that sharp's `png({ effort })` or `quality` switches to a 256-colour palette, which is
+  not lossless: it would reach about 41 MB, and was left out for that reason.
 - `hard-line-breaks` is on, matching Obsidian's default: a single newline is a line break.
 - Mobile fix in `custom.scss`: the closed explorer drawer leaked open folder titles, because
   `.folder-outer.open` sets `visibility: visible` inside a `visibility: hidden` parent.

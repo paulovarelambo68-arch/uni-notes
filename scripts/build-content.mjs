@@ -23,11 +23,15 @@
 //   - practice tests (`type: test`, see plugins/practice-test) keep their quotes as written:
 //     they are the explanations of the questions, not callouts; their introduction (plain
 //     paragraphs before the first heading) is left out
+//   - PNG and JPEG images wider than IMAGE.maxWidth are scaled down, and all of them are
+//     recompressed (JPEG at IMAGE.jpegQuality, PNG losslessly), keeping whichever file is
+//     smaller; vault/ keeps the originals, and results are cached in .generated/images
 
 import fs from "node:fs"
 import path from "node:path"
 import crypto from "node:crypto"
 import { execFileSync } from "node:child_process"
+import sharp from "sharp"
 import YAML from "yaml"
 import {
   ATTACHMENT,
@@ -48,6 +52,12 @@ const VAULT = path.join(ROOT, "vault")
 const AUDIO = path.join(ROOT, "audio")
 const OUT = path.join(ROOT, "content")
 const GENERATED = path.join(ROOT, ".generated")
+// Images on the site: the note column is 1000px wide, so 2000px stays sharp on high-density
+// screens. Many attachments are full-resolution screenshots and generated images of 2 to 3 MB,
+// which kept the site near GitHub Pages' 1 GB limit. Changing a setting rebuilds the cache.
+const IMAGE = { types: /\.(png|jpe?g)$/i, maxWidth: 2000, jpegQuality: 82, version: 1 }
+const IMAGE_CACHE = path.join(GENERATED, "images")
+const imageJobs = [] // { src, dest } from buildSubject, shrunk once all subjects are built
 
 const siteConfig = YAML.parse(fs.readFileSync(path.join(ROOT, "site.yaml"), "utf8")) ?? {}
 const CONCEPTS = siteConfig.conceptsFolder ?? "Concepts"
@@ -117,12 +127,17 @@ for (const s of subjects.filter((s) => !empty.includes(s))) {
 }
 
 const summaries = subjects.filter((s) => !empty.includes(s)).map(buildSubject)
+const images = await shrinkImages(imageJobs)
 writeHome(summaries)
 fs.writeFileSync(
   path.join(GENERATED, "explorer-order.json"),
   JSON.stringify(explorerOrder, null, 2),
 )
 
+console.log(
+  `Images: ${images.count} on the site, ${mb(images.before)} in vault/ -> ${mb(images.after)}` +
+    ` (${images.cached} from the cache in .generated/images)`,
+)
 for (const s of empty) console.log(`${s}: no notes on the site yet, left out`)
 for (const s of summaries) {
   console.log(
@@ -345,11 +360,12 @@ function buildSubject(subject) {
     writeNote(path.join(OUT, subject, folder, `${outName.get(key)}.md`), fm, text)
   }
 
-  // Attachments
+  // Attachments. PNG and JPEG images are shrunk after all subjects are built (shrinkImages).
   for (const a of assets.values()) {
     const dest = path.join(OUT, subject, "attachments", a.name)
     fs.mkdirSync(path.dirname(dest), { recursive: true })
-    fs.copyFileSync(a.file, dest)
+    if (IMAGE.types.test(a.name)) imageJobs.push({ src: a.file, dest })
+    else fs.copyFileSync(a.file, dest)
   }
 
   // Subject home page = the index note's published sections, with empty sections removed.
@@ -442,6 +458,57 @@ function addNarration(subject, note, name, warnings, scripts) {
     sections: timeline.sections,
     credit: siteConfig.audio?.credit ?? null,
   }
+}
+
+// Writes each image to its place in content/, scaled down and recompressed (see IMAGE). The
+// cache is keyed by the image's bytes and the settings, and entries no image uses any more
+// are removed, so it holds exactly the current site's images.
+async function shrinkImages(jobs) {
+  fs.mkdirSync(IMAGE_CACHE, { recursive: true })
+  const settings = JSON.stringify(IMAGE, (k, v) => (v instanceof RegExp ? String(v) : v))
+  const used = new Set()
+  const totals = { count: jobs.length, before: 0, after: 0, cached: 0 }
+  let next = 0
+  async function worker() {
+    while (next < jobs.length) {
+      const { src, dest } = jobs[next++]
+      const input = fs.readFileSync(src)
+      const key = crypto.createHash("sha1").update(input).update(settings).digest("hex")
+      const cached = path.join(IMAGE_CACHE, key + path.extname(src).toLowerCase())
+      used.add(path.basename(cached))
+      if (fs.existsSync(cached)) totals.cached++
+      else fs.writeFileSync(cached, await shrink(input, src))
+      fs.copyFileSync(cached, dest)
+      totals.before += input.length
+      totals.after += fs.statSync(dest).size
+    }
+  }
+  await Promise.all(Array.from({ length: 4 }, worker))
+  for (const f of fs.readdirSync(IMAGE_CACHE)) {
+    if (!used.has(f)) fs.rmSync(path.join(IMAGE_CACHE, f))
+  }
+  return totals
+}
+
+async function shrink(input, src) {
+  try {
+    const meta = await sharp(input).metadata()
+    if ((meta.pages ?? 1) > 1) return input // animated: leave as is
+    // rotate() applies the EXIF orientation, which is dropped with the other metadata.
+    let image = sharp(input).rotate().resize({ width: IMAGE.maxWidth, withoutEnlargement: true })
+    image = /\.png$/i.test(src)
+      ? image.png({ compressionLevel: 9, adaptiveFiltering: true })
+      : image.jpeg({ quality: IMAGE.jpegQuality, mozjpeg: true })
+    const output = await image.toBuffer()
+    return output.length < input.length ? output : input
+  } catch (err) {
+    console.warn(`  could not shrink ${path.basename(src)} (${err.message}); copied as is`)
+    return input
+  }
+}
+
+function mb(bytes) {
+  return `${(bytes / 1048576).toFixed(0)} MB`
 }
 
 function shortHash(data) {
