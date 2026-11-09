@@ -49,9 +49,8 @@ subjects:
           - Hypertension – Causes, Mechanisms, Consequences and Treatment
           - Coronary and Cutaneous Blood Flow
       - Cardiovascular Tests
-      # Respiratory sections: all their notes are listed. Altitude and the three of Lung Immunity
-      # and Disease went up before the author finished checking them; their narration comes later.
-      # A note added under one of these headings stays off the site until it's listed here.
+      # Respiratory sections: all their notes are listed, each with its narration. A note added
+      # under one of these headings stays off the site until it's listed here.
       - Introduction to Respiratory Physiology:
           - The Lungs and the Breathing Pump – Alveoli, Airways, Muscles, Surfactant and the Valsalva Manoeuvre
           - Lung Volumes and Capacities – Spirometry, FEV1 and FVC

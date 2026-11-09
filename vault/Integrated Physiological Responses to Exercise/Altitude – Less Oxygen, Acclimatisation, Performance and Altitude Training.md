@@ -7,17 +7,17 @@ The problem at altitude is thin air, not different air. Altitude is graded by he
 
 Air at any height is still ==20.9 per cent oxygen==. What falls is barometric pressure, the weight of the air above you. Oxygen's partial pressure, its share of that total ([[The Respiratory Gases – Composition of Air, Partial Pressures and Exchange across the Alveolar Membrane]]), falls with it. The rule is ==PO2 = 0.2093 x barometric pressure==, where PO2 is the oxygen pressure in mmHg and 0.2093 is oxygen's fraction of the air.
 
-The numbers make the loss concrete. At sea level 760 mmHg gives ==159 mmHg of oxygen==. At Pikes Peak in Colorado (4,300 m) 450 mmHg gives about 94 mmHg, and on Everest (8,850 m) 235 mmHg gives about 49 mmHg. Thin air holds fewer molecules, so each breath carries fewer oxygen molecules although the percentage is unchanged. It is the pressure, not the percentage, that pushes oxygen into the blood.
+The numbers make the loss concrete. At sea level 760 mmHg gives ==159 mmHg of oxygen==. At Pikes Peak in Colorado (4,300 m) 450 mmHg gives about 94 mmHg, and on Everest (8,850 m) 235 mmHg gives about 49 mmHg. 
 
 | Altitude (m) | Ambient pressure (mmHg) | Ambient oxygen pressure (mmHg) |
-|---|---|---|
-| 0 | 760 | 159 |
-| 1,500 | 634 | 133 |
-| 3,000 | 526 | 110 |
-| 4,000 | 462 | 97 |
-| 5,000 | 405 | 85 |
-| 7,000 | 308 | 64 |
-| 9,000 | 230 | 48 |
+| ------------ | ----------------------- | ------------------------------ |
+| 0            | 760                     | 159                            |
+| 1,500        | 634                     | 133                            |
+| 3,000        | 526                     | 110                            |
+| 4,000        | 462                     | 97                             |
+| 5,000        | 405                     | 85                             |
+| 7,000        | 308                     | 64                             |
+| 9,000        | 230                     | 48                             |
 
 The effects begin low down. Maximal oxygen uptake (VO2max), the most oxygen the body can use in a minute ([[Oxygen Uptake – VO2, VO2max and the Lactate Threshold]]), starts to fall above about ==1,500 m in most people==. In elite athletes it can fall from as low as ==580 m==. The body's defence is ==acclimatisation, the adaptive responses in physiology and metabolism that improve tolerance of altitude hypoxia==, hypoxia being a shortage of oxygen.
 
@@ -57,7 +57,7 @@ Low arterial oxygen makes the kidneys release ==erythropoietin (EPO)== ([[Oxygen
 
 At altitude the haematocrit rises in two stages. First the plasma volume, the liquid part of the blood, shrinks within days, which concentrates the cells already there. Then over weeks new red cells are added. Too high a haematocrit thickens the blood dangerously, the risk when athletes abuse injected EPO or blood transfusions.
 
-![[Pulm4_slide11_haematocrit_and_haemoglobin_pikes_peak.png]]
+![[Pulm4_slide11_haematocrit_and_haemoglobin_pikes_peak.png|363]]
 
 The upper panel plots haematocrit in per cent, and the lower panel haemoglobin concentration in g/dL, against days at Pikes Peak in women. Both lines jump in the first days as the plasma volume shrinks. They then climb more slowly for a month as new red cells arrive, and fall back after the return to sea level.
 
@@ -92,7 +92,7 @@ AMS is ==common above 3,000 m==. People whose breathing responds weakly to hypox
 
 How much altitude hurts depends on how long the event lasts. Events of ==2 minutes or less are unaffected==, because they run on anaerobic energy, made without oxygen. Decrements appear from ==1,600 m for events of 2 to 5 minutes==. For events of 20 minutes or more they appear from only ==600 to 700 m==.
 
-![[Pulm4_slide17_performance_vs_altitude_by_event.png]]
+![[Pulm4_slide17_performance_vs_altitude_by_event.png|401]]
 
 The graph plots race time as a percentage of the sea-level time against altitude in metres, one line per race duration. A line that climbs means a slower race. The line for races under 2 minutes stays flat, and the longer the race, the earlier and more steeply its line climbs. The 2 to 3 hour line reaches nearly 130 per cent by 3,000 m, because the longer the event, the more it depends on oxygen delivery.
 
