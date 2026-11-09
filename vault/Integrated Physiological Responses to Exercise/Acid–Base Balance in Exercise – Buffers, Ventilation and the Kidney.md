@@ -11,7 +11,7 @@ Hard exercise strains this system, because working muscle relies increasingly on
 
 ### 2. How a chemical buffer works
 
-A chemical buffer is ==a weak acid paired with its conjugate base==, meaning the base that the weak acid becomes when it gives up a hydrogen ion. A weak acid is one that holds on to most of its hydrogen ions. The two sit in a reversible balance, ==HA ⇌ H⁺ + A⁻==, where HA is the weak acid, H⁺ a hydrogen ion and A⁻ the conjugate base.
+A chemical buffer is a pair of molecules that keeps acidity steady. One partner is a weak acid, an acid that lets go of only a few of its hydrogen ions and keeps most of them. The other partner is what the weak acid becomes after it has let go of a hydrogen ion, and it is called the conjugate base. The two keep turning into each other: the acid releases hydrogen ions and the base takes them back. This two-way balance is written ==HA ⇌ H⁺ + A⁻==, where HA is the weak acid, H⁺ a hydrogen ion and A⁻ the conjugate base, and the double arrow shows that the reaction runs both ways.
 
 When there are too many hydrogen ions, the reaction runs to the left. The base takes them up and becomes the weak acid again, which removes them from the solution. When there are too few, it runs to the right, and the weak acid releases them.
 
@@ -19,7 +19,7 @@ A buffer therefore works like a sponge, soaking up hydrogen ions or squeezing th
 
 ### 3. The bicarbonate buffer and how breathing removes acid
 
-The bicarbonate buffer is special because one end of its reaction is a gas. It pairs carbonic acid, the weak acid, with sodium bicarbonate, which supplies its base, bicarbonate. In acidosis, extra hydrogen ions join bicarbonate (HCO₃⁻) to form carbonic acid (H₂CO₃), which splits into carbon dioxide and water, ==H⁺ + HCO₃⁻ → H₂CO₃ → CO₂ + H₂O==. The hydrogen ion ends up in water and the lungs breathe out the carbon dioxide, so the acid leaves the body.
+The bicarbonate buffer is special because one of its products is a gas, which the lungs can get rid of. Its weak acid is carbonic acid, and its base is bicarbonate, supplied by sodium bicarbonate. In acidosis, when the blood holds too much acid, the extra hydrogen ions join bicarbonate to make carbonic acid. Carbonic acid then splits into carbon dioxide and water. The whole chain is written ==H⁺ + HCO₃⁻ → H₂CO₃ → CO₂ + H₂O==, where H⁺ is a hydrogen ion, HCO₃⁻ bicarbonate, H₂CO₃ carbonic acid, CO₂ carbon dioxide and H₂O water. The hydrogen ion is now locked inside a water molecule, and the lungs breathe out the carbon dioxide, so the acid leaves the body.
 
 Breathing harder pulls this reaction along, an effect called the ==ventilatory buffer==. A rise in hydrogen ions or carbon dioxide in the blood excites chemoreceptors, the chemical sensors that drive breathing, explained in [[Control of Breathing – Brainstem Centres, Chemoreceptors and the Three Phases of Exercise Ventilation]]. The respiratory centre in the brainstem then raises alveolar ventilation, the fresh air reaching the air sacs (alveoli) each minute. This lowers the carbon dioxide in the air sacs and then in the blood. With less carbon dioxide at the end of the reaction, more hydrogen ions recombine with bicarbonate, and the hydrogen ion concentration falls.
 
@@ -37,7 +37,7 @@ Haemoglobin is a major acceptor of hydrogen ions. It is ==about six times more p
 
 ### 5. The kidney, the slow final defence
 
-The kidneys are the body's final and slowest defence. They are needed because every hydrogen ion caught by bicarbonate uses up one bicarbonate. Tiny tubes in the kidney, the renal tubules, turn fluid filtered from the blood into urine. They ==secrete hydrogen ions into the urine==, along with ammonia, which carries more hydrogen ions out. They also reabsorb chloride and alkaline substances such as bicarbonate, returning them to the blood.
+The kidneys are the body's last and slowest defence against acid. They are needed because the buffers run down: every hydrogen ion that bicarbonate catches uses up one bicarbonate. The work is done in the renal tubules, tiny tubes that turn fluid filtered from the blood into urine. The tubules ==secrete hydrogen ions into the urine==, and they release ammonia, which picks up more hydrogen ions and carries them out as well. At the same time they reabsorb chloride and alkaline substances such as bicarbonate, returning them to the blood, which restores its buffering power.
 
 So, unlike a chemical buffer, this ==renal buffer== removes acid from the body and restores the bicarbonate that was used up. Together, chemical buffers, breathing and the kidneys defend pH over ==seconds, minutes and hours to days==, in that order.
 
@@ -47,7 +47,7 @@ As exercise gets harder, hydrogen ions pour in from both carbon dioxide and lact
 
 Repeated, brief all-out efforts can raise blood lactate to ==30 mM or more==, where mM means millimoles per litre. That is about thirty times the resting level of about 1 mM, and acid–base regulation becomes difficult. The body can tolerate such a pronounced disturbance for a short time during maximal exercise. But a ==plasma pH of 7.0 or below== can cause nausea, headache and dizziness.
 
-![[Pulm3_slide18_ph_vs_lactate.png]]
+![[Pulm3_slide18_ph_vs_lactate.png|326]]
 
 Panel A plots blood pH against blood lactate concentration in mM. Each dot is one blood sample, taken at rest or during short bouts of exercise up to maximum. The dots lie along a straight line that falls from about pH 7.4 at rest to about 6.8 at just over 30 mM.
 

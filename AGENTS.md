@@ -312,12 +312,14 @@ The five respiratory sections each end with their tests (`MCQ 1`–`3`, and `MCQ
 Respiratory System under Stress`), and `## Pulmonary Tests`, after `## Lung Immunity and
 Disease`, holds `Sample MCQ – Pulmonary Responses to Exercise` (the lecturer's five example
 questions in his wording and option order) and `MCQ 1`–`2 – Pulmonary (All Lectures)`. All
-fourteen respiratory notes are on the site: the eight of the first three sections with
-narration (2026-11-07 and 08), and since 2026-11-08 the six of `## The Respiratory System under
-Stress` and `## Lung Immunity and Disease` without it, at the author's request, so classmates
-could read them while the author was still checking them. Twelve figures those six embed
-(`Pulm3_slide18_…`, `Pulm4_…`, `Pulm5_…`) weren't in the Obsidian vault yet, so the build drops
-them with a warning until they are added.
+fourteen respiratory notes are on the site, and ten have narration: the eight of the first three
+sections (2026-11-07 and 08), and Limits to Ventilation and Acid–Base Balance (2026-11-09).
+Altitude and the three notes of `## Lung Immunity and Disease` went up on 2026-11-08 without it,
+at the author's request, so classmates could read them while the author was still checking them;
+each gets its edits and narration once the author says it is ready. Until then, a publish of
+other notes keeps their Obsidian edits and new figures out (the sync copies everything, so
+restore the note and drop its new images before committing). Figures they embed that aren't in
+the Obsidian vault yet are dropped by the build with a warning.
 Every set links each explanation to the section that covers the point (`[[Note#Heading]]`,
 which the site shows as "Note > Heading").
 `## Physiological Response to Exercise`, after `## Pulmonary Tests`, has no notes, only Dr Burns'
