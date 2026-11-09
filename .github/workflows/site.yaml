@@ -48,3 +48,7 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          # The site is about 750 MB, mostly narration MP3s. GitHub's file sync for it has
+          # taken longer than the default 10 minutes, which cancels the deploy.
+          timeout: 1800000

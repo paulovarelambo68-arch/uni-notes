@@ -175,6 +175,11 @@ Commands: `npm run content`, `npm run site`, `npm run serve` (port 8080).
 - **Base URL.** The deploy workflow rewrites `baseUrl` and the footer "Source" link from the
   repo owner and name at build time. The values committed in `quartz.config.yaml` are
   placeholders for local builds.
+- **Site size and deploy time.** On 2026-11-09 the built site was 862 MB (a 748 MB Pages
+  artifact), 625 MB of it the 92 narration MP3s. GitHub Pages caps a site at 1 GB. Its file
+  sync for a site this size took from under 2 to over 10 minutes; two deploys hit the default
+  10-minute timeout of `actions/deploy-pages`, so `site.yaml` gives it 30. Before narrating a
+  new subject, check the size (`du -sh public`).
 - `hard-line-breaks` is on, matching Obsidian's default: a single newline is a line break.
 - Mobile fix in `custom.scss`: the closed explorer drawer leaked open folder titles, because
   `.folder-outer.open` sets `visibility: visible` inside a `visibility: hidden` parent.
