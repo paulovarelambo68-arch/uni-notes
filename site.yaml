@@ -90,10 +90,14 @@ subjects:
       - Physiological Response to Exercise
       - Final MCQ Tests
   Metabolism and Nutrition:
-    # Only these index sections go on the site for now; add the next ones as they're ready.
+    # Every section is listed, so the author's class notes linked above the first heading stay
+    # off the site (with no publish list the whole index would go on).
     publish:
       - Energy Basics
       - ATP and the Fuel Map
+      - Burning Glucose
+      - Fat, Protein and the Whole Picture
+      - Glycogen and McArdle Disease
 
 # Audio tracks (scripts/narrate.mjs, npm run audio). Narration scripts live in
 # audio/<Subject>/<Note>.md and pick a voice by the names below. Voices alternate between

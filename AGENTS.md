@@ -35,8 +35,9 @@ Commands: `npm run content`, `npm run site`, `npm run serve` (port 8080).
   where possible, so `npx quartz upgrade` merges cleanly. Changed so far: `quartz.ts`,
   `quartz/styles/custom.scss`, `package.json`, `README.md`, `.gitignore` (`.env`), and
   `.github/dependabot.yml` was deleted.
-- **Never commit or print the ElevenLabs key.** It lives in `.env` (gitignored); the repo is
-  public.
+- **Never commit or print the ElevenLabs or Claude keys.** They live in `.env` (gitignored); the
+  repo is public. The Claude key is the author's proxy key, `CLAUDE_PROXY_API_KEY` with
+  `CLAUDE_PROXY_BASE_URL` (kept under its own name so nothing takes it for `ANTHROPIC_API_KEY`).
 
 ## Non-obvious details
 
@@ -277,6 +278,19 @@ content/<Subject>/audio/<Note>.mp3 + a `narration` frontmatter field → narrati
   110,000 tokens, so allow the 128,000-token output cap. On 2026-11-08 the same requests thought
   only 2,500 to 16,000, yet the effort setting did reach the API (an invalid value came back as
   the API's own error) and the reviews stayed thorough.
+- **`scripts/write-narration.mjs`** (since 2026-11-23) runs that pipeline on the author's proxy:
+  `node scripts/write-narration.mjs "<Subject>/<Note>" … --voice irish-male`, one writer, the two
+  reviewers in parallel, then the revision, at max effort, notes in parallel. It writes
+  `audio/<Subject>/<Note>.md` with its frontmatter and prints mechanical checks (section titles
+  against the note's headings, sentences of 35 words or more, symbols, figure mentions,
+  connectors opening more than two sentences); read what they flag. Steps are cached in
+  `audio/.cache/scripts/` under the note's hash. On 2026-11-23 the stream showed no thinking
+  text and each call took 0.5 to 7 minutes; the Metabolism scripts still came out clean.
+- **Metabolism and Nutrition** (on the site since 2026-11-23): every index section is listed in
+  `publish`, which keeps the class notes above the first heading off. Narrated: the five notes of
+  Energy Basics and ATP and the Fuel Map, and Glycolysis. The other nine went up without audio
+  for the author to review on the site; once they say a note is ready, sync its edits and
+  narrate it (voices alternate in index order: Glycolysis is Patrick, so Lactate gets Jessica).
 - **Regeneration is cached.** `<Note>.json` stores a fingerprint of the sentences, voice id,
   model and settings; `npm run audio` skips scripts whose fingerprint matches, so editing
   frontmatter alone costs nothing. `--force` regenerates.

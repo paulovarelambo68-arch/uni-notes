@@ -226,7 +226,9 @@ next/previous buttons move by sentence.
 `audio/<Subject>/<Note>.md`, is a spoken version of it: no tables or images, symbols spelled
 out ("Na⁺" → "sodium"), and connectors so it sounds narrated. One `## Section` per part of the
 note (named like its heading or bold label, so the player can highlight it), one sentence per
-line. You can edit the wording freely. Then:
+line. You can edit the wording freely. `node scripts/write-narration.mjs "<Subject>/<Note>"`
+writes one with Claude (a writer, two reviewers and a revision; the key goes in `.env` as
+`CLAUDE_PROXY_API_KEY`). Then:
 
 ```sh
 npm run audio -- --dry-run   # what would be generated, and how many characters it costs
