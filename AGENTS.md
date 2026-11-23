@@ -180,7 +180,13 @@ Commands: `npm run content`, `npm run site`, `npm run serve` (port 8080).
   and 25 MiB per file (906 files on 2026-11-23; the largest MP3, Altitude, 18.5 MB). At mono
   128 kbps a narration track reaches 25 MiB at about 27 minutes, so a longer note needs a lower
   bitrate or a split. `wrangler pages deploy` uploads only changed files. Secrets:
-  `CLOUDFLARE_API_TOKEN` (Pages: Edit, own account), `CLOUDFLARE_ACCOUNT_ID`. GitHub Pages now
+  `CLOUDFLARE_API_TOKEN` (Pages: Edit, own account), `CLOUDFLARE_ACCOUNT_ID`.
+  Pages' static server ignores HTTP `Range` and always sends the whole file, so the narration
+  player couldn't seek (the track's seekable range was 0–0) and Safari wouldn't play.
+  `functions/[subject]/audio/[track].js` is a Pages Function, run only for `/*/audio/*`, that
+  answers `Range` with 206 and streams just those bytes. Production asset responses carry
+  `Content-Length`; `wrangler pages dev` (the `cloudflare` entry in `.claude/launch.json`,
+  port 8788) streams without one, so the function reads the file there to get its size. GitHub Pages now
   gets only a redirect page (`index.html` and `404.html`, made in `site.yaml`) that sends any
   github.io path to the same path on Cloudflare, so old links still reach their note. The 1 GB
   notes below are history.

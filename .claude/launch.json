@@ -4,8 +4,33 @@
     {
       "name": "site",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["quartz", "build", "--serve", "--port", "8090", "--wsPort", "3091", "-o", ".preview-public"],
+      "runtimeArgs": [
+        "quartz",
+        "build",
+        "--serve",
+        "--port",
+        "8090",
+        "--wsPort",
+        "3091",
+        "-o",
+        ".preview-public"
+      ],
       "port": 8090,
+      "autoPort": false
+    },
+    {
+      "name": "cloudflare",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "--yes",
+        "wrangler@4",
+        "pages",
+        "dev",
+        "public",
+        "--port",
+        "8788"
+      ],
+      "port": 8788,
       "autoPort": false
     }
   ]
