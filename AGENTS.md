@@ -44,8 +44,14 @@ Commands: `npm run content`, `npm run site`, `npm run serve` (port 8080).
   note with their notes loose at the vault root, and some Neurophysiology notes live at the root
   too. `sync-vault.mjs` therefore copies a subject's folder (if any) and then follows links from
   its index, note by note, resolving by basename anywhere in the vault (skipping dot-folders and
-  `__auto_backup__`). A file inside one subject's folder, or first reached from an earlier
-  subject in `Subjects.md`, belongs to that subject only, so basenames stay unique. Subjects
+  `__auto_backup__`). A file belongs to one subject only, so basenames stay unique: a note a
+  subject's index shows goes to that subject, even from inside another subject's folder (unless
+  the folder's own index shows it too; among indexes, the earlier subject in `Subjects.md`
+  wins). Other files go to the subject whose folder holds them, or else to the first subject in
+  `Subjects.md` that reaches them. The index rule came on 2026-11-23: `Enzymes.md`, a
+  Metabolism and Nutrition note, sits in the Obsidian Neurophysiology folder (it replaced
+  Neurophysiology's short `enzymes` concept note), and Neurophysiology was taking it and every
+  note it links to. Subjects
   whose index links to nothing are skipped, and the home page shows them as plain text.
 - **Subject order** in the sidebar follows the link order in `Subjects.md`.
 - **Publishing part of a subject.** `publish: [Heading, …]` under a subject in `site.yaml`
@@ -56,7 +62,9 @@ Commands: `npm run content`, `npm run site`, `npm run serve` (port 8080).
   which index lines that covers, matching a heading as written or after the `headings` fixes,
   without bold, ignoring case; `sync-vault.mjs` and `build-content.mjs` both use it.
   The index is read without its frontmatter. An empty `publish:` (key present, no entries) is an
-  empty list, not "everything".
+  empty list, not "everything". With a `publish` list, lines above the index's first heading
+  are under no published heading and stay off the site (Metabolism and Nutrition links the
+  author's `Class Notes Dr Shafat`, exam hints, there); without one, everything is published.
   - **Single notes of a heading.** An entry `- Heading:` followed by `- Note` lines (a YAML
     mapping inside the list; `publishList()` returns `{ heading, notes }`, notes null for a whole
     heading) publishes only those notes of it, and what they link to. Write the names one per

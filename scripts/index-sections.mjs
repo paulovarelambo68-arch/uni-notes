@@ -107,7 +107,8 @@ const NEW_BLOCK = /^ {0,3}(([-*_])( *\2){2,} *$|>|```|~~~)/ // thematic break, q
 // sits under a published "# Section". Levels follow the site's folders, not the Markdown:
 // "# " is a sidebar folder and every deeper heading a subfolder of it, so "## A" followed by
 // "### B" are sibling subfolders and publishing A doesn't publish B. Other lines follow the
-// nearest heading above them, and lines before the first heading are published.
+// nearest heading above them. Lines before the first heading are under no published heading,
+// so they aren't published (without a publish list, everything is).
 // Under a heading published with a list of notes, only the links to those notes are published,
 // so consumers ask `publishes(line, target)` link by link. The lines shown are decided per list
 // item (see listedLines). A note matches by the name its link uses or by its title after
@@ -159,7 +160,7 @@ export function indexLines(text, publish, options = {}) {
       stack.push({ level, keys, allow })
       return allow
     }
-    const allow = stack.length ? stack.at(-1).allow : EVERY
+    const allow = stack.length ? stack.at(-1).allow : null
     if (allow) {
       for (const name of noteLinks(line).flatMap(namesOf)) {
         for (const s of stack) {

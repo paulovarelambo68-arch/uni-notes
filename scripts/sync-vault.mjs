@@ -3,7 +3,8 @@
 //   node scripts/sync-vault.mjs [path/to/Obsidian Vault]
 //
 // Subjects.md at the vault root lists the subjects ([[Neurophysiology]]). For each one:
-//   - if the vault has a folder named after the subject, all of it is copied, as before;
+//   - if the vault has a folder named after the subject, all of it is copied, as before, except
+//     notes another subject's index lists (and this one's doesn't): those go to that subject;
 //   - the subject's index note (found anywhere in the vault) is copied, and every note,
 //     image or file linked from it is followed, link by link, wherever it lives in the vault.
 // So a subject can be a folder, or just an index note with its notes loose in the vault.
@@ -153,6 +154,21 @@ const heldBy = (links) =>
 const held = heldBy({ shown, hidden })
 const ownHeld = new Map([...ownLinks].map(([s, links]) => [s, heldBy(links)]))
 
+// A note a subject's index shows belongs to that subject, even inside another subject's folder
+// (Enzymes, a Metabolism and Nutrition note, sits in the Neurophysiology folder), unless the
+// folder's own index shows it too. The first subject in Subjects.md wins among index links.
+// Otherwise that subject would also take every note the stray one links to.
+const listedBy = new Map() // absolute path -> subject whose index claimed it
+for (const s of subjects) {
+  for (const file of ownLinks.get(s)?.shown ?? []) {
+    if (!isNote(file) || indexes.has(file) || listedBy.has(file)) continue
+    const taken = owner.get(file)
+    if (taken && taken !== s && ownLinks.get(taken)?.shown.has(file)) continue
+    owner.set(file, s)
+    listedBy.set(file, s)
+  }
+}
+
 const synced = []
 for (const subject of subjects) {
   const dir = folderOf(subject)
@@ -167,7 +183,7 @@ for (const subject of subjects) {
   const files = new Map() // path relative to vault/<Subject>/ -> absolute source path
   if (dir && !publish) {
     for (const file of walk(dir)) {
-      if (!held.has(file)) files.set(path.relative(dir, file), file)
+      if (!held.has(file) && owner.get(file) === subject) files.set(path.relative(dir, file), file)
     }
   }
   if (![...files.values()].includes(index)) files.set(`${subject}.md`, index)

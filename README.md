@@ -77,7 +77,8 @@ sh ~/Documents/uni-notes/sync-notes.sh
 It publishes every subject linked from the vault's `Subjects.md`. For each one it copies the
 subject's folder if there is one (like `Neurophysiology/`), plus the index note and everything
 it links to, wherever those notes and images sit in the vault, following links from note to
-note. Then it commits `vault/` (and `site.yaml`) and pushes. Notes you delete or unlink disappear from the site;
+note. A note listed in a subject's index goes to that subject even if it sits in another
+subject's folder. Then it commits `vault/` (and `site.yaml`) and pushes. Notes you delete or unlink disappear from the site;
 a subject whose index doesn't link to any note yet is left off until it does. The copy step on
 its own is `node scripts/sync-vault.mjs` (nothing is committed).
 
@@ -98,7 +99,8 @@ subjects:
 Write the note names one per line, as above: most contain commas, which a `[a, b]` list would
 split. The other sections' notes, and the notes left off a heading's list, stay out of the repo
 and off the site, and links to them from published notes show as plain text until they're
-published.
+published. Links above the index's first heading belong to no section, so with a `publish` list
+they stay out too.
 Sections are the folders the site shows: a `# Section` includes its subsections, while `##` and
 deeper headings are each their own (so `## Immunology II` doesn't include a
 `### Exercise Immunology` below it). Headings are matched as the site shows them, notes by their

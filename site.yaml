@@ -89,6 +89,11 @@ subjects:
       - Pulmonary Tests
       - Physiological Response to Exercise
       - Final MCQ Tests
+  Metabolism and Nutrition:
+    # Only these index sections go on the site for now; add the next ones as they're ready.
+    publish:
+      - Energy Basics
+      - ATP and the Fuel Map
 
 # Audio tracks (scripts/narrate.mjs, npm run audio). Narration scripts live in
 # audio/<Subject>/<Note>.md and pick a voice by the names below. Voices alternate between
