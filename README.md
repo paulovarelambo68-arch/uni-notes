@@ -49,8 +49,8 @@ The project name (and so the address) is `CLOUDFLARE_PROJECT` at the top of
 ### 4. Publish
 
 Every push to `main` rebuilds the site and deploys it. After a few minutes it is at
-**https://galway-uni-notes.pages.dev**. The same workflow still deploys the old copy at
-`<your-username>.github.io/uni-notes` to GitHub Pages.
+**https://galway-uni-notes.pages.dev**. The old address, `<your-username>.github.io/uni-notes`,
+stays on GitHub Pages as a redirect: any link to it opens the same page on the new site.
 
 ### 5. (Optional) Run it on your computer
 
@@ -315,7 +315,7 @@ npm run content   # only regenerate content/ from vault/ (prints warnings)
 | `quartz.config.yaml`          | Quartz settings: site title, colours, fonts, plugins  |
 | `quartz.ts`                   | sidebar ordering (reads the order the build writes)   |
 | `quartz/styles/custom.scss`   | custom CSS                                            |
-| `.github/workflows/site.yaml` | build on push, deploy to Cloudflare (and GitHub) Pages |
+| `.github/workflows/site.yaml` | build on push, deploy to Cloudflare Pages              |
 
 Change the site title or colours in `quartz.config.yaml` (`pageTitle`, `theme`). The
 [Quartz docs](https://quartz.jzhao.xyz) cover the rest.

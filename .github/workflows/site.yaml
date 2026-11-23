@@ -50,11 +50,33 @@ jobs:
           fi
           npx --yes wrangler@4 pages deploy public --project-name "$CLOUDFLARE_PROJECT" \
             --branch main --commit-dirty=true
+      # The old github.io address only forwards to the Cloudflare site, keeping the path, so
+      # links shared before the move still land on the same note. GitHub Pages serves 404.html
+      # for every path it doesn't have, so that one page covers all of them.
+      - name: Make the github.io redirect
+        run: |
+          mkdir redirect
+          target="https://${CLOUDFLARE_PROJECT}.pages.dev"
+          prefix="/${{ github.event.repository.name }}"
+          cat > redirect/index.html <<EOF
+          <!doctype html>
+          <meta charset="utf-8">
+          <title>Study Notes has moved</title>
+          <meta http-equiv="refresh" content="0; url=${target}/">
+          <link rel="canonical" href="${target}/">
+          <script>
+            var p = location.pathname.replace(/^${prefix//\//\\/}(?=\/|$)/, "");
+            location.replace("${target}" + (p || "/") + location.search + location.hash);
+          </script>
+          <p>Study Notes has moved to <a href="${target}/">${target}</a>.</p>
+          EOF
+          cp redirect/index.html redirect/404.html
+          cat redirect/index.html
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: public
+          path: redirect
 
-  # The old GitHub Pages copy, kept while links to github.io are still around.
+  # Publishes the redirect above at the old github.io address.
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -64,7 +86,3 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          # The site is about 750 MB, mostly narration MP3s. GitHub's file sync for it has
-          # taken longer than the default 10 minutes, which cancels the deploy.
-          timeout: 1800000
