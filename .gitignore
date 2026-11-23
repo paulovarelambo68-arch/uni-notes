@@ -16,3 +16,6 @@ quartz/cli/tui/dist/
 # Local secrets (ElevenLabs key for npm run audio)
 .env
 audio/.cache/
+
+# Wrangler's local state (wrangler pages dev)
+.wrangler/
