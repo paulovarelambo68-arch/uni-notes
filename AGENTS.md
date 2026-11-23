@@ -1,6 +1,7 @@
 # Agent notes
 
-Static site of Obsidian uni notes built with Quartz v5, deployed to GitHub Pages. Read
+Static site of Obsidian uni notes built with Quartz v5, deployed to Cloudflare Pages
+(`galway-uni-notes.pages.dev`, since 2026-11-23) and, for now, still to GitHub Pages. Read
 `README.md` first for the user-facing picture; this file covers what isn't obvious from it.
 
 ## Pipeline
@@ -172,9 +173,15 @@ Commands: `npm run content`, `npm run site`, `npm run serve` (port 8080).
   `dropTestIntro()` leaves out a test's introduction (the plain paragraphs before its first
   heading; the author found them useless on the page), while Obsidian keeps it. An introduction
   holding a figure, list, quote, table or code is kept whole.
-- **Base URL.** The deploy workflow rewrites `baseUrl` and the footer "Source" link from the
-  repo owner and name at build time. The values committed in `quartz.config.yaml` are
+- **Base URL.** The deploy workflow sets `baseUrl` to the Cloudflare address
+  (`CLOUDFLARE_PROJECT` in `site.yaml`) and the footer "Source" link to the repo at build time. The values committed in `quartz.config.yaml` are
   placeholders for local builds.
+- **Cloudflare Pages** (since 2026-11-23) has no total size cap on the free plan: 20,000 files
+  and 25 MiB per file (906 files on 2026-11-23; the largest MP3, Altitude, 18.5 MB). At mono
+  128 kbps a narration track reaches 25 MiB at about 27 minutes, so a longer note needs a lower
+  bitrate or a split. `wrangler pages deploy` uploads only changed files. Secrets:
+  `CLOUDFLARE_API_TOKEN` (Pages: Edit, own account), `CLOUDFLARE_ACCOUNT_ID`. The GitHub Pages
+  deploy below is kept only while github.io links are around; drop it when the site nears 1 GB.
 - **Site size and deploy time.** GitHub Pages caps a published site at 1 GB, recommends at most
   1 GB for the repo, and times a deployment out after 10 minutes. On 2026-11-09 the built site
   was 862 MB (a 748 MB Pages artifact): 625 MB of narration MP3s (92 tracks, mono 128 kbps)

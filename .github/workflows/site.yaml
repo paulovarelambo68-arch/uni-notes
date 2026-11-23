@@ -14,6 +14,10 @@ concurrency:
   group: pages
   cancel-in-progress: false
 
+env:
+  # Cloudflare Pages project: the site is at https://<name>.pages.dev
+  CLOUDFLARE_PROJECT: galway-uni-notes
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -26,19 +30,31 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
-      # Point the site URL and footer link at whoever owns this repo, so a fork or transfer
-      # needs no config edits. Remove this step if you set up a custom domain.
+      # Point the site URL at the Cloudflare address and the footer link at whoever owns
+      # this repo. Change the sed below if you set up a custom domain.
       - name: Set site URL
         run: |
-          owner="$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')"
-          sed -i "s|^  baseUrl: .*|  baseUrl: ${owner}.github.io/${{ github.event.repository.name }}|" quartz.config.yaml
+          sed -i "s|^  baseUrl: .*|  baseUrl: ${CLOUDFLARE_PROJECT}.pages.dev|" quartz.config.yaml
           sed -i "s|^        Source: .*|        Source: ${{ github.server_url }}/${{ github.repository }}|" quartz.config.yaml
           grep -E "baseUrl|Source:" quartz.config.yaml
       - run: npm run site
+      # Cloudflare Pages has no total size limit (GitHub Pages stops at 1 GB), only 20,000
+      # files and 25 MiB per file on the free plan, and uploads only files that changed.
+      - name: Deploy to Cloudflare Pages
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if ! npx --yes wrangler@4 pages project list | grep -q "\b${CLOUDFLARE_PROJECT}\b"; then
+            npx --yes wrangler@4 pages project create "$CLOUDFLARE_PROJECT" --production-branch main
+          fi
+          npx --yes wrangler@4 pages deploy public --project-name "$CLOUDFLARE_PROJECT" \
+            --branch main --commit-dirty=true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: public
 
+  # The old GitHub Pages copy, kept while links to github.io are still around.
   deploy:
     needs: build
     runs-on: ubuntu-latest

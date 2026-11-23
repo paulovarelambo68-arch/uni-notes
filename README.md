@@ -1,7 +1,7 @@
 # Study Notes
 
 Obsidian uni notes published as a static website with [Quartz](https://quartz.jzhao.xyz),
-hosted for free on GitHub Pages.
+hosted for free on Cloudflare Pages at **https://galway-uni-notes.pages.dev**.
 
 You keep writing in Obsidian as usual. The notes live in `vault/`, and every push to `main`
 rebuilds the website from them.
@@ -31,22 +31,26 @@ account, but the site URL would be his.)
 Free GitHub accounts only get Pages for **public** repos: Settings → General → Danger Zone →
 **Change visibility** → Public. Anyone with the link can then read the notes and the repo.
 
-### 3. Turn on GitHub Pages
+### 3. Connect Cloudflare Pages
 
-Settings → **Pages** → Build and deployment → Source: **GitHub Actions**.
+GitHub Pages stops at 1 GB per site, and the narration audio got close to that, so the site is
+deployed to Cloudflare Pages (free: no total size limit, 20,000 files, 25 MiB per file). The
+build still runs on GitHub Actions; it only needs two repo secrets (Settings → Secrets and
+variables → Actions):
+
+- `CLOUDFLARE_ACCOUNT_ID`: shown on the Workers & Pages overview in the Cloudflare dashboard.
+- `CLOUDFLARE_API_TOKEN`: My Profile → API Tokens → Create Token → **Edit Cloudflare Workers**
+  template. Delete its zone policy, and set the account policy's **Include** box to your
+  account.
+
+The project name (and so the address) is `CLOUDFLARE_PROJECT` at the top of
+`.github/workflows/site.yaml`. The first deploy creates the project.
 
 ### 4. Publish
 
-Publishing is switched off until you are happy with it. Pushes only check that the site
-still builds.
-
-- **Publish once:** Actions tab → **Build site** → **Run workflow**.
-- **Publish on every push:** in `.github/workflows/site.yaml`, delete the line
-  `if: github.event_name == 'workflow_dispatch'` on the `deploy` job and push.
-
-After a minute or two the site is at **`https://<your-username>.github.io/uni-notes`**. The link
-also appears under Settings → Pages. The workflow sets the URL from whoever owns the repo, so
-nothing needs editing after the transfer.
+Every push to `main` rebuilds the site and deploys it. After a few minutes it is at
+**https://galway-uni-notes.pages.dev**. The same workflow still deploys the old copy at
+`<your-username>.github.io/uni-notes` to GitHub Pages.
 
 ### 5. (Optional) Run it on your computer
 
@@ -311,7 +315,7 @@ npm run content   # only regenerate content/ from vault/ (prints warnings)
 | `quartz.config.yaml`          | Quartz settings: site title, colours, fonts, plugins  |
 | `quartz.ts`                   | sidebar ordering (reads the order the build writes)   |
 | `quartz/styles/custom.scss`   | custom CSS                                            |
-| `.github/workflows/site.yaml` | build on push, deploy to Pages                        |
+| `.github/workflows/site.yaml` | build on push, deploy to Cloudflare (and GitHub) Pages |
 
 Change the site title or colours in `quartz.config.yaml` (`pageTitle`, `theme`). The
 [Quartz docs](https://quartz.jzhao.xyz) cover the rest.
