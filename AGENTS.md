@@ -286,11 +286,14 @@ content/<Subject>/audio/<Note>.mp3 + a `narration` frontmatter field → narrati
   connectors opening more than two sentences); read what they flag. Steps are cached in
   `audio/.cache/scripts/` under the note's hash. On 2026-11-23 the stream showed no thinking
   text and each call took 0.5 to 7 minutes; the Metabolism scripts still came out clean.
-- **Metabolism and Nutrition** (on the site since 2026-11-23): every index section is listed in
+- **Metabolism and Nutrition** (on the site since 2026-11-23): its first five index sections are in
   `publish`, which keeps the class notes above the first heading off. Narrated: Energy Basics,
-  ATP and the Fuel Map and Burning Glucose (ten notes). The other five went up without audio for the author to review on
-  the site; once they say a note is ready, sync only its edits and narrate it (voices alternate
-  in index order: ATP Yield from Glucose is Patrick, so Fat Catabolism gets Jessica).
+  ATP and the Fuel Map, Burning Glucose and Fat, Protein and the Whole Picture (twelve notes).
+  The three Glycogen and McArdle Disease notes went up without audio for the author to review
+  on the site; once they say a note is ready, sync only its edits and narrate it (voices alternate
+  in index order: Protein and the Metabolic Mill is Patrick, so Glycogen and Blood Glucose gets
+  Jessica). The index's `## Thermoregulation` section (added 2026-11-24) is not in `publish` yet,
+  so its two notes stay off the site until the author asks.
 - **Regeneration is cached.** `<Note>.json` stores a fingerprint of the sentences, voice id,
   model and settings; `npm run audio` skips scripts whose fingerprint matches, so editing
   frontmatter alone costs nothing. `--force` regenerates.

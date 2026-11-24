@@ -29,13 +29,13 @@ To follow how fat is split, it helps first to know its parts. The backbone of a 
 
 The drawing builds the molecule from its pieces. Glycerol sits on the left and a single fatty acid, a long zigzag of grey carbons and white hydrogens, on the right. At the bottom, three fatty acids hang from the glycerol like the teeth of a comb. Triacylglycerol, triglyceride, TAG and TG are all names for this one molecule.
 
-Splitting this molecule is called ==lipolysis==. It is a hydrolysis, a reaction that breaks a bond by adding water ([[Hydrolysis, Condensation and Redox]]), and the enzyme is a lipase. Each of the three bonds uses one water molecule, so ==triacylglycerol + 3 H2O → glycerol + 3 fatty acids==, where H2O is water. In fat cells the enzyme is ==hormone sensitive lipase==, so called because hormones switch it on. The hormones ==epinephrine (adrenaline), norepinephrine, glucagon and growth hormone== activate it. So the hormones released during exercise speed up fat breakdown and the delivery of fatty acids to active muscle.
+Splitting this molecule is called ==lipolysis==. It is a hydrolysis, a reaction that breaks a bond by adding water ([[Hydrolysis, Condensation and Redox]]), and the enzyme is a lipase. Each of the three bonds uses one water molecule, so ==triacylglycerol + 3 H2O → glycerol + 3 fatty acids==. Each water molecule splits, giving its H to glycerol and its OH to the end of the fatty acid. In fat cells the enzyme is ==hormone sensitive lipase==, so called because hormones switch it on. The hormones ==epinephrine (adrenaline), norepinephrine, glucagon and growth hormone== activate it. So the hormones released during exercise speed up fat breakdown and the delivery of fatty acids to active muscle.
 
-The freed fatty acids leave the fat cell and enter the blood plasma, the liquid part of the blood. They do not dissolve in water, so they travel ==bound to the plasma protein albumin==. Triacylglycerol inside muscle fibres is split in the same way, so its fatty acids are already where they are needed.
+The freed fatty acids leave the fat cell and enter the blood plasma. They do not dissolve in water, so they travel ==bound to the plasma protein albumin==. The fat stored inside muscle fibres is split in the same way, but its fatty acids are released inside the muscle itself, so they need no journey through the blood.
 
 ![[L23_slide44_fat_mobilisation.png]]
 
-The drawing reads from top to bottom, from storage to ATP. Adipose tissue holds the triacylglycerols, and hormone sensitive lipase splits them into fatty acids and glycerol. Albumin ferries the fatty acids through the blood plasma into the muscle, where they arrive as FFA (free fatty acids). The glycerol takes its own path, toward glucose. In the mitochondrion, the fatty acids become acetyl CoA, which passes through the citric acid cycle and electron transport to give ATP. Oxygen (O2) arrives from the red blood cells to finish the process. One label in the muscle is hidden by a blank box. The store is labelled from 50,000 kcal, a slightly lower estimate than the one used here.
+The drawing reads from top to bottom, from storage to ATP. Adipose tissue holds the triacylglycerols, and hormone sensitive lipase splits them into fatty acids and glycerol. Albumin ferries the fatty acids through the blood plasma into the muscle, where they arrive as FFA (free fatty acids). The glycerol takes a separate path, marked as leading to glucose, because it can be fed into the same pathway that breaks down glucose or used to make new glucose. In the mitochondrion, the fatty acids become acetyl CoA, which passes through the citric acid cycle and electron transport to give ATP. Oxygen (O2) arrives from the red blood cells to finish the process. 
 
 ### 4. The route of glycerol
 
@@ -55,7 +55,7 @@ The fatty acids hold most of the energy in fat, and their route to ATP has more 
 6. Beta oxidation breaks the fatty acid down to acetyl CoA, generating NADH and FADH2.
 7. The Krebs cycle and the electron transport chain oxidise the products together.
 
-The first three steps are lipolysis and transport, and the last four happen inside the muscle fibre. Preparation means ==activation==, in which a carrier molecule called coenzyme A is attached to the fatty acid. This tags it for breakdown at a small cost, the equivalent of two ATP. The activated fatty acid cannot cross the inner membrane of the mitochondrion alone. So a carrier called ==carnitine== moves it into the matrix, the fluid inside the mitochondrion.
+The first three steps are lipolysis and transport, and the last four happen inside the muscle fibre. Preparation means ==activation==, in which a carrier molecule called coenzyme A is attached to the fatty acid. This tags it for breakdown at a small cost, the equivalent of two ATP. The activated fatty acid cannot cross the inner membrane of the mitochondrion alone. So a carrier called ==carnitine== moves it into the matrix.
 
 In the matrix, ==beta oxidation cuts the chain two carbons at a time== from its end. Each cut releases one acetyl CoA, a two carbon fragment bound to coenzyme A. Each cut also loads one FAD and one NAD+ with hydrogen, making FADH2 and NADH. The shorter chain picks up a new coenzyme A and goes round again, until it has all become acetyl CoA. It is like slicing a long loaf two slices at a time until nothing is left.
 
@@ -65,7 +65,7 @@ This route means that ==fat can be burned only with oxygen==. Glucose can make s
 
 ![[L23_slide46_glycerol_and_beta_oxidation.png]]
 
-The diagram puts both routes side by side. Glycerol joins glycolysis at 3-phosphoglyceraldehyde, which also links upward to glucose. It runs down to pyruvate and acetyl CoA, releasing a pair of hydrogen atoms (2 H) at each step. The fatty acids, activated with coenzyme A, enter the yellow wheel of beta oxidation. Each turn releases a two carbon acyl group on CoA, which is acetyl CoA, and another 2 H. Both routes meet in the citric acid cycle, which gives ATP, carbon dioxide (CO2) and more hydrogen. All the hydrogen flows to the electron transport chain.
+Both routes meet in the citric acid cycle, which gives ATP, carbon dioxide (CO2) and more hydrogen. All the hydrogen flows to the electron transport chain.
 
 ### 6. ATP from one fat molecule
 
@@ -81,9 +81,9 @@ The three fatty acids give 3 times 147, or ==441 ATP==. Glycerol adds 19 ATP, br
 
 ### 7. Why fat is the slower fuel
 
-Despite its huge store, fat cannot release energy as fast as carbohydrate, for two reasons. Its route is long, because fat must be mobilised, carried, taken up, activated and moved into the mitochondria before it yields any ATP. It also needs more oxygen for each ATP than carbohydrate does, so a limited oxygen supply makes ATP from fat more slowly.
+Despite its huge store, fat cannot release energy as fast as carbohydrate, for two reasons. Its route is long, because fat must be mobilised, carried, taken up, activated and moved into the mitochondria before it yields any ATP. It also needs more oxygen for each ATP than carbohydrate does, because a fatty acid contains almost no oxygen of its own, so a limited oxygen supply makes ATP from fat more slowly.
 
-As a result, fat alone sustains ==about half the power== achieved with carbohydrate as the main aerobic fuel. This is why pace drops when muscle glycogen runs out in a long race. Fat also burns only while the Krebs cycle keeps turning, which depends on carbohydrate, as [[Protein and the Metabolic Mill]] explains.
+As a result, fat alone can make ATP only ==about half as fast== as carbohydrate can, so it supports only about half the exercise intensity. This is why pace drops when muscle glycogen runs out in a long race. Fat also burns only while the Krebs cycle keeps turning, which depends on carbohydrate, as [[Protein and the Metabolic Mill]] explains.
 
 ### Summary
 

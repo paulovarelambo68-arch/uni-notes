@@ -9,29 +9,29 @@ So the nitrogen must be removed first, a step called ==deamination==. The body h
 
 Ammonia is toxic, so it must not build up. The blood carries it to the liver, which combines it with carbon dioxide to make ==urea==, a far less harmful molecule. The kidneys then excrete the urea in the urine.
 
-Once the nitrogen is gone, the skeleton enters the pathways that burn glucose and is used to ==produce ATP aerobically==, which means with oxygen. The first is glycolysis, which splits glucose into pyruvate, a three carbon molecule ([[Glycolysis]]). The second is the Krebs cycle, also called the citric acid cycle or TCA cycle, which is a loop of reactions inside the mitochondria that strips hydrogen from fuel to power ATP production ([[Krebs Cycle]]).
+Once the nitrogen is gone, the skeleton can be burned exactly as if it had come from glucose. Most skeletons already are, or can easily be reshaped into, one of the molecules that glucose passes through as it is broken down. These molecules belong to glycolysis ([[Glycolysis]]) and the Krebs cycle, also called the citric acid cycle or TCA cycle ([[Krebs Cycle]]). From that the same enzymes strip off its hydrogen, its carbon leaves as carbon dioxide, and the hydrogen is used with oxygen to make ATP. 
 
 ### 2. Glucogenic and ketogenic amino acids
 
 Each of the 20 amino acids has its own shape, so each skeleton enters these pathways at its own point. That entry point decides what the skeleton can become, because only some points lead back towards glucose.
 
-Glucogenic amino acids, when deaminated, yield ==pyruvate or intermediates of the Krebs cycle==, which are the molecules made partway round the cycle. From these the liver can build new glucose, a process called gluconeogenesis ([[Glycogen and Blood Glucose]]). For example, ==alanine becomes pyruvate==, and glutamate enters the Krebs cycle directly.
+Glucogenic amino acids, when deaminated, yield ==pyruvate or intermediates of the Krebs cycle==, which are the molecules made partway round the cycle. For example, ==alanine becomes pyruvate==, and glutamate enters the Krebs cycle directly. Both are points from which the liver can run the pathway backwards and build new glucose, a process called gluconeogenesis ([[Glycogen and Blood Glucose]]). This is where the name comes from, because glucogenic means glucose forming.
 
 Ketogenic amino acids, when deaminated, yield ==acetyl CoA or acetoacetate==. Acetyl CoA is a two carbon fragment carried by a helper molecule called coenzyme A, and it is the form in which most fuel enters the Krebs cycle. Acetoacetate is a small fuel molecule built from two acetyl CoA units. These products ==cannot become glucose==, but they can be burned or built into triacylglycerol (triglyceride), the storage form of fat.
 
 ### 3. The metabolic mill
 
-All three fuels end up at the same place. The Krebs cycle is the ==vital link between the energy in the macronutrients and the chemical energy of ATP==, where the macronutrients are carbohydrate, fat and protein.
+All three fuels end up at the same place. The Krebs cycle is the ==vital link between the energy in the macronutrients and the chemical energy of ATP==.
 
 Carbohydrate arrives through glycolysis as pyruvate, which is then turned into acetyl CoA. Fat arrives mostly as acetyl CoA, made by beta oxidation, which chops fatty acids into two carbon pieces ([[Fat Catabolism]]). Its small glycerol part joins glycolysis and arrives through pyruvate. Protein arrives after deamination, at pyruvate, at acetyl CoA or straight into the cycle.
 
-The cycle also works in reverse. Its intermediates can leave the mitochondrion, cross into the cytosol (the cell fluid) and be used to build new molecules for maintenance and growth. So the Krebs cycle is also a ==metabolic hub==, like a station where traffic both arrives and departs.
+The cycle also works in reverse. Its intermediates can leave the mitochondrion, cross into the cytosol and be used to build new molecules for maintenance and growth. So the Krebs cycle is also a ==metabolic hub==, like a station where traffic both arrives and departs. 
 
 ![[L23_slide51_metabolic_mill.png]]
 
-This drawing is the ==metabolic mill==. Like a mill that grinds whatever grain is brought to it, the cycle burns whichever fuel arrives. The three fuel boxes stand across the top, and the cycle sits at the bottom. Protein's nitrogen leaves on the right as ammonia, then urea, then urine. Its skeletons join the main line at different heights: alanine at pyruvate, glycine lower down and glutamate at the cycle. Acetyl CoA joins oxaloacetate to make citrate, the first molecule of the cycle, and it also has an arrow to ketone bodies.
+This drawing is the ==metabolic mill==. Like a mill that grinds whatever grain is brought to it, the cycle burns whichever fuel arrives. The three fuel boxes stand across the top, and the cycle sits at the bottom. Protein's nitrogen leaves on the right as ammonia, then urea, then urine. Its skeletons join the main line at different heights: alanine at pyruvate, glycine lower down and glutamate at the cycle. Acetyl CoA joins oxaloacetate to make citrate, the step that opens every turn of the cycle. Its other arrow leads to ketone bodies, small fuel molecules the liver makes when acetyl CoA arrives faster than the cycle can use it.
 
-Most of the blue arrows have two heads, which means those steps run both ways. This is the hub sending traffic out as well as taking it in. The single red arrow, from pyruvate down to acetyl CoA, has only one head.
+Most of the blue arrows have two heads, which means those steps run both ways. This is the hub sending traffic out as well as taking it in. The one exception is the red arrow from pyruvate to acetyl CoA, which points one way only, so traffic can pass that step downwards but never back up.
 
 ![[Textbook_fig3_54_all_pathways.png]]
 
@@ -53,7 +53,7 @@ Only some amino acids can be made in this way. The body can make ==11 of the 20 
 
 The red arrow on the mill drawing breaks the pattern of two way traffic. The step from ==pyruvate to acetyl CoA cannot be reversed==, because pyruvate loses a carbon as CO2 and no enzyme can undo that step. This single fact decides what fat can become.
 
-A fatty acid yields nothing but acetyl CoA. Since acetyl CoA can never go back to pyruvate, it cannot travel back up to glucose. A second road to glucose starts from oxaloacetate, the four carbon molecule of the Krebs cycle, but that road is closed too. Each acetyl CoA brings two carbons into the cycle, and two carbons leave as CO2 in the same turn. So ==no extra oxaloacetate== is made that could be spared for glucose.
+A fatty acid yields nothing but acetyl CoA. To make glucose, the liver must start from either pyruvate or oxaloacetate, the four carbon molecule of the Krebs cycle. Acetyl CoA can never go back to pyruvate, so the first road is closed. It can enter the cycle, but its two carbons are lost as CO2 during the same turn. The cycle therefore ends each turn with exactly the oxaloacetate it started with, so ==none is left over== to make glucose.
 
 Only the small ==glycerol part of a fat== can become glucose, because glycerol joins glycolysis above the one way step. In short, ==glucose can be turned into fat, but fat cannot be turned back into glucose==.
 

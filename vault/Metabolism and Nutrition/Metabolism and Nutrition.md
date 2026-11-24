@@ -30,3 +30,8 @@
 - [[Glycogen and Blood Glucose]] 
 - [[McArdle Disease Cause and Mechanism]]
 - [[McArdle Disease Diagnosis and Management]] 
+---
+## Thermoregulation
+
+- [[Thermoregulation]]
+- [[Exercise in Heat and Cold]] 
