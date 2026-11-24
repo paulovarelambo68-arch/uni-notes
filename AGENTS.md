@@ -287,10 +287,10 @@ content/<Subject>/audio/<Note>.mp3 + a `narration` frontmatter field → narrati
   `audio/.cache/scripts/` under the note's hash. On 2026-11-23 the stream showed no thinking
   text and each call took 0.5 to 7 minutes; the Metabolism scripts still came out clean.
 - **Metabolism and Nutrition** (on the site since 2026-11-23): every index section is listed in
-  `publish`, which keeps the class notes above the first heading off. Narrated: the five notes of
-  Energy Basics and ATP and the Fuel Map, and Glycolysis. The other nine went up without audio
-  for the author to review on the site; once they say a note is ready, sync its edits and
-  narrate it (voices alternate in index order: Glycolysis is Patrick, so Lactate gets Jessica).
+  `publish`, which keeps the class notes above the first heading off. Narrated: Energy Basics,
+  ATP and the Fuel Map and Burning Glucose (ten notes). The other five went up without audio for the author to review on
+  the site; once they say a note is ready, sync only its edits and narrate it (voices alternate
+  in index order: ATP Yield from Glucose is Patrick, so Fat Catabolism gets Jessica).
 - **Regeneration is cached.** `<Note>.json` stores a fingerprint of the sentences, voice id,
   model and settings; `npm run audio` skips scripts whose fingerprint matches, so editing
   frontmatter alone costs nothing. `--force` regenerates.

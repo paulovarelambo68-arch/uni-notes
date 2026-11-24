@@ -3,7 +3,7 @@
 
 ### 1. Glycolysis needs its NAD+ back
 
-Glycolysis is the chain of reactions in the cytosol, the fluid of the cell outside the mitochondria, that splits one glucose into 2 pyruvate ([[Glycolysis]]). At step 6 it strips hydrogen from the sugar. A carrier molecule called NAD+ must accept that hydrogen, and it becomes NADH. Without a free NAD+, step 6 cannot happen.
+Glycolysis is the chain of reactions in the cytosol, that splits one glucose into 2 pyruvate ([[Glycolysis]]). At step 6 it strips hydrogen from the sugar. A carrier molecule called NAD+ must accept that hydrogen, and it becomes NADH. Without a free NAD+, step 6 cannot happen.
 
 The difficulty is that a cell holds only a small amount of NAD+. Each glucose turns 2 NAD+ into 2 NADH, so the supply soon runs out if nothing empties the NADH again. Glycolysis would then stop, however much glucose was available.
 
@@ -11,11 +11,11 @@ The cell has two ways to unload NADH. With enough oxygen, and mitochondria that 
 
 ### 2. Pyruvate takes the hydrogen
 
-The transfer is carried out by an enzyme, a protein that speeds up one particular reaction, called ==lactate dehydrogenase (LDH)==. It moves the two hydrogens of NADH + H+ onto pyruvate, where H+ is a hydrogen ion. Pyruvate becomes lactate and NADH becomes NAD+ again, ==pyruvate + NADH + H+ ⇄ lactate + NAD+==. The double arrow means the reaction can run both ways, which matters for what happens to lactate later.
+The transfer is carried out by an enzyme called ==lactate dehydrogenase (LDH)==. It moves the two hydrogens of NADH + H+ onto pyruvate, where H+ is a hydrogen ion. Pyruvate becomes lactate and NADH becomes NAD+ again, ==pyruvate + NADH + H+ ⇄ lactate + NAD+==. The double arrow means the reaction can run both ways, which matters for what happens to lactate later.
 
-For each glucose, 2 pyruvate become 2 lactate and 2 NAD+ return to step 6. Glycolysis can therefore keep running at full speed and keep giving its net 2 ATP per glucose with no oxygen at all. The overall reaction is ==glucose + 2 ADP + 2 Pi → 2 lactate + 2 ATP + 2 H2O==. Here ADP is adenosine diphosphate, Pi is inorganic phosphate and H2O is water. Lactate is a temporary parking place for hydrogen, much like an overdraft that keeps a business trading until the debt is repaid.
+For each glucose, 2 pyruvate become 2 lactate and 2 NAD+ return to step 6. Glycolysis can therefore keep running at full speed and keep giving its net 2 ATP per glucose with no oxygen at all. The overall reaction is ==glucose + 2 ADP + 2 Pi → 2 lactate + 2 ATP + 2 H2O==. Lactate is a temporary parking place for hydrogen.
 
-![[L23_slide30_lactate_formation.png]]
+![[L23_slide30_lactate_formation.png|511]]
 
 The loop can be followed from the top. Glucose passes down the purple arrow of glycolysis, and on the left ADP becomes ATP. On the right, 2 NAD+ pick up hydrogen and become 2 NADH + 2 H+. At the bottom, lactate dehydrogenase adds that hydrogen to 2 pyruvate, giving 2 lactate. The loop labelled NAD+ Regeneration carries the 2 NAD+ back to the top for the next glucose. That loop is the whole point of the reaction, and lactate is simply where the hydrogen ends up.
 
@@ -25,24 +25,26 @@ Some lactate is made all the time, even at rest. Red blood cells, which carry ox
 
 In light and moderate exercise, lactate is removed as fast as it is made, so its level in the blood stays low. In intense exercise, glycolysis makes pyruvate and NADH faster than the mitochondria can take them in. More muscle fibres that are rich in glycolytic enzymes are also brought into use. So during intense exercise ==pyruvate binds hydrogen to form lactate==, and lactate builds up in muscle and blood.
 
-The intensity at which blood lactate begins to climb is the lactate threshold ([[Oxygen Uptake – VO2, VO2max and the Lactate Threshold]]). Lactate forms whenever glycolysis outruns the mitochondria. This is not the same as a total lack of oxygen, because working muscle can make lactate while still receiving oxygen.
+The intensity at which blood lactate begins to climb is the lactate threshold ([[Oxygen Uptake – VO2, VO2max and the Lactate Threshold]]). Lactate forms whenever glycolysis outruns the mitochondria, this is not the same as a total lack of oxygen, because working muscle can make lactate while still receiving oxygen.
 
 ### 4. Lactic acid or lactate
 
-Lactic acid and lactate are often treated as the same thing, but they differ. Lactic acid forms during anaerobic glycolysis. In the body it at once dissociates, meaning it splits and releases a hydrogen ion (H+). The rest binds a positively charged sodium ion (Na+) or potassium ion (K+) to form an acid salt, ==lactate==.
+As lactate builds up it is often called lactic acid, but the two names describe slightly different things. An acid is a molecule that can give up a hydrogen ion (H+), and ==lactic acid forms during anaerobic glycolysis==. Inside the body, lactic acid gives up its hydrogen ion almost the instant it forms. This splitting is called dissociation.
 
-So the molecule found in the body is lactate. It is the ==hydrogen ions released alongside it== that make muscle and blood more acid. Buffers, chemicals that soak up hydrogen ions, deal with them ([[Acid–Base Balance in Exercise – Buffers, Ventilation and the Kidney]]).
+What remains after the split carries a negative charge, so it pairs with a positively charged ion such as sodium (Na+) or potassium (K+). An acid's remainder paired with a positive ion in this way is called a salt, and the salt of lactic acid is ==lactate==. So the molecule actually found in muscle and blood is lactate, not lactic acid.
+
+The split also explains where the acidity comes from. Lactate itself is not acid. The ==hydrogen ions set free== are what make working muscle and blood more acid. The body's buffers, chemicals that soak up hydrogen ions, keep this change in check ([[Acid–Base Balance in Exercise – Buffers, Ventilation and the Kidney]]).
 
 ### 5. Where lactate goes
 
-Lactate is not a dead end, because the LDH reaction can run backwards. Lactate leaves the working muscle cell, enters the blood and has two main fates.
+Lactate is not a dead end, because the LDH reaction can run backwards. Lactate leaves the working muscle cell, enters the blood and has two main fates:
 
 - Part is taken up by the heart, by less active muscle fibres and by other tissues. They turn it back into pyruvate with LDH and burn it in their mitochondria through the [[Krebs Cycle]].
 - Part is taken up by the liver, which rebuilds it into glucose. The liver stores this glucose as glycogen or releases it into the blood for the muscles to use again.
 
 Building new glucose from smaller molecules such as lactate is called ==gluconeogenesis== ([[Glycogen and Blood Glucose]]). The round trip, glucose to lactate in muscle and lactate back to glucose in the liver, is the ==Cori cycle==.
 
-![[L23_slide31_cori_cycle.png]]
+![[L23_slide31_cori_cycle.png|496]]
 
 The white arrows trace this cycle. At the lower right, an active muscle cell turns glucose into pyruvate and then lactate. The lactate is carried in the vein up to the liver at the top left, where it becomes pyruvate, then glucose, then perhaps glycogen. The glucose leaves in the artery and returns to the muscle. It works like a recycling service that turns spent fuel back into fresh glucose.
 

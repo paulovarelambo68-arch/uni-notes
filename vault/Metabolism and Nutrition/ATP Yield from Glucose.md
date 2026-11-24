@@ -11,19 +11,19 @@ Glycolysis splits glucose into 2 pyruvate and gives a net 2 ATP and 2 NADH ([[Gl
 
 The carriers become ATP only when they pass their hydrogen to the electron transport chain. There the electrons flow to oxygen, and their energy drives ATP synthesis, a process called oxidative phosphorylation ([[Oxidative Phosphorylation]]). On average ==each NADH yields about 2.5 ATP== and each FADH2 about 1.5 ATP, because FADH2 hands its electrons to the chain further along.
 
-| Source | Reaction | Net ATP |
-| --- | --- | --- |
-| Substrate level phosphorylation | Glycolysis | 2 |
-| 2 NADH | Glycolysis | 5 |
-| 2 NADH | Pyruvate to acetyl CoA | 5 |
-| Substrate level phosphorylation | Krebs cycle | 2 |
-| 6 NADH | Krebs cycle | 15 |
-| 2 FADH2 | Krebs cycle | 3 |
-| **Total** | | **32** |
+| Source                          | Reaction               | Net ATP |
+| ------------------------------- | ---------------------- | ------- |
+| Substrate level phosphorylation | Glycolysis             | 2       |
+| 2 NADH                          | Glycolysis             | 5       |
+| 2 NADH                          | Pyruvate to acetyl CoA | 5       |
+| Substrate level phosphorylation | Krebs cycle            | 2       |
+| 6 NADH                          | Krebs cycle            | 15      |
+| 2 FADH2                         | Krebs cycle            | 3       |
+| **Total**                       |                        | **32**  |
 
 Each carrier row is a simple multiplication. The 2 NADH of glycolysis and the 2 NADH of the pyruvate step each give 2 times 2.5, or 5 ATP. The 6 NADH of the Krebs cycle give 15 ATP, and the 2 FADH2 give 2 times 1.5, or 3 ATP. So the 10 NADH and 2 FADH2 together make 28 ATP in the electron transport chain.
 
-The word net in the table matters. The complete breakdown of glucose forms ==34 ATP in all==, because glycolysis makes 4, the Krebs cycle makes 2 and the electron transport chain makes 28. But glycolysis had to spend 2 ATP at the start to prime glucose with phosphate. So the ==net yield in skeletal muscle is 32 ATP== per glucose. Of these, ==4 come from substrate level phosphorylation==, 2 net from glycolysis and 2 from the Krebs cycle. The other ==28 come from oxidative phosphorylation==.
+The word net in the table matters. The complete breakdown of glucose forms ==34 ATP in all==, because glycolysis makes 4, the Krebs cycle makes 2 and the electron transport chain makes 28. But glycolysis had to spend 2 ATP at the start to prime glucose with phosphate. So the ==net yield in skeletal muscle is 32 ATP== per glucose. 
 
 ![[L23_slide38_net_atp_from_glucose.png]]
 
@@ -31,7 +31,7 @@ The diagram follows one glucose from top to bottom. Glucose is primed with 2 ATP
 
 ### 3. Why other totals exist
 
-Other books print 36 or 38 ATP because they use older values of ==3 ATP per NADH== and 2 ATP per FADH2. On that count the 10 NADH give 30 ATP and the 2 FADH2 give 4. Adding the 4 from substrate level phosphorylation gives ==38 ATP==, a theoretical maximum still printed in many textbooks. The total of ==36 ATP== is the same older count applied to skeletal muscle. There, the 2 NADH made by glycolysis in the cytosol cannot enter the mitochondrion. A shuttle carries their hydrogen in on FAD instead, so each is worth 2 ATP rather than 3, and 38 becomes 36. The value of 32 uses the measured averages of 2.5 and 1.5, so it is the one to use.
+Other books print 36 or 38 ATP because they use older values of ==3 ATP per NADH== and 2 ATP per FADH2. On that count the 10 NADH give 30 ATP and the 2 FADH2 give 4. Adding the 4 from substrate level phosphorylation gives ==38 ATP==, a theoretical maximum still printed in many textbooks. The 2 NADH made by glycolysis in the cytosol cannot enter the mitochondrion, so a shuttle must carry their hydrogen in. In the heart and liver, the malate aspartate shuttle delivers it as NADH, so each still counts as 3 ATP and the total stays at 38. In skeletal muscle and the brain, the glycerol phosphate shuttle delivers it on FAD, so each counts as only 2 ATP. That gives ==36 ATP==, the older total for skeletal muscle. The value of 32 uses the measured averages of 2.5 and 1.5, so it is the one to use.
 
 ### 4. With oxygen and without
 

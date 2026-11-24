@@ -13,9 +13,9 @@ Together they form the ==final common pathway of aerobic metabolism==. This mean
 
 All of this takes place inside the mitochondrion, so its layout comes first. A mitochondrion is wrapped in two membranes, a smooth outer one and a folded inner one. The narrow gap between them is the ==intermembrane space==. The space inside the inner membrane is the ==matrix==, where the Krebs cycle runs.
 
-The carriers of the electron transport chain are built into the ==inner membrane==, and so is the enzyme that makes ATP. Hydrogen ions cannot cross this membrane by themselves. This is what makes the system work. The membrane can hold hydrogen ions on one side, storing potential energy ([[Energy and Thermodynamics]]) the way the wall of a dam holds water.
+The carriers of the electron transport chain are built into the ==inner membrane==, and so is the enzyme that makes ATP. Hydrogen ions cannot cross this membrane by themselves. This matters because the chain will push hydrogen ions to one side of it. If they could slip straight back, their energy would simply be lost as heat. Instead they stay crowded on one side, and their only way back is through the enzyme that makes ATP. In this way the membrane stores potential energy, the energy held by position ([[Energy and Thermodynamics]]). It works like the wall of a dam, which holds water back so that it can turn a turbine only by passing through the gate.
 
-### 3. Electrons step down to oxygen
+### 3. Electrons step down to oxygen 
 
 The chain begins when NADH and FADH2 reach the inner membrane and give up their hydrogen. Each hydrogen atom splits into a hydrogen ion (a proton, H+) and an electron. The hydrogen ions stay in the matrix and the electrons enter the chain. NADH hands them over at the top, and FADH2 one step lower.
 
@@ -23,7 +23,7 @@ The electrons then pass from one carrier to the next, like a bucket along a line
 
 Each carrier pulls on electrons a little more strongly than the one before. So the electrons move one way only, losing a little energy at each step. This matters because energy can be captured only in manageable packets. A river that comes down a hillside over several small waterfalls can turn a turbine at each one. A single great fall would release the same energy at once and waste most of it.
 
-At the end of the chain, oxygen is the ==final electron acceptor==. For each pair of hydrogen atoms, two electrons flow down the chain and reduce one oxygen atom. That atom then joins two hydrogen ions to form water. In symbols this is ==2 H+ + 2 electrons + ½ O2 → H2O==, where ½ O2 is one oxygen atom. The emptied carriers, NAD+ and FAD, return to glycolysis and the Krebs cycle to collect more hydrogen.
+At the end of the chain, oxygen is the ==final electron acceptor==. Each pair of electrons that reaches the end is taken up by one oxygen atom, which is therefore reduced. Electrons are negatively charged, so the oxygen now carries two extra negative charges. These attract two of the positive hydrogen ions left in the matrix, and together they form water. In symbols this is ==2 H+ + 2 electrons + ½ O2 → H2O==. Oxygen is written as ½ O2 because the oxygen we breathe comes as molecules of two atoms, and each pair of electrons needs only one. The emptied carriers, NAD+ and FAD, return to glycolysis and the Krebs cycle to collect more hydrogen.
 
 ![[L23_slide19_turbine_analogy.png]]
 
@@ -39,8 +39,6 @@ The concentration difference and the membrane potential together make up the ==p
 
 ![[L23_slide21_proton_gradient.png]]
 
-The figure zooms from a cell into one mitochondrion, labelled outer membrane, intermembrane space, inner membrane and matrix. The enlarged box shows a patch of inner membrane. H+ ions crowd the intermembrane space side, labelled high H+ and low pH, while few remain on the matrix side, labelled low H+ and high pH. The arrow shows electron transport pumping protons from right to left. That crowding, like people pressing at a closed door, is the stored energy.
-
 ### 5. ATP synthase, the turbine
 
 The only way back into the matrix is through ==ATP synthase==, an enzyme that forms a channel through the inner membrane. As hydrogen ions flow down their gradient through it, the enzyme uses the energy of the flow to join ADP and inorganic phosphate (Pi) into ATP. ATP synthase is the turbine at the foot of the dam. Making ATP by a flow of ions across a membrane is called ==chemiosmosis==.
@@ -49,7 +47,7 @@ This explains the word coupling, which means that one process cannot run without
 
 ![[Textbook_fig3_46_chemiosmosis.png]]
 
-The drawing reads from left to right as pump, store, flow back and make ATP. The two nested boxes are the outer and inner membranes, with the intermembrane space between them and the matrix inside. In the matrix, NADH + H+ becomes NAD+, releasing 2 H+ and two electrons (2e). The dashed line carries the electrons along five blue proteins of the chain, and at three of them a thick arrow shows hydrogen ions pumped out. At the end, the electrons, 2 H+ and ½ O2 form H2O. The red cylinder on the right is ATP synthase, where hydrogen ions flow back in and ADP + Pi becomes ATP.
+The drawing reads from left to right as pump, store, flow back and make ATP.
 
 ### 6. How much ATP each carrier gives
 

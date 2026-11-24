@@ -9,9 +9,9 @@ Each pyruvate is first converted to a two carbon molecule called acetyl CoA. Ace
 
 ### 2. The link step
 
-Pyruvate crosses from the cytoplasm into the ==matrix==, the inner space of the mitochondrion. This happens after glycolysis has finished, not during it. In the matrix, the enzyme ==pyruvate dehydrogenase== does three things at once. It cuts off one carbon as carbon dioxide, the first carbon dioxide of glucose breakdown. It hands a pair of hydrogen atoms to NAD+, a carrier that becomes NADH when loaded ([[Hydrolysis, Condensation and Redox]]). And it attaches the two carbon fragment left over, an acetyl group, to coenzyme A (CoA).
+The conversion begins once glycolysis is over and pyruvate has moved into the ==matrix==, the inner space of the mitochondrion. There the enzyme ==pyruvate dehydrogenase== trims each three carbon pyruvate down to two carbons, doing three things at once. It snips off the end carbon of pyruvate, which already carries two oxygen atoms, so that carbon simply breaks away as a molecule of carbon dioxide. This is the first carbon dioxide released in glucose breakdown. It also takes a pair of hydrogen atoms and loads them onto NAD+, the carrier that becomes NADH ([[Hydrolysis, Condensation and Redox]]). Finally, it hands the two carbon piece that remains, an acetyl group, to coenzyme A (CoA).
 
-A coenzyme is a small helper molecule that works alongside an enzyme ([[Enzymes]]), and coenzyme A carries acetyl groups. The whole step is ==pyruvate + NAD+ + CoA → acetyl CoA + CO2 + NADH + H+==, where CO2 is carbon dioxide and H+ is a hydrogen ion. NAD+ releases that hydrogen ion as it takes the pair. One glucose gives two pyruvates, so the step runs twice, giving ==2 acetyl CoA, 2 CO2 and 2 NADH==. The step cannot run backwards, so acetyl CoA can never become pyruvate again. This limits which fuels the body can turn into glucose ([[Protein and the Metabolic Mill]]).
+ The whole step is ==pyruvate + NAD+ + CoA → acetyl CoA + CO2 + NADH + H+==. Of the pair of hydrogen atoms removed, NAD+ takes both electrons but only one proton, the nucleus of a hydrogen atom, so the second proton is left in the surrounding fluid as a free hydrogen ion. One glucose gives two pyruvates, so the step runs twice, giving One glucose gives two pyruvates, so the step runs twice, giving ==2 acetyl CoA, 2 CO2, 2 NADH and 2 H+==. The step cannot run backwards, so acetyl CoA can never become pyruvate again. This limits which fuels the body can turn into glucose ([[Protein and the Metabolic Mill]]).
 
 ### 3. One turn of the cycle
 
@@ -21,15 +21,13 @@ Next, two carbons are removed. Isocitrate loses one as CO2 and becomes ==alpha k
 
 The rest of the turn rebuilds oxaloacetate. Succinyl CoA becomes succinate, and the energy released makes one GTP (guanosine triphosphate). GTP is a close relative of ATP that passes its end phosphate to ADP. So the cycle makes ==one ATP per turn directly==, by substrate level phosphorylation, meaning a phosphate is moved straight from one molecule onto ADP. Succinate then becomes fumarate and loads a second carrier, FAD, which becomes FADH2. Fumarate takes up water to become malate. Finally, malate becomes oxaloacetate and loads the third NAD+.
 
-Oxaloacetate is back, ready for the next acetyl CoA, which is why the pathway is a cycle. Think of a roundabout. An acetyl group gets on, two carbons leave as carbon dioxide, hydrogen is picked off at four exits, and oxaloacetate comes round empty for the next passenger.
+At the end of the turn the cell is back where it started, with one molecule of oxaloacetate. Oxaloacetate has not been used up. The turn took in two carbons from acetyl CoA and gave out two carbons as carbon dioxide, so oxaloacetate ends the turn with the same four carbons it began with. It can therefore pick up the next acetyl CoA and go round again. This is why the pathway is called a cycle: its last product is also its starting point, so the same oxaloacetate is used over and over. A roundabout gives the picture, with oxaloacetate as a car that keeps circling. At the entrance it picks up an acetyl group as a passenger. On the way round, the two carbons of the passenger get off as carbon dioxide, and hydrogen is unloaded onto carriers at four places. The car then arrives back at the entrance empty, ready for the next passenger.
 
 ![[L23_slide36_krebs_cycle.png]]
 
-Pyruvate enters this wheel at the top. Step 1 is the link step, where pyruvate dehydrogenase releases CO2, turns NAD+ into NADH + H+ and makes acetyl CoA. Counting it as step 1 is why the wheel has 11 steps. The circles 2 to 11 then run clockwise. They are citrate synthase (2), aconitase (3 and 4), isocitrate dehydrogenase (5 and 6) and the alpha ketoglutarate dehydrogenase complex (7). Then come succinyl CoA synthetase (8), succinate dehydrogenase (9), fumarase (10) and malate dehydrogenase (11). Follow the red labels outside the wheel to see the products. NAD+ becomes NADH + H+ at three places, FAD becomes FADH2 at one, CO2 leaves at two and GTP becomes ATP at one. The yellow box counts the result for two pyruvates, 6 CO2 and 20 hydrogen atoms. Ignore the garbled equation above those counts.
-
 ### 4. The tally
 
-Adding up the reactions, each turn ==releases 2 CO2, loads 3 NADH and 1 FADH2 and makes 1 ATP==. One glucose supplies two acetyl CoA, so the cycle turns twice per glucose. The table adds the link step to the two turns.
+One turn of the cycle means one acetyl CoA going round it once. Adding up the reactions, each turn ==releases 2 CO2, loads 3 NADH and 1 FADH2 and makes 1 ATP==. Each pyruvate gives one acetyl CoA, so the two pyruvates from one glucose give two acetyl CoA, and the cycle turns twice for every glucose. The table adds the link step to these two turns.
 
 | Stage | CO2 | NADH | FADH2 | ATP made directly |
 |---|---|---|---|---|
@@ -37,7 +35,7 @@ Adding up the reactions, each turn ==releases 2 CO2, loads 3 NADH and 1 FADH2 an
 | Krebs cycle (2 turns) | 4 | 6 | 2 | 2 |
 | Total per glucose | 6 | 8 | 2 | 2 |
 
-The same result can be counted in hydrogen atoms, since each loaded carrier stands for one pair. The two pyruvates give up ==4 hydrogen atoms== as they become acetyl CoA. The two turns give up 16, because each turn loads four carriers. That makes ==20 hydrogen atoms==, or 10 pairs, carried by 8 NADH and 2 FADH2. The 6 CO2 account for all six carbons of the original glucose, so nothing of its skeleton is left.
+The same result can be counted in hydrogen atoms, since each loaded carrier stands for one pair. The two pyruvates give up ==4 hydrogen atoms== as they become acetyl CoA. Each turn loads four carriers, 3 NADH and 1 FADH2, and each carrier takes a pair of hydrogen atoms, so one turn gives up 8 hydrogen atoms. The two turns therefore give up 16. That makes ==20 hydrogen atoms==, or 10 pairs, carried by 8 NADH and 2 FADH2. The 6 CO2 account for all six carbons of the original glucose, so nothing of its skeleton is left.
 
 ### 5. What the cycle is for
 
@@ -45,7 +43,7 @@ Two ATP per glucose is a small direct return, so the main function of the cycle 
 
 ![[L23_slide35_two_phases.png]]
 
-This picture splits the work of the mitochondrion into two phases. In Phase 1, on the left, pyruvate from glycolysis joins coenzyme A to become acetyl CoA, which feeds the citric acid cycle. The turning wheel throws off carbon dioxide, one ATP and a cloud of hydrogen, the many H+ around it. In Phase 2, on the right, the reduced coenzymes pass that hydrogen to the electron transport chain. Pairs of electrons (e⁻) step down three levels, and each step makes ATP from ADP and inorganic phosphate (Pi). At the bottom, 2 H+ and half a molecule of oxygen form water. Phase 1 collects the hydrogen like cheques, and Phase 2 cashes them in.
+This picture splits the work of the mitochondrion into two phases. In Phase 1, on the left, pyruvate from glycolysis joins coenzyme A to become acetyl CoA, which feeds the citric acid cycle. The turning wheel throws off carbon dioxide, one ATP and a cloud of hydrogen, the many H+ around it. In Phase 2, on the right, the reduced coenzymes pass that hydrogen to the electron transport chain. Pairs of electrons (e⁻) step down three levels, and each step makes ATP from ADP and inorganic phosphate (Pi). At the bottom, 2 H+ and half a molecule of oxygen form water. 
 
 The cycle has two wider roles. It is the common final route for acetyl CoA from fat and protein as well as carbohydrate. Its intermediates can also be drawn off to build other molecules, such as some amino acids ([[Protein and the Metabolic Mill]]).
 
