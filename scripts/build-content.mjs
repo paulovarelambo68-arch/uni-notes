@@ -313,6 +313,19 @@ function buildSubject(subject) {
   }
   explorerOrder[CONCEPTS] = 1e6
 
+  // A note named like its own folder (the note Thermoregulation under the heading
+  // Thermoregulation) would become Quartz's folder page, which the sidebar only toggles, so the
+  // note couldn't be opened from it. Such a note gets another file name; its title stays.
+  const taken = new Set([...outName.values()].map((n) => n.toLowerCase()))
+  for (const [key, folder] of placement) {
+    const name = outName.get(key)
+    if (path.basename(folder).toLowerCase() !== name.toLowerCase()) continue
+    let alt = `${name} note`
+    for (let i = 2; taken.has(alt.toLowerCase()); i++) alt = `${name} note ${i}`
+    taken.add(alt.toLowerCase())
+    outName.set(key, alt)
+  }
+
   const resolveAsset = (target) => assets.get(path.basename(target.trim()).toLowerCase()) ?? null
 
   // In prose a renamed link keeps its original wording; on the index page it shows the new title.

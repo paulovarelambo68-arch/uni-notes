@@ -158,6 +158,10 @@ Commands: `npm run content`, `npm run site`, `npm run serve` (port 8080).
 - **Plugin option overrides** (`componentRegistry.setOptionOverrides`) are keyed by the
   plugin's full source string from `quartz.config.yaml`, e.g. `"@quartz-community/explorer"`,
   not `"explorer"`.
+- **A note named like its folder.** Quartz turns `X/X.md` into the folder's page, which the
+  sidebar only toggles, so the note couldn't be opened from it. `build-content.mjs` writes such a
+  note as `X note.md` (title unchanged; links and narration follow `outName`). It applies to
+  Thermoregulation and EEG and the Stages of Sleep; EEG's old address now shows the folder list.
 - **Link rewriting.** Notes are placed into folders and some are renamed, so the build rewrites
   every `[[wikilink]]` to the output name, keeping the written text as the alias. In tables,
   Obsidian escapes the alias pipe as `\|`, and the rewrite keeps that. Links resolve with
@@ -286,14 +290,13 @@ content/<Subject>/audio/<Note>.mp3 + a `narration` frontmatter field → narrati
   connectors opening more than two sentences); read what they flag. Steps are cached in
   `audio/.cache/scripts/` under the note's hash. On 2026-11-23 the stream showed no thinking
   text and each call took 0.5 to 7 minutes; the Metabolism scripts still came out clean.
-- **Metabolism and Nutrition** (on the site since 2026-11-23): its first five index sections are in
+- **Metabolism and Nutrition** (on the site since 2026-11-23): every index section is listed in
   `publish`, which keeps the class notes above the first heading off. Narrated: Energy Basics,
   ATP and the Fuel Map, Burning Glucose and Fat, Protein and the Whole Picture (twelve notes).
-  The three Glycogen and McArdle Disease notes went up without audio for the author to review
-  on the site; once they say a note is ready, sync only its edits and narrate it (voices alternate
-  in index order: Protein and the Metabolic Mill is Patrick, so Glycogen and Blood Glucose gets
-  Jessica). The index's `## Thermoregulation` section (added 2026-11-24) is not in `publish` yet,
-  so its two notes stay off the site until the author asks.
+  The three Glycogen and McArdle Disease notes and the two Thermoregulation notes (added
+  2026-11-24) went up without audio for the author to review on the site; once they say a note
+  is ready, sync only its edits and narrate it (voices alternate in index order: Protein and the
+  Metabolic Mill is Patrick, so Glycogen and Blood Glucose gets Jessica).
 - **Regeneration is cached.** `<Note>.json` stores a fingerprint of the sentences, voice id,
   model and settings; `npm run audio` skips scripts whose fingerprint matches, so editing
   frontmatter alone costs nothing. `--force` regenerates.

@@ -98,6 +98,7 @@ subjects:
       - Burning Glucose
       - Fat, Protein and the Whole Picture
       - Glycogen and McArdle Disease
+      - Thermoregulation
 
 # Audio tracks (scripts/narrate.mjs, npm run audio). Narration scripts live in
 # audio/<Subject>/<Note>.md and pick a voice by the names below. Voices alternate between
