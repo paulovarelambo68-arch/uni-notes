@@ -11,7 +11,7 @@ Core temperature normally sits at about ==36 to 38 °C==. Strenuous exercise tak
 
 ### 2. Where the heat comes from
 
-Body heat is what is left over at two points in metabolism. When fuel is oxidised, ==42 per cent== of its energy is captured in ATP, the energy currency of the cell. The other 58 per cent is released at once as heat. A more conservative count of ATP gives 34 per cent instead, as [[ATP Yield from Glucose]] explains. When muscle then spends the ATP, ==less than 25 per cent== becomes mechanical work and at least 75 per cent becomes heat. The ATP spent on membrane pumps and on building glycogen and protein also ends as heat. So the fuel a muscle burns becomes mainly heat, not work.
+Muscle turns fuel into movement in two steps, and each step loses energy as heat. In the first step, the cell burns fuel with oxygen to make ATP, the molecule that carries energy to where it is needed. Only ==42 per cent== of the fuel's energy is stored in ATP, and the other 58 per cent escapes as heat straight away. [[ATP Yield from Glucose]] gives 34 per cent instead, because it counts ATP more conservatively. In the second step, the muscle spends the ATP to contract. Here ==less than 25 per cent== of the energy becomes movement, and at least 75 per cent becomes heat. ATP spent on other jobs, such as pumping ions across membranes or building glycogen and protein, also ends as heat.
 
 Which tissues make the heat depends on what the body is doing.
 
@@ -23,8 +23,6 @@ Which tissues make the heat depends on what the body is doing.
 | Other | 8 | 10 | 1 |
 
 At rest the brain and the trunk organs make about ==70 per cent== of the heat, although they are only a third of body mass. In heavy exercise muscle makes up to ==90 per cent==. The blood flowing through working muscle is warmed and carries that heat round the body, which raises core temperature.
-
-The basal metabolic rate, the resting energy use per square metre of body surface, falls steeply through childhood and slowly after about 20 years. It is lower in women than in men, at about ==40 against 45 watts (W) per square metre== at age 20.
 
 ### 3. Four ways to exchange heat
 
@@ -39,11 +37,11 @@ The first three routes can run either way, so they add heat when the surrounding
 
 ![[Thermo_slide03_heat_exchange.png]]
 
-The walker in sunshine has an arrow for each route. Solar radiation arrives, while radiation to the sky and the ground, convection into air, evaporation from the skin and airways, and conduction to the ground all carry heat away. The red arrow, work against gravity, is the small share of energy that leaves as mechanical work instead of heat.
+The red arrow, work against gravity, is the small share of energy that leaves as mechanical work instead of heat.
 
 ### 4. Sensors and the thermostat
 
-Temperature is sensed in two places. In the skin, peripheral thermoreceptors report both the temperature and how it is changing. ==Cold receptors== are the most numerous and lie nearest the surface, in or just under the outer layer of skin (epidermis). They signal through thin myelinated fibres, which are insulated nerve fibres that conduct quickly. Warm receptors are about ==ten times fewer==, lie slightly deeper in the dermis, and signal through unmyelinated fibres. Deep in the body, the hypothalamus itself and other deep sites sense core temperature.
+Temperature is sensed in two places. In the skin, the sensors are peripheral thermoreceptors, the free nerve endings described in [[Thermoreceptors and Nociceptors]], and they report both the temperature and how it is changing. ==Cold receptors== are the most numerous and lie nearest the surface, in or just under the outer layer of skin (epidermis). They signal through thin myelinated Aδ fibres, which conduct quickly. Warm receptors are about ==ten times fewer==, lie slightly deeper in the dermis, and signal through slower unmyelinated C fibres, for the reasons given in [[Classification of Nerve Fibres]]. Deep in the body, the hypothalamus itself and other deep sites sense core temperature.
 
 All these signals converge on the ==preoptic anterior hypothalamus (POAH)==, which works like a thermostat. It compares core temperature (Tc) with a set point (Tset), the temperature it aims for. The difference is the ==thermal error signal==. The POAH combines it with skin temperature (Tsk), and the result drives four effectors.
 
@@ -56,13 +54,13 @@ The set point itself can move. ==Pyrogens== raise it, and these are the toxins a
 
 ![[Thermo_slide06_thermostat.png]]
 
-The diagram reads from left to right, like a home thermostat comparing a room reading with its dial. Tc meets Tset at the circle marked plus and minus, and the error signal then joins Tsk before splitting into the four effector arrows. The three arrows into Tset are what move it: pyrogens (plus), exercise training and heat acclimation (minus), and biologic rhythms.
-
 ### 5. Responses to heat and to cold
 
-Both responses are ==negative feedback== loops, meaning that the response cancels the change that caused it. In heat, the hypothalamus senses a rise in blood temperature and acts through the sympathetic nervous system, the automatic nerves to the organs. The smooth muscle of the skin arterioles relaxes, so more warm blood reaches the skin and loses its heat there, as [[Coronary and Cutaneous Blood Flow]] describes. The sweat glands become active, so evaporative heat loss rises. Body temperature falls back.
+Both responses are ==negative feedback== loops, meaning that the response cancels the change that caused it. In heat, the hypothalamus senses a rise in blood temperature and acts through the sympathetic nervous system. The smooth muscle of the skin arterioles relaxes, so more warm blood reaches the skin and loses its heat there, as [[Coronary and Cutaneous Blood Flow]] describes. The sweat glands become active, so evaporative heat loss rises. Body temperature falls back.
 
-In cold, a fall in blood or skin temperature is sensed, and the sympathetic nervous system constricts the skin arterioles, so less heat is lost. The somatic motor nervous system, the nerves to skeletal muscle, makes the muscles shiver. Shivering raises metabolism and makes heat, which is called ==shivering thermogenesis==. Body temperature rises back.
+In cold, a fall in blood or skin temperature is sensed, and the sympathetic nervous system constricts the skin arterioles, so less heat is lost. The somatic motor nervous system makes the muscles shiver. Shivering raises metabolism and makes heat, which is called ==shivering thermogenesis==. Body temperature rises back.
+
+Shivering lifts heat production above its resting level, the basal metabolic rate, which is the energy the body uses at complete rest. Measured per square metre of body surface, this rate falls steeply through childhood and slowly after about 20 years. It is also lower in women than in men, at about ==40 against 45 watts (W) per square metre== at age 20.
 
 These mechanisms form three zones along a scale of skin temperature. Below about 20 °C is ==metabolic regulation==, where heat production rises to nearly five times basal. It comes from shivering and from nonshivering thermogenesis, which is heat made without muscle contraction, mainly in brown fat. From about 20 to 35 °C is ==vascular regulation==. Heat production stays basal, and skin blood flow alone controls temperature, from maximal vasoconstriction at about 20 °C to maximal vasodilation at about 35 °C. This band is the ==thermoneutral zone==. Above about 35 °C, sweating takes over.
 

@@ -52,9 +52,11 @@ Heat strain at the top splits into two boxes. On the left, Cardiovascular respon
 
 ### 5. Acclimation to heat
 
-Repeated exercise in the heat over several days brings three groups of changes. First, plasma volume rises, because more protein in the plasma raises its ==oncotic pressure==, the pull that holds water inside the vessels. This rise is temporary, back to normal after about ==10 days==, but it buys time for the other adaptations.
+Repeated exercise in the heat over several days brings three groups of changes. First, plasma volume rises. Albumin, the main protein in plasma, normally leaks slowly out of the vessels into the fluid around the cells. Exercise in the heat speeds up the lymph, which carries this albumin back into the blood, and the liver also makes more of it. With more albumin in the plasma, its ==oncotic pressure== rises, and this pull holds more water inside the vessels. This rise is temporary, back to normal after about ==10 days==, but it buys time for the other adaptations.
 
-Second, heart rate is lower and cardiac output higher for the same work. This supports a greater skin blood flow, so more heat is lost and core temperature stays lower. Third, sweating starts earlier, spreads over more of the body and is ==more dilute==. This improves evaporative heat loss and prevents a dangerous loss of sodium. The set point, the temperature the brain defends, also falls ([[Thermoregulation]]).
+Second, the larger plasma volume reduces the cardiovascular strain of exercising in the heat. The extra plasma means more blood returns to the heart, so it fills better and pumps more with each beat. With a bigger stroke volume, the heart needs fewer beats for the same work, so heart rate is lower, and it can still pump more blood each minute, so cardiac output is higher. That extra output can supply the skin without taking blood from the muscles, so more heat is carried to the surface and lost, and core temperature stays lower.
+
+Third, sweating starts earlier, spreads over more of the body and is ==more dilute==. This improves evaporative heat loss and prevents a dangerous loss of sodium. The set point, the temperature the brain defends, also falls ([[Thermoregulation]]).
 
 ### 6. Defending heat in the cold
 
@@ -72,9 +74,7 @@ Normally a rise in catecholamines, epinephrine (adrenaline) and norepinephrine, 
 
 Repeated cold stress leads to one of three patterns, and two questions decide which. If the cold does not actually cause a loss of body heat, the result is ==habituation==, in which shivering and skin vasoconstriction become blunted. If heat is lost and extra metabolic heat is enough to defend body temperature, the result is ==metabolic acclimatisation==. Shivering thermogenesis is enhanced, and possibly nonshivering thermogenesis too. If heat is lost and extra heat production is not enough, the result is ==insulative acclimatisation==. Skin vasoconstriction is enhanced, and improved muscle blood flow redistributes body heat toward the subcutaneous shell.
 
-![[Thermo_slide25_cold_adaptation.png]]
-
-The decision tree asks first about Body heat loss, then whether increased metabolic heat production is sufficient. It works like heating a house. If no heat escapes, you turn the heating down. If the boiler keeps up, you run it harder, and if it cannot, you add insulation.
+![[Thermo_slide25_cold_adaptation.png|532]]
 
 ### Summary
 

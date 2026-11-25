@@ -292,11 +292,12 @@ content/<Subject>/audio/<Note>.mp3 + a `narration` frontmatter field → narrati
   text and each call took 0.5 to 7 minutes; the Metabolism scripts still came out clean.
 - **Metabolism and Nutrition** (on the site since 2026-11-23): every index section is listed in
   `publish`, which keeps the class notes above the first heading off. Narrated: Energy Basics,
-  ATP and the Fuel Map, Burning Glucose and Fat, Protein and the Whole Picture (twelve notes).
-  The three Glycogen and McArdle Disease notes and the two Thermoregulation notes (added
-  2026-11-24) went up without audio for the author to review on the site; once they say a note
-  is ready, sync only its edits and narrate it (voices alternate in index order: Protein and the
-  Metabolic Mill is Patrick, so Glycogen and Blood Glucose gets Jessica).
+  ATP and the Fuel Map, Burning Glucose, Fat, Protein and the Whole Picture and Thermoregulation
+  (fourteen notes). The three Glycogen and McArdle Disease notes went up without audio for the
+  author to review on the site; once they say a note is ready, sync only its edits and narrate
+  it. Voices alternate in index order, skipping none: Glycogen and Blood Glucose gets Jessica,
+  the McArdle notes Patrick then Jessica (Thermoregulation is Patrick, Exercise in Heat and Cold
+  Jessica).
 - **Regeneration is cached.** `<Note>.json` stores a fingerprint of the sentences, voice id,
   model and settings; `npm run audio` skips scripts whose fingerprint matches, so editing
   frontmatter alone costs nothing. `--force` regenerates.
